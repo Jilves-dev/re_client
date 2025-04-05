@@ -20,19 +20,9 @@ const AuthProvider = ({ children }) => {
     axios.defaults.baseURL = API;
     console.log("Setting axios baseURL to:", API);
   }, []);
-
-  /*useEffect(() => {
-    let fromLS = localStorage.getItem("auth");
-    if (fromLS) setAuth(JSON.parse(fromLS));
-  }, []);*/
-
-  // configure axios
-  //axios.defaults.baseURL = API;
-  //console.log("Axios Base URL:", API); 
-  //axios.defaults.withCredentials = true;
+ 
   axios.defaults.headers.common["Authorization"] = auth?.token;
   axios.defaults.headers.common["refresh_token"] = auth?.refreshToken;
-  //axios.defaults.headers.common["Content-Type"] = "application/json";
 
   axios.interceptors.response.use(
     (res) => {
