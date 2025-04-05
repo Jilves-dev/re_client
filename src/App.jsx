@@ -34,7 +34,7 @@ import ArrowDown from "./assets/arrow-down.svg";
 
 
 const PageNotFound = () => (
-  <div className="text-center p-5">SORRY BUT ERROR MEANS THAT THE PAGE YOU ARE LOOKING FOR DOES NOT EXIST!!!!</div>
+  <div className="text-center p-5">SORRY BUT ERROR MEANS THAT THE PAGE YOU ARE LOOKING FOR DOES NOT EXIST!!!</div>
 );
 
 /*function App() {
