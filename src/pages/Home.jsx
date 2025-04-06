@@ -3,6 +3,7 @@ import { useAuth } from "../context/auth";
 import axios from "axios";
 import AdCard from "../components/cards/AdCard";
 import SearchMain from "../components/forms/SearchMain";
+import DebugComponent from "../components/DebugComponent";
 import './Home.css';
 
 
@@ -129,6 +130,8 @@ export default function Home() {
         <div name="header" className="w-full">
         <PageHeader title="Real Estate Marketplace"/>
         </div>
+
+        <DebugComponent />
         
         <div className="grid grid-cols-1 
         sm:grid-cols-1 
@@ -173,6 +176,7 @@ export default function Home() {
             <p className="col-span-full text-center py-10">Ei vuokrailmoituksia</p>
           )}
         </div>
+       
       </div>
   );
 }
