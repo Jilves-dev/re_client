@@ -276,8 +276,6 @@ const PageNotFound = () => (
           </Routes>
           </div>
   
-
-
       {/* Ylänappi */}
       {showScrollButton && (
             <img 
@@ -322,7 +320,6 @@ const PageNotFound = () => (
               }}
             />
           )}
-
         
           <Footer />
         </SearchProvider>

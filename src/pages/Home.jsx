@@ -101,7 +101,7 @@ export default function Home() {
 
   const fetchAds = async () => {
     try {
-      console.log("API URL:", axios.defaults.baseURL); // Lisää tämä debuggausta varten
+      console.log("Home.jsx API URL:", axios.defaults.baseURL); // Lisää tämä debuggausta varten
       const { data } = await axios.get("/ads");
       console.log("Fetched ads data:", data); // Lisää tämä debuggausta varten
       
