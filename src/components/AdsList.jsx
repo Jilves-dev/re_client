@@ -1,4 +1,3 @@
-// src/components/AdsList.jsx
 import React, { useState, useEffect } from 'react';
 import { getAds } from '@/api/adsService'; // Import getAds from the service file
 
