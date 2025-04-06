@@ -130,8 +130,10 @@ export default function Home() {
         <div name="header" className="w-full">
         <PageHeader title="Real Estate Marketplace"/>
         </div>
-
+        
+        <br></br>
         <DebugComponent />
+        <br></br>
         
         <div className="grid grid-cols-1 
         sm:grid-cols-1 

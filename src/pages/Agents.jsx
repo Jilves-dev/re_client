@@ -48,7 +48,7 @@ export default function Agents() {
         className="d-flex justify-content-center align-items-center vh-100"
         style={{ marginTop: "-10%" }}
       >
-        <div className="display-1 font-floral">Loading...</div>
+        <div className="display-1 font-floral">Loading ...</div>
       </div>
     );
   }
