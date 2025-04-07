@@ -46,49 +46,65 @@ const AuthProvider = ({ children }) => {
     }
   }, [auth?.token]); // Tämä hook suoritetaan aina kun auth.token muuttuu
 
-  // Set up axios interceptors only once
-  useEffect(() => {
-    const interceptor = axios.interceptors.response.use(
-      (res) => {
-        return res;
-      },
-      async (err) => {
-        const originalConfig = err.config;
-        if (err.response) {
-          // token is expired
-          if (err.response.status === 401 && !originalConfig._retry) {
-            originalConfig._retry = true;
+ // Set up axios interceptors only once
+useEffect(() => {
+  const interceptor = axios.interceptors.response.use(
+    (res) => {
+      return res;
+    },
+    async (err) => {
+      const originalConfig = err.config;
+      // Lisää debuggausta
+      console.log("Axios error:", err.response?.status, err.message);
+      
+      if (err.response) {
+        // token is expired
+        if (err.response.status === 401 && !originalConfig._retry) {
+          originalConfig._retry = true;
 
-            try {
-              const { data } = await axios.get("/refresh-token");
-              axios.defaults.headers.common["Authorization"] = data.token;
-              axios.defaults.headers.common["refresh_token"] = data.refreshToken;
-              setAuth(data);
-              localStorage.setItem("auth", JSON.stringify(data));
+          try {
+            console.log("Trying to refresh token");
+            const { data } = await axios.get("/refresh-token");
+            console.log("Token refreshed successfully");
+            
+            axios.defaults.headers.common["Authorization"] = data.token;
+            axios.defaults.headers.common["refresh_token"] = data.refreshToken;
+            setAuth(data);
+            localStorage.setItem("auth", JSON.stringify(data));
 
-              return axios(originalConfig);
-            } catch (_error) {
-              if (_error.response && _error.response.data) {
-                return Promise.reject(_error.response.data);
-              }
-
-              return Promise.reject(_error);
+            return axios(originalConfig);
+          } catch (_error) {
+            console.error("Token refresh failed:", _error.response?.status, _error.message);
+            // Virhetilanteessa tyhjennä autentikaatio
+            localStorage.removeItem("auth");
+            setAuth({
+              user: null,
+              token: "",
+              refreshToken: "",
+            });
+            
+            if (_error.response && _error.response.data) {
+              return Promise.reject(_error.response.data);
             }
-          }
 
-          if (err.response.status === 403 && err.response.data) {
-            return Promise.reject(err.response.data);
+            return Promise.reject(_error);
           }
         }
-        return Promise.reject(err);
-      }
-    );
 
-    // Clear interceptor on unmount
-    return () => {
-      axios.interceptors.response.eject(interceptor);
-    };
-  }, []);
+        if (err.response.status === 403 && err.response.data) {
+          console.error("Permission denied:", err.response.data);
+          return Promise.reject(err.response.data);
+        }
+      }
+      return Promise.reject(err);
+    }
+  );
+
+  // Clear interceptor on unmount
+  return () => {
+    axios.interceptors.response.eject(interceptor);
+  };
+}, []);
 
   return (
     <AuthContext.Provider value={[auth, setAuth]}>
