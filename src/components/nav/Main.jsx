@@ -18,7 +18,9 @@ export default function Main() {
     navigate("/login");
   };
 
-  const loggedIn = auth.user !== null && auth.token !== "" && auth.refreshToken !== "";
+  //const loggedIn = auth.user !== null && auth.token !== "" && auth.refreshToken !== "";
+  
+  const loggedIn = auth?.user !== null && auth?.token !== "" && auth?.refreshToken !== "";
 
   const handlePostAdClick = () => {
     if (loggedIn) {

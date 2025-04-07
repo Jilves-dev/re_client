@@ -46,7 +46,8 @@ const AuthProvider = ({ children }) => {
     }
   }, [auth?.token]); // Tämä hook suoritetaan aina kun auth.token muuttuu
 
- // Set up axios interceptors only once
+
+  // Token refresh -logiikka, joka epäonnistuu hiljaisesti
 useEffect(() => {
   const interceptor = axios.interceptors.response.use(
     (res) => {
@@ -54,7 +55,6 @@ useEffect(() => {
     },
     async (err) => {
       const originalConfig = err.config;
-      // Lisää debuggausta
       console.log("Axios error:", err.response?.status, err.message);
       
       if (err.response) {
@@ -75,32 +75,22 @@ useEffect(() => {
             return axios(originalConfig);
           } catch (_error) {
             console.error("Token refresh failed:", _error.response?.status, _error.message);
-            // Virhetilanteessa tyhjennä autentikaatio
-            localStorage.removeItem("auth");
-            setAuth({
-              user: null,
-              token: "",
-              refreshToken: "",
-            });
+            // Virheellä ei ole kriittistä vaikutusta, jos käyttäjä ei ole kirjautunut
+            console.log("Continuing without authentication");
             
-            if (_error.response && _error.response.data) {
-              return Promise.reject(_error.response.data);
-            }
-
+            // Älä hävitä auth-tietoja jos refresh-token epäonnistuu
+            // localStorage.removeItem("auth");
+            // setAuth({...});
+            
+            // Jatka lupauksen hylkäämistä normaalisti
             return Promise.reject(_error);
           }
-        }
-
-        if (err.response.status === 403 && err.response.data) {
-          console.error("Permission denied:", err.response.data);
-          return Promise.reject(err.response.data);
         }
       }
       return Promise.reject(err);
     }
   );
 
-  // Clear interceptor on unmount
   return () => {
     axios.interceptors.response.eject(interceptor);
   };
