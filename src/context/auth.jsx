@@ -33,6 +33,19 @@ const AuthProvider = ({ children }) => {
     }
   }, []);
 
+  useEffect(() => {
+    // Debug auth token settings
+    if (auth?.token) {
+      console.log("Setting auth token in headers:", auth.token.substring(0, 10) + "...");
+      axios.defaults.headers.common["Authorization"] = auth.token;
+      axios.defaults.headers.common["refresh_token"] = auth.refreshToken;
+    } else {
+      console.log("No auth token available");
+      // Varmistetaan, että oletusasetukset ovat kunnossa
+      console.log("Current axios baseURL:", axios.defaults.baseURL);
+    }
+  }, [auth?.token]); // Tämä hook suoritetaan aina kun auth.token muuttuu
+
   // Set up axios interceptors only once
   useEffect(() => {
     const interceptor = axios.interceptors.response.use(
