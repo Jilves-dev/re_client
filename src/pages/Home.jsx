@@ -3,7 +3,7 @@ import { useAuth } from "../context/auth";
 import axios from "axios";
 import AdCard from "../components/cards/AdCard";
 import SearchMain from "../components/forms/SearchMain";
-import DebugComponent from "../components/DebugComponent";
+//import DebugComponent from "../components/DebugComponent";
 import './Home.css';
 
 
@@ -177,9 +177,9 @@ export default function Home() {
           )}
         </div>
 
-        <br></br>
+        {/*<br></br>
         <DebugComponent />
-        <br></br>
+        <br></br>*/}
        
       </div>
   );
