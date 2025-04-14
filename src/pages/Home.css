@@ -2,7 +2,7 @@
     width: 100%;
     max-width: 100%;
     height: 50vh;   
-    background-image: url('../assets/old_dam2edit.jpg');
+    background-image: url('../assets/old_dam.jpg');
     background-size: cover;
     background-position: center bottom;
     /*background-position: center;*/
@@ -15,7 +15,7 @@
     .container_bg {
         height: 35vh;
        /* padding-bottom: 4;*/
-        background-image: url('../assets/old_dam2edit.jpg');
+        background-image: url('../assets/old_dam.jpg');
         background-position: center top;
         background-size: 150%; /* Hieman suurempi koko jotta kattaa ruudun mutta näkyy enemmän */
     }

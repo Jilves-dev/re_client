@@ -131,8 +131,6 @@ export default function Home() {
         <PageHeader title="Real Estate Marketplace"/>
         </div>
         
-       
-        
         <div className="grid grid-cols-1 
         sm:grid-cols-1 
         md:grid-cols-2 
