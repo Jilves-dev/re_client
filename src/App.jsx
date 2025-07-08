@@ -29,6 +29,7 @@ import Agent from "./pages/Agent";
 import Buy from "./pages/Buy";
 import Rent from "./pages/Rent";
 import Search from "./pages/Search";
+import ScrollToTop from "./components/ScrollToTop";
 import ArrowDown from "./assets/arrow-down.svg";
 import { API } from './config';
 import axios from "axios";
@@ -132,6 +133,7 @@ function App() {
   return (
     <ErrorBoundary>
       <BrowserRouter>
+      <ScrollToTop /> 
         <AuthProvider>
           <SearchProvider>
             <div className="flex flex-col min-h-screen w-full bg-[#FBE9D0]">
