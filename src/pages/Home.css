@@ -1,16 +1,44 @@
-.container_bg {
+/*.container_bg {
     width: 100%;
-    max-width: 100%;
+    max-width: 100vw;
     height: 50vh;   
     background-image: url('../assets/old_dam.jpg');
-    background-size: cover;
-    background-position: center bottom;
-    /*background-position: center;*/
+    background-size: 100% auto;
+    background-position: center center;
     background-repeat: no-repeat;
     background-attachment: fixed; 
     position: relative;
-  }
-  
+    overflow: hidden; 
+    padding-bottom: 8rem; 
+  }*/
+
+
+.container_bg {
+    width: 100%;
+    height: 50vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.container_bg::before {
+    content: '';
+    position: absolute;
+    top: 120px; 
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('../assets/old_dam.jpg');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    z-index: 1;
+    /* Lisää hieman skaalausta estämään reunojen näkymistä */
+    transform: scale(1.05);
+}
+
   @media (max-width: 992px) {
     .container_bg {
         height: 35vh;
