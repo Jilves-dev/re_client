@@ -128,7 +128,7 @@ export default function Home() {
         <br></br>
         </div>
         <div name="header" className="w-full">
-        <PageHeader title="Real Estate Marketplace"/>
+        <PageHeader title="Free space realization market"/>
         </div>
         
         <div className="grid grid-cols-1 
