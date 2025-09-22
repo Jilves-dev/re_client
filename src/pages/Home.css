@@ -17,7 +17,7 @@
 
 .container_bg {
     width: 100%;
-    height: 50vh;
+    height: 55vh;
     position: relative;
     display: flex;
     align-items: center;
@@ -28,7 +28,7 @@
 .container_bg::before {
     content: '';
     position: absolute;
-    top: 120px; 
+    top: 10px; 
     left: 0;
     right: 0;
     bottom: 0;
@@ -53,11 +53,16 @@
 
   .search-container {
     padding-top: 26vh; /* Adjust this value for desktop */
+    z-index: 2; /* Ensure it is above the background image */
+    width: 100%;
+    padding-left: 1rem; /* 16px */
+    padding-right: 1rem; /* 16px */
   }
   
   @media (max-width: 992px) {
     .search-container {
       padding-top: 23vh; /* Smaller padding for mobile */
+      width: 100%;
     }
   }
   

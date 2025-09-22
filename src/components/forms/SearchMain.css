@@ -12,11 +12,11 @@
 .container 
 .search-input-container 
 {
-  width: 100%;
+  width: 90%;
   max-width: 100%;
-  padding-left: 6px;
+  /*padding-left: 6px;
   padding-right: 6px;
-  /*padding-top: 42px;
+  padding-top: 42px;
   border: 1px solid #90AEAD !important;*/
 }
 
@@ -49,7 +49,7 @@
 
 .google-places-input input {
   flex-grow: 1;
-  width: 100% !important;
+  width: 100%;
   padding-right: 40px;
   box-sizing: border-box;
 }
@@ -71,7 +71,7 @@
   border: 1px solid #90AEAD !important;
   padding: 0 !important;
   /*color: #333 !important;*/
-  margin-right: 7px !important;
+  margin-right: 1px !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
