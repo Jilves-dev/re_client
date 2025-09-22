@@ -7,7 +7,7 @@ export default function AdFeatures({ ad, layout }) {
 const justifyContentClass = layout === 'spread' ? 'justify-between' : 'justify-start';
 
 return (
-  <div className={`flex ${justifyContentClass} px-2 ml-4`}>
+  <div className={`flex ${justifyContentClass}`}>
     {ad?.bedrooms && (
       <span className="flex items-center">
         <IoBedOutline className="mr-2" /> {ad?.bedrooms}

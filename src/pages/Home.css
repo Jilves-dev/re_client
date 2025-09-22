@@ -1,11 +1,12 @@
 .container_bg {
     width: 100%;
     max-width: 100%;
-    height: 50vh;   
+    height: 60vh;   
     background-image: url('../assets/old_dam.jpg');
     background-size: cover;
     background-position: center bottom;
     /*background-position: center;*/
+    padding-top: 6vh;
     background-repeat: no-repeat;
     background-attachment: fixed; 
     position: relative;
@@ -13,26 +14,35 @@
   
   @media (max-width: 992px) {
     .container_bg {
-        height: 35vh;
-       /* padding-bottom: 4;*/
+        height: 40vh;
+        padding-bottom: 8px;
         background-image: url('../assets/old_dam.jpg');
         background-position: center top;
-        background-size: 150%; /* Hieman suurempi koko jotta kattaa ruudun mutta näkyy enemmän */
+        background-size: 120%; /* Hieman suurempi koko jotta kattaa ruudun mutta näkyy enemmän */
     }
   }
-  
+
   .search-container {
     padding-top: 26vh; /* Adjust this value for desktop */
   }
   
   @media (max-width: 992px) {
     .search-container {
-      padding-top: 21vh; /* Smaller padding for mobile */
+      padding-top: 23vh; /* Smaller padding for mobile */
     }
   }
   
   
-  /*  .container_bg {
+  /* @media (max-width: 576px) {
+   .container_bg {
+        height: 30vh;
+        background-size: 100%;
+        background-position: center top;
+    }
+  }
+  
+  
+  .container_bg {
       width: 100%;
       max-width: 100%;
       background-image: url('../assets/old_dam.jpg');
