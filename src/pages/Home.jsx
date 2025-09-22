@@ -102,9 +102,9 @@ export default function Home() {
 
   const fetchAds = async () => {
     try {
-      console.log("Home.jsx API URL:", axios.defaults.baseURL); // Lisää tämä debuggausta varten
+      console.log("Home.jsx API URL:", axios.defaults.baseURL); // debuggausta varten
       const { data } = await axios.get("/ads");
-      console.log("Fetched ads data:", data); // Lisää tämä debuggausta varten
+      console.log("Fetched ads data:", data); // debuggausta varten
       
       if (data) {
         setAdsForSell(data.adsForSell || []);
@@ -128,7 +128,7 @@ export default function Home() {
         <br></br>
         </div>
         <div name="header" className="w-full">
-        <PageHeader title="Real Estate Marketplace"/>
+        <PageHeader title="Free space realization market"/>
         </div>
         
         <div className="grid grid-cols-1 
