@@ -56,7 +56,7 @@ export default function SearchMain() {
   };
 
   return (
-    <div className="container">
+    <div className="container search-form-container">
       <div className="search-input-container google-places-input">
         <GooglePlacesAutocomplete
           apiKey={import.meta.env.VITE_GOOGLE_PLACES_KEY}

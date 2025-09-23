@@ -9,16 +9,16 @@
   font-family: castoro !important;
 }
 
-.container 
+/*.container 
 .search-input-container 
 {
-  width: 90%;
+  width: 80%;
   max-width: 100%;
   /*padding-left: 6px;
   padding-right: 6px;
   padding-top: 42px;
   border: 1px solid #90AEAD !important;*/
-}
+/*}
 
 @media (min-width: 600px) {
   .container 
@@ -27,12 +27,12 @@
   width: 80%;
   max-width: 80%;
 }
-}
+}*/
 
 @media (min-width: 992px) {
   .google-places-input {
-    max-width: 70%; /* Vähentää leveyttä suurella näytöllä */
-    margin: 0 auto; /* Keskittää elementin */
+    max-width: 60%; /* Vähentää leveyttä suurella näytöllä */
+    margin: 0 auto;  /*Keskittää elementin */
   }
 }
 
@@ -99,8 +99,17 @@
   }
 }
 
+ /* button {
+  background-color: #FBE9D0 !important;
+  border-width: 2px !important;
+  border-color: #90AEAD   !important;
+  border-radius: 0px !important;
+  color: #244855 !important;
+  padding: 15px 75px !important;
+}*/
+
 /* Painikkeet */
-button {
+.search-form-container button {
   background-color: #FBE9D0 !important;
   border-width: 2px !important;
   border-color: #90AEAD   !important;
@@ -108,7 +117,6 @@ button {
   color: #244855 !important;
   padding: 15px 75px !important;
 }
-
 
 @media (max-width: 992px) {
   .modal .button-group button {

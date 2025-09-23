@@ -28,23 +28,24 @@
 .container_bg::before {
     content: '';
     position: absolute;
-    top: 10px; 
+    top: 0px; 
     left: 0;
     right: 0;
     bottom: 0;
     background-image: url('../assets/old_dam.jpg');
-    background-size: cover;
+   /*  background-size: cover;*/
+    background-size: 100% auto;
     background-position: center center;
     background-repeat: no-repeat;
     z-index: 1;
-    /* Lisää hieman skaalausta estämään reunojen näkymistä */
-    transform: scale(1.05);
+    /* Lisää hieman skaalausta estämään reunojen näkymistä 
+    transform: scale(1.05);*/
 }
 
   @media (max-width: 992px) {
     .container_bg {
-        height: 40vh;
-        padding-bottom: 8px;
+        height: 30vh;
+        padding-bottom: 45px;
         background-image: url('../assets/old_dam.jpg');
         background-position: center top;
         background-size: 120%; /* Hieman suurempi koko jotta kattaa ruudun mutta näkyy enemmän */

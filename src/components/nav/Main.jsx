@@ -90,15 +90,16 @@ useEffect(() => {
         ) : (
           <div className="relative" ref={userDropdownRef}>
             <button 
-            className="nav-link bg-[#90AEAD] text-[#FFFFFF] dropdown-toggle" 
+            className="nav-link bg-transparent text-[#FFFFFF] dropdown-toggle" 
             onClick={toggleUserDropdown}>
               {auth?.user?.name ? auth.user.name : auth.user.username}
             </button>
             {userDropdown && ( // Käyttäen userDropdown tilaa
-                <ul className="absolute right-10 mt-2 w-48 bg-[#90AEAD] rounded-md shadow-lg">
+                <ul className="absolute mt-2 w-40 right-0 bg-[#90AEAD] rounded-md shadow-lg z-50">
                 <li>
                   <NavLink
-                    className="block px-4 py-2 text-[#FBE9D0] hover:bg-[#FBE9D0]"
+                    className="block px-2 py-2 text-[#FBE9D0]"
+                    //hover:bg-[#FBE9D0]
                     to="/dashboard"
                     onClick={() => setUserDropdown(false)} // Sulkee valikon klikkauksen jälkeen
                   >
@@ -111,7 +112,8 @@ useEffect(() => {
                       logout();
                       setUserDropdown(false); // Sulkee valikon klikkauksen jälkeen
                     }}
-                    className="block px-4 py-2 text-[#FBE9D0] hover:bg-gray-100"
+                    className="block px-2 py-2 text-[#FBE9D0]"
+                    //hover:bg-[#FBE9D0]
                   >
                     Logout
                   </a>
