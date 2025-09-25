@@ -121,14 +121,14 @@ export default function Home() {
   return (
     <div name='home' className='max-w-screen w-full pb-10'>
        <div className="container_bg">
-        <div className="search-container flex justify-center mx-auto">
+        <div className="search-container">
         <SearchMain />
         </div>
         <br></br>
         <br></br>
         </div>
         <div name="header" className="w-full">
-        <PageHeader title="Free space realization market"/>
+        <PageHeader title="Space realization application experiment"/>
         </div>
         
         <div className="grid grid-cols-1 
@@ -182,5 +182,3 @@ export default function Home() {
       </div>
   );
 }
-
-

@@ -9,26 +9,6 @@
   font-family: castoro !important;
 }
 
-/*.container 
-.search-input-container 
-{
-  width: 80%;
-  max-width: 100%;
-  /*padding-left: 6px;
-  padding-right: 6px;
-  padding-top: 42px;
-  border: 1px solid #90AEAD !important;*/
-/*}
-
-@media (min-width: 600px) {
-  .container 
-  .search-input-container 
-{
-  width: 80%;
-  max-width: 80%;
-}
-}*/
-
 @media (min-width: 992px) {
   .google-places-input {
     max-width: 60%; /* Vähentää leveyttä suurella näytöllä */
@@ -50,39 +30,55 @@
 .google-places-input input {
   flex-grow: 1;
   width: 100%;
-  padding-right: 40px;
+  padding-right: 50px; /* Lisää tilaa settings-buttonille */
   box-sizing: border-box;
 }
 
 .google-places-input button {
   position: absolute;
-  right: 0px; /* Siirretään oikealle */
-  top: 50%; /* Keskitetään pystysuunnassa */
+  right: 5px; /* Sijoita hieman sisemmäs */
+  top: 50%;
   transform: translateY(-50%);
   background: transparent;
   border: none;
   cursor: pointer;
-  z-index: 2; /* Varmistaa, että se näkyy päällä */
+  z-index: 10; /* Varmistaa, että se näkyy päällä */
+  padding: 5px; /* Pieni padding ikonia varten */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* Settings-ikoni */
+/* Settings-ikoni - KORJATTU */
 .settings-icon-button {
-  border-radius: 10% !important;
+  background-color: #FBE9D0 !important;
+  border-radius: 20% !important;
   border: 1px solid #90AEAD !important;
-  padding: 0 !important;
-  /*color: #333 !important;*/
-  margin-right: 1px !important;
+  padding: 8px !important; /* Pieni padding ikonille */
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
   height: 35px !important;
   width: 35px !important;
   color: #244855 !important;
+  position: absolute !important;
+  right: 1px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  z-index: 10 !important;
+  cursor: pointer !important;
+  font-size: 16px !important; /* Varmista että ikoni on tarpeeksi iso */
 }
 
 .settings-icon-button:hover {
   background-color: #e6d8c4 !important;
   color: #244855 !important;
+}
+
+.settings-icon-button svg {
+  width: 18px !important;
+  height: 18px !important;
+  display: block !important;
 }
 
 @media (min-width: 992px) {
@@ -99,20 +95,11 @@
   }
 }
 
- /* button {
-  background-color: #FBE9D0 !important;
-  border-width: 2px !important;
-  border-color: #90AEAD   !important;
-  border-radius: 0px !important;
-  color: #244855 !important;
-  padding: 15px 75px !important;
-}*/
-
 /* Painikkeet */
-.search-form-container button {
+.search-form-container button:not(.settings-icon-button) {
   background-color: #FBE9D0 !important;
   border-width: 2px !important;
-  border-color: #90AEAD   !important;
+  border-color: #90AEAD !important;
   border-radius: 0px !important;
   color: #244855 !important;
   padding: 15px 75px !important;
@@ -125,18 +112,7 @@
   }
 }
 
-/*
-@media (max-width: 992px) {
-  .modal .button-group button {
-    border-radius: 50% !important;
-    border-radius: 50px !important; 
-  }
-}
-.btn.active .checkmark {
-  color: #879c7d !important;
-}*/
-
-button:hover {
+button:not(.settings-icon-button):hover {
   background-color: #e6d8c4 !important;
   color: #333 !important;
 }
@@ -166,457 +142,6 @@ button:hover {
 .css-1uj5iah-control {
   border-color: #90AEAD !important;
 }
-
-/*.full-width {
-    width: 100%;
-  }
-  
-  .search-input-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding-right: 10px;
-  }
-  
-  .google-places-input {
-    display: flex;
-    align-items: center;
-    width: 100%
-    padding: 0 25px !important;  lisää marginaalia reunoille 
-    position: relative;  tarvitaan absolute positioning varten 
-  }
-  
-  .google-places-input input {
-    flex-grow: 1;
-    width: 100%;  varmistaa, että input täyttää tilan 
-    padding-right: 40px !important;  antaa tilaa settings-ikonille 
-    box-sizing: border-box;  huomioi paddingin leveydessä 
-  }
-  
-  .google-places-input button {
-    position: absolute;
-    right: 10px;  asettaa painikkeen aivan oikealle 
-    top: 50%;
-    transform: translateY(-50%);
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-  }
-  
-  *, ::before, ::after {
-    box-sizing: border-box;
-    border-width: 0;
-    border-style: solid;
-    border-color: #e5e7eb;
-  }
-  
-  .settings-icon-button {
-    background-color: #FFFAFA !important;
-    border-radius: 25% !important;
-    border: 1px solid #e5e7eb !important;
-    padding: 0 !important;
-    color: #333 !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    height: 40px !important;
-    width: 40px !important;
-  }
-  
-  @media (min-width: 992px) { 
-    .settings-icon-button { 
-      display: none !important; 
-    } 
-  }
-  
-  .settings-icon-button:hover {
-    background-color: #e6d8c4 !important;
-    color: #333 !important;
-  }
-  
-  @media (min-width: 992px) {
-    .search-input-container {
-      gap: 20px;
-    }
-    
-    .button-group {
-      margin-top: 15px;
-    }
-  }
-  
-  .location-input {
-    width: 80%;
-    margin-bottom: 5px;
-  }
-  
-  button {
-    background-color: #FFFAFA !important;
-    border-width: 2px !important;
-    border-color: #cbc385 !important;
-    border-radius: 0% !important;
-    color: #333 !important;
-    padding: 20px 35px !important;
-  }
-  
-  button:hover {
-    background-color: #e6d8c4 !important;
-    color: #333 !important;
-  }
-  
-  .settings-button {
-    border-radius: 5px !important;
-    padding: 10px 15px !important;
-    overflow: hidden;
-    width: 100%;
-    margin-top: 15px;
-  }
-  
-  .active {
-    background-color: #FFFAFA!important;
-    border-color: #cbc385 !important;
-    color: #333 !important;
-  }
-  
-  .button-group { 
-    display: flex; 
-    gap: 0; 
-  }
-  
-  .button-group button {
-    margin-right: 0;
-    flex-grow: 1;
-  }
-  
-  .container {
-    padding-top: 8px;
-    padding-bottom: 12px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .settings-icon-container {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    gap: 10px;
-  }
-  
-  .settings-icon-button {
-    background-color: #FFFAFA !important;
-    border-radius: 50% !important;
-    border: 1px solid #e5e7eb !important;
-    padding: 0 !important;
-    color: #333 !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    height: 40px !important;
-    width: 40px !important;
-  }
-  
-  .google-places-input input {
-    width: calc(100% - 50px); 
-    padding-right: 50px; 
-  }*/
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*.full-width {
-    width: 100%;
-  }
-  
-  .search-input-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding-right: 10px;
-  }
-  
-  .google-places-input {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    padding: 0 20px; /* lisää marginaalia reunoille 
-  }
-  */
-  /*.google-places-input input {
-    flex: 1;
-    width: 100%; /* varmistaa, että input täyttää tilan */
-   /*  padding-right: 40px; antaa tilaa settings-ikonille */
-   /*  box-sizing: border-box; huomioi paddingin leveydessä */
-  /*}
-  
-  .google-places-input button {
-    position: absolute;
-    right: 25px;
-    top: 50%;
-    transform: translateY(-50%);
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-  }
-  
-  *, ::before, ::after {
-    box-sizing: border-box;
-    border-width: 0;
-    border-style: solid;
-    border-color: #e5e7eb;
-  }
-  
-  .settings-icon-button {
-    background-color: #FFFAFA !important;
-    border-radius: 25% !important;
-    border: 1px solid #e5e7eb !important;
-    padding: 0 !important;
-    color: #333 !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    height: 40px !important;
-    width: 40px !important;
-  }
-  
-  @media (min-width: 992px) { 
-    .settings-icon-button { 
-      display: none !important; 
-    } 
-  }
-  
-  .settings-icon-button:hover {
-    background-color: #e6d8c4 !important;
-    color: #333 !important;
-  }
-  
-  @media (min-width: 992px) {
-    .search-input-container {
-      gap: 20px;
-    }
-    
-    .button-group {
-      margin-top: 15px;
-    }
-  }
-  
-  .location-input {
-    width: 80%;
-    margin-bottom: 5px;
-  }
-  
-  button {
-    background-color: #FFFAFA !important;
-    border-width: 2px !important;
-    border-color: #cbc385 !important;
-    border-radius: 0% !important;
-    color: #333 !important;
-    padding: 20px 35px !important;
-  }
-  
-  button:hover {
-    background-color: #e6d8c4 !important;
-    color: #333 !important;
-  }
-  
-  .settings-button {
-    border-radius: 5px !important;
-    padding: 10px 15px !important;
-    overflow: hidden;
-    width: 100%;
-    margin-top: 15px;
-  }
-  
-  .active {
-    background-color: #FFFAFA!important;
-    border-color: #cbc385 !important;
-    color: #333 !important;
-  }
-  
-  .button-group { 
-    display: flex; 
-    gap: 0; 
-  }
-  
-  .button-group button {
-    margin-right: 0;
-    flex-grow: 1;
-  }
-  
-  .container {
-    padding-top: 8px;
-    padding-bottom: 12px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .settings-icon-container {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    gap:10px;
-  }
-  
--------------------
-
-  .full-width {
-    width: 100%;
-  }
-  
-  .search-input-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    padding-right: 10px;
-  }
-  
-  .google-places-input input {
-    flex: 1;
-  }
-  
-  .google-places-input button {
-    margin-left: 10px;
-  }
-  
-  *, ::before, ::after {
-    box-sizing: border-box;
-    border-width: 0;
-    border-style: solid;
-    border-color: #e5e7eb;
-  }
-  
-  .settings-icon-button {
-    background-color: #FFFAFA !important;
-    border-radius: 25% !important;
-    border: 1px solid #e5e7eb !important;
-    padding: 0 !important;
-    color: #333 !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    height: 40px !important;
-    width: 40px !important;
-  }
-  
-  @media (min-width: 992px) { 
-    .settings-icon-button { 
-      display: none !important; 
-    } 
-  }
-  
-  .settings-icon-button:hover {
-    background-color: #e6d8c4 !important;
-    color: #333 !important;
-  }
-  
-  @media (min-width: 992px) {
-    .search-input-container {
-      gap: 20px;
-    }
-    
-    .button-group {
-      margin-top: 15px;
-    }
-  }
-  
-  .location-input {
-    width: 80%;
-    margin-bottom: 5px;
-  }
-  
-  button {
-    background-color: #FFFAFA !important;
-    border-width: 2px !important;
-    border-color: #cbc385 !important;
-    border-radius: 0% !important;
-    color: #333 !important;
-    padding: 20px 35px !important;
-  }
-  
-  button:hover {
-    background-color: #e6d8c4 !important;
-    color: #333 !important;
-  }
-  
-  .settings-button {
-    border-radius: 5px !important;
-    padding: 10px 15px !important;
-    overflow: hidden;
-    width: 100%;
-    margin-top: 15px;
-  }
-  
-  .active {
-    background-color: #FFFAFA!important;
-    border-color: #cbc385 !important;
-    color: #333 !important;
-  }
-  
-  .button-group { 
-    display: flex; 
-    gap: 0; 
-  }
-  
-  .button-group button {
-    margin-right: 0;
-    flex-grow: 1;
-  }
-  
-  .container {
-    padding-top: 8px;
-    padding-bottom: 12px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .settings-icon-container {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    gap:10px;
-  }
-  
-  .settings-icon-button {
-    background-color: #FFFAFA !important;
-    border-radius: 25% !important;
-    border: 1px solid #e5e7eb !important;
-    padding: 0 !important;
-    color: #333 !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    height: 40px !important;
-    width: 40px !important;
-  }
-  
-  .google-places-input input {
-    width: calc(100% - 50px); 
-    padding-right: 50px; 
-  }
-  */
 
 /* Pyöristetään modaalin napit pienillä näytöillä */
 @media (max-width: 992px) {

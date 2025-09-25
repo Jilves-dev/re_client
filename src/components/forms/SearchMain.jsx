@@ -65,11 +65,9 @@ export default function SearchMain() {
             placeholder: 'Search for address..',
             onChange: async (place) => {
               const placeId = place.value.place_id;
-              const address = place.value.description;
-
-             // console.log("Selected place:", place); // Lisätty lokitus
+              const address = place.value.description;             // console.log("Selected place:", place); // Lisätty lokitus
              // console.log("Place ID:", placeId); // Tarkista, että placeId on oikein
-
+ 
               try {
                   // Käytä backendin APIa Google API -kutsun sijaan
                   //const res = await axios.get(`http://localhost:8000/api/geocode`, {
