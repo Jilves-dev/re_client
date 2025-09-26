@@ -3,6 +3,7 @@ import { useAuth } from "../context/auth";
 import axios from "axios";
 import AdCard from "../components/cards/AdCard";
 import SearchMain from "../components/forms/SearchMain";
+import { GiSoapExperiment } from "react-icons/gi";
 //import DebugComponent from "../components/DebugComponent";
 import './Home.css';
 
@@ -22,13 +23,15 @@ import './Home.css';
   );
 };*/}
 
+
+
 const PageHeader = ({ title }) => (
-  <div className="mx-auto w-full text-align:left pb-16 pt-20 
-   bg-[#90AEAD]">
-    <h1 className="font-Castoro pl-8 text-5xl sm:text-7xl 
-    text-[#244855] 
-    font-normal">
-      {title}
+  <div className="mx-auto w-full text-left pt-10 pb-8 sm:pt-20 sm:pb-16 md:pt-[100px] md:pb-24 bg-[#90AEAD]">
+    <h1 className="font-Castoro pl-8 text-5xl sm:text-7xl text-[#244855] font-normal flex flex-wrap items-center gap-x-4">
+      <span>{title}</span>
+      {/*<GiSoapExperiment
+        className="text-5xl sm:text-8xl sm:pb-6 text-[#244855] flex-shrink-0"
+      />*/}
     </h1>
   </div>
 );
