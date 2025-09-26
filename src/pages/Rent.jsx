@@ -35,8 +35,7 @@ export default function Rent() {
   return (
     <div className='max-w-screen w-full pb-10'>
       <div className="container_bg">
-         <br></br><br></br><br></br>
-    <div className="pt-12 flex justify-center py-6 mx-auto">
+      <div className="search-container">
         <SearchMain />
     </div>
     <br></br>

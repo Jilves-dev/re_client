@@ -95,7 +95,12 @@ export default function SearchMain() {
               container: (provided) => ({
                 ...provided,
                 flexGrow: 1,
+                zIndex: 1001, // Lisätty tämä rivi
               }),
+               menu: (provided) => ({
+        ...provided,
+        zIndex: 1001, // Lisätty tämä rivi
+      }),
               control: (provided) => ({
                 ...provided,
                 width: '100%',

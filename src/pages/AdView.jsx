@@ -72,7 +72,7 @@ export default function AdView() {
 <div className="flex flex-col bg-[#FBE9D0] sm:grid sm:grid-cols-3 gap-4 pt-10"> 
 <div className="flex flex-row sm:col-span-3 justify-between items-center">
 <div className="pl-4 font-Castoro">{ad?.sold ? "❌ Off market" : "✅ In market"}</div> 
-<LikeUnlike ad={ad} className="relative right-4 sm:right-0" /> </div>
+<LikeUnlike ad={ad} className="relative right-6 sm:right-0" /> </div>
 
 
 {/*<div className="flex flex-col sm:grid sm:grid-cols-3 gap-4 pt-10 pb-10">  
@@ -89,13 +89,15 @@ export default function AdView() {
   </div>*/}
 
   {/* Osoite ja ominaisuudet */}
-  <div className="col-span-3 grid sm:grid-cols-2 items-center gap-4 font-Castoro">
+  <div className="col-span-3 grid items-center gap-4 font-Castoro">
     <h1 className="text-3xl pl-4">{ad.address}</h1>
+    <div className="ml-4 sm:ml-4">
     <AdFeatures ad={ad} />
+    </div>
   </div>
 
   {/* Hinta ja julkaisuajankohta */}
-  <div className="col-span-3 grid sm:grid-cols-2 items-center gap-4 mb-4">
+  <div className="col-span-3 grid items-center gap-4 mb-4">
     <h1 className="text-3xl pl-4">{formatNumber(ad.price)}€</h1>
     <p className="text-muted pl-4">{dayjs(ad?.createdAt).fromNow()}</p>
   </div>

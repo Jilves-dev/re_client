@@ -61,12 +61,13 @@
   
   .search-container {
     /* padding-top: 26vh; Adjust this value for desktop */
-    z-index: 10; /* Nostetaan tämä arvo, jotta se on kaikkien muiden elementtien päällä */
+    z-index: 1000; /* Nostetaan tämä arvo, jotta se on kaikkien muiden elementtien päällä */
     width: 100%;
     padding-left: 1rem; /* 16px */
     padding-right: 1rem; /* 16px */
     display: flex;
     justify-content: center;
+     position: relative; /* LISÄTTY: Varmistaa että z-index toimii */
   }
   
   /* @media (max-width: 576px) {

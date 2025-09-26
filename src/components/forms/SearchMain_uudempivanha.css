@@ -25,7 +25,6 @@
   align-items: center;
   width: 100%;
   position: relative; /* Tämä varmistaa, että button pysyy tämän elementin sisällä */
-  z-index: 1000; /* Nostetaan koko google-places-input z-indeksi */
 }
 
 .google-places-input input {
@@ -43,34 +42,11 @@
   background: transparent;
   border: none;
   cursor: pointer;
-  z-index: 1002; /* Varmistaa, että se näkyy päällä */
+  z-index: 10; /* Varmistaa, että se näkyy päällä */
   padding: 5px; /* Pieni padding ikonia varten */
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-/* React Select dropdown z-index korjaukset */
-.css-b62m3t-container {
-  width: 100% !important;
-  z-index: 1001 !important; /* Nostetaan dropdown z-indeksi */
-}
-
-.css-1pahdxg-control, 
-.css-yk16xz-control,
-.css-13cymwt-control {
-  z-index: 1001 !important;
-}
-
-/* GooglePlaces dropdown menu */
-.google-places-autocomplete__menu {
-  z-index: 1001 !important;
-}
-
-/* React-select menu */
-.css-26l3qy-menu,
-.css-1n7v3ny-menu {
-  z-index: 1001 !important;
 }
 
 /* Settings-ikoni - KORJATTU */
@@ -89,7 +65,7 @@
   right: 1px !important;
   top: 50% !important;
   transform: translateY(-50%) !important;
-  z-index: 1002 !important; /* Korkeampi kuin dropdown */
+  z-index: 10 !important;
   cursor: pointer !important;
   font-size: 16px !important; /* Varmista että ikoni on tarpeeksi iso */
 }
@@ -148,6 +124,10 @@ button:not(.settings-icon-button):hover {
 }
 
 /* React Select -komponentti */
+.css-b62m3t-container {
+  width: 100% !important;
+}
+
 .css-3kd8s5-control {
   width: 100% !important;
   min-width: 0 !important;

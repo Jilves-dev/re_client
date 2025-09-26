@@ -33,14 +33,14 @@ export default function UserCard({ user, className }) {
         <Badge.Ribbon 
           color="#90AEAD"
           text={`${count} listings`}>
-          <div className="card hoverable shadow-lg shadow-gray-600 rounded-md my-card pb-4 w-90 h-100">
+          <div className="card hoverable shadow-lg shadow-gray-600 rounded-md my-card  w-90 h-100">
             <img
               src={user?.photo?.Location ?? Logo}
               alt={user.username}
               className="w-full h-80 object-cover"
             />
 
-            <div className="card-body">
+            <div className="card-body bg-[#FBE9D0]">
               <h3 className="text-2xl pl-2 pt-6 pb-1">{user?.name ?? user?.username}</h3>
               <p className="text-md text-gray-600 pl-2 pb-2">
                 Joined {dayjs(user.createdAt).fromNow()}

@@ -116,7 +116,7 @@ export default function ContactSeller({ ad }) {
             </button>
           ) : (
             <button
-              className="bg-[#cbc385] border-2 border-[#874F41] hover:bg-[#cf8c60] text-[#879c7d]  py-2 px-4 rounded w-full"
+              className="bg-[#FBE9D0] border-2 border-[#90AEAD] hover:bg-[#cf8c60] text-[#879c7d]  py-2 px-4 rounded w-full"
               type="button"
               onClick={handleLoginRedirect}
               /*style={{ 
