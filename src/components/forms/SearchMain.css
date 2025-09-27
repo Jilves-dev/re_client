@@ -25,7 +25,7 @@
   align-items: center;
   width: 100%;
   position: relative; /* Tämä varmistaa, että button pysyy tämän elementin sisällä */
-  z-index: 200; /* Nostetaan koko google-places-input z-indeksi */
+  z-index: 2000; /* KORJATTU: Nostetaan merkittävästi korkeammaksi */
 }
 
 .google-places-input input {
@@ -43,34 +43,44 @@
   background: transparent;
   border: none;
   cursor: pointer;
-  z-index: 1002; /* Varmistaa, että se näkyy päällä */
+  z-index: 2002; /* Varmistaa, että se näkyy päällä */
   padding: 5px; /* Pieni padding ikonia varten */
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-/* React Select dropdown z-index korjaukset */
+/* React Select dropdown z-index korjaukset - KORJATTU */
 .css-b62m3t-container {
   width: 100% !important;
-  z-index: 1001 !important; /* Nostetaan dropdown z-indeksi */
+  z-index: 2001 !important; /* Nostetaan merkittävästi */
 }
 
 .css-1pahdxg-control, 
 .css-yk16xz-control,
 .css-13cymwt-control {
-  z-index: 1001 !important;
+  z-index: 2001 !important;
 }
 
-/* GooglePlaces dropdown menu */
+/* GooglePlaces dropdown menu - KORJATTU */
 .google-places-autocomplete__menu {
-  z-index: 1001 !important;
+  z-index: 2001 !important;
 }
 
-/* React-select menu */
+/* React-select menu - KORJATTU */
 .css-26l3qy-menu,
 .css-1n7v3ny-menu {
-  z-index: 1001 !important;
+  z-index: 9999 !important;
+}
+
+/* Lisätään tuki kaikille mahdollisille React Select luokille */
+[class*="react-select"] [class*="menu"] {
+  z-index: 9999 !important;
+}
+
+/* Varmistetaan että Google Places dropdown näkyy */
+div[id^="react-select-"] {
+  z-index: 9999 !important;
 }
 
 /* Settings-ikoni - KORJATTU */
@@ -89,7 +99,7 @@
   right: 1px !important;
   top: 50% !important;
   transform: translateY(-50%) !important;
-  z-index: 1002 !important; /* Korkeampi kuin dropdown */
+  z-index: 2002 !important; /* Korkeampi kuin dropdown */
   cursor: pointer !important;
   font-size: 16px !important; /* Varmista että ikoni on tarpeeksi iso */
 }

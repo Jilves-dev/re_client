@@ -1,20 +1,3 @@
-/*.container_bg {
-    width: 100%;
-    max-width: 100%;
-    height: 60vh;   
-    background-image: url('../assets/old_dam.jpg');
-    background-size: cover;
-    background-position: center bottom;
-    /*background-position: center;*/
-   /* padding-top: 6vh;
-    background-repeat: no-repeat;
-    background-attachment: fixed; 
-    position: relative;
-    overflow: hidden; 
-    padding-bottom: 8rem; 
-  }*/
-
-
 .container_bg {
     width: 100%;
     height: 55vh;
@@ -23,6 +6,8 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    /* KORJATTU: Alennetaan z-index arvoa tai poistetaan se kokonaan */
+    z-index: 1; /* Alempi kuin search-container */
 }
 
 .container_bg::before {
@@ -33,153 +18,36 @@
     right: 0;
     bottom: 0;
     background-image: url('../assets/old_dam.jpg');
-   /*  background-size: cover;*/
     background-size: 100% auto;
     background-position: center center;
     background-repeat: no-repeat;
-    z-index: 1;
-    /* Lisää hieman skaalausta estämään reunojen näkymistä 
-    transform: scale(1.05);*/
+    z-index: 0; /* Taustakuva alimmaiseksi */
 }
 
-  @media (max-width: 992px) {
-    .container_bg {
-        height: 30vh;
-        padding-bottom: 45px;
-        background-image: url('../assets/old_dam.jpg');
-        background-position: center top;
-        background-size: 120%; /* Hieman suurempi koko jotta kattaa ruudun mutta näkyy enemmän */
-    }
-  }
-
-  @media (max-width: 992px) {
-    .search-container {
-      padding-top: 23vh; /* Smaller padding for mobile */
-      width: 100%;
-    }
-  }
-  
-  .search-container {
-    /* padding-top: 26vh; Adjust this value for desktop */
-    z-index: 1000; /* Nostetaan tämä arvo, jotta se on kaikkien muiden elementtien päällä */
-    width: 100%;
-    padding-left: 1rem; /* 16px */
-    padding-right: 1rem; /* 16px */
-    display: flex;
-    justify-content: center;
-     position: relative; /* LISÄTTY: Varmistaa että z-index toimii */
-  }
-  
-  /* @media (max-width: 576px) {
-   .container_bg {
-        height: 30vh;
-        background-size: 100%;
-        background-position: center top;
-    }
-  }
-  
-  
+@media (max-width: 992px) {
   .container_bg {
-      width: 100%;
-      max-width: 100%;
+      height: 30vh;
+      padding-bottom: 45px;
       background-image: url('../assets/old_dam.jpg');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-    }*/
-  
-   /*.container_bg {
-      width: 100%;
-      max-width: 100%;
-      height: 45vh;   
-      background-image: url('../assets/old_dam.jpg');
-      background-size: cover;
-      background-position: center bottom;
-      background-repeat: no-repeat;
-      background-attachment: fixed; 
-      position: relative;
+      background-position: center top;
+      background-size: 120%; /* Hieman suurempi koko jotta kattaa ruudun mutta näkyy enemmän */
   }
-  
-  @media (max-width: 992px) {
-    .container_bg {
-        background-image: url('../assets/old_dam.jpg');
-        background-size: contain;
-        background-position: center top; 
-        height: 35vh;  
-        background-repeat: no-repeat;
-        background-attachment: scroll; 
-    }
-  }*/
-  
-  /* Lisätään media query vielä pienemmille näytöille */
-  /* @media (max-width: 576px) {
-   .container_bg {
-        height: 30vh;
-        background-size: 100%; Varmistetaan että kuva mahtuu leveyssuunnassa 
-        background-position: center top;
-    }
-  }*/
-  
-  
-  
-  
-  
-  /*  @media (max-width: 992px) {
-      .container_bg {
-        background-image: url('../assets/old_dam.jpg');
-        background-size: cover;
-        background-position: center;
-        height: 35vh;  
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-      }
-    }
-  
-    
-  
-  .bg_gradient {
+}
+
+@media (max-width: 992px) {
+  .search-container {
+    padding-top: 23vh; /* Smaller padding for mobile */
     width: 100%;
-    max-width: 100wh;
-    height: 100vh;
-    background: linear-gradient(-45deg, #90AEAD, #FBE9D0, #90AEAD, #E64833);
-    background-size: 400% 400%;
-    -webkit-animation: Gradient 15s ease infinite;
-    -moz-animation: Gradient 15s ease infinite;
-    animation: Gradient 15s ease infinite;
   }
-  
-  @-webkit-keyframes Gradient {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
-  }
-  
-  @-moz-keyframes Gradient {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
-  }
-  
-  @keyframes Gradient {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
-  }*/
+}
+
+.search-container {
+  /* KORJATTU: Nostetaan z-index merkittävästi korkeammaksi */
+  z-index: 2000; /* Varmistetaan että dropdown näkyy kaiken päällä */
+  width: 100%;
+  padding-left: 1rem; /* 16px */
+  padding-right: 1rem; /* 16px */
+  display: flex;
+  justify-content: center;
+  position: relative; /* Varmistaa että z-index toimii */
+}

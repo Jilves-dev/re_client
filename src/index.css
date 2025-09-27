@@ -81,6 +81,66 @@ html, body {
 }
 
 
+/* Google Places Autocomplete global fixes */
+.react-select__menu-portal {
+  z-index: 99999 !important;
+}
+
+.react-select__menu {
+  z-index: 99999 !important;
+}
+
+.react-select__menu-list {
+  z-index: 99999 !important;
+}
+
+/* Varmistetaan että kaikki select menut toimivat */
+[class*="react-select"] [class*="menu"] {
+  z-index: 99999 !important;
+}
+
+/* Spesifiset CSS luokat joita React Select käyttää */
+.css-26l3qy-menu,
+.css-1n7v3ny-menu,
+.css-1hwfws3-menu,
+.css-1fdsijx-menu {
+  z-index: 99999 !important;
+}
+
+/* Google Places spesifiset */
+.google-places-autocomplete__menu {
+  z-index: 99999 !important;
+}
+
+/* ID-pohjaiset säännöt */
+div[id^="react-select-"] div[class*="menu"] {
+  z-index: 99999 !important;
+}
+
+/* Portal-based menus */
+[data-react-select-portal] {
+  z-index: 99999 !important;
+}
+
+/* Mobile navbar fixes */
+.mobile-nav-overlay {
+  z-index: 100001 !important;
+  position: fixed !important;
+}
+
+/* Navbar base fixes */
+.navbar-base {
+  z-index: 100000 !important;
+  position: relative !important;
+}
+
+/* Varmistetaan että kaikki muu sisältö on navbarin alla */
+.page-content {
+  z-index: 1 !important;
+  position: relative !important;
+}
+
+
 /*@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Josefin+Slab:ital,wght@0,100..700;1,100..700&family=Lora:ital,wght@0,400..700;1,400..700&family=Merienda:wght@300..900&family=Special+Elite&family=Yeseva+One&display=swap');
 
 @tailwind base;

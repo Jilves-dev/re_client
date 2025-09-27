@@ -34,12 +34,13 @@ export default function SearchMain() {
     setSearch({ ...search, loading: true });
     try {
       const { results, page, price, ...rest } = search;
+      //const query = queryString.stringify(rest);
       const query = queryString.stringify({ ...rest, action, type });
 
-      console.log("Search query:", query);
+      console.log("Search query:", query); // Lisätty lokitus
 
       const { data } = await axios.get(`/search?${query}`);
-      console.log("Search results:", data);
+      console.log("Search results:", data); // Lisätty lokitus
 
       setSearch((prev) => ({
         ...prev,
@@ -64,12 +65,17 @@ export default function SearchMain() {
             placeholder: 'Search for address..',
             onChange: async (place) => {
               const placeId = place.value.place_id;
-              const address = place.value.description;
-
+              const address = place.value.description;             // console.log("Selected place:", place); // Lisätty lokitus
+             // console.log("Place ID:", placeId); // Tarkista, että placeId on oikein
+ 
               try {
-                const res = await axios.get(`/geocode`, {
+                  // Käytä backendin APIa Google API -kutsun sijaan
+                  //const res = await axios.get(`http://localhost:8000/api/geocode`, {
+                  const res = await axios.get(`/geocode`, {
                   params: { place_id: placeId }
                 });
+
+                //console.log("Geocode response:", res.data); // Lisätty lokitus
 
                 const location = res.data.results[0]?.geometry?.location;
 
@@ -89,17 +95,12 @@ export default function SearchMain() {
               container: (provided) => ({
                 ...provided,
                 flexGrow: 1,
-                zIndex: 1001,
+                zIndex: 1001, // Lisätty tämä rivi
               }),
-              menu: (provided) => ({
-                ...provided,
-                zIndex: 99999,
-                position: 'absolute',
-              }),
-              menuList: (provided) => ({
-                ...provided,
-                zIndex: 99999,
-              }),
+               menu: (provided) => ({
+        ...provided,
+        zIndex: 1001, // Lisätty tämä rivi
+      }),
               control: (provided) => ({
                 ...provided,
                 width: '100%',
@@ -111,8 +112,6 @@ export default function SearchMain() {
                 padding: '0 10px',
               }),
             },
-            // Lisätään menuPortalTarget body:yn
-            menuPortalTarget: document.body,
             components: {
               IndicatorsContainer: () => null,
             },
@@ -174,7 +173,7 @@ export default function SearchMain() {
         </Button>
       </div>
 
-      <Modal show={show} onHide={handleClose} style={{ zIndex: 10000 }} className="search-modal">
+      <Modal show={show} onHide={handleClose} style={{ zIndex: 1250 }} className="search-modal">
         <Modal.Header closeButton>
           <Modal.Title>Search Options</Modal.Title>
         </Modal.Header>
@@ -250,3 +249,37 @@ export default function SearchMain() {
     </div>
   );
 }
+
+
+
+     /*<Button
+          onClick={() => setSearch({ ...search, action: 'Buy', price: '' })}
+          className={`btn ${search.action === 'Buy' && 'active'}`}
+        >
+         {search.action === 'Buy' ? <span className="checkmark">☑️</span> : ''} Buy
+        </Button>*/
+
+            /* <Button
+       onClick={() => setSearch({ ...search, action: 'Buy', price: '' })}
+       className={`btn ${search.action === 'Buy' && 'active'}`}
+        >
+      {search.action === 'Buy' ? <span style={{ color: '[#51829B]'}}> [✓]</span> : ''} Buy
+       </Button>
+        <Button
+       onClick={() => setSearch({ ...search, action: 'Rent', price: '' })}
+       className={`btn ${search.action === 'Rent' && 'active'}`}
+        >
+      {search.action === 'Rent' ? <span style={{ color: '[#51829B]'}}> [✓]</span> : ''} Rent
+        </Button>
+        <Button
+          onClick={() => setSearch({ ...search, type: 'House', price: '' })}
+          className={`btn ${search.type === 'House' && 'active'}`}
+        >
+          {search.action === 'House' ? <span style={{ color: '[#51829B]'}}> [✓]</span> : ''} House
+        </Button>
+        <Button
+          onClick={() => setSearch({ ...search, type: 'Land', price: '' })}
+          className={`btn ${search.type === 'Land' && 'active'}`}
+        >
+          {search.action === 'Land' ? <span style={{ color: '[#51829B]'}}> [✓]</span> : ''} Land
+        </Button>*/
