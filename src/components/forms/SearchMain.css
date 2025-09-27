@@ -25,7 +25,7 @@
   align-items: center;
   width: 100%;
   position: relative; /* Tämä varmistaa, että button pysyy tämän elementin sisällä */
-  z-index: 1000; /* Nostetaan koko google-places-input z-indeksi */
+  z-index: 200; /* Nostetaan koko google-places-input z-indeksi */
 }
 
 .google-places-input input {
@@ -168,4 +168,37 @@ button:not(.settings-icon-button):hover {
   .modal-body .btn {
     border-radius: 5px !important;
   }
+}
+
+/* Hakukriteeri-modaalin tyylit (pienet näytöt) */
+.search-modal .modal-content {
+  background-color: #FBE9D0;
+  color: #244855;
+}
+
+.search-modal .modal-header {
+  border-bottom-color: #90AEAD; /* Sovitetaan headerin erotinviiva teemaan */
+}
+
+.search-modal .modal-header .btn-close {
+  filter: invert(25%) sepia(11%) saturate(2500%) hue-rotate(150deg) brightness(90%) contrast(90%);
+}
+
+.search-modal .modal-body .btn-primary,
+.search-modal .modal-body .dropdown-toggle {
+  background-color: #90AEAD;
+  color: #244855;
+  border: 1px solid #244855;
+}
+
+.search-modal .modal-body .btn-primary:hover,
+.search-modal .modal-body .dropdown-toggle:hover {
+  background-color: #7a9998; /* Hieman tummempi hover-efekti */
+  color: #FBE9D0;
+}
+
+/* Muutetaan modaalin valitun radio-napin väri */
+.search-modal .form-check-input:checked {
+  background-color: #E64833;
+  border-color: #90AEAD;
 }

@@ -129,7 +129,7 @@ useEffect(() => {
       </div>
       {/* Mobiilivalikko */}
       {nav && (
-        <div className='fixed top-0 right-0 w-[60%] max-w-md h-screen bg-[rgba(253, 235, 211, 0.8)] backdrop-filter backdrop-blur-md flex flex-col justify-center items-center z-50'>
+        <div className='fixed top-0 right-0 w-[60%] max-w-md h-screen bg-[rgba(253, 235, 211, 0.8)] backdrop-filter backdrop-blur-md flex flex-col justify-center items-center z-2000'>
           <ul className='font-castoro text-[#244855] font-normal'>
             <li className='py-6 text-4xl'>
               <NavLink className="nav-link" to="/" onClick={handleClick}>Home</NavLink>
