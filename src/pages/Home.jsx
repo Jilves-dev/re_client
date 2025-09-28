@@ -12,6 +12,7 @@ const PageHeader = ({ title }) => (
        style={{ zIndex: 1, position: 'relative' }}>
     <h1 className="font-Castoro pl-8 text-5xl sm:text-7xl text-[#244855] font-normal flex flex-wrap items-center gap-x-4">
       <span>{title}</span>
+      {/*<GiSoapExperiment/>*/}
     </h1>
   </div>
 );

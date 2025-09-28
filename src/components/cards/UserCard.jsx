@@ -37,7 +37,7 @@ export default function UserCard({ user, className }) {
           />
           
           {/* Custom ribbon yläosassa */}
-          <div className="absolute top-0 left-0 bg-[#90AEAD] text-white px-3 py-1 text-sm font-Castoro z-10">
+          <div className="absolute top-2 left-0 bg-[#90AEAD] text-white px-3 py-1 text-sm font-Castoro z-10">
             {count} listings
           </div>
           
