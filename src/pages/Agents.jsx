@@ -13,7 +13,7 @@ import UserCard from "../components/cards/UserCard";
 const PageHeader = ({ title }) => (
   <div className="w-full text-align:left pb-12 pt-14 xl:pb-16 xl:pt-20 bg-[#90AEAD]">
     <div className="flex items-center pl-10">
-      <h1 className="font-Castoro text-align:left text-5xl md:text-6xl xl:text-7xl text-[#244855] font-normal">
+      <h1 className="font-Castoro text-align:left text-6xl md:text-7xl xl:text-8xl text-[#244855] font-normal">
         {title}
       </h1>
       {/*<img src={artNouveau} alt="Art Nouveau" className="h-[6em] w-auto ml-4 bg-[#51829B]" />*/}
@@ -48,7 +48,7 @@ export default function Agents() {
         className="d-flex justify-content-center align-items-center vh-100"
         style={{ marginTop: "-10%" }}
       >
-        <div className="display-1 font-floral">Loading ...</div>
+        <div className="display-1 font-floral text-[#90AEAD]">Loading ...</div>
       </div>
     );
   }
@@ -58,7 +58,7 @@ export default function Agents() {
       <div className="container_bg">
       </div>
       <div name="agents" className="w-full">
-      <PageHeader title="Agents"/>
+      <PageHeader title="our Space realization Dealers"/>
       </div>
       <br></br>
       <div className="grid grid-cols-1 

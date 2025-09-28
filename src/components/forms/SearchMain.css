@@ -196,7 +196,7 @@ button:not(.settings-icon-button):hover {
 
 .search-modal .modal-body .btn-primary,
 .search-modal .modal-body .dropdown-toggle {
-  background-color: #90AEAD;
+  background-color: #FBE9D0;
   color: #244855;
   border: 1px solid #244855;
 }
@@ -209,6 +209,6 @@ button:not(.settings-icon-button):hover {
 
 /* Muutetaan modaalin valitun radio-napin väri */
 .search-modal .form-check-input:checked {
-  background-color: #E64833;
+  background-color: #90AEAD;
   border-color: #90AEAD;
 }

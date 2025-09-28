@@ -174,7 +174,10 @@ export default function SearchMain() {
         </Button>
       </div>
 
-      <Modal show={show} onHide={handleClose} style={{ zIndex: 10000 }} className="search-modal">
+      <Modal show={show} 
+      onHide={handleClose} 
+      style={{ zIndex: 10000, paddingTop: '80px' }} 
+      className="search-modal">
         <Modal.Header closeButton>
           <Modal.Title>Search Options</Modal.Title>
         </Modal.Header>
