@@ -28,7 +28,7 @@ export default function AdCard({ ad, className }) {
 
          {/* Näytä etäisyys jos saatavilla */}
         {ad?.distanceKm && (
-          <div className="absolute top-2 right-2 bg-white/90 px-2 py-1 rounded text-sm">
+          <div className="absolute top-2 left-2 bg-white/90 px-2 py-1 rounded text-sm">
             📍 {ad.distanceKm.toFixed(1)} km
           </div>
         )}
