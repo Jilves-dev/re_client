@@ -11,8 +11,8 @@
 
 @media (min-width: 992px) {
   .google-places-input {
-    max-width: 60%;
-    margin: 0 auto;
+    max-width: 60%; /* Vähentää leveyttä suurella näytöllä */
+    margin: 0 auto;  /*Keskittää elementin */
   }
 }
 
@@ -24,28 +24,27 @@
   display: flex;
   align-items: center;
   width: 100%;
-  position: relative;
-  z-index: 2000;
+  position: relative; /* Tämä varmistaa, että button pysyy tämän elementin sisällä */
+  z-index: 2000; /* KORJATTU: Nostetaan merkittävästi korkeammaksi */
 }
 
 .google-places-input input {
   flex-grow: 1;
   width: 100%;
-  padding-right: 50px;
+  padding-right: 50px; /* Lisää tilaa settings-buttonille */
   box-sizing: border-box;
-  font-size: 16px; /* Estää zoomaus iOS:ssä */
 }
 
 .google-places-input button {
   position: absolute;
-  right: 5px;
+  right: 5px; /* Sijoita hieman sisemmäs */
   top: 50%;
   transform: translateY(-50%);
   background: transparent;
   border: none;
   cursor: pointer;
-  z-index: 2002;
-  padding: 5px;
+  z-index: 2002; /* Varmistaa, että se näkyy päällä */
+  padding: 5px; /* Pieni padding ikonia varten */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -71,10 +70,10 @@
   margin-top: 2px;
 }
 
-/* React Select dropdown z-index korjaukset */
+/* React Select dropdown z-index korjaukset - KORJATTU */
 .css-b62m3t-container {
   width: 100% !important;
-  z-index: 2001 !important;
+  z-index: 2001 !important; /* Nostetaan merkittävästi */
 }
 
 .css-1pahdxg-control, 
@@ -83,15 +82,15 @@
   z-index: 2001 !important;
 }
 
-/* GooglePlaces dropdown menu */
+/* GooglePlaces dropdown menu - KORJATTU */
 .google-places-autocomplete__menu {
   z-index: 2001 !important;
-  border-radius: 4px;
+   border-radius: 4px;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
   border: 1px solid #90AEAD;
 }
 
-/* React-select menu */
+/* React-select menu - KORJATTU */
 .css-26l3qy-menu,
 .css-1n7v3ny-menu {
   z-index: 9999 !important;
@@ -109,12 +108,12 @@ div[id^="react-select-"] {
   z-index: 9999 !important;
 }
 
-/* Settings-ikoni */
+/* Settings-ikoni - KORJATTU */
 .settings-icon-button {
   background-color: #FBE9D0 !important;
   border-radius: 10% !important;
   border: 1px solid #90AEAD !important;
-  padding: 8px !important;
+  padding: 8px !important; /* Pieni padding ikonille */
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
@@ -125,9 +124,9 @@ div[id^="react-select-"] {
   right: 1px !important;
   top: 50% !important;
   transform: translateY(-50%) !important;
-  z-index: 2002 !important;
+  z-index: 2002 !important; /* Korkeampi kuin dropdown */
   cursor: pointer !important;
-  font-size: 16px !important;
+  font-size: 16px !important; /* Varmista että ikoni on tarpeeksi iso */
   transition: all 0.2s ease;
 }
 
@@ -165,7 +164,7 @@ div[id^="react-select-"] {
   border-radius: 0px !important;
   color: #244855 !important;
   padding: 15px 75px !important;
-  transition: all 0.3s ease;
+   transition: all 0.3s ease;
 }
 
 @media (max-width: 992px) {
@@ -231,14 +230,9 @@ button:disabled {
 }
 
 .search-modal .modal-header {
-  border-bottom-color: #90AEAD;
+  border-bottom-color: #90AEAD; /* Sovitetaan headerin erotinviiva teemaan */
   background-color: #90AEAD;
   color: #244855;
-}
-
-.search-modal .modal-title {
-  font-family: 'Castoro', serif;
-  font-weight: 500;
 }
 
 .search-modal .modal-header .btn-close {
@@ -250,46 +244,16 @@ button:disabled {
   background-color: #FBE9D0;
   color: #244855;
   border: 1px solid #244855;
-  transition: all 0.2s ease;
 }
 
 .search-modal .modal-body .btn-primary:hover,
 .search-modal .modal-body .dropdown-toggle:hover {
-  background-color: #90AEAD;
-  color: #244855;
-  border-color: #244855;
+  background-color: #7a9998; /* Hieman tummempi hover-efekti */
+  color: #FBE9D0;
 }
 
 /* Muutetaan modaalin valitun radio-napin väri */
 .search-modal .form-check-input:checked {
   background-color: #90AEAD;
   border-color: #90AEAD;
-}
-
-.search-modal .form-check-input:focus {
-  border-color: #90AEAD;
-  box-shadow: 0 0 0 0.2rem rgba(144, 174, 173, 0.25);
-}
-
-/* Hakutuloksen loading tila */
-.search-loading {
-  opacity: 0.7;
-  pointer-events: none;
-}
-
-/* Parannettu visuaalinen palaute */
-.form-check-input:checked[type=radio] {
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='2' fill='%23244855'/%3e%3c/svg%3e");
-}
-
-/* Dropdown menu parannus */
-.dropdown-menu {
-  border-radius: 4px;
-  border: 1px solid #90AEAD;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-}
-
-.dropdown-item:hover {
-  background-color: #FBE9D0;
-  color: #244855;
 }

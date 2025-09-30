@@ -1,4 +1,43 @@
-import { useState, createContext, useContext, useEffect } from "react";
+import { useState, createContext, useContext } from "react";
+
+const SearchContext = createContext();
+
+const initialState = {
+  address: "",
+  action: "Buy",
+  type: "House",
+  price: "",
+  priceRange: [0, 1000000],
+  results: [],
+  page: "",
+  loading: false,
+  lat: null,
+  lng: null,
+};
+
+const SearchProvider = ({ children }) => {
+  const [search, setSearch] = useState(initialState);
+
+  return (
+    <SearchContext.Provider value={[search, setSearch]}>
+      {children}
+    </SearchContext.Provider>
+  );
+};
+
+const useSearch = () => useContext(SearchContext);
+
+export { useSearch, SearchProvider };
+
+
+
+
+
+
+
+
+
+/*import { useState, createContext, useContext, useEffect } from "react";
 
 const SearchContext = createContext();
 
@@ -11,7 +50,7 @@ const innitialState = {
   results: [],
   page: "",
   loading: false,
-};
+};*/
 
 /*const SearchProvider = ({ children }) => {
   const [search, setSearch] = useState(innitialState);
@@ -29,7 +68,7 @@ const innitialState = {
   );
 };*/
 
-const SearchProvider = ({ children }) => {
+/*const SearchProvider = ({ children }) => {
   const [search, setSearch] = useState(innitialState);
 
   const handleSearch = async (query) => {
@@ -58,4 +97,4 @@ const SearchProvider = ({ children }) => {
 
 const useSearch = () => useContext(SearchContext);
 
-export { useSearch, SearchProvider };
+export { useSearch, SearchProvider };*/

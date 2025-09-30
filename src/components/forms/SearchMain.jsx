@@ -61,8 +61,28 @@ export default function SearchMain() {
           apiKey={import.meta.env.VITE_GOOGLE_PLACES_KEY}
           selectProps={{
             defaultInputValue: search?.address,
-            placeholder: 'Search for address..',
+            placeholder: 'search city or address...',
+            // Optimoidut asetukset parempaan tarkkuuteen
+            filterOption: null,
+            isSearchable: true,
+            isClearable: true,
+            // Vähennä viive paremman käyttökokemuksen vuoksi
+            loadingMessage: () => 'Haetaan...',
+            noOptionsMessage: ({ inputValue }) => 
+              inputValue.length < 3 ? 'write at least 3 characters' : 'no results found',
+            
             onChange: async (place) => {
+              if (!place) {
+                // Jos käyttäjä tyhjentää kentän
+                setSearch({
+                  ...search,
+                  address: '',
+                  lat: null,
+                  lng: null
+                });
+                return;
+              }
+
               const placeId = place.value.place_id;
               const address = place.value.description;
 
@@ -95,28 +115,75 @@ export default function SearchMain() {
                 ...provided,
                 zIndex: 99999,
                 position: 'absolute',
+                // Lisää max-height ja overflow parempaan käytettävyyteen
+                maxHeight: '200px',
+                overflowY: 'auto',
               }),
               menuList: (provided) => ({
                 ...provided,
                 zIndex: 99999,
+                maxHeight: '180px',
               }),
-              control: (provided) => ({
+              control: (provided, state) => ({
                 ...provided,
                 width: '100%',
-                boxShadow: 'none',
+                boxShadow: state.isFocused ? '0 0 0 2px #90AEAD' : 'none',
                 borderRadius: '4px',
+                borderColor: state.isFocused ? '#90AEAD' : '#e5e7eb',
               }),
               valueContainer: (provided) => ({
                 ...provided,
                 padding: '0 10px',
               }),
+              // Muotoile hakutulokset paremmin
+              option: (provided, state) => ({
+                ...provided,
+                backgroundColor: state.isFocused ? '#FBE9D0' : 'white',
+                color: '#244855',
+                fontSize: '14px',
+                padding: '10px 12px',
+                cursor: 'pointer',
+              }),
+              singleValue: (provided) => ({
+                ...provided,
+                color: '#244855',
+              }),
+              placeholder: (provided) => ({
+                ...provided,
+                color: '#9ca3af',
+              }),
             },
-            // Lisätään menuPortalTarget body:yn
             menuPortalTarget: document.body,
             components: {
               IndicatorsContainer: () => null,
+              // Lisää custom formatointi hakutuloksille
+              Option: ({ children, ...props }) => {
+                return (
+                  <div {...props.innerProps} className="google-places-option">
+                    <div className="option-main">{children}</div>
+                  </div>
+                );
+              },
             },
           }}
+          // TÄRKEÄ: Optimoi Google Places API asetukset
+          autocompletionRequest={{
+            // Rajoita hakutulokset Suomeen
+            componentRestrictions: {
+              country: ['fi']
+            },
+            // KORJATTU: Käytä vain yhteensopivia tyyppejä
+            types: ['(cities)'], // Kaupungit ja kunnat
+            // Aseta maantieteellinen bias Suomelle
+            locationBias: {
+              radius: 100000, // 100km säde
+              center: { lat: 61.9241, lng: 25.7482 } // Suomen keskipiste
+            },
+            // Lisää kieliasetukset
+            language: 'fi',
+            region: 'fi'
+          }}
+          debounce={300} // Vähennä API kutsuja
         />
         <button
           className="settings-icon-button"
@@ -156,7 +223,7 @@ export default function SearchMain() {
       </Button>
         <Dropdown as={ButtonGroup} className="price-button">
           <Button onClick={toggleDropdown}>
-            {search?.price ? search.price : 'Price'}
+            {search?.price ? search.price : 'Hinta'}
           </Button>
           <Dropdown.Menu show={dropdownOpen} style={{ zIndex: 1050 }}>
             {(search.action === 'Buy' ? sellPrices : rentPrices).map((item) => (
@@ -169,8 +236,8 @@ export default function SearchMain() {
             ))}
           </Dropdown.Menu>
         </Dropdown>
-        <Button onClick={handleSearch} className="search-button">
-          Search
+        <Button onClick={handleSearch} className="search-button" disabled={search.loading}>
+          {search.loading ? 'Haetaan...' : 'Hae'}
         </Button>
       </div>
 
@@ -179,53 +246,57 @@ export default function SearchMain() {
       style={{ zIndex: 10000, paddingTop: '80px' }} 
       className="search-modal">
         <Modal.Header closeButton>
-          <Modal.Title>Search Options</Modal.Title>
+          <Modal.Title>Search settings</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
             <Form.Group controlId="formBasicTransactionType">
+              <Form.Label className="fw-bold mb-3">Actions</Form.Label>
               <Form.Check
                 type="radio"
                 label="Buy"
                 name="transactionType"
-                onClick={() => setSearch({ ...search, action: 'Buy', price: '' })}
+                checked={search.action === 'Buy'}
+                onChange={() => setSearch({ ...search, action: 'Buy', price: '' })}
               />
-               <br></br>
+               <br />
               <Form.Check
                 type="radio"
                 label="Rent"
                 name="transactionType"
-                onClick={() =>
-                  setSearch({ ...search, action: 'Rent', price: '' })
-                }
+                checked={search.action === 'Rent'}
+                onChange={() => setSearch({ ...search, action: 'Rent', price: '' })}
               />
-               <br></br>
+               <br />
             </Form.Group>
             <Form.Group controlId="formBasicPropertyType">
+              <Form.Label className="fw-bold mb-3">Kiinteistötyyppi</Form.Label>
               <Form.Check
                 type="radio"
                 label="House"
                 name="propertyType"
-                onClick={() => setSearch({ ...search, type: 'House', price: '' })}
+                checked={search.type === 'House'}
+                onChange={() => setSearch({ ...search, type: 'House', price: '' })}
               />
-               <br></br>
+               <br />
               <Form.Check
                 type="radio"
                 label="Land"
                 name="propertyType"
-                onClick={() => setSearch({ ...search, type: 'Land', price: '' })}
+                checked={search.type === 'Land'}
+                onChange={() => setSearch({ ...search, type: 'Land', price: '' })}
               />
-               <br></br>
+               <br />
             </Form.Group>
             <Form.Group controlId="formBasicRange">
-              <Form.Label>Price Range</Form.Label>
-              <br></br>
+              <Form.Label className="fw-bold mb-3">Price range</Form.Label>
+              <br />
               <Dropdown>
                 <Dropdown.Toggle variant="primary" id="dropdown-basic">
-                  {search.price ? search.price : 'Price'}
+                  {search.price ? search.price : 'Select Price'}
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
-                  {sellPrices.map((item) => (
+                  {(search.action === 'Buy' ? sellPrices : rentPrices).map((item) => (
                     <Dropdown.Item
                       key={item._id}
                       onClick={() => handlePriceSelect(item.name, item.array)}
@@ -236,17 +307,18 @@ export default function SearchMain() {
                 </Dropdown.Menu>
               </Dropdown>
             </Form.Group>
-            <br></br>
+            <br />
             <Button
               variant="primary"
               onClick={() => {
                 handleSearch();
                 handleClose();
               }}
+              disabled={search.loading}
             >
-              Search
+              {search.loading ? 'Searching ...' : 'Search'}
             </Button>
-            <br></br>
+            <br />
           </Form>
         </Modal.Body>
       </Modal>
