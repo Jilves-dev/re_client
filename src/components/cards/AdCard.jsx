@@ -25,6 +25,15 @@ export default function AdCard({ ad, className }) {
           color={badgeColor}
           className="font-Castoro text-sm md:text-base"
         />
+
+         {/* Näytä etäisyys jos saatavilla */}
+        {ad?.distanceKm && (
+          <div className="absolute top-2 right-2 bg-white/90 px-2 py-1 rounded text-sm">
+            📍 {ad.distanceKm.toFixed(1)} km
+          </div>
+        )}
+
+
         {/* Gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
         

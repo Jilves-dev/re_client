@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Button, Modal, Form, Dropdown, ButtonGroup } from 'react-bootstrap';
 import { VscSettings } from 'react-icons/vsc';
 import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
+import toast from 'react-hot-toast';
 import { sellPrices, rentPrices } from '../../helpers/priceList';
 import { useSearch } from '../../context/search';
 import queryString from 'query-string';
@@ -30,29 +31,60 @@ export default function SearchMain() {
     setDropdownOpen(false);
   };
 
-  const handleSearch = async () => {
-    setSearch({ ...search, loading: true });
-    try {
-      const { results, page, price, ...rest } = search;
-      const query = queryString.stringify({ ...rest, action, type });
+  
 
-      console.log("Search query:", query);
+// Päivitä handleSearch:
+const handleSearch = async () => {
+  // Tarkista että jotain on valittu
+  if (!search.address && !action && !type) {
+    toast.error('Please select a location or search criteria');
+    return;
+  }
 
-      const { data } = await axios.get(`/search?${query}`);
-      console.log("Search results:", data);
-
-      setSearch((prev) => ({
-        ...prev,
-        results: data,
-        page: '/search',
-        loading: false,
-      }));
-      navigate('/search');
-    } catch (err) {
-      console.error("Search error:", err);
-      setSearch({ ...search, loading: false });
+  setSearch({ ...search, loading: true });
+  try {
+    const { results, page, price, lat, lng, ...rest } = search;
+    
+    const queryParams = {
+      action,
+      type,
+      ...rest
+    };
+    
+    if (lat && lng) {
+      queryParams.lat = lat;
+      queryParams.lng = lng;
     }
-  };
+    
+    if (search.address) {
+      queryParams.address = search.address;
+    }
+    
+    const query = queryString.stringify(queryParams);
+    console.log("Search query:", query);
+
+    const { data } = await axios.get(`/search?${query}`);
+    console.log("Search results:", data);
+
+    if (!data || data.length === 0) {
+      toast('No properties found matching your criteria', {
+        icon: '🔍',
+      });
+    }
+
+    setSearch((prev) => ({
+      ...prev,
+      results: data,
+      page: '/search',
+      loading: false,
+    }));
+    navigate('/search');
+  } catch (err) {
+    console.error("Search error:", err);
+    toast.error('Search failed. Please try again.');
+    setSearch({ ...search, loading: false });
+  }
+};
 
   return (
     <div className="container search-form-container">
@@ -61,7 +93,7 @@ export default function SearchMain() {
           apiKey={import.meta.env.VITE_GOOGLE_PLACES_KEY}
           selectProps={{
             defaultInputValue: search?.address,
-            placeholder: 'search city or address...',
+            placeholder: 'Hae osoite tai kaupunginosa...',
             // Optimoidut asetukset parempaan tarkkuuteen
             filterOption: null,
             isSearchable: true,
@@ -69,7 +101,7 @@ export default function SearchMain() {
             // Vähennä viive paremman käyttökokemuksen vuoksi
             loadingMessage: () => 'Haetaan...',
             noOptionsMessage: ({ inputValue }) => 
-              inputValue.length < 3 ? 'write at least 3 characters' : 'no results found',
+              inputValue.length < 3 ? 'Kirjoita vähintään 3 merkkiä' : 'Ei hakutuloksia',
             
             onChange: async (place) => {
               if (!place) {
@@ -135,7 +167,7 @@ export default function SearchMain() {
                 ...provided,
                 padding: '0 10px',
               }),
-              // Muotoile hakutulokset paremmin
+              // Muotoile hakutulokset näyttämään maa
               option: (provided, state) => ({
                 ...provided,
                 backgroundColor: state.isFocused ? '#FBE9D0' : 'white',
@@ -166,22 +198,13 @@ export default function SearchMain() {
               },
             },
           }}
-          // TÄRKEÄ: Optimoi Google Places API asetukset
+          // TÄRKEÄ: Optimoi Google Places API asetukset - GLOBAALI HAKU
           autocompletionRequest={{
-            // Rajoita hakutulokset Suomeen
-            componentRestrictions: {
-              country: ['fi']
-            },
-            // KORJATTU: Käytä vain yhteensopivia tyyppejä
-            types: ['(cities)'], // Kaupungit ja kunnat
-            // Aseta maantieteellinen bias Suomelle
-            locationBias: {
-              radius: 100000, // 100km säde
-              center: { lat: 61.9241, lng: 25.7482 } // Suomen keskipiste
-            },
-            // Lisää kieliasetukset
-            language: 'fi',
-            region: 'fi'
+            // POISTETTU country restriction globaalia hakua varten
+            // Näytä kaupungit ja osoitteet
+            types: ['geocode'], // 'geocode' sisältää osoitteet ja paikat
+            // Lisää kieliasetukset - englanti ja suomi
+            language: 'en', // Englanti ensisijaisena
           }}
           debounce={300} // Vähennä API kutsuja
         />
@@ -201,25 +224,25 @@ export default function SearchMain() {
         onClick={() => setAction('Buy')}
         className={`btn ${action === 'Buy' && 'active'}`}
       >
-        {action === 'Buy' ? <span style={{ color: '[#E64833]'}}> ✓</span> : ''} Buy
+        {action === 'Buy' ? <span style={{ color: '[#E64833]'}}> ✓</span> : ''} Osta
       </Button>
       <Button
         onClick={() => setAction('Rent')}
         className={`btn ${action === 'Rent' && 'active'}`}
       >
-        {action === 'Rent' ? <span style={{ color: '[#E64833]'}}> ✓</span> : ''} Rent
+        {action === 'Rent' ? <span style={{ color: '[#E64833]'}}> ✓</span> : ''} Vuokraa
       </Button>
       <Button
         onClick={() => setType('House')}
         className={`btn ${type === 'House' && 'active'}`}
       >
-        {type === 'House' ? <span style={{ color: '[#3A4A4D]'}}> ✓</span> : ''} House
+        {type === 'House' ? <span style={{ color: '[#3A4A4D]'}}> ✓</span> : ''} Talo
       </Button>
       <Button
         onClick={() => setType('Land')}
         className={`btn ${type === 'Land' && 'active'}`}
       >
-        {type === 'Land' ? <span style={{ color: '[#3A4A4D]'}}> ✓</span> : ''} Land
+        {type === 'Land' ? <span style={{ color: '[#3A4A4D]'}}> ✓</span> : ''} Tontti
       </Button>
         <Dropdown as={ButtonGroup} className="price-button">
           <Button onClick={toggleDropdown}>
@@ -246,15 +269,15 @@ export default function SearchMain() {
       style={{ zIndex: 10000, paddingTop: '80px' }} 
       className="search-modal">
         <Modal.Header closeButton>
-          <Modal.Title>Search settings</Modal.Title>
+          <Modal.Title>Hakuasetukset</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
             <Form.Group controlId="formBasicTransactionType">
-              <Form.Label className="fw-bold mb-3">Actions</Form.Label>
+              <Form.Label className="fw-bold mb-3">Toimenpide</Form.Label>
               <Form.Check
                 type="radio"
-                label="Buy"
+                label="Osta"
                 name="transactionType"
                 checked={search.action === 'Buy'}
                 onChange={() => setSearch({ ...search, action: 'Buy', price: '' })}
@@ -262,7 +285,7 @@ export default function SearchMain() {
                <br />
               <Form.Check
                 type="radio"
-                label="Rent"
+                label="Vuokraa"
                 name="transactionType"
                 checked={search.action === 'Rent'}
                 onChange={() => setSearch({ ...search, action: 'Rent', price: '' })}
@@ -273,7 +296,7 @@ export default function SearchMain() {
               <Form.Label className="fw-bold mb-3">Kiinteistötyyppi</Form.Label>
               <Form.Check
                 type="radio"
-                label="House"
+                label="Talo"
                 name="propertyType"
                 checked={search.type === 'House'}
                 onChange={() => setSearch({ ...search, type: 'House', price: '' })}
@@ -281,7 +304,7 @@ export default function SearchMain() {
                <br />
               <Form.Check
                 type="radio"
-                label="Land"
+                label="Tontti"
                 name="propertyType"
                 checked={search.type === 'Land'}
                 onChange={() => setSearch({ ...search, type: 'Land', price: '' })}
@@ -289,11 +312,11 @@ export default function SearchMain() {
                <br />
             </Form.Group>
             <Form.Group controlId="formBasicRange">
-              <Form.Label className="fw-bold mb-3">Price range</Form.Label>
+              <Form.Label className="fw-bold mb-3">Hintaluokka</Form.Label>
               <br />
               <Dropdown>
                 <Dropdown.Toggle variant="primary" id="dropdown-basic">
-                  {search.price ? search.price : 'Select Price'}
+                  {search.price ? search.price : 'Valitse hintaluokka'}
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
                   {(search.action === 'Buy' ? sellPrices : rentPrices).map((item) => (
@@ -316,7 +339,7 @@ export default function SearchMain() {
               }}
               disabled={search.loading}
             >
-              {search.loading ? 'Searching ...' : 'Search'}
+              {search.loading ? 'Haetaan...' : 'Hae'}
             </Button>
             <br />
           </Form>
