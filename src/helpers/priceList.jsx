@@ -2,7 +2,7 @@ const sellPrices = [
     {
       _id: 0,
       name: "All price",
-      array: [0, 3000000],
+      array: [0, 8000000],
     },
     {
       _id: 1,
@@ -27,7 +27,7 @@ const sellPrices = [
     {
       _id: 5,
       name: "€200000 to €300000",
-      array: [200000, 300000],
+      array: [200000, 800000],
     },
   ];
   

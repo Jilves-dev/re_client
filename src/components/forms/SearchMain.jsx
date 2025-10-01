@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { Button, Modal, Form, Dropdown, ButtonGroup } from 'react-bootstrap';
 import { VscSettings } from 'react-icons/vsc';
 import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
-import toast from 'react-hot-toast';
 import { sellPrices, rentPrices } from '../../helpers/priceList';
 import { useSearch } from '../../context/search';
 import queryString from 'query-string';
@@ -13,8 +12,6 @@ import './SearchMain.css';
 export default function SearchMain() {
   const [search, setSearch] = useSearch();
   const [show, setShow] = useState(false);
-  const [action, setAction] = useState('Buy');
-  const [type, setType] = useState('House');
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const navigate = useNavigate();
 
@@ -31,60 +28,48 @@ export default function SearchMain() {
     setDropdownOpen(false);
   };
 
-  
+  const handleSearch = async () => {
+    setSearch({ ...search, loading: true });
+    try {
+      const { results, page, price, lat, lng, ...rest } = search;
+      
+      // Rakenna query - käytä search state:sta action ja type
+      const queryParams = {
+        action: search.action || 'Buy',
+        type: search.type || 'House',
+        ...rest
+      };
+      
+      // Lisää koordinaatit vain jos ne on asetettu
+      if (lat && lng) {
+        queryParams.lat = lat;
+        queryParams.lng = lng;
+      }
+      
+      // Lisää osoite vain jos se on asetettu
+      if (search.address) {
+        queryParams.address = search.address;
+      }
+      
+      const query = queryString.stringify(queryParams);
+      console.log("Search query:", query);
+      console.log("Current search state:", search);
 
-// Päivitä handleSearch:
-const handleSearch = async () => {
-  // Tarkista että jotain on valittu
-  if (!search.address && !action && !type) {
-    toast.error('Please select a location or search criteria');
-    return;
-  }
+      const { data } = await axios.get(`/search?${query}`);
+      console.log("Search results:", data);
 
-  setSearch({ ...search, loading: true });
-  try {
-    const { results, page, price, lat, lng, ...rest } = search;
-    
-    const queryParams = {
-      action,
-      type,
-      ...rest
-    };
-    
-    if (lat && lng) {
-      queryParams.lat = lat;
-      queryParams.lng = lng;
+      setSearch((prev) => ({
+        ...prev,
+        results: data,
+        page: '/search',
+        loading: false,
+      }));
+      navigate('/search');
+    } catch (err) {
+      console.error("Search error:", err);
+      setSearch({ ...search, loading: false });
     }
-    
-    if (search.address) {
-      queryParams.address = search.address;
-    }
-    
-    const query = queryString.stringify(queryParams);
-    console.log("Search query:", query);
-
-    const { data } = await axios.get(`/search?${query}`);
-    console.log("Search results:", data);
-
-    if (!data || data.length === 0) {
-      toast('No properties found matching your criteria', {
-        icon: '🔍',
-      });
-    }
-
-    setSearch((prev) => ({
-      ...prev,
-      results: data,
-      page: '/search',
-      loading: false,
-    }));
-    navigate('/search');
-  } catch (err) {
-    console.error("Search error:", err);
-    toast.error('Search failed. Please try again.');
-    setSearch({ ...search, loading: false });
-  }
-};
+  };
 
   return (
     <div className="container search-form-container">
@@ -94,18 +79,15 @@ const handleSearch = async () => {
           selectProps={{
             defaultInputValue: search?.address,
             placeholder: 'Hae osoite tai kaupunginosa...',
-            // Optimoidut asetukset parempaan tarkkuuteen
             filterOption: null,
             isSearchable: true,
             isClearable: true,
-            // Vähennä viive paremman käyttökokemuksen vuoksi
             loadingMessage: () => 'Haetaan...',
             noOptionsMessage: ({ inputValue }) => 
               inputValue.length < 3 ? 'Kirjoita vähintään 3 merkkiä' : 'Ei hakutuloksia',
             
             onChange: async (place) => {
               if (!place) {
-                // Jos käyttäjä tyhjentää kentän
                 setSearch({
                   ...search,
                   address: '',
@@ -147,7 +129,6 @@ const handleSearch = async () => {
                 ...provided,
                 zIndex: 99999,
                 position: 'absolute',
-                // Lisää max-height ja overflow parempaan käytettävyyteen
                 maxHeight: '200px',
                 overflowY: 'auto',
               }),
@@ -167,7 +148,6 @@ const handleSearch = async () => {
                 ...provided,
                 padding: '0 10px',
               }),
-              // Muotoile hakutulokset näyttämään maa
               option: (provided, state) => ({
                 ...provided,
                 backgroundColor: state.isFocused ? '#FBE9D0' : 'white',
@@ -188,7 +168,6 @@ const handleSearch = async () => {
             menuPortalTarget: document.body,
             components: {
               IndicatorsContainer: () => null,
-              // Lisää custom formatointi hakutuloksille
               Option: ({ children, ...props }) => {
                 return (
                   <div {...props.innerProps} className="google-places-option">
@@ -198,15 +177,11 @@ const handleSearch = async () => {
               },
             },
           }}
-          // TÄRKEÄ: Optimoi Google Places API asetukset - GLOBAALI HAKU
           autocompletionRequest={{
-            // POISTETTU country restriction globaalia hakua varten
-            // Näytä kaupungit ja osoitteet
-            types: ['geocode'], // 'geocode' sisältää osoitteet ja paikat
-            // Lisää kieliasetukset - englanti ja suomi
-            language: 'en', // Englanti ensisijaisena
+            types: ['geocode'],
+            language: 'en',
           }}
-          debounce={300} // Vähennä API kutsuja
+          debounce={300}
         />
         <button
           className="settings-icon-button"
@@ -220,30 +195,30 @@ const handleSearch = async () => {
       </div>
 
       <div className="button-group w-full px-2 d-none d-lg-flex justify-center">
-      <Button
-        onClick={() => setAction('Buy')}
-        className={`btn ${action === 'Buy' && 'active'}`}
-      >
-        {action === 'Buy' ? <span style={{ color: '[#E64833]'}}> ✓</span> : ''} Osta
-      </Button>
-      <Button
-        onClick={() => setAction('Rent')}
-        className={`btn ${action === 'Rent' && 'active'}`}
-      >
-        {action === 'Rent' ? <span style={{ color: '[#E64833]'}}> ✓</span> : ''} Vuokraa
-      </Button>
-      <Button
-        onClick={() => setType('House')}
-        className={`btn ${type === 'House' && 'active'}`}
-      >
-        {type === 'House' ? <span style={{ color: '[#3A4A4D]'}}> ✓</span> : ''} Talo
-      </Button>
-      <Button
-        onClick={() => setType('Land')}
-        className={`btn ${type === 'Land' && 'active'}`}
-      >
-        {type === 'Land' ? <span style={{ color: '[#3A4A4D]'}}> ✓</span> : ''} Tontti
-      </Button>
+        <Button
+          onClick={() => setSearch({ ...search, action: 'Buy' })}
+          className={`btn ${search.action === 'Buy' && 'active'}`}
+        >
+          {search.action === 'Buy' ? <span style={{ color: '#E64833'}}> ✓</span> : ''} Osta
+        </Button>
+        <Button
+          onClick={() => setSearch({ ...search, action: 'Rent' })}
+          className={`btn ${search.action === 'Rent' && 'active'}`}
+        >
+          {search.action === 'Rent' ? <span style={{ color: '#E64833'}}> ✓</span> : ''} Vuokraa
+        </Button>
+        <Button
+          onClick={() => setSearch({ ...search, type: 'House' })}
+          className={`btn ${search.type === 'House' && 'active'}`}
+        >
+          {search.type === 'House' ? <span style={{ color: '#244855'}}> ✓</span> : ''} Talo
+        </Button>
+        <Button
+          onClick={() => setSearch({ ...search, type: 'Land' })}
+          className={`btn ${search.type === 'Land' && 'active'}`}
+        >
+          {search.type === 'Land' ? <span style={{ color: '#244855'}}> ✓</span> : ''} Tontti
+        </Button>
         <Dropdown as={ButtonGroup} className="price-button">
           <Button onClick={toggleDropdown}>
             {search?.price ? search.price : 'Hinta'}
