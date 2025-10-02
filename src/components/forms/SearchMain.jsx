@@ -78,13 +78,13 @@ export default function SearchMain() {
           apiKey={import.meta.env.VITE_GOOGLE_PLACES_KEY}
           selectProps={{
             defaultInputValue: search?.address,
-            placeholder: 'Hae osoite tai kaupunginosa...',
+            placeholder: 'Search address or city...',
             filterOption: null,
             isSearchable: true,
             isClearable: true,
-            loadingMessage: () => 'Haetaan...',
+            loadingMessage: () => 'Searching...',
             noOptionsMessage: ({ inputValue }) => 
-              inputValue.length < 3 ? 'Kirjoita vähintään 3 merkkiä' : 'Ei hakutuloksia',
+              inputValue.length < 3 ? 'write at least 3 characters' : 'No results found',
             
             onChange: async (place) => {
               if (!place) {
@@ -199,31 +199,31 @@ export default function SearchMain() {
           onClick={() => setSearch({ ...search, action: 'Buy' })}
           className={`btn ${search.action === 'Buy' && 'active'}`}
         >
-          {search.action === 'Buy' ? <span style={{ color: '#E64833'}}> ✓</span> : ''} Osta
+          {search.action === 'Buy' ? <span style={{ color: '#E64833'}}> ✓</span> : ''} Buy
         </Button>
         <Button
           onClick={() => setSearch({ ...search, action: 'Rent' })}
           className={`btn ${search.action === 'Rent' && 'active'}`}
         >
-          {search.action === 'Rent' ? <span style={{ color: '#E64833'}}> ✓</span> : ''} Vuokraa
+          {search.action === 'Rent' ? <span style={{ color: '#E64833'}}> ✓</span> : ''} Rent
         </Button>
         <Button
           onClick={() => setSearch({ ...search, type: 'House' })}
           className={`btn ${search.type === 'House' && 'active'}`}
         >
-          {search.type === 'House' ? <span style={{ color: '#244855'}}> ✓</span> : ''} Talo
+          {search.type === 'House' ? <span style={{ color: '#244855'}}> ✓</span> : ''} House
         </Button>
         <Button
           onClick={() => setSearch({ ...search, type: 'Land' })}
           className={`btn ${search.type === 'Land' && 'active'}`}
         >
-          {search.type === 'Land' ? <span style={{ color: '#244855'}}> ✓</span> : ''} Tontti
+          {search.type === 'Land' ? <span style={{ color: '#244855'}}> ✓</span> : ''} Land
         </Button>
         <Dropdown as={ButtonGroup} className="price-button">
           <Button onClick={toggleDropdown}>
-            {search?.price ? search.price : 'Hinta'}
+            {search?.price ? search.price : 'Price'}
           </Button>
-          <Dropdown.Menu show={dropdownOpen} style={{ zIndex: 1050 }}>
+          <Dropdown.Menu show={dropdownOpen} style={{ zIndex: 1500 }}>
             {(search.action === 'Buy' ? sellPrices : rentPrices).map((item) => (
               <Dropdown.Item
                 key={item._id}
@@ -235,7 +235,7 @@ export default function SearchMain() {
           </Dropdown.Menu>
         </Dropdown>
         <Button onClick={handleSearch} className="search-button" disabled={search.loading}>
-          {search.loading ? 'Haetaan...' : 'Hae'}
+          {search.loading ? 'Searching ...' : 'Search'}
         </Button>
       </div>
 
@@ -244,15 +244,15 @@ export default function SearchMain() {
       style={{ zIndex: 10000, paddingTop: '80px' }} 
       className="search-modal">
         <Modal.Header closeButton>
-          <Modal.Title>Hakuasetukset</Modal.Title>
+          <Modal.Title>Search Options</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
             <Form.Group controlId="formBasicTransactionType">
-              <Form.Label className="fw-bold mb-3">Toimenpide</Form.Label>
+              <Form.Label className="fw-bold mb-3">Actions</Form.Label>
               <Form.Check
                 type="radio"
-                label="Osta"
+                label="Buy"
                 name="transactionType"
                 checked={search.action === 'Buy'}
                 onChange={() => setSearch({ ...search, action: 'Buy', price: '' })}
@@ -260,7 +260,7 @@ export default function SearchMain() {
                <br />
               <Form.Check
                 type="radio"
-                label="Vuokraa"
+                label="Rent"
                 name="transactionType"
                 checked={search.action === 'Rent'}
                 onChange={() => setSearch({ ...search, action: 'Rent', price: '' })}
@@ -268,10 +268,10 @@ export default function SearchMain() {
                <br />
             </Form.Group>
             <Form.Group controlId="formBasicPropertyType">
-              <Form.Label className="fw-bold mb-3">Kiinteistötyyppi</Form.Label>
+              <Form.Label className="fw-bold mb-3"> </Form.Label>
               <Form.Check
                 type="radio"
-                label="Talo"
+                label="House"
                 name="propertyType"
                 checked={search.type === 'House'}
                 onChange={() => setSearch({ ...search, type: 'House', price: '' })}
@@ -279,7 +279,7 @@ export default function SearchMain() {
                <br />
               <Form.Check
                 type="radio"
-                label="Tontti"
+                label="Land"
                 name="propertyType"
                 checked={search.type === 'Land'}
                 onChange={() => setSearch({ ...search, type: 'Land', price: '' })}
@@ -287,11 +287,11 @@ export default function SearchMain() {
                <br />
             </Form.Group>
             <Form.Group controlId="formBasicRange">
-              <Form.Label className="fw-bold mb-3">Hintaluokka</Form.Label>
+              <Form.Label className="fw-bold mb-3">Price range</Form.Label>
               <br />
               <Dropdown>
                 <Dropdown.Toggle variant="primary" id="dropdown-basic">
-                  {search.price ? search.price : 'Valitse hintaluokka'}
+                  {search.price ? search.price : 'Select Price Range'}
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
                   {(search.action === 'Buy' ? sellPrices : rentPrices).map((item) => (
@@ -314,7 +314,7 @@ export default function SearchMain() {
               }}
               disabled={search.loading}
             >
-              {search.loading ? 'Haetaan...' : 'Hae'}
+              {search.loading ? 'Searching...' : 'Search'}
             </Button>
             <br />
           </Form>
