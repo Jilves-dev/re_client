@@ -140,9 +140,13 @@ export default function SearchMain() {
               control: (provided, state) => ({
                 ...provided,
                 width: '100%',
-                boxShadow: state.isFocused ? '0 0 0 2px #90AEAD' : 'none',
+                boxShadow: state.isFocused ? '0 0 0 1px #90AEAD' : 'none',
                 borderRadius: '4px',
-                borderColor: state.isFocused ? '#90AEAD' : '#e5e7eb',
+                borderColor: state.isFocused ? '#874F41' : '#e5e7eb',
+                // Lisää hover-tila
+                '&:hover': {
+                  borderColor: '#90AEAD',  // Väri kun hiiri kentän päällä
+                },
               }),
               valueContainer: (provided) => ({
                 ...provided,
@@ -151,7 +155,7 @@ export default function SearchMain() {
               option: (provided, state) => ({
                 ...provided,
                 backgroundColor: state.isFocused ? '#FBE9D0' : 'white',
-                color: '#244855',
+                color: '#FBE9D0',
                 fontSize: '14px',
                 padding: '10px 12px',
                 cursor: 'pointer',
@@ -223,7 +227,7 @@ export default function SearchMain() {
           <Button onClick={toggleDropdown}>
             {search?.price ? search.price : 'Price'}
           </Button>
-          <Dropdown.Menu show={dropdownOpen} style={{ zIndex: 1500 }}>
+          <Dropdown.Menu show={dropdownOpen} style={{ zIndex: 9000 }}>
             {(search.action === 'Buy' ? sellPrices : rentPrices).map((item) => (
               <Dropdown.Item
                 key={item._id}
