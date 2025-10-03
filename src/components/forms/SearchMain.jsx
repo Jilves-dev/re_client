@@ -272,7 +272,6 @@ export default function SearchMain() {
                <br />
             </Form.Group>
             <Form.Group controlId="formBasicPropertyType">
-              <Form.Label className="fw-bold mb-3"> </Form.Label>
               <Form.Check
                 type="radio"
                 label="House"
@@ -291,11 +290,9 @@ export default function SearchMain() {
                <br />
             </Form.Group>
             <Form.Group controlId="formBasicRange">
-              <Form.Label className="fw-bold mb-3">Price range</Form.Label>
-              <br />
               <Dropdown>
                 <Dropdown.Toggle variant="primary" id="dropdown-basic">
-                  {search.price ? search.price : 'Select Price Range'}
+                  {search.price ? search.price : 'Price Range'}
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
                   {(search.action === 'Buy' ? sellPrices : rentPrices).map((item) => (
