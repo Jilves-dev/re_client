@@ -26,14 +26,22 @@ const PageHeader = ({ title }) => {
   return (
     <div className="mx-auto w-full text-left pt-10 pb-8 sm:pt-20 sm:pb-16 md:pt-[100px] md:pb-24 bg-[#90AEAD]" 
          style={{ zIndex: 1, position: 'relative' }}>
-          <h1 className="font-Castoro pl-8 text-5xl sm:text-7xl text-[#244855] font-normal flex flex-wrap items-center">
-  <span className="mr-6">{restOfTitle}</span>
-  {/* Viimeinen sana ja ikoni samassa spanissa - ei väliä välissä */}
-  <span className="inline-flex items-center whitespace-nowrap">
+          <h1 className="font-Castoro pl-8 text-5xl sm:text-7xl text-[#244855] font-normal flex flex-wrap items-center leading-tight">
+  <span className="mr-4">{restOfTitle}</span>
+  <span className="inline-flex items-baseline whitespace-nowrap">
     {lastWord}
-    <GiSoapExperiment className="pb-4 mr-0 text-8xl md:text-8xl lg:text-10xl" />
+    <GiSoapExperiment className="text-5xl sm:text-7xl ml-1 -mb-2" />
   </span>
 </h1>
+
+
+          {/*<h1 className="font-Castoro pl-8 text-5xl sm:text-7xl text-[#244855] font-normal flex flex-wrap items-center">
+  <span className="mr-6">{restOfTitle}</span>
+  <span className="inline-flex items-center whitespace-nowrap relative">
+    {lastWord}
+    <GiSoapExperiment className="absolute top-0 mt-2 pb-4 mr-0 text-8xl md:text-8xl lg:text-10xl" />
+  </span>
+</h1>*/}
       {/*<h1 className="font-Castoro pl-8 text-5xl sm:text-7xl text-[#244855] font-normal flex flex-wrap items-center gap-x-4">
         <span>{restOfTitle}</span>
         <span className="inline-flex items-center gap-x-0 whitespace-nowrap">
