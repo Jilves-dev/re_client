@@ -7,15 +7,43 @@ import { GiSoapExperiment } from "react-icons/gi";
 //import DebugComponent from "../components/DebugComponent";
 import './Home.css';
 
-const PageHeader = ({ title }) => (
+/*const PageHeader = ({ title }) => (
   <div className="mx-auto w-full text-left pt-10 pb-8 sm:pt-20 sm:pb-16 md:pt-[100px] md:pb-24 bg-[#90AEAD]" 
        style={{ zIndex: 1, position: 'relative' }}>
     <h1 className="font-Castoro pl-8 text-5xl sm:text-7xl text-[#244855] font-normal flex flex-wrap items-center gap-x-4">
       <span>{title}</span>
-      {/*<GiSoapExperiment/>*/}
+      <GiSoapExperiment className="pb-4"/>
     </h1>
   </div>
-);
+);*/
+
+const PageHeader = ({ title }) => {
+  // Jaa otsikko osiin - oletetaan että viimeinen sana on "experiment"
+  const words = title.split(' ');
+  const lastWord = words.pop(); // Ota viimeinen sana
+  const restOfTitle = words.join(' '); // Loput sanat
+
+  return (
+    <div className="mx-auto w-full text-left pt-10 pb-8 sm:pt-20 sm:pb-16 md:pt-[100px] md:pb-24 bg-[#90AEAD]" 
+         style={{ zIndex: 1, position: 'relative' }}>
+          <h1 className="font-Castoro pl-8 text-5xl sm:text-7xl text-[#244855] font-normal flex flex-wrap items-center">
+  <span className="mr-6">{restOfTitle}</span>
+  {/* Viimeinen sana ja ikoni samassa spanissa - ei väliä välissä */}
+  <span className="inline-flex items-center whitespace-nowrap">
+    {lastWord}
+    <GiSoapExperiment className="pb-4 mr-0 text-8xl md:text-8xl lg:text-10xl" />
+  </span>
+</h1>
+      {/*<h1 className="font-Castoro pl-8 text-5xl sm:text-7xl text-[#244855] font-normal flex flex-wrap items-center gap-x-4">
+        <span>{restOfTitle}</span>
+        <span className="inline-flex items-center gap-x-0 whitespace-nowrap">
+          {lastWord}
+          <GiSoapExperiment className="pb-4 mr-0 text-8xl md:text-8xl lg:text-8xl"/>
+        </span>
+      </h1>*/}
+    </div>
+  );
+};
 
 export default function Home() {
   const [auth, setAuth] = useAuth();
