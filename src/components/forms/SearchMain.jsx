@@ -182,13 +182,10 @@ export default function SearchMain() {
                 ...provided,
                 color: '#9ca3af',
               }),
+              menuPortal: (base) => ({ ...base, zIndex: 100000 }),
             },
             menuPortalTarget: document.body,
             menuPosition: 'fixed',
-            styles: {
-            menuPortal: (base) => ({ ...base, zIndex: 100000 }), // <- LISÄÄ TÄMÄ
-            // ... muut styles
-          },
             components: {
               IndicatorsContainer: () => null,
               Option: ({ children, ...props }) => {
