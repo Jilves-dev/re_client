@@ -242,7 +242,7 @@ export default function SearchMain() {
 
         <Dropdown as={ButtonGroup} className="price-button">
   <Dropdown.Toggle>
-    {search?.price ? search.price : 'Hinta'}
+    {search?.price ? search.price : 'Price'}
   </Dropdown.Toggle>
   <Dropdown.Menu>  {/* Poista show={dropdownOpen} */}
     {(search.action === 'Buy' ? sellPrices : rentPrices).map((item) => (

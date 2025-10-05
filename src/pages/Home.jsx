@@ -3,7 +3,7 @@ import { useAuth } from "../context/auth";
 import axios from "axios";
 import AdCard from "../components/cards/AdCard";
 import SearchMain from "../components/forms/SearchMain";
-import { GiSoapExperiment } from "react-icons/gi";
+//import { GiSoapExperiment } from "react-icons/gi";
 //import DebugComponent from "../components/DebugComponent";
 import './Home.css';
 
@@ -17,7 +17,21 @@ import './Home.css';
   </div>
 );*/
 
-const PageHeader = ({ title }) => {
+
+const PageHeader = ({ title }) => (
+  <div className="mx-auto w-full text-align:left pb-8 pt-10 sm:pt-20 sm:pb-16 md:pt-[100px] md:pb-24 
+   bg-[#90AEAD]">
+    <h1 className="font-Castoro pl-8 text-5xl sm:text-7xl 
+    text-[#244855] 
+    font-normal">
+      {title}
+    </h1>
+  </div>
+);
+
+
+
+/*const PageHeader = ({ title }) => {
   // Jaa otsikko osiin - oletetaan että viimeinen sana on "experiment"
   const words = title.split(' ');
   const lastWord = words.pop(); // Ota viimeinen sana
@@ -32,7 +46,7 @@ const PageHeader = ({ title }) => {
     {lastWord}
     <GiSoapExperiment className="text-5xl sm:text-7xl ml-1 -mb-2" />
   </span>
-</h1>
+</h1>*/
 
 
           {/*<h1 className="font-Castoro pl-8 text-5xl sm:text-7xl text-[#244855] font-normal flex flex-wrap items-center">
@@ -48,10 +62,10 @@ const PageHeader = ({ title }) => {
           {lastWord}
           <GiSoapExperiment className="pb-4 mr-0 text-8xl md:text-8xl lg:text-8xl"/>
         </span>
-      </h1>*/}
+      </h1>
     </div>
   );
-};
+};*/}
 
 export default function Home() {
   const [auth, setAuth] = useAuth();
