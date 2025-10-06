@@ -25,7 +25,7 @@ export default function SearchMain() {
       price: name,
       priceRange: array,
     });
-    setDropdownOpen(false);
+    //setDropdownOpen(false);
   };
 
   const handleSearch = async () => {
