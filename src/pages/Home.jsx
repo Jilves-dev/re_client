@@ -17,7 +17,6 @@ import './Home.css';
   </div>
 );*/
 
-
 const PageHeader = ({ title }) => (
   <div className="mx-auto w-full text-align:left pb-8 pt-10 sm:pt-20 sm:pb-16 md:pt-[100px] md:pb-24 
    bg-[#90AEAD]">
@@ -28,8 +27,6 @@ const PageHeader = ({ title }) => (
     </h1>
   </div>
 );
-
-
 
 /*const PageHeader = ({ title }) => {
   // Jaa otsikko osiin - oletetaan että viimeinen sana on "experiment"
