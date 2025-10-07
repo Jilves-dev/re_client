@@ -17,12 +17,13 @@ export default function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      console.log(email, password);
+      console.log("Registering with:", email);
       setLoading(true);
       const { data } = await axios.post(`/pre-register`, {
         email,
         password,
       });
+      console.log("Registration response:", data);
       if (data?.error) {
         toast.error(data.error);
         setLoading(false);
@@ -33,8 +34,10 @@ export default function Register() {
       }
       console.log(data);
     } catch (err) {
+      console.error("Registration error:", err);
+      console.error("Error response:", err.response?.data);
       console.log(err);
-      toast.error("Something went wrong. Try again.");
+      toast.error(err.response?.data?.error || "Something went wrong. Try again.");
       setLoading(false);
     }
   };

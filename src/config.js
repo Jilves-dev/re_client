@@ -1,10 +1,36 @@
+// src/config.js - KORJATTU
+let apiUrl = import.meta.env.VITE_API;
+
+// Fallback jos env ei toimi
+if (!apiUrl) {
+  if (typeof window !== 'undefined') {
+    const isProduction = window.location.hostname !== 'localhost';
+    
+    if (isProduction) {
+      apiUrl = 'https://re-server-tau.vercel.app/api';
+    } else {
+      apiUrl = 'http://localhost:8000/api';
+    }
+  } else {
+    apiUrl = 'http://localhost:8000/api';
+  }
+}
+
+export const API = apiUrl;
+console.log("API configured as:", API);
+
+
+
+
+
+
 // src/config.js - Improved implementation
 
 // Get the API URL from environment or use a fallback
-let apiUrl = import.meta.env.VITE_API;
+//let apiUrl = import.meta.env.VITE_API;
 
 // Fallback mechanism for Vercel production
-if (!apiUrl && typeof window !== 'undefined') {
+/*if (!apiUrl && typeof window !== 'undefined') {
   // Auto-detect domain and use it to construct API URL in production
   const isProduction = window.location.hostname !== 'localhost';
   
@@ -37,7 +63,7 @@ export const validateApiConnection = async () => {
       error
     };
   }
-};
+};*/
 
 
 

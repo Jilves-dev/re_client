@@ -70,6 +70,22 @@ export default function Home() {
   const [adsForRent, setAdsForRent] = useState([]);
 
   useEffect(() => {
+  // Testaa API yhteys
+  const testAPI = async () => {
+    try {
+      console.log("Testing API connection to:", axios.defaults.baseURL);
+      const response = await axios.get("/test");
+      console.log("API test successful:", response.data);
+    } catch (error) {
+      console.error("API test failed:", error);
+      console.error("Error details:", error.response?.data);
+    }
+  };
+  
+  testAPI();
+}, []);
+
+  useEffect(() => {
     fetchAds();
   }, []);
 

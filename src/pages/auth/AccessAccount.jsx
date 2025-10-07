@@ -1,4 +1,65 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
+import axios from "axios";
+import { useAuth } from "../../context/auth";
+
+export default function AccountActivate() {
+  const [auth, setAuth] = useAuth();
+  const { token } = useParams();
+  const navigate = useNavigate();
+  const [processing, setProcessing] = useState(false);
+
+  useEffect(() => {
+    if (token && !processing) {
+      requestActivation();
+    }
+  }, [token]);
+
+  const requestActivation = async () => {
+    if (processing) return; // Estä duplikaatti-pyyntö
+    
+    try {
+      setProcessing(true);
+      const { data } = await axios.post(`/register`, { token });
+      
+      if (data?.error) {
+        toast.error(data.error);
+        
+        // Jos käyttäjä on jo olemassa, ohjaa kirjautumissivulle
+        if (data.error.includes("already registered")) {
+          setTimeout(() => navigate("/login"), 2000);
+        }
+      } else {
+        // Tallenna auth
+        localStorage.setItem("auth", JSON.stringify(data));
+        setAuth(data);
+        
+        toast.success("Successfully registered and logged in. Welcome!");
+        navigate("/");
+      }
+    } catch (err) {
+      console.log("Activation error:", err);
+      toast.error("Something went wrong. Try again.");
+    } finally {
+      setProcessing(false);
+    }
+  };
+
+  return (
+    <div
+      className="display-1 d-flex justify-content-center align-items-center vh-100"
+      style={{ marginTop: "-5%" }}
+    >
+      {processing ? "Activating your account..." : "Please wait..."}
+    </div>
+  );
+}
+
+
+
+
+/*import { useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import axios from "axios";
@@ -44,4 +105,4 @@ export default function AccessAccount() {
       please wait...
     </div>
   );
-}
+}*/
