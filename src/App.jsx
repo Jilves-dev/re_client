@@ -36,8 +36,18 @@ import axios from "axios";
 import toast from 'react-hot-toast';
 
 // Page not found component
-const PageNotFound = () => (
+/*const PageNotFound = () => (
   <div className="text-center p-5">SORRY BUT ERROR MEANS THAT THE PAGE YOU ARE LOOKING FOR DOES NOT EXIST!!!</div>
+);*/
+
+const PageNotFound = () => (
+  <div className="text-center p-5">
+    <h2 className="mb-4">404 - Page Not Found</h2>
+    <p>Sorry, the page you are looking for does not exist.</p>
+    <Link to="/" className="btn btn-primary mt-3">
+      Go to Home
+    </Link>
+  </div>
 );
 
 // Error boundary component
