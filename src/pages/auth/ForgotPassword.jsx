@@ -37,7 +37,7 @@ export default function Login() {
 
   return (
     <div>
-      <h1 className="display-1 bg-primary text-light p-5">Forgot password</h1>
+      <h1 className="display-1 bg-[#FBE9D0] text-[#90AEAD] p-5">Forgot password</h1>
 
       <div className="container">
         <div className="row">
@@ -54,7 +54,7 @@ export default function Login() {
               />
               <button
                 disabled={loading}
-                className="btn btn-primary col-12 mb-4"
+                className="btn btn-[#90AEAD] text-white col-12 mb-4"
               >
                 {loading ? "Waiting..." : "Submit"}
               </button>
