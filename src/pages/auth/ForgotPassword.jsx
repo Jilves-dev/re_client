@@ -1,5 +1,5 @@
 import { useState } from "react";
-import styles from './Login.module.css';
+import styles from '../Login.module.css';
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useNavigate, Link } from "react-router-dom";
@@ -64,7 +64,7 @@ export default function ForgotPassword() {
         <form onSubmit={handleSubmit}>
           <h1>Forgot Password</h1>
           <p className="text-center mb-4" style={{ color: '#90AEAD' }}>
-            Enter your email to receive a password reset link
+            Enter your email to receive <br/>a password reset link
           </p>
           
           <div className={styles.inputBox}>
