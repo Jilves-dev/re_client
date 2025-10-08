@@ -148,7 +148,31 @@ function App() {
           <SearchProvider>
             <div className="flex flex-col min-h-screen w-full bg-[#FBE9D0]">
               <Main />
-              <Toaster position="top-center" />
+              {/*<Toaster position="top-center" />*/}
+
+              <Toaster 
+                position="top-center"
+                toastOptions={{
+                  style: {
+                    marginTop: '80px', // Lisää marginaalia navbariin
+                    zIndex: 100001, // Varmista että toast näkyy navbarin päällä
+                  },
+                  success: {
+                    duration: 3000,
+                    iconTheme: {
+                      primary: '#90AEAD',
+                      secondary: '#FBE9D0',
+                    },
+                  },
+                  error: {
+                    duration: 5000,
+                    iconTheme: {
+                      primary: '#E64833',
+                      secondary: '#FBE9D0',
+                    },
+                  },
+                }}
+              />
               
               {!apiConnected && (
                 <div className="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 mb-4 mx-4">
