@@ -4,6 +4,122 @@ import toast from "react-hot-toast";
 import axios from "axios";
 import { useAuth } from "../../context/auth";
 
+export default function AccessAccount() {
+  const [auth, setAuth] = useAuth();
+  const { token } = useParams();
+  const navigate = useNavigate();
+  const [processing, setProcessing] = useState(false);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    if (token && !processing) {
+      requestAccess();
+    }
+  }, [token]);
+
+  const requestAccess = async () => {
+    if (processing) return;
+    
+    try {
+      setProcessing(true);
+      console.log("Requesting account access with token:", token.substring(0, 20) + "...");
+      
+      const { data } = await axios.post('/access-account', {
+        resetCode: token,
+      });
+      
+      console.log("Access account response:", data);
+      
+      if (data?.error) {
+        console.error("Access error:", data.error);
+        setError(data.error);
+        toast.error(data.error, {
+          duration: 5000,
+          position: 'top-center',
+          style: { marginTop: '80px' },
+        });
+        
+        setTimeout(() => navigate("/auth/forgot-password"), 3000);
+      } else {
+        localStorage.setItem("auth", JSON.stringify(data));
+        setAuth(data);
+        
+        toast.success("Please update your password in profile page", {
+          duration: 4000,
+          position: 'top-center',
+          style: { marginTop: '80px' },
+        });
+        
+        setTimeout(() => navigate("/user/settings"), 1000);
+      }
+    } catch (err) {
+      console.error("Access account request failed:", err);
+      console.error("Error response:", err.response?.data);
+      
+      const errorMessage = err.response?.data?.error || 
+                          err.message || 
+                          "Something went wrong. Try again.";
+      
+      setError(errorMessage);
+      toast.error(errorMessage, {
+        duration: 5000,
+        position: 'top-center',
+        style: { marginTop: '80px' },
+      });
+      
+      setTimeout(() => navigate("/auth/forgot-password"), 3000);
+    } finally {
+      setProcessing(false);
+    }
+  };
+
+  return (
+    <div className="d-flex flex-column justify-content-center align-items-center vh-100 bg-light">
+      <div className="text-center p-5">
+        {processing && (
+          <>
+            <div className="spinner-border text-primary mb-3" role="status">
+              <span className="visually-hidden">Loading...</span>
+            </div>
+            <h2>Verifying reset link...</h2>
+            <p className="text-muted">Please wait a moment</p>
+          </>
+        )}
+        
+        {error && !processing && (
+          <>
+            <div className="alert alert-danger" role="alert">
+              <h4 className="alert-heading">Verification Failed</h4>
+              <p>{error}</p>
+            </div>
+            <p className="text-muted">Redirecting...</p>
+          </>
+        )}
+      </div>
+    </div>
+  );
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*import { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
+import axios from "axios";
+import { useAuth } from "../../context/auth";
+
 export default function AccountActivate() {
   const [auth, setAuth] = useAuth();
   const { token } = useParams();
@@ -59,7 +175,7 @@ export default function AccountActivate() {
 
 
 
-/*import { useEffect } from "react";
+import { useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import axios from "axios";
