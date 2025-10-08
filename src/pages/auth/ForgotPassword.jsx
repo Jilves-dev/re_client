@@ -54,7 +54,7 @@ export default function Login() {
               />
               <button
                 disabled={loading}
-                className="btn btn-[#90AEAD] text-white col-12 mb-4"
+                className="btn bg-[#90AEAD] text-white col-12 mb-4"
               >
                 {loading ? "Waiting..." : "Submit"}
               </button>
