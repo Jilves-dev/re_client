@@ -47,46 +47,56 @@ const AuthProvider = ({ children }) => {
     }
   }, [auth.token, auth.refreshToken]);
 
-  // Token refresh interceptor
-  useEffect(() => {
-    const interceptor = axios.interceptors.response.use(
-      (res) => res,
-      async (error) => {
-        const originalRequest = error.config;
-        
-        if (error.response?.status === 401 && !originalRequest._retry && auth.refreshToken) {
-          originalRequest._retry = true;
-          
-          try {
-            const { data } = await axios.get("/refresh-token");
-            
-            setAuth(data);
-            localStorage.setItem("auth", JSON.stringify(data));
-            
-            originalRequest.headers["Authorization"] = data.token;
-            originalRequest.headers["refresh_token"] = data.refreshToken;
-            
-            return axios(originalRequest);
-          } catch (refreshError) {
-            console.error("Token refresh failed:", refreshError);
-            
-            if (refreshError.response?.status === 403) {
-              setAuth({ user: null, token: "", refreshToken: "" });
-              localStorage.removeItem("auth");
-            }
-            
-            return Promise.reject(error);
-          }
-        }
-        
-        return Promise.reject(error);
+// Token refresh interceptor
+useEffect(() => {
+  const interceptor = axios.interceptors.response.use(
+    (res) => res,
+    async (error) => {
+      const originalRequest = error.config;
+      
+      // Log virheet
+      if (error.response) {
+        console.error("API Error:", error.response.status, error.response.data);
+      } else if (error.request) {
+        console.error("Network Error: No response from server");
+        console.error("Request URL:", error.config?.url);
+      } else {
+        console.error("Request Error:", error.message);
       }
-    );
-    
-    return () => {
-      axios.interceptors.response.eject(interceptor);
-    };
-  }, [auth.refreshToken]);
+      
+      if (error.response?.status === 401 && !originalRequest._retry && auth.refreshToken) {
+        originalRequest._retry = true;
+        
+        try {
+          const { data } = await axios.get("/refresh-token");
+          
+          setAuth(data);
+          localStorage.setItem("auth", JSON.stringify(data));
+          
+          originalRequest.headers["Authorization"] = data.token;
+          originalRequest.headers["refresh_token"] = data.refreshToken;
+          
+          return axios(originalRequest);
+        } catch (refreshError) {
+          console.error("Token refresh failed:", refreshError);
+          
+          if (refreshError.response?.status === 403) {
+            setAuth({ user: null, token: "", refreshToken: "" });
+            localStorage.removeItem("auth");
+          }
+          
+          return Promise.reject(error);
+        }
+      }
+      
+      return Promise.reject(error);
+    }
+  );
+  
+  return () => {
+    axios.interceptors.response.eject(interceptor);
+  };
+}, [auth.refreshToken]);
 
   return (
     <AuthContext.Provider value={[auth, setAuth]}>
