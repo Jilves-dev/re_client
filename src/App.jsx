@@ -69,12 +69,12 @@ class ErrorBoundary extends React.Component {
   render() {
     if (this.state.hasError) {
       return (
-        <div className="text-center p-5 bg-red-100 rounded-lg m-4">
-          <h2 className="text-xl font-bold text-red-800 mb-2">Something went wrong</h2>
+        <div className="text-center p-5 bg-[#E64833] rounded-lg m-4">
+          <h2 className="text-xl font-bold text-[#874F41] mb-2">Something went wrong</h2>
           <p className="mb-4">The application encountered an unexpected error. Try refreshing the page.</p>
           <button 
             onClick={() => window.location.reload()} 
-            className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
+            className="bg-[#E64833] text-white px-4 py-2 rounded hover:bg-red-700"
           >
             Refresh Page
           </button>
@@ -154,7 +154,7 @@ function App() {
                 position="top-center"
                 toastOptions={{
                   style: {
-                    marginTop: '80px', // Lisää marginaalia navbariin
+                    marginTop: '85px', // Lisää marginaalia navbariin
                     zIndex: 100001, // Varmista että toast näkyy navbarin päällä
                   },
                   success: {
