@@ -123,7 +123,7 @@ export default function Profile() {
                 id="username"
                   type="text"
                   placeholder="Update your username"
-                  className="form-control font-castoro !text-[#874F41]"
+                  className="form-control font-castoro text-[#874F41]"
                   value={username}
                   onChange={(e) =>
                     setUsername(slugify(e.target.value.toLowerCase()))
@@ -138,7 +138,7 @@ export default function Profile() {
                  id="name"
                   type="text"
                   placeholder="Enter your name"
-                  className="form-control mb-4 font-castoro !text-[#874F41]"
+                  className="form-control mb-4 font-castoro text-[#874F41]"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                 />
@@ -150,7 +150,7 @@ export default function Profile() {
                 <input
                  id="email"
                   type="email"
-                  className="form-control mb-4 font-castoro !text-[#874F41]"
+                  className="form-control mb-4 font-castoro text-[#874F41]"
                   value={email}
                   disabled={true}
                 />
@@ -162,8 +162,8 @@ export default function Profile() {
                 <input
                   id="company"
                   type="text"
-                  placeholder="Enter your company name font-castoro !text-[#874F41]"
-                  className="form-control mb-4 font-castoro !text-[#874F41]"
+                  placeholder="Enter your company name font-castoro text-[#874F41]"
+                  className="form-control mb-4 font-castoro text-[#874F41]"
                   value={company}
                   onChange={(e) => setCompany(e.target.value)}
                 />
@@ -176,7 +176,7 @@ export default function Profile() {
                   id="address"
                   type="text"
                   placeholder="enter your address"
-                  className="form-control mb-4 font-castoro !text-[#874F41]"
+                  className="form-control mb-4 font-castoro text-[#874F41]"
                   value={address}
                   onChange={(e) => setAddress(e.target.value)}
                 />
@@ -189,7 +189,7 @@ export default function Profile() {
                   id="phone"
                   type="text"
                   placeholder="enter your phone"
-                  className="form-control mb-4 font-castoro !text-[#874F41]"
+                  className="form-control mb-4 font-castoro text-[#874F41]"
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                 />
@@ -201,7 +201,7 @@ export default function Profile() {
                 <textarea
                   id="about"
                   placeholder="write something interesting about yourself.."
-                  className="form-control mb-4 font-castoro !text-[#874F41]"
+                  className="form-control mb-4 font-castoro text-[#874F41]"
                   value={about}
                   onChange={(e) => setAbout(e.target.value)}
                   maxLength={200}
@@ -209,7 +209,7 @@ export default function Profile() {
                 </div>
          
                          <button
-                  className="!bg-[#FBE9D0] hover:bg-[#cf8c60] !text-[#E64833] font-castoro py-2 px-4 rounded !border 2px !border-[#874F41] col-12"
+                  className="!bg-[#FBE9D0] hover:bg-[#cf8c60] !text-[#E64833] font-castoro py-2 px-4 rounded !border 2px border-[#874F41] col-12"
                 >
                   {loading ? "processing" : "update profile"}
                 </button>
