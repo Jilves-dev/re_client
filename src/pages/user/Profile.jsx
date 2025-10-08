@@ -162,7 +162,7 @@ export default function Profile() {
                 <input
                   id="company"
                   type="text"
-                  placeholder="Enter your company name font-castoro text-[#874F41]"
+                  placeholder="Enter your company name"
                   className="form-control mb-4 font-castoro text-[#874F41]"
                   value={company}
                   onChange={(e) => setCompany(e.target.value)}
@@ -209,10 +209,11 @@ export default function Profile() {
                 </div>
          
                          <button
-                  className="!bg-[#FBE9D0] hover:bg-[#cf8c60] !text-[#E64833] font-castoro py-2 px-4 rounded !border 2px border-[#874F41] col-12"
-                >
-                  {loading ? "processing" : "update profile"}
-                </button>
+                          className="!bg-[#FBE9D0] hover:bg-[#cf8c60] !text-[#E64833] 
+                          font-castoro py-2 px-4 rounded !border 2px border-[#874F41] col-12"
+                        >
+                          {loading ? "processing" : "update profile"}
+                        </button>
                 
               </form>
               <br></br><br></br><br></br>    
