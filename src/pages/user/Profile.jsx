@@ -182,7 +182,8 @@ export default function Profile() {
                 />
                 </div>
                  <div className="mb-4">
-              <label htmlFor="username" className="font-castoro block text-[#874F41] mb-2">
+                <label htmlFor="username" 
+                className="font-castoro block text-[#874F41] mb-2">
                   phone number
                 </label>
                 <input

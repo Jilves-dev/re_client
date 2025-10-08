@@ -37,7 +37,7 @@ export default function Login() {
 
   return (
     <div>
-      <h1 className="display-1 bg-[#FBE9D0] text-[#90AEAD] p-5">Forgot password</h1>
+      <h1 className="display-1 bg-[#FBE9D0] text-[#90AEAD] mx-auto text-center p-5">Forgot password</h1>
 
       <div className="container">
         <div className="row">
@@ -60,7 +60,7 @@ export default function Login() {
               </button>
             </form>
 
-            <Link className="text-danger" to="/login">
+            <Link className="text-[#E64833]" to="/login">
               Back to login
             </Link>
           </div>
