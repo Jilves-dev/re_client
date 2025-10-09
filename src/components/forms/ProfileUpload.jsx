@@ -90,6 +90,8 @@ export default function ProfileUpload({
         let file = e.target.files[0];
   
         if (file) {
+          console.log("=== PROFILE IMAGE UPLOAD ===");
+          console.log("File:", file.name, file.size, "bytes");
           setUploading(true);
   
           new Promise(() => {
@@ -102,13 +104,24 @@ export default function ProfileUpload({
               0,
               async (uri) => {
                 try {
+                  console.log("Image resized, uploading...");
+                  console.log("URI length:", uri.length);
                   const { data } = await axios.post("/upload-image", {
                     image: uri,
                   });
+                  console.log("✅ Upload response:", data);
+                   if (data.error) {
+                console.error("Upload error:", data.error);
+                toast.error(data.error);
+              } else {
                   setPhoto(data);
+                   toast.success("Image uploaded successfully!");
+              }
                   setUploading(false);
                 } catch (err) {
-                  console.log(err);
+                    console.error("❌ Upload request failed:", err);
+              console.error("Error response:", err.response?.data);
+              toast.error(err.response?.data?.error || "Upload failed");
                   setUploading(false);
                 }
               },
@@ -117,7 +130,8 @@ export default function ProfileUpload({
           });
         }
       } catch (err) {
-        console.log(err);
+        console.error("❌ File processing error:", err);
+    toast.error("Failed to process image");
         setUploading(false);
       }
     };
