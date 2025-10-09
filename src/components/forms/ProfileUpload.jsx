@@ -131,7 +131,7 @@ export default function ProfileUpload({
         }
       } catch (err) {
         console.error("❌ File processing error:", err);
-    toast.error("Failed to process image");
+        toast.error("Failed to process image");
         setUploading(false);
       }
     };
