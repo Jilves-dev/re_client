@@ -1,5 +1,76 @@
 import { Badge } from "antd";
 import { Link } from "react-router-dom";
+import AdFeatures from "./AdFeatures";
+import { formatNumber } from "../../helpers/ad";
+
+export default function AdCard({ ad, className }) {
+  // Debug
+  console.log("AdCard rendering:", {
+    id: ad?._id,
+    address: ad?.address,
+    price: ad?.price,
+    hasPhotos: !!ad?.photos?.[0]?.Location,
+    photoUrl: ad?.photos?.[0]?.Location
+  });
+
+  if (!ad) {
+    console.error("AdCard: No ad data provided!");
+    return null;
+  }
+
+  const badgeColor = ad?.action === "Sell" ? "#90AEAD" : "#E64833";
+  const imageUrl = ad?.photos?.[0]?.Location || 'https://via.placeholder.com/400x300?text=No+Image';
+
+  const showDistance = !!(ad?.distanceKm && ad.distanceKm >= 0.5);
+
+  return (
+    <Link to={`/ad/${ad.slug}`} className="block w-full max-w-sm mx-auto">
+      <div 
+        className="relative rounded-lg shadow-md overflow-hidden transition-transform hover:scale-[1.02] h-96 bg-cover bg-center"
+        style={{ backgroundImage: `url(${imageUrl})` }}
+      >
+        <Badge.Ribbon 
+          text={`${ad?.type} for ${ad?.action}`} 
+          color={badgeColor}
+          className="font-Castoro text-sm md:text-base"
+        />
+
+        {showDistance && (
+          <div className="absolute top-2 left-2 bg-[#90AEAD]/90 text-white px-2 py-1 rounded text-sm">
+            📍 {ad.distanceKm.toFixed(1)} km
+          </div>
+        )}
+
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+        
+        <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
+          <h5 className="font-Castoro text-xl mb-1 line-clamp-1">
+            {formatNumber(ad?.price)}€
+          </h5>
+          <h4 className="font-normal text-2xl mb-2 line-clamp-1">
+            {ad?.address}
+          </h4>
+          <div className="text-white">
+            <AdFeatures ad={ad} layout="spread" />
+          </div>
+        </div>
+      </div>
+    </Link>
+  );
+}
+
+
+
+
+
+
+
+
+
+
+
+/*import { Badge } from "antd";
+import { Link } from "react-router-dom";
 //import toast from "react-hot-toast";
 //import { useNavigate } from "react-router-dom";
 //import { useCart } from "../../context/cart";
@@ -33,7 +104,7 @@ export default function AdCard({ ad, className }) {
                     className="font-Castoro text-sm md:text-base"
                   />
 
-                  {/* Näytä etäisyys vain jos yli 0.5 km */}
+                  * Näytä etäisyys vain jos yli 0.5 km *
                   {showDistance && (
                     <div className="absolute top-2 left-2 bg-[#90AEAD]/90 text-white px-2 py-1 rounded text-sm">
                       📍 {ad.distanceKm.toFixed(1)} km
@@ -41,16 +112,16 @@ export default function AdCard({ ad, className }) {
                   )}
 
 
-                  {/* Gradient overlay */}
+                  * Gradient overlay *
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
                   
-                  {/* Content */}
+                  * Content *
                   <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
                     <h5 className="font-Castoro text-xl mb-1 line-clamp-1">{formatNumber(ad?.price)}€</h5>
                     <h4 className="font-normal text-2xl mb-2 line-clamp-1">
                       {ad?.address}
                     </h4>
-                    {/* AdFeatures-komponentti tarvitsee todennäköisesti myös valkoiset ikonit/tekstit */}
+                    * AdFeatures-komponentti tarvitsee todennäköisesti myös valkoiset ikonit/tekstit *
                     <div className="text-white">
                       <AdFeatures ad={ad} layout="spread" />
                     </div>
@@ -58,7 +129,7 @@ export default function AdCard({ ad, className }) {
                 </div>
               </Link>
             );
-          }
+          }*/
 
 
   {/*<div className="bg-[#f4debe] rounded-lg shadow-md overflow-hidden transition-transform hover:scale-[1.02] mb-6 mr-6 ml-6 h-full flex flex-col">

@@ -30,6 +30,12 @@ export default function AdForm({ action, type }) {
   });
 
   useEffect(() => {
+  console.log("AdForm mounted");
+  console.log("Axios baseURL:", axios.defaults.baseURL);
+  console.log("Auth token exists:", !!auth?.token);
+}, []);
+
+  useEffect(() => {
     console.log("AdForm re-rendered");
   }, [ad.loading]);
   

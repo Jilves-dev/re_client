@@ -1,3 +1,179 @@
+import Resizer from "react-image-file-resizer";
+import axios from "axios";
+import { Avatar } from "antd";
+import { useAuth } from "../../context/auth";
+import toast from "react-hot-toast";
+
+export default function ProfileUpload({
+  photo,
+  setPhoto,
+  uploading,
+  setUploading,
+}) {
+  const [auth, setAuth] = useAuth();
+
+  const handleUpload = async (e) => {
+    try {
+      let file = e.target.files[0];
+
+      if (file) {
+        console.log("=== PROFILE UPLOAD START ===");
+        console.log("File:", file.name, file.size, "bytes");
+        
+        setUploading(true);
+
+        Resizer.imageFileResizer(
+          file,
+          1080,
+          720,
+          "JPEG",
+          100,
+          0,
+          async (uri) => {
+            try {
+              console.log("Image resized, URI length:", uri.length);
+              console.log("Posting to /upload-image...");
+              
+              const { data } = await axios.post("/upload-image", {
+                image: uri,
+              });
+              
+              console.log("Upload response:", data);
+              
+              if (data?.error) {
+                console.error("❌ Upload error:", data.error);
+                toast.error(data.error);
+              } else {
+                console.log("✅ Upload success!");
+                setPhoto(data);
+                toast.success("Image uploaded successfully!");
+              }
+              
+              setUploading(false);
+            } catch (err) {
+              console.error("❌ Upload request failed:", err);
+              console.error("Error details:", {
+                message: err.message,
+                response: err.response?.data,
+                status: err.response?.status
+              });
+              
+              toast.error(err.response?.data?.error || "Upload failed. Please try again.");
+              setUploading(false);
+            }
+          },
+          "base64"
+        );
+      }
+    } catch (err) {
+      console.error("❌ File processing error:", err);
+      toast.error("Failed to process image");
+      setUploading(false);
+    }
+  };
+
+  const handleDelete = async () => {
+    const answer = window.confirm("Delete image?");
+    if (!answer) return;
+    setUploading(true);
+    try {
+      console.log("Deleting image:", photo.Key || photo.key);
+      
+      const { data } = await axios.post("/remove-image", {
+        Key: photo.key || photo.Key,
+        Bucket: photo.bucket || photo.Bucket || 'emarket24'
+      });
+      
+      console.log("Delete response:", data);
+      
+      if (data?.ok) {
+        setPhoto(null);
+        toast.success("Image deleted");
+      }
+      setUploading(false);
+    } catch (err) {
+      console.error("Delete error:", err);
+      toast.error("Failed to delete image");
+      setUploading(false);
+    }
+  };
+
+  return (
+    <>
+      <div className="mt-4">
+        {photo?.Location && (
+          <div className="flex items-center">
+            <Avatar
+              src={photo.Location}
+              shape="square"
+              style={{ width: "120px", height: "120px" }}
+              className="border-2 border-[#874F41]"
+            />
+            <div className="w-5"/> 
+            <div
+              className={`${
+                uploading
+                  ? "bg-gray-300 cursor-not-allowed"
+                  : "bg-[#FBE9D0] hover:bg-[#cbc385] cursor-pointer"
+              } text-[#E64833] border-2 border-[#874F41] w-20 h-20 rounded-full flex items-center justify-center relative`}
+            >
+              <span className="text-sm">{uploading ? "..." : "Upload"}</span>
+              {!uploading && (
+                <input
+                  onChange={handleUpload}
+                  type="file"
+                  accept="image/*"
+                  disabled={uploading}
+                  className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                />
+              )}
+            </div>
+          </div>
+        )}
+        
+        {!photo?.Location && (
+          <div className="flex items-center">
+            <div
+              className={`${
+                uploading
+                  ? "bg-gray-300 cursor-not-allowed"
+                  : "bg-[#FBE9D0] hover:bg-[#cbc385] cursor-pointer"
+              } text-[#E64833] border-2 border-[#874F41] w-20 h-20 rounded-full flex items-center justify-center relative`}
+            >
+              <span className="text-sm">{uploading ? "..." : "Upload"}</span>
+              {!uploading && (
+                <input
+                  onChange={handleUpload}
+                  type="file"
+                  accept="image/*"
+                  disabled={uploading}
+                  className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                />
+              )}
+            </div>
+          </div>
+        )}
+      </div>
+
+      <div className="pt-4 w-full">
+        <button
+          onClick={handleDelete}
+          disabled={uploading || !photo?.Location}
+          className="!bg-[#FBE9D0] hover:bg-[#90AEAD] disabled:opacity-50 disabled:cursor-not-allowed
+                !text-[#E64833] font-castoro py-2 px-4 rounded
+                !border-2 !border-[#874F41] w-full"
+        >
+          <span className="text-sm">Delete</span>
+        </button>
+      </div>
+    </>
+  );
+}
+
+
+
+
+
 /*import Resizer from "react-image-file-resizer";
 import axios from "axios";
 import { Avatar } from "antd";
@@ -72,10 +248,11 @@ export default function ProfileUpload({
   return (*/
 
 
-  import Resizer from "react-image-file-resizer";
+  /*import Resizer from "react-image-file-resizer";
   import axios from "axios";
   import { Avatar } from "antd";
   import { useAuth } from "../../context/auth";
+  import toast from "react-hot-toast";
   
   export default function ProfileUpload({
     photo,
@@ -167,7 +344,7 @@ export default function ProfileUpload({
                 style={{ width: "120px", height: "120px" }}
                 className="border-2 border-[#874F41]"
               />
-              {/* Spacer between Avatar and Upload button */}
+              * Spacer between Avatar and Upload button *
               <div className="w-5"/> 
               <div
                 className={`${
@@ -187,7 +364,7 @@ export default function ProfileUpload({
               </div>
             </div>
           )}
-          {/* Show upload button if no photo */}
+          * Show upload button if no photo *
           {!photo?.Location && (
             <div className="flex items-center">
               <div
@@ -221,7 +398,7 @@ export default function ProfileUpload({
           </button>
         </div>
       </>
-    );
+    );*/
     
   
     /*return (
@@ -264,7 +441,7 @@ export default function ProfileUpload({
       </div>
       </>
     );*/
-  }
+  
 
   /*
                 <button
