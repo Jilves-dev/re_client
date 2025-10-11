@@ -58,7 +58,7 @@ export default function Agent() {
 
       <div className="flex justify-center py-10 mx-auto">
         <div className="grid grid-cols-1
-        justify-center mb-10 gap-y-10 place-items-center px-4 sm:px-8 py-10 bg-[#FBE9D0]">
+        justify-center mb-10 gap-y-10 place-items-center px-4 sm:px-8 py-10 bg-[#FBE9D0] animate-fadeIn">
           <UserCard user={agent} />
         </div>
       </div>
