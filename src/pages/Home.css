@@ -36,7 +36,7 @@
 
 @media (max-width: 992px) {
   .search-container {
-    padding-top: 20vh; /* Smaller padding for mobile */
+    padding-top: 22vh !important; /* Smaller padding for mobile */
     width: 100%;
   }
 }
