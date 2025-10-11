@@ -16,6 +16,7 @@ export default function Main() {
   const isDashboard = location.pathname.startsWith('/dashboard') || 
                       location.pathname.startsWith('/ad/create') ||
                       location.pathname.startsWith('/user/');
+                      location.pathname.startsWith('/agent/');
 
   const logout = () => {
     setAuth({ user: null, token: "", refreshToken: "" });

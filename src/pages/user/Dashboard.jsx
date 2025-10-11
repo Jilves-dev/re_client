@@ -88,7 +88,7 @@ export default function Dashboard() {
                   justify-center mb-10 gap-y-10 
                   place-items-center 
                   px-4 sm:px-8 
-                  py-10 bg-[#FBE9D0]">
+                  py-10 bg-[#FBE9D0] animate-fadeIn">
                     {ads?.map((ad) => (
                       <UserAdCard 
                       ad={ad} 
