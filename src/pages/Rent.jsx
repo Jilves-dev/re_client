@@ -3,7 +3,7 @@ import { useAuth } from "../context/auth";
 import axios from "axios";
 import AdCard from "../components/cards/AdCard";
 import SearchMain from "../components/forms/SearchMain";
-
+import Spinner from "../components/Spinner";
 
 const PageHeader = ({ title }) => (
   <div className="mx-auto w-full text-align:left pb-16 pt-20 bg-[#90AEAD]">
@@ -18,6 +18,7 @@ export default function Rent() {
   const [auth, setAuth] = useAuth();
   // state
   const [ads, setAds] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetchAds();
@@ -25,10 +26,15 @@ export default function Rent() {
 
   const fetchAds = async () => {
     try {
+      setLoading(true);
       const { data } = await axios.get("/ads-for-rent");
-      setAds(data);
+      // Oletetaan, että API palauttaa suoraan taulukon ilmoituksista
+      setAds(data || []); // Varmistetaan, että ads on aina taulukko
+      setLoading(false);
     } catch (err) {
       console.log(err);
+      setAds([]); // Tyhjennetään data virhetilanteessa
+      setLoading(false); // Lopetetaan lataus myös virhetilanteessa
     }
   };
 
@@ -45,6 +51,31 @@ export default function Rent() {
       <PageHeader title="For Rent"/>
       </div>
       
+      {loading ? (
+        <Spinner message="Loading properties..." />
+      ) : ads && ads.length > 0 ? (
+        <div className="grid grid-cols-1 
+          sm:grid-cols-1 
+          md:grid-cols-2 
+          xl:grid-cols-3   
+          justify-center mb-10 gap-y-10 
+          place-items-center 
+          px-4 sm:px-8 
+          py-10 bg-[#FBE9D0]">
+          {ads.map((ad) => (
+            <AdCard ad={ad} key={ad._id} />
+          ))}
+        </div>
+      ) : (
+        <div className="flex justify-center items-center py-20">
+          <p className="font-castoro text-center px-4">No properties for rent at the moment.</p>
+        </div>
+      )}
+    </div>
+  );
+}
+
+/*
       <div className="grid grid-cols-1 
         sm:grid-cols-1 
         md:grid-cols-2 
@@ -62,4 +93,4 @@ export default function Rent() {
       </div>
     </div>
   );
-}
+}*/

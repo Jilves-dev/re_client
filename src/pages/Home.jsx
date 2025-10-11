@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "../context/auth";
 import axios from "axios";
+import Spinner from "../components/Spinner";
 import AdCard from "../components/cards/AdCard";
 import SearchMain from "../components/forms/SearchMain";
 //import { GiSoapExperiment } from "react-icons/gi";
@@ -68,6 +69,7 @@ export default function Home() {
   const [auth, setAuth] = useAuth();
   const [adsForSell, setAdsForSell] = useState([]);
   const [adsForRent, setAdsForRent] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
   // Testaa API yhteys
@@ -91,6 +93,7 @@ export default function Home() {
 
   const fetchAds = async () => {
     try {
+      setLoading(true);
       console.log("Home.jsx API URL:", axios.defaults.baseURL); // debuggausta varten
       const { data } = await axios.get("/ads");
       console.log("Fetched ads data:", data); // debuggausta varten
@@ -99,13 +102,32 @@ export default function Home() {
         setAdsForSell(data.adsForSell || []);
         setAdsForRent(data.adsForRent || []);
       }
+      setLoading(false);
     } catch (error) {
       console.error("API error:", error);
       // Aseta tyhjät taulukot virhetilanteessa
       setAdsForSell([]);
       setAdsForRent([]);
+      setLoading(false);
     }
   };
+
+  // Näytä spinner kun dataa ladataan
+  if (loading) {
+    return (
+      <div name='home' className='max-w-screen w-full pb-10'>
+        <div className="container_bg">
+          <div className="search-container">
+            <SearchMain />
+          </div>
+        </div>
+        <div name="header" className="w-full">
+          <PageHeader title="Space realization application experiment"/>
+        </div>
+        <Spinner message="Loading properties..." />
+      </div>
+    );
+  }
 
   return (
     <div name='home' className='max-w-screen w-full pb-10'>

@@ -3,6 +3,7 @@ import { useAuth } from "../context/auth";
 import axios from "axios";
 import AdCard from "../components/cards/AdCard";
 import SearchMain from "../components/forms/SearchMain";
+import Spinner from "../components/Spinner";
 
 
 const PageHeader = ({ title }) => (
@@ -17,7 +18,8 @@ export default function Buy() {
   // context
   const [auth, setAuth] = useAuth();
   // state
-  const [ads, setAds] = useState();
+  const [ads, setAds] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetchAds();
@@ -25,12 +27,33 @@ export default function Buy() {
 
   const fetchAds = async () => {
     try {
+      setLoading(true);
       const { data } = await axios.get("/ads-for-sell");
-      setAds(data);
+      setAds(data || []); // Varmistetaan, että ads on aina taulukko
+      setLoading(false);
     } catch (err) {
       console.log(err);
+      setAds([]); // Tyhjennetään data virhetilanteessa
+      setLoading(false); // Lopetetaan lataus myös virhetilanteessa
     }
   };
+
+    // Näytä spinner kun dataa ladataan
+    if (loading) {
+      return (
+        <div name='home' className='max-w-screen w-full pb-10'>
+          <div className="container_bg">
+            <div className="search-container">
+              <SearchMain />
+            </div>
+          </div>
+          <div name="header" className="w-full">
+            <PageHeader title="For Sell"/>
+          </div>
+          <Spinner message="Loading properties..." />
+        </div>
+      );
+    }
 
   return (
     <div className='max-w-screen w-full pb-10'>
@@ -62,8 +85,3 @@ export default function Buy() {
     </div>
   );
 }
-
-
-
-
-
