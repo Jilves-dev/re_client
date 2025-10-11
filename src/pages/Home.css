@@ -7,7 +7,7 @@
     justify-content: center;
      position: relative;
     /* // overflow: hidden; KORJATTU: Alennetaan z-index arvoa tai poistetaan se kokonaan */
-    //z-index: 1; /* Alempi kuin search-container */
+    z-index: 1; /* Alempi kuin search-container */
 }
 
 .container_bg::before {
@@ -36,7 +36,7 @@
 
 @media (max-width: 992px) {
   .search-container {
-    padding-top: 23vh; /* Smaller padding for mobile */
+    padding-top: 20vh; /* Smaller padding for mobile */
     width: 100%;
   }
 }
@@ -45,7 +45,7 @@
   /* KORJATTU: Nostetaan z-index merkittävästi korkeammaksi */
   z-index: 9999 !important; /* Varmistetaan että dropdown näkyy kaiken päällä */
   width: 100%;
-  padding-top: 22vh; 
+  padding-top: 28vh; 
   padding-left: 1rem; /* 16px */
   padding-right: 1rem; /* 16px */
   display: flex;

@@ -52,6 +52,13 @@ function MapCard({ ad }) {
           position={center}
           title={ad?.address || 'Property Location'}
         />
+        {/* <Marker
+        position={center}
+        title={ad?.address || 'Property Location'}
+        icon={{
+          url: "http://maps.google.com/mapfiles/ms/icons/red-dot.png"
+        }}
+      />*/}
       </GoogleMap>
     </div>
   );
