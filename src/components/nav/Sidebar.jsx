@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 //import { MdOutlineAppSettingsAlt } from "react-icons/md";
 //import { IoSettings } from "react-icons/io5";
 import { GiSettingsKnobs } from "react-icons/gi";
-import { GiSoapExperiment } from "react-icons/gi";
+//import { GiSoapExperiment } from "react-icons/gi";
 //import { VscSettings } from "react-icons/vsc";
 import { useAuth } from "../../context/auth";
 import { useState } from 'react';
@@ -61,7 +61,7 @@ export default function Sidebart() {
             paddingBottom: '1rem' 
           }} 
         />
-        <span onClick={handleClick} className='cursor-pointer font-castoro text-[#874F41] mb-2'>DashboardNavigation</span>
+        <span onClick={handleClick} className='cursor-pointer font-castoro text-[#874F41] mb-2'>DashboardNavigatioN</span>
       </div>
       {nav && (
               <div className='fixed top-0 right-0 w-[60%] max-w-md h-screen bg-[rgba(253, 235, 211, 0.8)] backdrop-filter backdrop-blur-md flex flex-col justify-center items-center z-50'>
