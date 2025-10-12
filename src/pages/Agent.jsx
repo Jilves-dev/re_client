@@ -5,7 +5,7 @@ import UserCard from "../components/cards/UserCard";
 import AdCard from "../components/cards/AdCard";
 
 const PageHeader = ({ title }) => (
-  <div className="w-full text-align:left pb-12 pt-14 xl:pb-16 xl:pt-20 bg-[#874F41]">
+  <div className="w-full text-align:left pb-12 pt-14 xl:pb-16 xl:pt-20 bg-[#90AEAD]">
     <div className="flex items-center pl-10">
       <h1 className="font-Castoro text-align:left text-6xl md:text-6xl xl:text-7xl text-[#FBE9D0]">
         {title}
@@ -13,6 +13,17 @@ const PageHeader = ({ title }) => (
     </div>
   </div>
 );
+
+/*const PageHeader = ({ title }) => (
+  <div className="mx-auto w-full text-align:left pb-8 pt-10 sm:pt-20 sm:pb-16 md:pt-[100px] md:pb-24 
+   bg-[#90AEAD]">
+    <h1 className="font-Castoro pl-8 text-5xl sm:text-7xl 
+    text-[#244855] 
+    font-normal">
+      {title}
+    </h1>
+  </div>
+);*/
 
 export default function Agent() {
   const [agent, setAgent] = useState(null);
@@ -40,12 +51,10 @@ export default function Agent() {
 
   if (loading) {
     return (
-      <div
-        className="d-flex justify-content-center align-items-center vh-100"
-        style={{ marginTop: "-10%" }}
-      >
-        <div className="display-1 text-center">Loading...</div>
-      </div>
+     
+      <div className="flex justify-center items-center py-20">
+            <div className="w-24 h-24 border-2 border-[#90AEAD] border-t-transparent rounded-full animate-spin mb-4"></div>
+          </div>
     );
   }
 
@@ -79,3 +88,12 @@ export default function Agent() {
     </div>
   );
 }
+
+
+
+ {/*<div
+        className="d-flex justify-content-center align-items-center vh-100"
+        style={{ marginTop: "-10%" }}
+      >
+        <div className="display-1 text-center">Loading...</div>
+      </div>*/}

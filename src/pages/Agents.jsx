@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import UserCard from "../components/cards/UserCard";
-
+import Spinner from "../components/Spinner";
 /*const PageHeader = ({ title }) => (
   <div className="mx-auto w-full text-align:left pb-16 pt-20 bg-[#51829B]">
     <h1 className="pl-10 text-6xl sm:text-7xl font-bold text-[#F5F5F5]">
@@ -44,12 +44,12 @@ export default function Agents() {
 
   if (loading) {
     return (
-      <div
-        className="d-flex justify-content-center align-items-center vh-100"
-        style={{ marginTop: "-10%" }}
-      >
-        <div className="display-1 font-floral text-[#90AEAD]">Loading ...</div>
-      </div>
+      <div name='home' className='max-w-screen w-full pb-10'>
+                {/*<div name="header" className="w-full">
+                  <PageHeader title="our Space realization Dealers"/>
+                </div>*/}
+                <Spinner message="Loading properties..." />
+              </div>
     );
   }
 
@@ -79,3 +79,11 @@ export default function Agents() {
     </div>
   );
 }
+
+
+ {/*<div
+        className="d-flex justify-content-center align-items-center vh-100"
+        style={{ marginTop: "-10%" }}
+      >
+        <div className="display-1 font-floral text-[#90AEAD]">Loading ...</div>
+      </div>*/}

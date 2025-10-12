@@ -310,7 +310,7 @@ export default function SearchMain() {
             <Form.Group controlId="formBasicRange">
               <Dropdown>
                 <Dropdown.Toggle variant="primary" id="dropdown-basic">
-                  {search.price ? search.price : 'Price Range'}
+                  {search.price ? search.price : 'Price range'}
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
                   {(search.action === 'Buy' ? sellPrices : rentPrices).map((item) => (
