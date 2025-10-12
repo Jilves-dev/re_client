@@ -7,7 +7,7 @@ import AdCard from "../components/cards/AdCard";
 const PageHeader = ({ title }) => (
   <div className="w-full text-align:left pb-12 pt-14 xl:pb-16 xl:pt-20 bg-[#90AEAD]">
     <div className="flex items-center pl-10">
-      <h1 className="font-Castoro text-align:left text-6xl md:text-6xl xl:text-7xl text-[#FBE9D0]">
+      <h1 className="font-Castoro text-align:left text-6xl md:text-6xl xl:text-7xl text-[#244855]">
         {title}
       </h1>
     </div>
