@@ -1,7 +1,7 @@
-import { useState } from "react";
+/*import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../../context/auth";
-import { FaTimes } from "react-icons/fa"; // Sulje-ikoni
+//import { FaTimes } from "react-icons/fa"; // Sulje-ikoni
 
 export default function Sidebar() {
   const [auth, setAuth] = useAuth();
@@ -17,7 +17,7 @@ export default function Sidebar() {
 
   return (
     <>
-      {/* Hamburger button - Desktop (vasen yläkulma) */}
+      {/* Hamburger button - Desktop (vasen yläkulma) 
       <button
         onClick={toggleSidebar}
         className="fixed top-32 left-4 z-50 bg-[#90AEAD] text-white p-3 rounded-full shadow-lg hover:bg-[#7a9a99] transition-colors hidden md:block"
@@ -38,7 +38,7 @@ export default function Sidebar() {
         </svg>
       </button>
 
-      {/* Hamburger button - Mobile (oikea yläkulma) */}
+      * Hamburger button - Mobile (oikea yläkulma) 
       <button
         onClick={toggleSidebar}
         className="fixed top-4 right-4 z-50 bg-[#90AEAD] text-white p-3 rounded-full shadow-lg hover:bg-[#7a9a99] transition-colors md:hidden"
@@ -57,9 +57,9 @@ export default function Sidebar() {
             d="M4 6h16M4 12h16M4 18h16"
           />
         </svg>
-      </button>
+      </button>*
 
-      {/* Overlay - klikkaamalla sulkee */}
+      * Overlay - klikkaamalla sulkee 
       {isOpen && (
         <div
           className="fixed inset-0 bg-black bg-opacity-50 z-40"
@@ -67,13 +67,13 @@ export default function Sidebar() {
         />
       )}
 
-      {/* Sidebar */}
+      * Sidebar *
       <div
         className={`fixed top-0 left-0 h-full w-64 bg-[#FBE9D0] shadow-xl z-50 transform transition-transform duration-300 ease-in-out ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
-        {/* ✅ SULJE-NAPPI VASEMMASSA YLÄKULMASSA */}
+        * ✅ SULJE-NAPPI VASEMMASSA YLÄKULMASSA *
         <button
           onClick={closeSidebar}
           className="absolute top-4 left-4 text-[#244855] hover:text-[#E64833] transition-colors p-2"
@@ -82,9 +82,9 @@ export default function Sidebar() {
           <FaTimes className="w-6 h-6" />
         </button>
 
-        {/* Sidebar content */}
+        * Sidebar content *
         <div className="flex flex-col h-full pt-16 pb-6">
-          {/* User info */}
+          * User info *
           <div className="px-6 mb-6">
             <h2 className="text-xl font-castoro text-[#244855] mb-2">
               {auth?.user?.name || auth?.user?.username || "User"}
@@ -94,7 +94,7 @@ export default function Sidebar() {
             </p>
           </div>
 
-          {/* Navigation links */}
+          * Navigation links *
           <nav className="flex-1 px-4 space-y-2">
             <NavLink
               to="/dashboard"
@@ -181,7 +181,7 @@ export default function Sidebar() {
             </NavLink>
           </nav>
 
-          {/* Logout button */}
+          * Logout button 
           <div className="px-4 mt-auto">
             <button
               onClick={() => {
@@ -199,12 +199,12 @@ export default function Sidebar() {
       </div>
     </>
   );
-}
+}*/
 
 
 
 
-/*import { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Sidebar from "../../components/nav/Sidebar";
 import { useAuth } from "../../context/auth";
 import axios from "axios";
@@ -301,7 +301,7 @@ export default function Dashboard() {
       )}
     </div>
   );
-}*/
+}
 
 
 

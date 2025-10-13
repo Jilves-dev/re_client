@@ -2,6 +2,7 @@ import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 //import { MdOutlineAppSettingsAlt } from "react-icons/md";
 //import { IoSettings } from "react-icons/io5";
+import { FaTimes } from "react-icons/fa";
 import { GiSettingsKnobs } from "react-icons/gi";
 //import { GiSoapExperiment } from "react-icons/gi";
 //import { VscSettings } from "react-icons/vsc";
@@ -64,7 +65,15 @@ export default function Sidebart() {
         <span onClick={handleClick} className='cursor-pointer font-castoro text-[#874F41] mb-2'>DashboardNavigatioN</span>
       </div>
       {nav && (
-              <div className='fixed top-0 right-0 w-[60%] max-w-md h-screen bg-[rgba(253, 235, 211, 0.8)] backdrop-filter backdrop-blur-md flex flex-col justify-center items-center z-50'>
+              <div className='fixed top-0 right-0 w-[60%] max-w-md h-screen bg-[rgba(253, 235, 211, 0.8)] 
+              backdrop-filter backdrop-blur-md flex flex-col justify-center items-center z-50'>
+
+              <FaTimes 
+                onClick={handleClick}
+                className="absolute top-10 right-6 text-[#E64833] cursor-pointer hover:text-[#874F41] transition-colors"
+                style={{ width: '2rem', height: '2rem' }}
+              />
+
               <ul className='font-castoro text-[#E64833]'>
                 <li className='py-6 text-4xl'>
                   <NavLink className="nav-link" to="/dashboard" onClick={handleClick}>Dashboard</NavLink>
