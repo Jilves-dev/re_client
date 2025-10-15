@@ -24,6 +24,7 @@ import Settings from "./pages/user/Settings";
 import AdEdit from "./pages/user/ad/AdEdit";
 import Wishlist from "./pages/user/Wishlist";
 import Enquiries from "./pages/user/Enquiries";
+import Analytics from "./pages/user/Analytics";
 import Agents from "./pages/Agents";
 import Agent from "./pages/Agent";
 import Buy from "./pages/Buy";
@@ -207,6 +208,7 @@ function App() {
                   <Route path="user/ad/:slug" element={<AdEdit />} />
                   <Route path="user/wishlist" element={<Wishlist />} />
                   <Route path="user/enquiries" element={<Enquiries />} />
+                  <Route path="/user/analytics" element={<Analytics />} />
                 </Route>
 
                 <Route path="/ad/:slug" element={<AdView />} />

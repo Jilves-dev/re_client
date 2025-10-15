@@ -41,12 +41,13 @@ export default function Sidebart() {
   return (
     <div className='bg-[#FBE9D0] w-full px-2 py-2 pb-4'>
       <div className="hidden md:flex justify-start gap-6 border-b border-[#874F41]">
-      <NavLink className="font-castoro nav-link text-[#244855] bg-[#FBE9D0] !important" to="/dashboard">dashboard</NavLink>
-        <NavLink className="nav-link text-[#244855] !important" to="/user/wishlist">wishlist</NavLink>
-        <NavLink className="nav-link text-[#244855] !important" to="/user/Enquiries">enquiries</NavLink>
+      <NavLink className="font-castoro nav-link text-[#244855] bg-[#FBE9D0] !important" to="/dashboard">🔮 dashboard</NavLink>
+        <NavLink className="nav-link text-[#244855] !important" to="/user/wishlist">💖 wishlist</NavLink>
+        <NavLink className="nav-link text-[#244855] !important" to="/user/Enquiries">📫 enquiries</NavLink>
         <NavLink className="nav-link text-[#244855] !important" to="/ad/create"> create</NavLink>
-        <NavLink className="nav-link text-[#244855] !important" to="/user/profile">profile</NavLink>
-        <NavLink className="nav-link text-[#244855] !important" to="/user/settings">update password</NavLink>
+        <NavLink className="nav-link text-[#244855] !important" to="/user/analytics">📊 Analytics</NavLink>
+        <NavLink className="nav-link text-[#244855] !important" to="/user/profile">🤵 profile</NavLink>
+        <NavLink className="nav-link text-[#244855] !important" to="/user/settings">🔝update password</NavLink>
       </div>
       <br></br>
       {/*-------- Mobiilivalikko -----*/}
@@ -91,6 +92,10 @@ export default function Sidebart() {
                       <GiSoapExperiment className="text-5xl pb-4" />
                     </div>*/}
                   </NavLink>
+                </li>
+
+                 <li className='py-6 text-4xl'>
+                  <NavLink className="nav-link" to="/user/analytics" onClick={handleClick}>Analytics</NavLink>
                 </li>
 
                 <li className='py-6 text-4xl'>
