@@ -44,7 +44,7 @@ export default function Sidebart() {
       <NavLink className="font-castoro nav-link text-[#244855] bg-[#FBE9D0] !important" to="/dashboard">🔮 dashboard</NavLink>
         <NavLink className="nav-link text-[#244855] !important" to="/user/wishlist">💖 wishlist</NavLink>
         <NavLink className="nav-link text-[#244855] !important" to="/user/Enquiries">📫 enquiries</NavLink>
-        <NavLink className="nav-link text-[#244855] !important" to="/ad/create"> create</NavLink>
+        <NavLink className="nav-link text-[#244855] !important" to="/ad/create">🎨 create</NavLink>
         <NavLink className="nav-link text-[#244855] !important" to="/user/analytics">📊 Analytics</NavLink>
         <NavLink className="nav-link text-[#244855] !important" to="/user/profile">🤵 profile</NavLink>
         <NavLink className="nav-link text-[#244855] !important" to="/user/settings">🔝update password</NavLink>

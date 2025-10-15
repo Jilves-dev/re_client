@@ -44,45 +44,49 @@ const StatCard = ({ icon, title, value, subtitle, color, link }) => (
 );
 
 // Property Performance Card
-const PropertyCard = ({ ad }) => (
-  <Link to={`/ad/${ad.slug}`} className="block">
-    <div className="bg-white rounded-lg shadow-md p-5 hover:shadow-lg transition-shadow border-l-4 border-[#90AEAD]">
-      <div className="flex gap-4">
-        {/* Thumbnail */}
-        <div className="w-24 h-24 flex-shrink-0">
-          <img 
-            src={ad.photos?.[0]?.Location || 'https://via.placeholder.com/100'} 
-            alt={ad.address}
-            className="w-full h-full object-cover rounded-lg"
-          />
-        </div>
+const PropertyCard = ({ ad }) => {
+  console.log("Rendering PropertyCard:", ad); // Debug
 
-        {/* Info */}
-        <div className="flex-1 min-w-0">
-          <h3 className="font-castoro text-lg text-[#244855] truncate mb-1">
-            {ad.address}
-          </h3>
-          <p className="text-[#E64833] font-semibold mb-2">
-            {ad.price}€
-          </p>
-          
-          {/* Stats */}
-          <div className="flex gap-4 text-sm text-gray-600">
-            <span className="flex items-center gap-1">
-              <EyeOutlined /> {ad.views || 0}
-            </span>
-            <span className="flex items-center gap-1">
-              <HeartOutlined /> {ad.likes?.length || 0}
-            </span>
-            <span className="flex items-center gap-1">
-              <MessageOutlined /> {ad.enquiries || 0}
-            </span>
+  return (
+    <Link to={`/ad/${ad.slug}`} className="block">
+      <div className="bg-white rounded-lg shadow-md p-5 hover:shadow-lg transition-shadow border-l-4 border-[#90AEAD]">
+        <div className="flex gap-4">
+          {/* Thumbnail */}
+          <div className="w-24 h-24 flex-shrink-0">
+            <img 
+              src={ad.photos?.[0]?.Location || ad.photos?.[0]?.url || 'https://via.placeholder.com/100'} 
+              alt={ad.address}
+              className="w-full h-full object-cover rounded-lg"
+            />
+          </div>
+
+          {/* Info */}
+          <div className="flex-1 min-w-0">
+            <h3 className="font-castoro text-lg text-[#244855] truncate mb-1">
+              {ad.address}
+            </h3>
+            <p className="text-[#E64833] font-semibold mb-2">
+              {ad.price}€
+            </p>
+            
+            {/* Stats */}
+            <div className="flex gap-4 text-sm text-gray-600">
+              <span className="flex items-center gap-1">
+                <EyeOutlined /> {ad.views || 0}
+              </span>
+              <span className="flex items-center gap-1">
+                <HeartOutlined /> {ad.likesCount || ad.likes?.length || 0}
+              </span>
+              <span className="flex items-center gap-1">
+                <MessageOutlined /> {ad.enquiries || 0}
+              </span>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </Link>
-);
+    </Link>
+  );
+};
 
 export default function Analytics() {
   const [auth] = useAuth();
@@ -99,10 +103,18 @@ export default function Analytics() {
     try {
       setLoading(true);
       const { data } = await axios.get("/user-analytics");
+
+       console.log("=== ANALYTICS DATA ===");
+      console.log("Full response:", data);
+      console.log("Total ads:", data.totalAds);
+      console.log("Top ads count:", data.topAds?.length);
+      console.log("Top ads:", data.topAds);
+
       setStats(data);
       setLoading(false);
     } catch (err) {
-      console.error("Analytics error:", err);
+      console.error("❌ Analytics error:", err);
+      console.error("Error response:", err.response?.data);
       setLoading(false);
     }
   };
@@ -218,14 +230,20 @@ export default function Analytics() {
           <h2 className="font-castoro text-2xl text-[#244855] mb-6">
             Top Performing Properties
           </h2>
-          
-          <div className="space-y-4">
-            {stats.topAds?.map((ad) => (
-              <PropertyCard key={ad._id} ad={ad} />
-            ))}
-          </div>
 
-          {!stats.topAds?.length && (
+          {/* Debug */}
+          <div className="mb-4 text-sm text-gray-600">
+            Debug: {stats.topAds?.length || 0} properties found
+          </div>
+          
+         {stats.topAds && stats.topAds.length > 0 ? (
+            <div className="space-y-4">
+              {stats.topAds.map((ad) => {
+                console.log("Mapping ad:", ad._id, ad.address);
+                return <PropertyCard key={ad._id} ad={ad} />;
+              })}
+            </div>
+          ) : (
             <div className="bg-white rounded-lg shadow-md p-8 text-center">
               <p className="text-gray-600 font-castoro">
                 No properties yet. <Link to="/ad/create" className="text-[#90AEAD] hover:underline">Create your first property</Link>
@@ -234,8 +252,8 @@ export default function Analytics() {
           )}
         </div>
 
-        {/* Recent Activity */}
-        {stats.recentActivity?.length > 0 && (
+         {/* Recent Activity */}
+        {stats.recentActivity && stats.recentActivity.length > 0 && (
           <div className="mb-8">
             <h2 className="font-castoro text-2xl text-[#244855] mb-6">
               Recent Activity
