@@ -48,7 +48,7 @@ const PropertyCard = ({ ad }) => {
   console.log("Rendering PropertyCard:", ad); // Debug
 
   return (
-    <Link to={`/ad/${ad.slug}`} className="block">
+    <Link to={`/user/property-analytics/${ad.slug}`} className="block">
       <div className="bg-white rounded-lg shadow-md p-5 hover:shadow-lg transition-shadow border-l-4 border-[#90AEAD]">
         <div className="flex gap-4">
           {/* Thumbnail */}

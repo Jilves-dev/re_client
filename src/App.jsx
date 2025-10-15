@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import { AuthProvider } from "./context/auth";
 import { SearchProvider } from "./context/search";
 import Main from "./components/nav/Main";
@@ -25,6 +25,8 @@ import AdEdit from "./pages/user/ad/AdEdit";
 import Wishlist from "./pages/user/Wishlist";
 import Enquiries from "./pages/user/Enquiries";
 import Analytics from "./pages/user/Analytics";
+import PropertyAnalytics from "./pages/user/PropertyAnalytics";
+import UserAds from "./pages/user/UserAds";
 import Agents from "./pages/Agents";
 import Agent from "./pages/Agent";
 import Buy from "./pages/Buy";
@@ -209,6 +211,8 @@ function App() {
                   <Route path="user/wishlist" element={<Wishlist />} />
                   <Route path="user/enquiries" element={<Enquiries />} />
                   <Route path="/user/analytics" element={<Analytics />} />
+                  <Route path="/user/property-analytics/:slug" element={<PropertyAnalytics />} />
+                  <Route path="user/ads" element={<UserAds />} /> 
                 </Route>
 
                 <Route path="/ad/:slug" element={<AdView />} />
