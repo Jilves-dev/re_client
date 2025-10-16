@@ -26,6 +26,7 @@ import Wishlist from "./pages/user/Wishlist";
 import Enquiries from "./pages/user/Enquiries";
 import Analytics from "./pages/user/Analytics";
 import PropertyAnalytics from "./pages/user/PropertyAnalytics";
+import EnquiriesDetails from "./pages/user/EnquiriesDetails";
 import UserAds from "./pages/user/UserAds";
 import Agents from "./pages/Agents";
 import Agent from "./pages/Agent";
@@ -213,6 +214,7 @@ function App() {
                   <Route path="/user/analytics" element={<Analytics />} />
                   <Route path="/user/property-analytics/:slug" element={<PropertyAnalytics />} />
                   <Route path="user/ads" element={<UserAds />} /> 
+                  <Route path="user/analytics/enquiries" element={<EnquiriesDetails />} />
                 </Route>
 
                 <Route path="/ad/:slug" element={<AdView />} />

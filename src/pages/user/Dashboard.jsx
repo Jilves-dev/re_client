@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import Sidebar from "../../components/nav/Sidebar";
 import { useAuth } from "../../context/auth";
 import axios from "axios";
@@ -61,7 +62,8 @@ export default function Dashboard() {
   // Empty state
   if (!ads?.length) {
     return (
-      <div className='w-full min-h-screen pb-10'>
+      //<div className='w-full min-h-screen pb-10'>
+      <div className='w-full pb-10'>
         <PageHeader title="Dashboard" />
         <Sidebar />
         <div className="flex justify-center items-center py-20">
@@ -69,6 +71,10 @@ export default function Dashboard() {
             Hey {auth.user?.name || auth.user?.username},
             <br />
             You have not posted any properties yet!
+            <br/>
+            <Link to="/ad/create" className="text-[#90AEAD] hover:underline mt-4 inline-block">
+              Create your first property
+            </Link>
           </h2>
         </div>
       </div>

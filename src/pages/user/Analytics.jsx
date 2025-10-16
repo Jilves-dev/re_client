@@ -160,7 +160,7 @@ export default function Analytics() {
               value={stats.totalAds}
               subtitle={`${stats.activeAds} active, ${stats.soldAds} sold`}
               color="border-[#90AEAD]"
-              link="/user/ads"
+              link="/user/ads" // ← Uusi sivu: Kaikki ilmoitukset
             />
 
             <StatCard
@@ -169,7 +169,8 @@ export default function Analytics() {
               value={stats.totalViews}
               subtitle="Across all properties"
               color="border-[#E64833]"
-              link="#top-properties"
+              link="#top-properties"  // ✅ Scrollaa alas
+              //link="/user/analytics/views" // ← Uusi sivu: Views breakdown
             />
 
             <StatCard
@@ -178,7 +179,8 @@ export default function Analytics() {
               value={stats.totalLikes}
               subtitle="People interested"
               color="border-[#874F41]"
-              link="#top-properties"
+              link="#top-properties"  // ✅ Scrollaa alas
+              //link="/user/analytics/likes" // ← Uusi sivu: Kuka tykkäsi mistä
             />
 
             <StatCard
@@ -187,7 +189,7 @@ export default function Analytics() {
               value={stats.totalEnquiries}
               subtitle="Customer messages"
               color="border-[#244855]"
-              link="#top-properties"
+              link="/user/analytics/enquiries"
             />
           </div>
         </div>
