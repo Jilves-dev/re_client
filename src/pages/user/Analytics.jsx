@@ -3,7 +3,7 @@ import { useAuth } from "../../context/auth";
 import Sidebar from "../../components/nav/Sidebar";
 import axios from "axios";
 import Spinner from "../../components/Spinner";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { 
   EyeOutlined, 
   HeartOutlined, 
@@ -24,9 +24,30 @@ const PageHeader = ({ title }) => (
 );
 
 // Stat Card komponentti
-const StatCard = ({ icon, title, value, subtitle, color, link }) => (
-  <Link to={link} className="block">
-    <div className={`bg-white rounded-lg shadow-md p-6 border-l-4 hover:shadow-lg transition-shadow ${color}`}>
+const StatCard = ({ icon, title, value, subtitle, color, link }) => {
+  const navigate = useNavigate(); // Lisää tämä Analytics komponentin alkuun
+
+  const handleClick = () => {
+    if (link?.startsWith('#')) {
+      // Anchor link - scroll
+      const element = document.querySelector(link);
+      if (element) {
+        element.scrollIntoView({ 
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    } else {
+      // Normal link - navigate
+      navigate(link);
+    }
+  };
+
+  return (
+    <div 
+      onClick={handleClick}
+      className={`bg-white rounded-lg shadow-md p-6 border-l-4 hover:shadow-lg transition-shadow cursor-pointer ${color}`}
+    >
       <div className="flex items-center justify-between">
         <div className="flex-1">
           <p className="text-gray-600 text-sm font-medium mb-1">{title}</p>
@@ -40,8 +61,8 @@ const StatCard = ({ icon, title, value, subtitle, color, link }) => (
         </div>
       </div>
     </div>
-  </Link>
-);
+  );
+};
 
 // Property Performance Card
 const PropertyCard = ({ ad }) => {
@@ -233,17 +254,17 @@ export default function Analytics() {
             Top Performing Properties
           </h2>
 
-          {/* Debug */}
+          {/* Debug 
           <div className="mb-4 text-sm text-gray-600">
             Debug: {stats.topAds?.length || 0} properties found
-          </div>
+          </div>*/}
           
          {stats.topAds && stats.topAds.length > 0 ? (
             <div className="space-y-4">
-              {stats.topAds.map((ad) => {
-                console.log("Mapping ad:", ad._id, ad.address);
-                return <PropertyCard key={ad._id} ad={ad} />;
-              })}
+              {stats.topAds.map((ad) => (
+                //console.log("Mapping ad:", ad._id, ad.address);
+                <PropertyCard key={ad._id} ad={ad} />
+              ))}
             </div>
           ) : (
             <div className="bg-white rounded-lg shadow-md p-8 text-center">
