@@ -48,8 +48,14 @@ export default function AdEdit({ action, type }) {
 
   const fetchAd = async () => {
     try {
-      const { data } = await axios.get(`/ad/${params.slug}`);
-      setAd(data?.ad);
+      // Korjattu API-kutsu käyttämään oikeaa reittiä
+      const { data } = await axios.get(`/ad/edit/${params.slug}`);
+      // Oletetaan, että API palauttaa ilmoitusobjektin suoraan
+      if (data) {
+        setAd(data);
+      } else {
+        toast.error("Could not fetch ad data.");
+      }
       setLoaded(true);
     } catch (err) {
       console.log(err);
@@ -423,5 +429,3 @@ export default function AdEdit({ action, type }) {
     </div>
   );
 }
-
-

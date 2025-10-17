@@ -12,6 +12,7 @@ import ForgotPassword from "./pages/auth/ForgotPassword";
 import AccessAccount from "./pages/auth/AccessAccount";
 import Dashboard from "./pages/user/Dashboard";
 import AdCreate from "./pages/user/ad/AdCreate";
+import AdEdit from "./pages/user/ad/AdEdit";
 import PrivateRoute from "./components/routes/PrivateRoute";
 import SellHouse from "./pages/user/ad/SellHouse";
 import SellLand from "./pages/user/ad/SellLand";
@@ -21,7 +22,6 @@ import AdView from "./pages/AdView";
 import Footer from "./components/nav/Footer";
 import Profile from "./pages/user/Profile";
 import Settings from "./pages/user/Settings";
-import AdEdit from "./pages/user/ad/AdEdit";
 import Wishlist from "./pages/user/Wishlist";
 import Enquiries from "./pages/user/Enquiries";
 import Analytics from "./pages/user/Analytics";
@@ -202,13 +202,14 @@ function App() {
                 <Route path="/" element={<PrivateRoute />}>
                   <Route path="dashboard" element={<Dashboard />} />
                   <Route path="ad/create" element={<AdCreate />} />
+                  <Route path="user/ad/:slug" element={<AdEdit />} />
                   <Route path="ad/create/sell/house" element={<SellHouse />} />
                   <Route path="ad/create/sell/land" element={<SellLand />} />
                   <Route path="ad/create/rent/house" element={<RentHouse />} />
                   <Route path="ad/create/rent/land" element={<RentLand />} />
                   <Route path="user/profile" element={<Profile />} />
                   <Route path="user/settings" element={<Settings />} />
-                  <Route path="user/ad/:slug" element={<AdEdit />} />
+                  {/*<Route path="user/ad/:slug" element={<AdEdit />} />*/}
                   <Route path="user/wishlist" element={<Wishlist />} />
                   <Route path="user/enquiries" element={<Enquiries />} />
                   <Route path="/user/analytics" element={<Analytics />} />
@@ -428,9 +429,3 @@ const PageNotFound = () => (
 }
 
 export default App;*/
-
-
-
-
-
-

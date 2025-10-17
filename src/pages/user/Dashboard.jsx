@@ -6,6 +6,8 @@ import axios from "axios";
 import UserAdCard from "../../components/cards/UserAdCard";
 import Spinner from "../../components/Spinner";
 
+
+
 const PageHeader = ({ title }) => (
   <div className="w-full text-align:left pb-12 pt-14 xl:pb-16 xl:pt-20 bg-[#874F41]">
     <div className="flex items-center pl-6">
