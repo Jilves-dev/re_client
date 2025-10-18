@@ -1,4 +1,4 @@
-// src/config.js - KORJATTU
+
 let apiUrl = import.meta.env.VITE_API;
 
 // Fallback jos env ei toimi
@@ -17,7 +17,11 @@ if (!apiUrl) {
 }
 
 export const API = apiUrl;
+
+export const GOOGLE_PLACES_KEY = import.meta.env.VITE_GOOGLE_PLACES_KEY || '';
+
 console.log("API configured as:", API);
+console.log("Google Places Key exists:", !!GOOGLE_PLACES_KEY);
 
 
 
