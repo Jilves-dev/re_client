@@ -21,6 +21,26 @@ export default function Wishlist() {
   const [loading, setLoading] = useState(true); // ✅ Aluksi TRUE
 
   useEffect(() => {
+  if (auth?.token) {
+    fetchWishlist();
+  }
+}, [auth?.token]);
+
+const fetchWishlist = async () => {
+  try {
+    setLoading(true);
+    const { data } = await axios.get("/wishlist"); // ✅ Oikea endpoint
+    console.log("Wishlist data:", data);
+    setAds(data || []);
+    setLoading(false);
+  } catch (err) {
+    console.error("Wishlist error:", err);
+    setAds([]);
+    setLoading(false);
+  }
+};
+
+  /*useEffect(() => {
     if (auth.token) {
       fetchAds();
     }
@@ -37,7 +57,7 @@ export default function Wishlist() {
       setAds([]);
       setLoading(false);
     }
-  };
+  };*/
 
   // LOADING
   if (loading) {

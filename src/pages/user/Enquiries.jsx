@@ -21,8 +21,27 @@ export default function Enquiries() {
   const [ads, setAds] = useState([]);
   const [loading, setLoading] = useState(true);
 
-
   useEffect(() => {
+  if (auth?.token) {
+    fetchEnquiries();
+  }
+}, [auth?.token]);
+
+const fetchEnquiries = async () => {
+  try {
+    setLoading(true);
+    const { data } = await axios.get("/user-enquiries"); // ✅ Oikea endpoint
+    console.log("Enquiries data:", data);
+    setAds(data || []);
+    setLoading(false);
+  } catch (err) {
+    console.error("Enquiries error:", err);
+    setAds([]);
+    setLoading(false);
+  }
+};
+
+  /*useEffect(() => {
     if (auth.token) {
       fetchAds();
     }
@@ -41,7 +60,7 @@ export default function Enquiries() {
       setAds([]); // ✅ Tyhjennä ads virheen sattuessa
       setLoading(false); // ✅ Lopeta loading
     }
-  };
+  };*/
 
   // ✅ LOADING STATE - Näytä spinner/viesti kun ladataan
   if (loading) {
