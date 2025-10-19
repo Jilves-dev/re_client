@@ -91,7 +91,7 @@ export default function Home() {
     fetchAds();
   }, []);
 
-  const fetchAds = async () => {
+  /*const fetchAds = async () => {
     try {
       setLoading(true);
       console.log("Home.jsx API URL:", axios.defaults.baseURL); // debuggausta varten
@@ -110,7 +110,33 @@ export default function Home() {
       setAdsForRent([]);
       setLoading(false);
     }
-  };
+  };*/
+
+const fetchAds = async () => {
+  try {
+    setLoading(true);
+    console.log("Fetching ads...");
+    
+    // ✅ Kutsu MOLEMPIA endpointteja erikseen
+    const [sellResponse, rentResponse] = await Promise.all([
+      axios.get("/ads-for-sell"),
+      axios.get("/ads-for-rent")
+    ]);
+    
+    console.log("Sell ads:", sellResponse.data.length);
+    console.log("Rent ads:", rentResponse.data.length);
+    
+    setAdsForSell(sellResponse.data || []);
+    setAdsForRent(rentResponse.data || []);
+    setLoading(false);
+  } catch (error) {
+    console.error("❌ API error:", error);
+    setAdsForSell([]);
+    setAdsForRent([]);
+    setLoading(false);
+  }
+};
+
 
   // Näytä spinner kun dataa ladataan
   if (loading) {
