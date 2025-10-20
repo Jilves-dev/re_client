@@ -148,7 +148,7 @@ const fetchAds = async () => {
           </div>
         </div>
         <div name="header" className="w-full">
-          <PageHeader title="Space realization application experiment"/>
+          <PageHeader title="Space realization app experimental"/>
         </div>
         <Spinner message="Loading properties..." />
       </div>
