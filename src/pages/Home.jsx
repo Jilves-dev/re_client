@@ -150,7 +150,7 @@ const fetchAds = async () => {
         <div name="header" className="w-full">
           <PageHeader title="Space realization app experimental"/>
         </div>
-        <Spinner message="Loading properties..." />
+        <Spinner message="Loading properties ..." />
       </div>
     );
   }
@@ -181,7 +181,7 @@ const fetchAds = async () => {
               <AdCard ad={ad} key={ad._id} />
             ))
           ) : (
-            <p className="col-span-full text-center py-10">Ei ilmoituksia myynnissä</p>
+            <p className="col-span-full text-center py-10">No properties for sale</p>
           )}
         </div>
 
@@ -202,7 +202,7 @@ const fetchAds = async () => {
               <AdCard ad={ad} key={ad._id} />
             ))
           ) : (
-            <p className="col-span-full text-center py-10">Ei vuokrailmoituksia</p>
+            <p className="col-span-full text-center py-10">No properties for rent</p>
           )}
         </div>
        

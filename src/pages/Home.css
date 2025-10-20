@@ -41,7 +41,7 @@
   .container_bg::before {
     background-image: url('../assets/old_dam_dt2.jpg'); /* Uusi kuva desktopissa */
     background-size: cover;
-    background-position: center 32%;
+    background-position: center 28%;
   }
 }
 
