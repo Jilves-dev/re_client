@@ -5,8 +5,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    /* // overflow: hidden; KORJATTU: Alennetaan z-index arvoa tai poistetaan se kokonaan */
-    z-index: 1; /* Alempi kuin search-container */
+    z-index: 1;
 }
 
 .container_bg::before {
@@ -20,9 +19,10 @@
     background-size: 100% auto;
     background-position: center center;
     background-repeat: no-repeat;
-    z-index: 0; /* Taustakuva alimmaiseksi */
+    z-index: 0;
 }
 
+/* ✅ MOBIILI - Poista kommentointi! */
 @media (max-width: 992px) {
   .container_bg {
       height: 30vh;
@@ -31,20 +31,10 @@
   
   .container_bg::before {
       background-image: url('../assets/old_dam.jpg'); /* Vanha kuva mobiilissa */
-      background-position: center top;
+      background-position: center 44%;
       background-size: 120%;
   }
 }
-
-/* 201025 edellinen @media (max-width: 992px) {
-  .container_bg {
-      height: 30vh;
-      padding-bottom: 45px;
-      background-image: url('../assets/old_dam.jpg');
-       background-position: center top;
-     background-size: 120%;  Hieman suurempi koko jotta kattaa ruudun mutta näkyy enemmän 
-  }
-}*/
 
 /* ✅ DESKTOP - Uusi kuva */
 @media (min-width: 993px) {
@@ -57,21 +47,88 @@
 
 @media (max-width: 992px) {
   .search-container {
-    padding-top: 22vh !important; /* Smaller padding for mobile */
+    padding-top: 22vh !important;
     width: 100%;
   }
 }
 
 .search-container {
-  /* KORJATTU: Nostetaan z-index merkittävästi korkeammaksi */
-  z-index: 9999 !important; /* Varmistetaan että dropdown näkyy kaiken päällä */
+  z-index: 9999 !important;
   width: 100%;
   padding-top: 28vh; 
-  padding-left: 1rem; /* 16px */
-  padding-right: 1rem; /* 16px */
+  padding-left: 1rem;
+  padding-right: 1rem;
   display: flex;
   justify-content: center;
-  position: relative; /* Varmistaa että z-index toimii */
+  position: relative;
 }
 
 /* #874F41, #E64833, #90AEAD, #FBE9D0, #244855 */
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*.container_bg {
+    width: 100%;
+    height: 55vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    * overflow: hidden; KORJATTU: Alennetaan z-index arvoa tai poistetaan se kokonaan *
+    z-index: 1; * Alempi kuin search-container *
+}
+
+.container_bg::before {
+    content: '';
+    position: absolute;
+    top: 0px; 
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('../assets/old_dam.jpg');
+    background-size: 100% auto;
+    background-position: center center;
+    background-repeat: no-repeat;
+    z-index: 0; * Taustakuva alimmaiseksi *
+}
+
+@media (max-width: 992px) {
+  .container_bg {
+      height: 30vh;
+      padding-bottom: 45px;
+      background-image: url('../assets/old_dam.jpg');
+       *background-position: center top;
+     background-size: 120%;  Hieman suurempi koko jotta kattaa ruudun mutta näkyy enemmän *
+  }
+}
+
+@media (max-width: 992px) {
+  .search-container {
+    padding-top: 22vh !important; * Smaller padding for mobile 
+    width: 100%;
+  }
+}
+
+.search-container {
+  * KORJATTU: Nostetaan z-index merkittävästi korkeammaksi *
+  z-index: 9999 !important; * Varmistetaan että dropdown näkyy kaiken päällä *
+  width: 100%;
+  padding-top: 28vh; 
+  padding-left: 1rem; * 16px *
+  padding-right: 1rem; * 16px *
+  display: flex;
+  justify-content: center;
+  position: relative; * Varmistaa että z-index toimii *
+}
+
+* #874F41, #E64833, #90AEAD, #FBE9D0, #244855 */
