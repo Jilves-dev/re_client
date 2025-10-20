@@ -1,6 +1,6 @@
 .container_bg {
     width: 100%;
-    height: 55vh;
+    height: 64vh;
     position: relative;
     display: flex;
     align-items: center;
@@ -39,15 +39,15 @@
 /* ✅ DESKTOP - Uusi kuva */
 @media (min-width: 993px) {
   .container_bg::before {
-    background-image: url('../assets/old_dam_desktop.jpg'); /* Uusi kuva desktopissa */
+    background-image: url('../assets/old_dam_dt2.jpg'); /* Uusi kuva desktopissa */
     background-size: cover;
-    background-position: center center;
+    background-position: center 32%;
   }
 }
 
 @media (max-width: 992px) {
   .search-container {
-    padding-top: 22vh !important;
+    padding-top: 20vh !important;
     width: 100%;
   }
 }
@@ -55,7 +55,7 @@
 .search-container {
   z-index: 9999 !important;
   width: 100%;
-  padding-top: 28vh; 
+  padding-top: 35vh; 
   padding-left: 1rem;
   padding-right: 1rem;
   display: flex;
