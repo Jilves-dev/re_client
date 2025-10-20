@@ -18,39 +18,19 @@ const PageHeader = ({ title }) => (
   </div>
 );
 
-/*const PageHeader = ({ title }) => (
-  <div
-    className="w-full text-align:left pb-12 pt-14 xl:pb-16 xl:pt-20"
-    style={{
-      backgroundImage: `url(${oldDam2})`,
-      backgroundSize: "cover", // Varmistetaan että kuva peittää koko taustan
-      backgroundPosition: "center", // Keskitetään kuva
-      backgroundRepeat: "no-repeat", // Estetään kuvan toistuminen
-    }}
-  >
-    <div className="flex items-center pl-6">
-      <h1 className="font-castoro text-align:left text-6xl md:text-6xl xl:text-7xl text-[#E64833] relative z-10">
-        {title}
-      </h1>
-    </div>
-    <div className="absolute inset-0 bg-black opacity-30"></div>
-  </div>
-);*/
-
 export default function Profile() {
   // context
   const [auth, setAuth] = useAuth();
   // state
+  const [about, setAbout] = useState("");
   const [username, setUsername] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [company, setCompany] = useState("");
   const [address, setAddress] = useState("");
   const [phone, setPhone] = useState("");
-  const [about, setAbout] = useState("");
   const [loading, setLoading] = useState(false);
   const [photo, setPhoto] = useState(null);
-  const [uploading, setUploading] = useState(false);
   // hook
   const navigate = useNavigate();
 
@@ -61,7 +41,7 @@ export default function Profile() {
       setEmail(auth.user?.email);
       setCompany(auth.user?.company);
       setAddress(auth.user?.address);
-      setPhone(auth.user?.address);
+      setPhone(auth.user?.phone);
       setAbout(auth.user?.about);
       setPhoto(auth.user?.photo);
     }
@@ -83,17 +63,20 @@ export default function Profile() {
       });
       if (data?.error) {
         toast.error(data.error);
+        setLoading(false);
       } else {
         setAuth({ ...auth, user: data });
 
         let fromLS = JSON.parse(localStorage.getItem("auth"));
         fromLS.user = data;
         localStorage.setItem("auth", JSON.stringify(fromLS));
-        setLoading(false);
         toast.success("Profile updated");
+        setLoading(false);
       }
     } catch (err) {
       console.log(err);
+      toast.error("An error occurred during profile update.");
+      setLoading(false);
     }
   };
 
@@ -110,8 +93,6 @@ export default function Profile() {
               <ProfileUpload
                 photo={photo}
                 setPhoto={setPhoto}
-                uploading={uploading}
-                setUploading={setUploading}
               />
               <br></br>
               <form onSubmit={handleSubmit}>
@@ -213,7 +194,7 @@ export default function Profile() {
                           className="!bg-[#FBE9D0] hover:bg-[#cf8c60] !text-[#E64833] 
                           font-castoro py-2 px-4 rounded !border 2px border-[#874F41] col-12"
                         >
-                          {loading ? "processing" : "update profile"}
+                          {loading ? "Processing..." : "Update Profile"}
                         </button>
                 
               </form>
