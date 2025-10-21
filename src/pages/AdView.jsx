@@ -91,6 +91,8 @@ export default function AdView() {
   {/* Osoite ja ominaisuudet */}
   <div className="col-span-3 grid items-center gap-4 font-Castoro">
     <h1 className="text-3xl pl-4">{ad.address}</h1>
+    <h1 className="text-3xl pl-4">{ad.title}</h1>
+     <p className="text-3xl pl-4">{ad.description}</p>
     <div className="ml-4 sm:ml-4">
     <AdFeatures ad={ad} />
     </div>

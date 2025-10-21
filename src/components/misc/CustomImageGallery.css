@@ -1,6 +1,6 @@
 /* Esikatselukuvien suurentaminen */
 .image-gallery-thumbnail {
-    width: 150px; /* Suurenna arvo tarpeen mukaan */
+    width: 150px;
     height: auto; 
     padding: 0px !important;
   }
@@ -9,44 +9,75 @@
     object-fit: cover;
   }
   
-  /* Nuolipainikkeiden pienentäminen */
+  /* Nuolipainikkeiden parannettu tyylittely */
   .image-gallery-icon {
-    width: 40px; /* Pienennä arvo tarpeen mukaan */ 
-    height: 40px; 
-    color:  #244855 !important;
-    background: transparent !important; /* Poistaa taustan */
-    border: none !important; /* Poistaa mahdolliset reunukset */
-    padding: 30px 30px 50px 40px !important;
-    transition: none; /* Poistaa hover-tilan */
+    width: 40px !important;
+    height: 40px !important;
+    color: #244855 !important;
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    transition: none !important;
+    filter: none !important;
+    outline: none !important;
   }
 
-  .image-gallery-icon:hover {
-    background: transparent !important; /* Poistaa taustan */
-    border: none !important; /* Poistaa mahdolliset reunukset */
+  .image-gallery-icon:hover,
+  .image-gallery-icon:active,
+  .image-gallery-icon:focus {
+    background: transparent !important;
+    border: none !important;
+    filter: none !important;
+    outline: none !important;
+    transform: none !important;
+  }
+
+  /* Vasemman nuolen sijoitus */
+  .image-gallery-left-nav {
+    left: 20px !important;
+    padding: 0 !important;
+  }
+
+  /* Oikean nuolen sijoitus */
+  .image-gallery-right-nav {
+    right: 20px !important;
+    padding: 0 !important;
+  }
+
+  .image-gallery-left-nav .image-gallery-svg,
+  .image-gallery-right-nav .image-gallery-svg {
+    width: 40px !important;
+    height: 40px !important;
   }
   
   /* Responsiivinen suunnittelu */
   @media (max-width: 767px) {
     .image-gallery-thumbnail {
-      width: 70px; /* Pienennä arvo tarpeen mukaan */
+      width: 70px;
     }
-  .image-gallery-icon { 
-    width: 60px; /* Pienennä arvo tarpeen mukaan */ 
-    height: 30px; 
-    background: transparent !important; /* Poistaa taustan */ 
-    border: none !important; /* Poistaa mahdolliset reunukset */
-    padding: 30px 30px 50px 40px !important; /* Lisää tämä asettaaksesi haluamasi padding-arvo */
+    
+    .image-gallery-icon { 
+      width: 30px !important;
+      height: 30px !important;
+    }
+
+    .image-gallery-left-nav {
+      left: 10px !important;
+    }
+
+    .image-gallery-right-nav {
+      right: 10px !important;
+    }
+
+    .image-gallery-left-nav .image-gallery-svg,
+    .image-gallery-right-nav .image-gallery-svg {
+      width: 30px !important;
+      height: 30px !important;
     }
   }
 
   .image-gallery-svg {
-    stroke: #FBE9D0  !important; /* Korvaa #desiredColor haluamallasi värillä */
+    stroke: #244855 !important;
+    stroke-width: 2 !important;
   }
-
-  .image-gallery-left-nav, 
-  .image-gallery-right-nav { 
-    width: 60px; /* Aseta haluamasi leveys */ 
-    height: 60px; /* Aseta haluamasi korkeus */ 
-    padding: 30px; /* Lisää tämä asettaaksesi haluamasi padding-arvo */ 
-  } 
-  
