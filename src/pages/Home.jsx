@@ -165,7 +165,7 @@ const fetchAds = async () => {
         <br></br>
         </div>
         <div name="header" className="w-full">
-        <PageHeader title="Space realization application experiment"/>
+        <PageHeader title="Space realization app experimental"/>
         </div>
         
         <div className="grid grid-cols-1 

@@ -64,8 +64,10 @@ export default function AdForm({ action, type }) {
         localStorage.setItem("auth", JSON.stringify(fromLS));
         toast.success("Ad created successfully");
         setAd({ ...ad, loading: false });
-        // reload page on redirect
+        // odota 1.5 sekunttia ennen navigointia
+        setTimeout(() => {
         navigate("/dashboard");
+        }, 1500);
         //window.location.href = "/dashboard";
       }
     } catch (err) {
