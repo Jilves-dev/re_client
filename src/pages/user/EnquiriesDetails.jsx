@@ -75,47 +75,47 @@ export default function EnquiriesDetails() {
           </div>
         ) : (
           <div className="space-y-4">
-            {enquiries.map((enquiry, index) => (
-              <div key={index} className="bg-white rounded-lg shadow-md p-6 border-l-4 border-green-500">
-                <div className="flex items-start gap-4">
-                  <MessageOutlined className="text-2xl text-green-500 mt-1" />
-                  <div className="flex-1">
-                    <div className="flex justify-between items-start mb-2">
-                      <div>
-                        <h3 className="font-castoro text-lg text-[#244855]">
-                          {enquiry.name}
-                        </h3>
-                        <p className="text-sm text-gray-600">{enquiry.email}</p>
-                        {enquiry.phone && (
-                          <p className="text-sm text-gray-600">{enquiry.phone}</p>
-                        )}
-                      </div>
-                      <span className="text-xs text-gray-500">
-                        {new Date(enquiry.createdAt).toLocaleDateString('fi-FI', {
-                          day: 'numeric',
-                          month: 'short',
-                          year: 'numeric',
-                          hour: '2-digit',
-                          minute: '2-digit'
-                        })}
-                      </span>
-                    </div>
-                    
-                    <div className="bg-gray-50 p-4 rounded mb-3">
-                      <p className="text-gray-700">{enquiry.message}</p>
-                    </div>
-
-                    <Link 
-                      to={`/ad/${enquiry.ad?.slug}`}
-                      className="text-[#90AEAD] hover:underline text-sm"
-                    >
-                      Re: {enquiry.ad?.address} - {enquiry.ad?.price}€
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            ))}
+  {enquiries.map((enquiry, index) => (
+    <div key={index} className="bg-white rounded-lg shadow-md p-4 sm:p-6 border-l-4 border-green-500">
+      <div className="flex items-start gap-3 sm:gap-4">
+        <MessageOutlined className="text-xl sm:text-2xl text-green-500 mt-1 flex-shrink-0" />
+        <div className="flex-1 min-w-0">
+          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 mb-2">
+            <div className="flex-1 min-w-0">
+              <h3 className="font-castoro text-base sm:text-lg text-[#244855] break-words">
+                {enquiry.name}
+              </h3>
+              <p className="text-sm text-gray-600 break-all">{enquiry.email}</p>
+              {enquiry.phone && (
+                <p className="text-sm text-gray-600">{enquiry.phone}</p>
+              )}
+            </div>
+            <span className="text-xs text-gray-500 whitespace-nowrap">
+              {new Date(enquiry.createdAt).toLocaleDateString('fi-FI', {
+                day: 'numeric',
+                month: 'short',
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+              })}
+            </span>
           </div>
+          
+          <div className="bg-gray-50 p-3 sm:p-4 rounded mb-3">
+            <p className="text-sm sm:text-base text-gray-700 break-words">{enquiry.message}</p>
+          </div>
+
+          <Link 
+            to={`/ad/${enquiry.ad?.slug}`}
+            className="text-[#90AEAD] hover:underline text-xs sm:text-sm break-words inline-block"
+          >
+            Re: {enquiry.ad?.address} - {enquiry.ad?.price}€
+          </Link>
+        </div>
+      </div>
+    </div>
+  ))}
+</div>
         )}
       </div>
     </div>

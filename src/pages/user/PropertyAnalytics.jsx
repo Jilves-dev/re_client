@@ -100,10 +100,10 @@ export default function PropertyAnalytics() {
           <ArrowLeftOutlined /> Back to Analytics
         </Link>
 
-        {/* Property Header */}
+         {/* Property Header *
         <div className="bg-white rounded-lg shadow-md p-6 mb-8">
           <div className="flex gap-6">
-            {/* Image */}
+            * Image *
             <div className="w-48 h-48 flex-shrink-0">
               <img 
                 src={ad.photos?.[0]?.Location || 'https://via.placeholder.com/200'} 
@@ -112,7 +112,7 @@ export default function PropertyAnalytics() {
               />
             </div>
 
-            {/* Info */}
+            * Info *
             <div className="flex-1">
               <h2 className="font-castoro text-3xl text-[#244855] mb-2">
                 {ad.address}
@@ -142,6 +142,57 @@ export default function PropertyAnalytics() {
                 <Link 
                   to={`/ad/${ad.slug}`}
                   className="inline-block px-4 py-2 bg-[#90AEAD] hover:bg-[#7a9a99] text-white rounded-lg transition-colors"
+                >
+                  View Property
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>*/}
+
+
+        {/* Property Header */}
+        <div className="bg-white rounded-lg shadow-md p-4 sm:p-6 mb-8">
+          <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
+            {/* Image */}
+            <div className="w-full sm:w-48 h-48 flex-shrink-0">
+              <img 
+                src={ad.photos?.[0]?.Location || 'https://via.placeholder.com/200'} 
+                alt={ad.address}
+                className="w-full h-full object-cover rounded-lg"
+              />
+            </div>
+
+            {/* Info */}
+            <div className="flex-1">
+              <h2 className="font-castoro text-2xl sm:text-3xl text-[#244855] mb-2">
+                {ad.address}
+              </h2>
+              <p className="text-xl sm:text-2xl text-[#E64833] font-bold mb-4">
+                {ad.price}€
+              </p>
+              
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-6 text-sm text-gray-600 mb-4">
+                <div>
+                  <span className="text-gray-500">Type:</span>{" "}
+                  <span className="font-semibold">{ad.type}</span>
+                </div>
+                <div>
+                  <span className="text-gray-500">Action:</span>{" "}
+                  <span className="font-semibold">{ad.action}</span>
+                </div>
+                <div>
+                  <span className="text-gray-500">Status:</span>{" "}
+                  <span className={`font-semibold ${ad.sold ? 'text-red-600' : 'text-green-600'}`}>
+                    {ad.sold ? 'Sold' : 'Active'}
+                  </span>
+                </div>
+              </div>
+
+              <div className="mt-4">
+                <Link 
+                  to={`/ad/${ad.slug}`}
+                  className="inline-block w-full sm:w-auto text-center px-4 py-2 bg-[#90AEAD] hover:bg-[#7a9a99] text-white rounded-lg transition-colors"
                 >
                   View Property
                 </Link>
@@ -196,7 +247,7 @@ export default function PropertyAnalytics() {
           </div>
         </div>
 
-        {/* Daily Views Chart */}
+        {/* Daily Views Chart 
         {dailyViews && dailyViews.length > 0 && (
           <div className="bg-white rounded-lg shadow-md p-6 mb-8">
             <h3 className="font-castoro text-xl text-[#244855] mb-4">
@@ -219,7 +270,46 @@ export default function PropertyAnalytics() {
               </LineChart>
             </ResponsiveContainer>
           </div>
-        )}
+        )}*/}
+
+        {/* Daily Views Chart */}
+{dailyViews && dailyViews.length > 0 && (
+  <div className="bg-white rounded-lg shadow-md p-4 sm:p-6 mb-8">
+    <h3 className="font-castoro text-lg sm:text-xl text-[#244855] mb-4">
+      Views Over Time (Last 30 Days)
+    </h3>
+    <div className="-mx-2 sm:mx-0">
+      <ResponsiveContainer width="100%" height={300}>
+        <LineChart 
+          data={dailyViews}
+          margin={{ top: 5, right: 5, left: -20, bottom: 5 }}
+        >
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis 
+            dataKey="date" 
+            tick={{ fontSize: 12 }}
+            interval="preserveStartEnd"
+          />
+          <YAxis 
+            tick={{ fontSize: 12 }}
+            width={35}
+          />
+          <Tooltip />
+          <Legend 
+            wrapperStyle={{ fontSize: '14px' }}
+          />
+          <Line 
+            type="monotone" 
+            dataKey="views" 
+            stroke="#90AEAD" 
+            strokeWidth={2}
+            name="Views"
+          />
+        </LineChart>
+      </ResponsiveContainer>
+    </div>
+  </div>
+)}
 
         {/* Recent Activity */}
         {recentActivity && recentActivity.length > 0 && (

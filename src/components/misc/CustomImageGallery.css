@@ -9,7 +9,7 @@
     object-fit: cover;
   }
   
-  /* Custom navigointinuolet - LUKITTU KOKO JA POSITIO */
+  /* Custom navigointinuolet - PERUS TYYLIT */
   .custom-left-nav,
   .custom-right-nav {
     position: absolute !important;
@@ -30,7 +30,7 @@
     outline: none !important;
     box-shadow: none !important;
     transition: none !important;
-    will-change: auto !important;
+    -webkit-tap-highlight-color: transparent !important;
   }
 
   .custom-left-nav {
@@ -41,7 +41,7 @@
     right: 20px !important;
   }
 
-  /* PAKOTA sama koko ja positio kaikissa tiloissa */
+  /* POISTA hover, active, focus efektit AINA */
   .custom-left-nav:hover,
   .custom-left-nav:active,
   .custom-left-nav:focus,
@@ -63,7 +63,7 @@
     transition: none !important;
   }
 
-  /* Custom SVG tyylittely - LUKITTU KOKO */
+  /* Custom SVG tyylittely */
   .custom-nav-svg {
     width: 40px !important;
     height: 40px !important;
@@ -78,9 +78,10 @@
     display: block !important;
     transition: none !important;
     transform: none !important;
+    pointer-events: none !important;
   }
 
-  /* PAKOTA SVG pysymään samana kaikissa tiloissa */
+  /* SVG pysyy samana kaikissa tiloissa */
   .custom-left-nav:hover .custom-nav-svg,
   .custom-left-nav:active .custom-nav-svg,
   .custom-left-nav:focus .custom-nav-svg,
@@ -105,6 +106,30 @@
   .custom-right-nav:disabled {
     opacity: 0.3 !important;
     cursor: not-allowed !important;
+  }
+
+  /* KOSKETUSNÄYTÖILLE - POISTA KAIKKI INTERAKTIIVISET EFEKTIT */
+  @media (hover: none) and (pointer: coarse) {
+    .custom-left-nav:hover,
+    .custom-left-nav:active,
+    .custom-left-nav:focus,
+    .custom-right-nav:hover,
+    .custom-right-nav:active,
+    .custom-right-nav:focus {
+      background: transparent !important;
+      opacity: 1 !important;
+      transform: translateY(-50%) !important;
+    }
+    
+    .custom-left-nav:hover .custom-nav-svg,
+    .custom-left-nav:active .custom-nav-svg,
+    .custom-left-nav:focus .custom-nav-svg,
+    .custom-right-nav:hover .custom-nav-svg,
+    .custom-right-nav:active .custom-nav-svg,
+    .custom-right-nav:focus .custom-nav-svg {
+      opacity: 1 !important;
+      transform: none !important;
+    }
   }
   
   /* Responsiivinen suunnittelu */

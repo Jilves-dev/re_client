@@ -2,9 +2,9 @@ import Sidebar from "../../../components/nav/Sidebar";
 import AdForm from "../../../components/forms/AdForm";
 
 const PageHeader = ({ title }) => (
-  <div className="w-full text-align:left pb-12 pt-14 xl:pb-16 xl:pt-20 bg-[#874F41]">
+  <div className="w-full text-align:left pb-12 pt-14 xl:pb-16 xl:pt-20 bg-[#51829B]">
     <div className="flex items-center pl-8">
-      <h1 className="text-align:left text-6xl md:text-6xl xl:text-7xl font-castoro text-[#E64833]">
+      <h1 className="text-align:left text-6xl md:text-6xl xl:text-7xl font-castoro text-[#F5F5F5]">
         {title}
       </h1>
     </div>
