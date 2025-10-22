@@ -22,13 +22,12 @@
     z-index: 0;
 }
 
-/* ✅ MOBIILI - Poista kommentointi! */
+/* ✅ MOBIILI */
 @media (max-width: 992px) {
   .container_bg {
-      height: 30vh;
+      height: 28vh;
       padding-bottom: 45px;
   }
-  
   .container_bg::before {
       background-image: url('../assets/old_dam.jpg'); /* Vanha kuva mobiilissa */
       background-position: center 44%;
@@ -55,7 +54,7 @@
 .search-container {
   z-index: 9999 !important;
   width: 100%;
-  padding-top: 35vh; 
+  padding-top: 39vh; 
   padding-left: 1rem;
   padding-right: 1rem;
   display: flex;

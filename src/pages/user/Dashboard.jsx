@@ -21,38 +21,7 @@ const PageHeader = ({ title }) => (
 export default function Dashboard() {
   const [auth, setAuth] = useAuth();
   const [ads, setAds] = useState([]);
-  //const [total, setTotal] = useState(0);
-  //const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(true);
-
-  //const seller = auth.user?.role?.includes("Seller");
-
-  /*useEffect(() => {
-    fetchAds(3);
-  }, [auth.token !== "", page]);
-
-  useEffect(() => {
-    if (page === 1) return;
-    fetchAds();
-  }, [page]);
-
- const fetchAds = async () => {
-  try {
-    setLoading(true);
-    const { data } = await axios.get("/user-ads");
-    
-    console.log("Dashboard ads response:", data);
-    
-    // Backend palauttaa suoraan arrayn, ei objektia
-    setAds(data || []); // Ei data.ads vaan data
-    
-    setLoading(false);
-  } catch (err) {
-    console.error(err);
-    setAds([]);
-    setLoading(false);
-  }
-};*/
 
 useEffect(() => {
     if (auth?.token) {
@@ -93,21 +62,6 @@ useEffect(() => {
     setLoading(false);
   }
 };
-
-
-
-      
-      // ✅ Backend palauttaa arrayn suoraan
-      //setAds(data || []);
-      
-      /*setLoading(false);
-    } catch (err) {
-      console.error("Dashboard fetch error:", err);
-      setAds([]);
-      setLoading(false);
-    }
-  };*/
-
 
   // Loading state
   if (loading) {
@@ -172,56 +126,3 @@ useEffect(() => {
       </div>
   );
 }
-
-
-
-
-
-
-      {/*{!seller ? (
-        <div className="flex justify-center items-center text-center">
-          <h2 className="flex justify-center py-10 font-castoro">
-            Hey {auth.user?.name ? auth.user?.name : auth.user?.username},
-            Welcome to property realization marketplace App!
-          </h2>
-        </div>
-      ) : (
-        <>
-        <div className="flex justify-center py-10">
-          <h1 className="font-castoro text-[#244855] text-center"> {`total ${total} ads found`} </h1>
-          </div>
-            <div className="grid grid-cols-1 
-                  sm:grid-cols-1 
-                  md:grid-cols-2 
-                  xl:grid-cols-3   
-                  justify-center mb-10 gap-y-10 
-                  place-items-center 
-                  px-4 sm:px-8 
-                  py-10 bg-[#FBE9D0] animate-fadeIn">
-                    {ads?.map((ad) => (
-                      <UserAdCard 
-                      ad={ad} 
-                      key={ad._id} 
-                      />
-                    ))}
-                  </div>
-
-                  {ads?.length < total && (
-                    <div className="flex justify-center mt-4 mb-4">
-                      <button
-                        disabled={loading}
-                        className="bg-[#cbc385] hover:bg-[#cf8c60] text-[#879c7d] font-yeseva-one-regular py-2 px-4 rounded"
-                        onClick={(e) => {
-                          e.preventDefault();
-                          setPage(page + 1);
-                        }}
-                      >
-                {loading ? "Loading..." : `${ads?.length} / ${total} Load more`}
-              </button>
-            </div>
-          )}
-        </>
-      )}
-    </div>
-  );
-}*/}
