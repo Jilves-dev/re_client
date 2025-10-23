@@ -84,7 +84,7 @@ export default function Profile() {
     <>
 
 <div name="header">
-        <PageHeader title="Your profile"/>
+        <PageHeader title="Your user profile"/>
       </div>
         <Sidebar />
         <div className="container mt-2">

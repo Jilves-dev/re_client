@@ -11,7 +11,7 @@ export default function ProfileUpload({ photo, setPhoto }) {
     const file = e.target.files[0];
     if (!file) return;
 
-  try {
+    try {
       setUploading(true);
       console.log("=== PROFILE UPLOAD START ===");
 
@@ -46,7 +46,6 @@ export default function ProfileUpload({ photo, setPhoto }) {
     const answer = window.confirm("Are you sure you want to delete your profile image?");
     if (!answer) return;
 
-    setUploading(true);
     try {
       const payload = {
         Key: photo.Key || photo.key,
@@ -62,8 +61,6 @@ export default function ProfileUpload({ photo, setPhoto }) {
     } catch (err) {
       console.error("Delete error:", err.response?.data || err);
       toast.error(err.response?.data?.error || "Failed to delete image");
-    } finally {
-      setUploading(false);
     }
   };
 
@@ -73,9 +70,9 @@ export default function ProfileUpload({ photo, setPhoto }) {
         <div className="relative">
           <Avatar
             src={photo.Location}
-            shape="square"
+            shape="round"
             style={{ width: "120px", height: "120px" }}
-            className="border-2 border-[#874F41] cursor-pointer hover:opacity-70 transition-opacity"
+            className="border-2 border-[#874F41] border-radius-full cursor-pointer hover:opacity-70 transition-opacity"
             onClick={handleDelete}
             title="Click to delete image"
           />

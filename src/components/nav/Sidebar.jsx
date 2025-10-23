@@ -1,5 +1,4 @@
-import { NavLink } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { GiSettingsKnobs } from "react-icons/gi";
 import { useAuth } from "../../context/auth";
 import { useState } from 'react';
@@ -16,18 +15,33 @@ export default function Sidebar() {
     if (!nav) {
       // Avataan: pyörähdä 90deg
       setRotation(90);
-    } else {
-      // Suljetaan: normalisoi ensin 90deg:seen ilman animaatiota, sitten animoi 0:aan
-      setRotation(-360);
-      setTimeout(() => setRotation(0), 600);
-    }
-    
-    setNav(!nav);
-    if (!nav) {
+      setNav(true);
       document.body.style.overflow = 'hidden';
     } else {
+      // Suljetaan: pyörähdä 450deg vastapäivään
+      setRotation(-360);
+       // Odota animaatio loppuun ennen sulkemista
+      setTimeout(() => {
+        setNav(false);
+        document.body.style.overflow = 'auto';
+        setRotation(0);
+       }, 600);
+      } 
+    };
+
+    const handleNavLinkClick = (e, path) => {
+    e.preventDefault(); // Estä välitön navigointi
+    
+    // Aloita sulkemisanimaatio
+    setRotation(-360);
+    
+    // Odota animaatio, sitten navigoi ja sulje
+    setTimeout(() => {
+      setNav(false);
       document.body.style.overflow = 'auto';
-    }
+      setRotation(0);
+      navigate(path);
+    }, 600);
   };
 
   const toggleUserDropdown = () => {
@@ -98,8 +112,37 @@ export default function Sidebar() {
           </>
         )}
       </div>
-      
+
       {nav && (
+        <div className='fixed top-0 right-0 w-[60%] max-w-md h-screen bg-[rgba(253, 235, 211, 0.8)] 
+        backdrop-filter backdrop-blur-md flex flex-col justify-center items-center z-50'>
+          <ul className='font-castoro text-[#E64833]'>
+            <li className='py-6 text-4xl'>
+              <a className="nav-link cursor-pointer" onClick={(e) => handleNavLinkClick(e, '/dashboard')}>Dashboard</a>
+            </li>
+            <li className='py-6 text-4xl'>
+              <a className="nav-link cursor-pointer" onClick={(e) => handleNavLinkClick(e, '/user/wishlist')}>Wishlist</a>
+            </li>
+            <li className='py-6 text-4xl'>
+              <a className="nav-link cursor-pointer" onClick={(e) => handleNavLinkClick(e, '/user/Enquiries')}>Enquiries</a>
+            </li>
+            <li className='py-6 text-4xl'>
+              <a className="nav-link cursor-pointer" onClick={(e) => handleNavLinkClick(e, '/ad/create')}>Create</a>
+            </li>
+            <li className='py-6 text-4xl'>
+              <a className="nav-link cursor-pointer" onClick={(e) => handleNavLinkClick(e, '/user/analytics')}>Analytics</a>
+            </li>
+            <li className='py-6 text-4xl'>
+              <a className="nav-link cursor-pointer" onClick={(e) => handleNavLinkClick(e, '/user/profile')}>Profile</a>
+            </li>
+            <li className='py-6 text-4xl'>
+              <a className="nav-link cursor-pointer" onClick={(e) => handleNavLinkClick(e, '/user/settings')}>Update password</a>
+            </li>            
+          </ul>
+        </div>
+      )}
+      
+      {/*{nav && (
         <div className='fixed top-0 right-0 w-[60%] max-w-md h-screen bg-[rgba(253, 235, 211, 0.8)] 
         backdrop-filter backdrop-blur-md flex flex-col justify-center items-center z-50'>
           <ul className='font-castoro text-[#E64833]'>
@@ -127,6 +170,7 @@ export default function Sidebar() {
           </ul>
         </div>
       )}
+      */}
     </div>
   );
 }

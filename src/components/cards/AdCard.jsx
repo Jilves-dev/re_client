@@ -50,6 +50,9 @@ export default function AdCard({ ad, className }) {
           <h4 className="font-normal text-2xl mb-2 line-clamp-1">
             {ad?.address}
           </h4>
+          <h5 className="font-Castoro text-xl mb-1 line-clamp-1">
+            {ad.description}
+          </h5>
           <div className="text-white">
             <AdFeatures ad={ad} layout="spread" />
           </div>
