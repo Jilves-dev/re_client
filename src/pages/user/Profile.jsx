@@ -178,15 +178,16 @@ export default function Profile() {
                 </div>
                  <div className="mb-4">
               <label htmlFor="username" className="font-castoro block text-[#874F41] mb-2">
-                  something about yourself
+                  tell us something about yourself
                 </label>
                 <textarea
                   id="about"
+                  rows="4"
                   placeholder="write something interesting about yourself.."
                   className="form-control mb-4 font-castoro text-[#874F41]"
                   value={about}
                   onChange={(e) => setAbout(e.target.value)}
-                  maxLength={200}
+                  maxLength={250}
                 />
                 </div>
          
