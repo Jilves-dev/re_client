@@ -4,19 +4,8 @@ import axios from "axios";
 import Spinner from "../components/Spinner";
 import AdCard from "../components/cards/AdCard";
 import SearchMain from "../components/forms/SearchMain";
-//import { GiSoapExperiment } from "react-icons/gi";
 //import DebugComponent from "../components/DebugComponent";
 import './Home.css';
-
-/*const PageHeader = ({ title }) => (
-  <div className="mx-auto w-full text-left pt-10 pb-8 sm:pt-20 sm:pb-16 md:pt-[100px] md:pb-24 bg-[#90AEAD]" 
-       style={{ zIndex: 1, position: 'relative' }}>
-    <h1 className="font-Castoro pl-8 text-5xl sm:text-7xl text-[#244855] font-normal flex flex-wrap items-center gap-x-4">
-      <span>{title}</span>
-      <GiSoapExperiment className="pb-4"/>
-    </h1>
-  </div>
-);*/
 
 const PageHeader = ({ title }) => (
   <div className="mx-auto w-full text-align:left pb-8 pt-10 sm:pt-20 sm:pb-16 md:pt-[100px] md:pb-24 

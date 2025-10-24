@@ -41,7 +41,7 @@ export default function UserAdCard({ ad }) {
           {formatNumber(ad.price)}€
         </p>
 
-        {/* Details */}
+        {/* Details 
         <div className="flex gap-4 text-sm text-gray-600 mb-4">
           {ad.bedrooms && (
             <span>🛏️ {ad.bedrooms}</span>
@@ -52,6 +52,10 @@ export default function UserAdCard({ ad }) {
           {ad.carpark && (
             <span>🚗 {ad.carpark}</span>
           )}
+        </div>*/}
+
+        <div className="mb-4 text-[#244855]">
+        <AdFeatures ad={ad} layout="start" />
         </div>
 
         {/* Stats */}

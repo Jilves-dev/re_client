@@ -1,4 +1,41 @@
-import { IoBedOutline } from "react-icons/io5";
+export default function AdFeatures({ ad, layout }) {
+  // Asetetaan oletusarvo layout-propille, jos sitä ei ole määritelty
+  const justifyContentClass = layout === 'spread' ? 'justify-between' : 'justify-start';
+
+  return (
+    <div className={`flex ${justifyContentClass} items-center gap-3`}>
+      {ad?.bedrooms && (
+        <span className="flex items-center gap-1.5 font-lg">
+          🛏️ {ad.bedrooms}
+        </span>
+      )}
+      
+      {ad?.bathrooms && (
+        <span className="flex items-center gap-1.5 font-lg">
+          🚿 {ad.bathrooms}
+        </span>
+      )}
+      
+      {ad?.carpark && (
+        <span className="flex items-center gap-1.5 font-lg">
+          🚗 {ad.carpark}
+        </span>
+      )}
+      
+      {ad?.landsize && (
+        <span className="flex items-center gap-1.5 font-lg">
+          📏 {ad.landsize}
+        </span>
+      )}
+    </div>
+  );
+}
+
+
+
+
+
+{/*import { IoBedOutline } from "react-icons/io5";
 import { TbBath } from "react-icons/tb";
 import { BiArea } from "react-icons/bi";
 
@@ -25,7 +62,7 @@ return (
     )}
   </div>
   );
-}
+}*/}
 
 
 

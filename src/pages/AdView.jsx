@@ -74,27 +74,15 @@ export default function AdView() {
 <div className="pl-4 font-Castoro">{ad?.sold ? "❌ Off market" : "✅ In market"}</div> 
 <LikeUnlike ad={ad} className="relative right-6 sm:right-0" /> </div>
 
-
-{/*<div className="flex flex-col sm:grid sm:grid-cols-3 gap-4 pt-10 pb-10">  
-  <div className="flex flex-col sm:flex-row sm:col-span-3 justify-between">
-      <div className="pl-4">{ad?.sold ? "❌ Off market" : "✅ In market"}</div>
-   
-    <LikeUnlike ad={ad} style={{ position: "relative", right: "4rem" }} />
-  </div>*/}
-  
-
-  {/* Tila (In Market / Off Market) 
-  <div className="col-span-3 text-center mb-4 sm:mb-0">
-    <div className="py-4">{ad?.sold ? "❌ Off market" : "✅ In market"}</div>
-  </div>*/}
-
   {/* Osoite ja ominaisuudet */}
   <div className="col-span-3 grid items-center gap-4 font-Castoro">
     <h1 className="text-3xl pl-4">{ad.address}</h1>
     <h1 className="text-3xl pl-4">{ad.title}</h1>
      <p className="text-3xl pl-4">{ad.description}</p>
     <div className="ml-4 sm:ml-4">
-    <AdFeatures ad={ad} />
+    <div className="ml-2 sm:ml-1 text-[#244855] !important">
+      <AdFeatures ad={ad} />
+    </div>
     </div>
   </div>
 
@@ -118,54 +106,6 @@ export default function AdView() {
   <br></br>
 </div>
 
-
-
-
-
-     {/* <div className="flex">
-        <div className="grid grid-cols-3 gap-4 pt-10 pb-10">
-          <div className="col-span-1 p-2">
-            <div className="col-span-2 flex justify-between ">
-              <button
-                type="button"
-                className="text-white bg-[#51829B] hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-              >
-                {ad.type} for {ad.action}
-              </button>
-              <LikeUnlike ad={ad} />
-            </div>
-
-            <div className="py-4">{ad?.sold ? "❌ Off market" : "✅ In market"}</div>
-            <h1 className="text-3xl pb-4">{ad.address}</h1>
-            <AdFeatures ad={ad} />
-            <h1 className="text-3xl pb-2">{formatNumber(ad.price)}€</h1>
-            <p className="text-muted">{dayjs(ad?.createdAt).fromNow()}</p>
-          </div>
-          <div className="col-span-2">
-            <CustomImageGallery photos={generatePhotosArray(ad?.photos)} />
-          </div>
-        </div>
-      </div>*/}
-
-      {/*<div className="container mb-5">
-        <div className="row">
-          <div className="col-lg-8 offset-lg-2 mt-3">
-            <br />
-            <br />
-            <p className="text-xl pl-6">
-              {ad?.type} in {ad?.address} for {ad?.action} {ad?.price}€
-            </p>
-            <div className="text-xl pl-6">
-              <AdFeatures ad={ad} />
-              <h3 className="text-xl">{ad?.title}</h3>
-            </div>
-            <div className="html-content text-xl pl-6">
-              {parse(String(ad?.description?.replaceAll(".", "<br/><br/>")))}
-            </div>
-          </div>
-        </div>
-      </div>*/}
-
       <div className="container w-full">
         <ContactSeller ad={ad} />
       </div>
@@ -188,13 +128,6 @@ export default function AdView() {
           <AdCard
             ad={ad}
             key={ad._id}
-            /*className={
-              index % 3 === 0
-                ? "justify-self-end"
-                : index % 3 === 1
-                ? ""
-                : "justify-self-start"
-            }*/
           />
         ))}
       </div>
