@@ -15,8 +15,8 @@ export default function Main() {
   // Tarkista, onko käyttäjä dashboard-alueella
   const isDashboard = location.pathname.startsWith('/dashboard') || 
                       location.pathname.startsWith('/ad/create') ||
-                      location.pathname.startsWith('/user/') ||
-                       location.pathname.startsWith('/agent/');
+                      location.pathname.startsWith('/user/');
+                       
 
   const logout = () => {
     setAuth({ user: null, token: "", refreshToken: "" });

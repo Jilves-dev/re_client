@@ -80,7 +80,7 @@ export default function AdView() {
     <h1 className="text-3xl pl-4">{ad.title}</h1>
      <p className="text-3xl pl-4">{ad.description}</p>
     <div className="ml-4 sm:ml-4">
-    <div className="ml-2 sm:ml-1 text-[#244855] !important">
+    <div className="ml-0 sm:ml-0 text-[#244855] !important">
       <AdFeatures ad={ad} />
     </div>
     </div>

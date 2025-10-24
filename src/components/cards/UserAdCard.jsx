@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { EditOutlined, EyeOutlined, DeleteOutlined } from "@ant-design/icons";
 import { formatNumber } from "../../helpers/ad";
+import AdFeatures from "./AdFeatures";
 
 export default function UserAdCard({ ad }) {
   return (

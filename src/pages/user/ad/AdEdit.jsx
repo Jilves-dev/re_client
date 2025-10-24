@@ -166,7 +166,7 @@ export default function AdEdit() {
   if (loading) {
     return (
       <div className='w-full min-h-screen pb-10'>
-        <PageHeader title="Edit Property" />
+        <PageHeader title="Edit existing post" />
         <Sidebar />
         <Spinner message="Loading property..." />
       </div>
@@ -178,7 +178,7 @@ export default function AdEdit() {
 
   return (
     <div className='w-full min-h-screen pb-10 bg-[#FBE9D0]'>
-      <PageHeader title="Edit Property" />
+      <PageHeader title="Edit existing post" />
       <Sidebar />
 
       <div className="container mx-auto px-4 py-10 max-w-4xl">

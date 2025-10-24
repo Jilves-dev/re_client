@@ -4,7 +4,7 @@ import axios from "axios";
 import AdCard from "../components/cards/AdCard";
 import Logo from "../logo.svg";
 
-const PageHeader = ({ title }) => (
+/*const PageHeader = ({ title }) => (
   <div className="w-full text-align:left pb-12 pt-14 xl:pb-16 xl:pt-20 bg-[#90AEAD]">
     <div className="flex items-center pl-10">
       <h1 className="font-Castoro text-align:left text-6xl md:text-6xl xl:text-7xl text-[#244855]">
@@ -12,7 +12,7 @@ const PageHeader = ({ title }) => (
       </h1>
     </div>
   </div>
-);
+);*/
 
 export default function Agent() {
   const [agent, setAgent] = useState(null);
@@ -52,9 +52,9 @@ export default function Agent() {
 
   return (
     <div className='max-w-screen w-full pb-10'>
-      <div name="header">
+       {/*<div name="header">
         <PageHeader title={agent?.name ?? agent?.username} />
-      </div>
+      </div>*/}
 
       {/* Portfolio Section */}
       <div className="bg-[#FBE9D0] py-16 px-4">
@@ -83,6 +83,17 @@ export default function Agent() {
               </p>
             )}
 
+            
+     {/* About */}
+            {agent?.about && (
+              <div className="mb-6">
+                <h3 className="font-Castoro text-xl text-[#874F41] mb-2">About me</h3>
+                <p className="text-[#244855] text-lg leading-relaxed whitespace-pre-line">
+                  {agent.about}
+                </p>
+              </div>
+            )}
+
             {/* Company Name */}
             {agent?.company && (
               <div className="mb-6">
@@ -99,15 +110,7 @@ export default function Agent() {
               </div>
             )}
 
-            {/* About */}
-            {agent?.about && (
-              <div className="mb-6">
-                <h3 className="font-Castoro text-xl text-[#874F41] mb-2">About me</h3>
-                <p className="text-[#244855] text-lg leading-relaxed whitespace-pre-line">
-                  {agent.about}
-                </p>
-              </div>
-            )}
+       
 
             {/* Stats */}
             <div className="mt-8 pt-6 border-t border-[#90AEAD]">

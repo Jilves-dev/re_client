@@ -5,25 +5,25 @@ export default function AdFeatures({ ad, layout }) {
   return (
     <div className={`flex ${justifyContentClass} items-center gap-3`}>
       {ad?.bedrooms && (
-        <span className="flex items-center gap-1.5 font-lg">
+        <span className="flex items-center gap-1.5 text-xl">
           🛏️ {ad.bedrooms}
         </span>
       )}
       
       {ad?.bathrooms && (
-        <span className="flex items-center gap-1.5 font-lg">
+        <span className="flex items-center gap-1.5 text-xl">
           🚿 {ad.bathrooms}
         </span>
       )}
       
       {ad?.carpark && (
-        <span className="flex items-center gap-1.5 font-lg">
+        <span className="flex items-center gap-1.5 text-xl">
           🚗 {ad.carpark}
         </span>
       )}
       
       {ad?.landsize && (
-        <span className="flex items-center gap-1.5 font-lg">
+        <span className="flex items-center gap-1.5 text-xl">
           📏 {ad.landsize}
         </span>
       )}
