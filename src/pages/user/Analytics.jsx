@@ -145,7 +145,7 @@ export default function Analytics() {
       <div className='w-full min-h-screen pb-10'>
         <PageHeader title="Analytics" />
         <Sidebar />
-        <Spinner message="Loading your analytics..." />
+        <Spinner />
       </div>
     );
   }

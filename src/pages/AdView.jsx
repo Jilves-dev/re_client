@@ -12,6 +12,7 @@ import parse from "html-react-parser";
 import AdCard from "../components/cards/AdCard";
 import ContactSeller from "../components/forms/ContactSeller";
 import relativeTime from "dayjs/plugin/relativeTime";
+import Spinner from "../components/Spinner";
 
 dayjs.extend(relativeTime);
 
@@ -24,8 +25,6 @@ export default function AdView() {
     const fetchAd = async () => {
       try {
         const { data } = await axios.get(`/ad/${params?.slug}`);
-        //console.log('ad-objekti:', data.ad); // Tarkastellaan ad-objektin sisältöä
-       // console.log('ad.postedBy:', data.ad.postedBy);
         setAd(data?.ad || {});
         setRelated(data?.related || []);
       } catch (err) {
@@ -62,13 +61,11 @@ export default function AdView() {
   };
 
   if (!ad || Object.keys(ad).length === 0) {
-    return <div>Loading...</div>;
+    return  <Spinner />
   }
 
   return (
     <>
-
-
 <div className="flex flex-col bg-[#FBE9D0] sm:grid sm:grid-cols-3 gap-4 pt-10"> 
 <div className="flex flex-row sm:col-span-3 justify-between items-center">
 <div className="pl-4 font-Castoro">{ad?.sold ? "❌ Off market" : "✅ In market"}</div> 

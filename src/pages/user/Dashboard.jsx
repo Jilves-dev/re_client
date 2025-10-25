@@ -6,8 +6,6 @@ import axios from "axios";
 import UserAdCard from "../../components/cards/UserAdCard";
 import Spinner from "../../components/Spinner";
 
-
-
 const PageHeader = ({ title }) => (
   <div className="w-full text-align:left pb-12 pt-14 xl:pb-16 xl:pt-20 bg-[#874F41]">
     <div className="flex items-center pl-6">
@@ -28,7 +26,6 @@ useEffect(() => {
       fetchAds();
     }
   }, [auth?.token]);
-
   const fetchAds = async () => {
     try {
       setLoading(true);
@@ -54,7 +51,6 @@ useEffect(() => {
       console.error("Unexpected data format:", data);
       setAds([]);
     }
-    
     setLoading(false);
   } catch (err) {
     console.error("Dashboard fetch error:", err);
@@ -69,7 +65,7 @@ useEffect(() => {
       <div className='w-full min-h-screen pb-10'>
         <PageHeader title="Dashboard" />
         <Sidebar />
-        <Spinner message="Loading your properties..." />
+        <Spinner />
       </div>
     );
   }
