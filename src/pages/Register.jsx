@@ -1,7 +1,6 @@
 import { useState } from "react";
 import styles from './Login.module.css';
 import axios from "axios";
-//import { API } from "../config";
 import toast from "react-hot-toast";
 import { FaUser, FaLock } from "react-icons/fa"
 import { Link, useNavigate } from "react-router-dom";
@@ -44,7 +43,7 @@ export default function Register() {
 
   return (
      <div className={styles.centerContent}>
-    <div className={styles.wrapper}>
+     <div className={styles.wrapper}>
             <form onSubmit={handleSubmit}>
             <h1>Register</h1>
               <div className={styles.inputBox}>

@@ -130,39 +130,39 @@ export default function Main() {
           style={{ zIndex: 100001 }}
         >
           <ul className={`font-castoro ${mobileTextColor} font-normal`}>
-            <li className='py-6 text-4xl'>
+            <li className='py-4 text-4xl'>
               <NavLink className="nav-link" to="/" onClick={handleClick}>Home</NavLink>
             </li>
-            <li className='py-6 text-4xl'>
+            <li className='py-4 text-4xl'>
               <NavLink className="nav-link" to="/search" onClick={handleClick}>Search</NavLink>
             </li>
-            <li className='py-6 text-4xl'>
+            <li className='py-4 text-4xl'>
               <NavLink className="nav-link" to="/buy" onClick={handleClick}>Buy</NavLink>
             </li>
-            <li className='py-6 text-4xl'>
+            <li className='py-4 text-4xl'>
               <NavLink className="nav-link" to="/rent" onClick={handleClick}>Rent</NavLink>
             </li>
-            <li className='py-6 text-4xl'>
+            <li className='py-4 text-4xl'>
               <NavLink className="nav-link" to="/agents" onClick={handleClick}>Agents</NavLink>
             </li>
-            <li className='py-6 text-4xl'>
+            <li className='py-4 text-4xl'>
               <a className="nav-link pointer" onClick={() => { handlePostAdClick(); handleClick(); }}>Post Ad</a>
             </li>
             {!loggedIn ? (
               <>
-                <li className='py-6 text-4xl'>
+                <li className='py-4 text-4xl'>
                   <NavLink className="nav-link" to="/login" onClick={handleClick}>Login</NavLink>
                 </li>
-                <li className='py-6 text-4xl'>
+                <li className='py-4 text-4xl'>
                   <NavLink className="nav-link" to="/register" onClick={handleClick}>Register</NavLink>
                 </li>
               </>
             ) : (
               <div>
-                <li className='py-6 text-4xl'>
+                <li className='py-4 text-4xl'>
                   <NavLink className="nav-link" to="/dashboard" onClick={handleClick}>Dashboard</NavLink>
                 </li>
-                <li className='py-6 text-4xl'>
+                <li className='py-4 text-4xl'>
                   <a onClick={() => { logout(); handleClick(); }} className="nav-link">Logout</a>
                 </li>
               </div>

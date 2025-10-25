@@ -77,6 +77,17 @@ export default function EnquiriesDetails() {
           <div className="space-y-4">
   {enquiries.map((enquiry, index) => (
     <div key={index} className="bg-white rounded-lg shadow-md p-4 sm:p-6 border-l-4 border-green-500">
+
+        <span className="text-xs text-gray-500 whitespace-nowrap ml-10">
+              {new Date(enquiry.createdAt).toLocaleDateString('fi-FI', {
+                day: 'numeric',
+                month: 'short',
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+              })}
+            </span>
+
       <div className="flex items-start gap-3 sm:gap-4">
         <MessageOutlined className="text-xl sm:text-2xl text-green-500 mt-1 flex-shrink-0" />
         <div className="flex-1 min-w-0">
@@ -90,15 +101,7 @@ export default function EnquiriesDetails() {
                 <p className="text-sm text-gray-600">{enquiry.phone}</p>
               )}
             </div>
-            <span className="text-xs text-gray-500 whitespace-nowrap">
-              {new Date(enquiry.createdAt).toLocaleDateString('fi-FI', {
-                day: 'numeric',
-                month: 'short',
-                year: 'numeric',
-                hour: '2-digit',
-                minute: '2-digit'
-              })}
-            </span>
+          
           </div>
           
           <div className="bg-gray-50 p-3 sm:p-4 rounded mb-3">

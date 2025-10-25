@@ -38,6 +38,7 @@ import ArrowDown from "./assets/arrow-down.svg";
 import { API } from './config';
 import axios from "axios";
 import toast from 'react-hot-toast';
+import Maintenance from "./components/Maintenance";
 
 // Page not found component
 /*const PageNotFound = () => (
@@ -93,6 +94,12 @@ function App() {
   const [showScrollButton, setShowScrollButton] = useState(false);
   const [showBottomScrollButton, setShowBottomScrollButton] = useState(false);
   const [apiConnected, setApiConnected] = useState(true);
+
+   const isMaintenanceMode = import.meta.env.VITE_MAINTENANCE_MODE === 'true';
+   // Jos maintenance-tila on päällä, näytä vain maintenance-sivu
+  if (isMaintenanceMode) {
+    return <Maintenance />;
+  }
   
   // Verify API connection on startup
   useEffect(() => {

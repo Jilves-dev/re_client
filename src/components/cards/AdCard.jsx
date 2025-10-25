@@ -69,7 +69,7 @@ export default function AdCard({ ad, className }) {
           <h5 className="font-Castoro text-2xl font-bold mb-2 
                          drop-shadow-lg
                          transition-colors duration-300
-                         group-hover:text-[#90AEAD]">
+                         {/*group-hover:text-[#E64833]*/}">
             {formatNumber(ad?.price)}€
           </h5>
           
