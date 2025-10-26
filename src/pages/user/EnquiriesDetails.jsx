@@ -4,7 +4,7 @@ import Sidebar from "../../components/nav/Sidebar";
 import axios from "axios";
 import Spinner from "../../components/Spinner";
 import { Link } from "react-router-dom";
-import { MessageOutlined, ArrowLeftOutlined, SendOutlined, CloseOutlined } from "@ant-design/icons";
+import { MessageOutlined, ArrowLeftOutlined, MailOutlined, CloseOutlined } from "@ant-design/icons";
 import toast from "react-hot-toast";
 
 const PageHeader = ({ title }) => (
@@ -175,7 +175,7 @@ export default function EnquiriesDetails() {
                         onClick={() => handleReplyClick(enquiry)}
                         className="flex items-center gap-2 bg-[#90AEAD] hover:bg-[#7a9a99] text-white px-4 py-2 rounded transition-colors text-sm"
                       >
-                        <SendOutlined /> Reply
+                        <MailOutlined /> Reply
                       </button>
                     </div>
                   </div>
