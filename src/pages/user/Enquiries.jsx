@@ -1,4 +1,106 @@
 import { useState, useEffect } from "react";
+import { useAuth } from "../../context/auth";
+import Sidebar from "../../components/nav/Sidebar";
+import axios from "axios";
+import { Link } from "react-router-dom";
+import Spinner from "../../components/Spinner";
+
+export default function Enquiries() {
+  const [auth] = useAuth();
+  const [conversations, setConversations] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (auth?.token) fetchConversations();
+  }, [auth?.token]);
+
+  const fetchConversations = async () => {
+    try {
+      const { data } = await axios.get("/user-enquiries");
+      setConversations(data);
+      setLoading(false);
+    } catch (err) {
+      console.error(err);
+      setLoading(false);
+    }
+  };
+
+  if (loading) return <Spinner />;
+
+  return (
+    <div className="w-full min-h-screen pb-10 bg-[#FBE9D0]">
+      <Sidebar />
+      
+      <div className="container mx-auto px-4 py-10">
+        <h2 className="text-3xl font-castoro mb-6">My Conversations ({conversations.length})</h2>
+
+        {conversations.length === 0 ? (
+          <p>No conversations yet</p>
+        ) : (
+          <div className="space-y-4">
+            {conversations.map((conv, idx) => (
+              <div key={idx} className="bg-white p-6 rounded-lg shadow">
+                {/* Property info */}
+                <div className="flex justify-between items-start mb-4">
+                  <div>
+                    <Link to={`/ad/${conv.ad.slug}`} className="text-lg font-bold text-[#244855] hover:text-[#90AEAD]">
+                      {conv.ad.address}
+                    </Link>
+                    <p className="text-sm text-gray-600">{conv.ad.price}€</p>
+                  </div>
+                  
+                  {conv.unreadCount > 0 && (
+                    <span className="bg-red-500 text-white px-2 py-1 rounded-full text-xs">
+                      {conv.unreadCount} new
+                    </span>
+                  )}
+                </div>
+
+                {/* Message thread */}
+                <div className="space-y-3 max-h-60 overflow-y-auto">
+                  {conv.messages.map((msg, msgIdx) => (
+                    <div 
+                      key={msgIdx}
+                      className={`p-3 rounded ${
+                        msg.isOwn 
+                          ? 'bg-blue-50 ml-8' 
+                          : 'bg-gray-50 mr-8'
+                      }`}
+                    >
+                      <div className="flex justify-between items-start mb-1">
+                        <span className="font-semibold text-sm">
+                          {msg.isOwn ? 'You' : msg.sender?.name || 'Other'}
+                        </span>
+                        <span className="text-xs text-gray-500">
+                          {new Date(msg.createdAt).toLocaleDateString('fi-FI')}
+                        </span>
+                      </div>
+                      <p className="text-sm">{msg.message}</p>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Reply button */}
+                <button 
+                  className="mt-4 bg-[#90AEAD] text-white px-4 py-2 rounded hover:bg-[#7a9a99]"
+                >
+                  Reply
+                </button>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+
+
+
+
+
+/*import { useState, useEffect } from "react";
 import Sidebar from "../../components/nav/Sidebar";
 import { useAuth } from "../../context/auth";
 import axios from "axios";
@@ -94,4 +196,4 @@ const fetchEnquiries = async () => {
       </div>
     </div>
   );
-}
+}*/
