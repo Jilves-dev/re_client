@@ -252,7 +252,7 @@ export default function EnquiriesDetails() {
                     className="px-6 py-2 bg-[#90AEAD] hover:bg-[#7a9a99] text-white rounded-lg transition-colors flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                     disabled={sending || !replyMessage.trim()}
                   >
-                    <SendOutlined />
+                    <MailOutlined />
                     {sending ? "Sending..." : "Send Reply"}
                   </button>
                 </div>
