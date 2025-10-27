@@ -4,7 +4,7 @@ import Sidebar from "../../components/nav/Sidebar";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import Spinner from "../../components/Spinner";
-import { MessageOutlined, SendOutlined, CloseOutlined } from "@ant-design/icons";
+import { MessageOutlined, MailOutlined, CloseOutlined } from "@ant-design/icons";
 import toast from "react-hot-toast";
 
 const PageHeader = ({ title }) => (
@@ -237,7 +237,7 @@ export default function Conversations() {
                   onClick={() => handleReplyClick(conv)}
                   className="flex items-center gap-2 bg-[#90AEAD] hover:bg-[#7a9a99] text-white px-4 py-2 rounded transition-colors text-sm w-full sm:w-auto justify-center"
                 >
-                  <SendOutlined /> Reply to Conversation
+                  <MailOutlined /> Reply to Conversation
                 </button>
               </div>
             ))}
@@ -321,7 +321,7 @@ export default function Conversations() {
                     className="px-6 py-2 bg-[#90AEAD] hover:bg-[#7a9a99] text-white rounded-lg transition-colors flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                     disabled={sending || !replyMessage.trim()}
                   >
-                    <SendOutlined />
+                    <MailOutlined />
                     {sending ? "Sending..." : "Send Reply"}
                   </button>
                 </div>
