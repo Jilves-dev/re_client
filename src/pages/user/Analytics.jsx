@@ -210,7 +210,7 @@ export default function Analytics() {
               value={stats.totalEnquiries}
               subtitle="Customer messages"
               color="border-[#244855]"
-              link="/user/analytics/enquiries"
+              link="/user/conversations"
             />
           </div>
         </div>

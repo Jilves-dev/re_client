@@ -61,7 +61,7 @@ export default function Sidebar() {
       <div className="hidden md:flex justify-start gap-6 border-b border-[#874F41]">
         <NavLink className="font-castoro nav-link text-[#244855] bg-[#FBE9D0] !important" to="/dashboard">🔮 dashboard</NavLink>
         <NavLink className="nav-link text-[#244855] !important" to="/user/wishlist">💖 wishlist</NavLink>
-        <NavLink className="nav-link text-[#244855] !important" to="/user/Enquiries">📫 enquiries</NavLink>
+        <NavLink className="nav-link text-[#244855] !important" to="/user/conversations">📫💬Conversations</NavLink>
         <NavLink className="nav-link text-[#244855] !important" to="/ad/create">🎨 create</NavLink>
         <NavLink className="nav-link text-[#244855] !important" to="/user/analytics">📊 Analytics</NavLink>
         <NavLink className="nav-link text-[#244855] !important" to="/user/profile">🤵 profile</NavLink>
@@ -124,7 +124,7 @@ export default function Sidebar() {
               <a className="nav-link cursor-pointer" onClick={(e) => handleNavLinkClick(e, '/user/wishlist')}>Wishlist</a>
             </li>
             <li className='py-6 text-4xl'>
-              <a className="nav-link cursor-pointer" onClick={(e) => handleNavLinkClick(e, '/user/Enquiries')}>Enquiries</a>
+              <a className="nav-link cursor-pointer" onClick={(e) => handleNavLinkClick(e, '/user/conversations')}>Conversations</a>
             </li>
             <li className='py-6 text-4xl'>
               <a className="nav-link cursor-pointer" onClick={(e) => handleNavLinkClick(e, '/ad/create')}>Create</a>

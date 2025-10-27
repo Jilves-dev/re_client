@@ -23,10 +23,9 @@ import Footer from "./components/nav/Footer";
 import Profile from "./pages/user/Profile";
 import Settings from "./pages/user/Settings";
 import Wishlist from "./pages/user/Wishlist";
-import Enquiries from "./pages/user/Enquiries";
+import Conversations from "./pages/user/Conversations";
 import Analytics from "./pages/user/Analytics";
 import PropertyAnalytics from "./pages/user/PropertyAnalytics";
-import EnquiriesDetails from "./pages/user/EnquiriesDetails";
 import UserAds from "./pages/user/UserAds";
 import Agents from "./pages/Agents";
 import Agent from "./pages/Agent";
@@ -216,13 +215,11 @@ function App() {
                   <Route path="ad/create/rent/land" element={<RentLand />} />
                   <Route path="user/profile" element={<Profile />} />
                   <Route path="user/settings" element={<Settings />} />
-                  {/*<Route path="user/ad/:slug" element={<AdEdit />} />*/}
                   <Route path="user/wishlist" element={<Wishlist />} />
-                  <Route path="user/enquiries" element={<Enquiries />} />
+                  <Route path="user/conversations" element={<Conversations />} />
                   <Route path="/user/analytics" element={<Analytics />} />
                   <Route path="/user/property-analytics/:slug" element={<PropertyAnalytics />} />
                   <Route path="user/ads" element={<UserAds />} /> 
-                  <Route path="user/analytics/enquiries" element={<EnquiriesDetails />} />
                 </Route>
 
                 <Route path="/ad/:slug" element={<AdView />} />
