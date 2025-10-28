@@ -167,15 +167,4 @@ export default function AdForm({ action, type }) {
 }
 
 
- {/*<button
-        onClick={handleClick}
-        className={`bg-[#FBE9D0] hover:bg-[#cf8c60] border-2 border-[#874F41] text-[#E64833] py-2 px-4 rounded mb-5 ${
-          ad.loading ? "cursor-not-allowed opacity-50" : ""
-        }`}
-      >
-        {ad.loading ? "Saving..." : "Submit"}
-      </button>*/}
-      {/* <pre>{JSON.stringify(ad, null, 4)}</pre> */}
-
-
 
