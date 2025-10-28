@@ -116,7 +116,7 @@ export default function Conversations() {
   if (loading) {
     return (
       <div className='w-full min-h-screen pb-10'>
-        <PageHeader title="My Conversations" />
+        <PageHeader title="Conversations" />
         <Sidebar />
         <Spinner message="Loading conversations..." />
       </div>
@@ -125,7 +125,7 @@ export default function Conversations() {
 
   return (
     <div className='w-full min-h-screen pb-10 bg-[#FBE9D0]'>
-      <PageHeader title="My Conversations" />
+      <PageHeader title="Conversations" />
       <Sidebar />
 
       <div className="container mx-auto px-4 py-10">

@@ -62,7 +62,7 @@ export default function ContactSeller({ ad }) {
 
   return (
     <div className="w-full bg-[#FBE9D0] py-10">
-      <div className="max-w-2xl mx-auto bg-white border-1 border-[#90AEAD] p-6 rounded-lg shadow-md">
+      <div className="max-w-2xl mx-auto bg-white border-1 border-[#244855] p-6 rounded-lg shadow-md">
         <h3 className="text-2xl text-center mb-6">
           Please contact {ad?.postedBy?.name ? ad?.postedBy?.name : ad?.postedBy?.username}
           <MdEmail style={{ fontSize: 28, color: '#90AEAD', display: 'inline-block', verticalAlign: 'middle' }} />

@@ -73,20 +73,20 @@ export default function AdView() {
 
   {/* Osoite ja ominaisuudet */}
   <div className="col-span-3 grid items-center gap-4 font-Castoro">
-    <h1 className="text-3xl pl-4">{ad.address}</h1>
-    <h1 className="text-3xl pl-4">{ad.title}</h1>
-     <p className="text-2xl pl-4">{ad.description}</p>
+    <p className="text-muted pl-4">{dayjs(ad?.createdAt).fromNow()}</p>
+    <h1 className="text-3xl pl-4 drop-shadow-lg">{ad.address}</h1>
+    <h1 className="text-3xl pl-4 drop-shadow-lg">{ad.title}</h1>
+     <p className="text-2xl pl-4 drop-shadow-lg">{ad.description}</p>
     <div className="ml-4 sm:ml-4">
-    <div className="ml-0 sm:ml-0 text-[#244855] !important">
+    <div className="ml-0 sm:ml-0 drop-shadow-lg text-[#244855] !important">
       <AdFeatures ad={ad} />
     </div>
     </div>
   </div>
 
   {/* Hinta ja julkaisuajankohta */}
-  <div className="col-span-3 grid items-center gap-4 mb-4">
-    <h1 className="text-3xl pl-4">{formatNumber(ad.price)}€</h1>
-    <p className="text-muted pl-4">{dayjs(ad?.createdAt).fromNow()}</p>
+  <div className="col-span-3 grid items-center gap-4 mb-4 ">
+    <h1 className="text-3xl pl-4 drop-shadow-lg">{formatNumber(ad.price)}€</h1>
   </div>
 
   {/* Kuvagalleria */}
@@ -120,7 +120,7 @@ export default function AdView() {
       <div className="grid grid-cols-1 md:grid-cols-3 
       justify-center mb-10 gap-y-10 
       place-items-center 
-      px-4 sm:px-8 py-10 bg-[#FBE9D0] animate-fadeIn">
+      px-4 sm:px-8 py-10 bg-[#FBE9D0] drop-shadow-lg animate-fadeIn">
         {related?.map((ad) => (
           <AdCard
             ad={ad}

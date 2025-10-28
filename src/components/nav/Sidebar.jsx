@@ -124,7 +124,7 @@ export default function Sidebar() {
               <a className="nav-link cursor-pointer" onClick={(e) => handleNavLinkClick(e, '/user/wishlist')}>Wishlist</a>
             </li>
             <li className='py-6 text-4xl'>
-              <a className="nav-link cursor-pointer" onClick={(e) => handleNavLinkClick(e, '/user/conversations')}>Conversations</a>
+              <a className="nav-link cursor-pointer" onClick={(e) => handleNavLinkClick(e, '/user/conversations')}>Messages</a>
             </li>
             <li className='py-6 text-4xl'>
               <a className="nav-link cursor-pointer" onClick={(e) => handleNavLinkClick(e, '/ad/create')}>Create</a>
