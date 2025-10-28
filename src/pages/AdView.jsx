@@ -66,13 +66,13 @@ export default function AdView() {
 
   return (
     <>
-<div className="flex flex-col bg-[#FBE9D0] sm:grid sm:grid-cols-3 gap-4 pt-10"> 
+<div className="flex flex-col bg-[#FBE9D0] sm:grid sm:grid-cols-3 gap-2 pt-10"> 
 <div className="flex flex-row sm:col-span-3 justify-between items-center">
 <div className="pl-4 font-Castoro">{ad?.sold ? "❌ Off market" : "✅ In market"}</div> 
 <LikeUnlike ad={ad} className="relative right-6 sm:right-0" /> </div>
 
   {/* Osoite ja ominaisuudet */}
-  <div className="col-span-3 grid items-center gap-2 md:gap-4 font-Castoro">
+  <div className="col-span-3 grid items-center gap-3 sm:gap-2 font-Castoro">
     <p className="text-muted pl-4">{dayjs(ad?.createdAt).fromNow()}</p>
     <h1 className="text-3xl pl-4 drop-shadow-lg">{ad.address}</h1>
     <h1 className="text-3xl pl-4 drop-shadow-lg">{ad.title}</h1>
