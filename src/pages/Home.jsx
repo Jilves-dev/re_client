@@ -18,42 +18,6 @@ const PageHeader = ({ title }) => (
   </div>
 );
 
-/*const PageHeader = ({ title }) => {
-  // Jaa otsikko osiin - oletetaan että viimeinen sana on "experiment"
-  const words = title.split(' ');
-  const lastWord = words.pop(); // Ota viimeinen sana
-  const restOfTitle = words.join(' '); // Loput sanat
-
-  return (
-    <div className="mx-auto w-full text-left pt-10 pb-8 sm:pt-20 sm:pb-16 md:pt-[100px] md:pb-24 bg-[#90AEAD]" 
-         style={{ zIndex: 1, position: 'relative' }}>
-          <h1 className="font-Castoro pl-8 text-5xl sm:text-7xl text-[#244855] font-normal flex flex-wrap items-center leading-tight">
-  <span className="mr-4">{restOfTitle}</span>
-  <span className="inline-flex items-baseline whitespace-nowrap">
-    {lastWord}
-    <GiSoapExperiment className="text-5xl sm:text-7xl ml-1 -mb-2" />
-  </span>
-</h1>*/
-
-
-          {/*<h1 className="font-Castoro pl-8 text-5xl sm:text-7xl text-[#244855] font-normal flex flex-wrap items-center">
-  <span className="mr-6">{restOfTitle}</span>
-  <span className="inline-flex items-center whitespace-nowrap relative">
-    {lastWord}
-    <GiSoapExperiment className="absolute top-0 mt-2 pb-4 mr-0 text-8xl md:text-8xl lg:text-10xl" />
-  </span>
-</h1>*/}
-      {/*<h1 className="font-Castoro pl-8 text-5xl sm:text-7xl text-[#244855] font-normal flex flex-wrap items-center gap-x-4">
-        <span>{restOfTitle}</span>
-        <span className="inline-flex items-center gap-x-0 whitespace-nowrap">
-          {lastWord}
-          <GiSoapExperiment className="pb-4 mr-0 text-8xl md:text-8xl lg:text-8xl"/>
-        </span>
-      </h1>
-    </div>
-  );
-};*/}
-
 export default function Home() {
   const [auth, setAuth] = useAuth();
   const [adsForSell, setAdsForSell] = useState([]);
@@ -79,27 +43,6 @@ export default function Home() {
   useEffect(() => {
     fetchAds();
   }, []);
-
-  /*const fetchAds = async () => {
-    try {
-      setLoading(true);
-      console.log("Home.jsx API URL:", axios.defaults.baseURL); // debuggausta varten
-      const { data } = await axios.get("/ads");
-      console.log("Fetched ads data:", data); // debuggausta varten
-      
-      if (data) {
-        setAdsForSell(data.adsForSell || []);
-        setAdsForRent(data.adsForRent || []);
-      }
-      setLoading(false);
-    } catch (error) {
-      console.error("API error:", error);
-      // Aseta tyhjät taulukot virhetilanteessa
-      setAdsForSell([]);
-      setAdsForRent([]);
-      setLoading(false);
-    }
-  };*/
 
 const fetchAds = async () => {
   try {
@@ -194,7 +137,6 @@ const fetchAds = async () => {
             <p className="col-span-full text-center py-10">No properties for rent</p>
           )}
         </div>
-       
       </div>
   );
 }
