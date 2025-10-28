@@ -10,7 +10,7 @@ import toast from "react-hot-toast";
 const PageHeader = ({ title }) => (
   <div className="w-full text-left pb-12 pt-14 xl:pb-16 xl:pt-20 bg-[#874F41]">
     <div className="flex items-center pl-8">
-      <h1 className="font-castoro text-6xl md:text-6xl xl:text-7xl text-[#E64833]">
+      <h1 className="font-castoro text-5xl md:text-6xl xl:text-7xl text-[#E64833]">
         {title}
       </h1>
     </div>
@@ -116,7 +116,7 @@ export default function Conversations() {
   if (loading) {
     return (
       <div className='w-full min-h-screen pb-10'>
-        <PageHeader title="Messages" />
+        <PageHeader title="Conversations" />
         <Sidebar />
         <Spinner />
       </div>
@@ -125,7 +125,7 @@ export default function Conversations() {
 
   return (
     <div className='w-full min-h-screen pb-10 bg-[#FBE9D0]'>
-      <PageHeader title="Messages" />
+      <PageHeader title="Conversations" />
       <Sidebar />
 
       <div className="container mx-auto px-4 py-10">
