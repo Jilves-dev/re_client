@@ -13,6 +13,8 @@
   .google-places-input {
     max-width: 60%;
     margin: 0 auto;
+    border: 1px solid #90AEAD !important;
+    border-radius: 4px !important;
   }
 }
 
@@ -22,6 +24,8 @@
 
 .google-places-input {
   display: flex;
+  border: 01px solid #90AEAD !important;
+  border-radius: 4px !important;
   align-items: center;
   width: 100%;
   position: relative;
@@ -290,10 +294,10 @@ button:disabled {
   pointer-events: none;
 }
 
-/* Parannettu visuaalinen palaute */
+/* Parannettu visuaalinen palaute 
 .form-check-input:checked[type=radio] {
-  //background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='2' fill='%23244855'/%3e%3c/svg%3e");
-}
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='2' fill='%23244855'/%3e%3c/svg%3e");
+}*/
 
 /* Dropdown menu parannus */
 .dropdown-menu {
