@@ -114,7 +114,7 @@ export default function Sidebar() {
       </div>
 
       {nav && (
-        <div className='fixed top-0 right-0 w-[60%] max-w-md h-screen bg-[rgba(253, 235, 211, 0.8)] 
+        <div className='fixed top-0 right-0 w-[65%] max-w-md h-screen bg-[rgba(253, 235, 211, 0.8)] 
         backdrop-filter backdrop-blur-md flex flex-col justify-center items-center z-50'>
           <ul className='font-castoro text-[#E64833]'>
             <li className='py-6 text-4xl'>
@@ -124,7 +124,7 @@ export default function Sidebar() {
               <a className="nav-link cursor-pointer" onClick={(e) => handleNavLinkClick(e, '/user/wishlist')}>Wishlist</a>
             </li>
             <li className='py-6 text-4xl'>
-              <a className="nav-link cursor-pointer" onClick={(e) => handleNavLinkClick(e, '/user/conversations')}>Messages</a>
+              <a className="nav-link cursor-pointer" onClick={(e) => handleNavLinkClick(e, '/user/conversations')}>Conversations</a>
             </li>
             <li className='py-6 text-4xl'>
               <a className="nav-link cursor-pointer" onClick={(e) => handleNavLinkClick(e, '/ad/create')}>Create</a>
