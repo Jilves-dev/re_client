@@ -135,7 +135,7 @@ div[id^="react-select-"] {
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  height: 35px !important;
+  height: 36px !important;
   width: 35px !important;
   color: #244855 !important;
   position: absolute !important;
@@ -156,7 +156,7 @@ div[id^="react-select-"] {
 
 .settings-icon-button svg {
   width: 18px !important;
-  height: 18px !important;
+  height: 19px !important;
   display: block !important;
 }
 

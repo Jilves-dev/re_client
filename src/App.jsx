@@ -85,7 +85,7 @@ class ErrorBoundary extends React.Component {
   }
 }
 
-// Component that handles theme color updates
+// Component that handles theme color updates (Android + iOS)
 function ThemeColorUpdater() {
   const location = useLocation();
 
@@ -99,16 +99,55 @@ function ThemeColorUpdater() {
     // Valitse väri sivun mukaan
     const themeColor = isDashboardPage ? '#FBE9D0' : '#90AEAD';
 
-    // Päivitä metatägi
+    // ===== ANDROID: theme-color =====
     let metaThemeColor = document.querySelector("meta[name='theme-color']");
     if (metaThemeColor) {
       metaThemeColor.setAttribute('content', themeColor);
     } else {
-      // Jos metatägiä ei ole, luo se
       metaThemeColor = document.createElement('meta');
       metaThemeColor.name = 'theme-color';
       metaThemeColor.content = themeColor;
       document.getElementsByTagName('head')[0].appendChild(metaThemeColor);
+    }
+
+    // ===== iOS Safari 15+: theme-color =====
+    // Safari tarvitsee myös media query version
+    let metaThemeColorLight = document.querySelector("meta[name='theme-color'][media='(prefers-color-scheme: light)']");
+    if (metaThemeColorLight) {
+      metaThemeColorLight.setAttribute('content', themeColor);
+    } else {
+      metaThemeColorLight = document.createElement('meta');
+      metaThemeColorLight.name = 'theme-color';
+      metaThemeColorLight.media = '(prefers-color-scheme: light)';
+      metaThemeColorLight.content = themeColor;
+      document.getElementsByTagName('head')[0].appendChild(metaThemeColorLight);
+    }
+
+    let metaThemeColorDark = document.querySelector("meta[name='theme-color'][media='(prefers-color-scheme: dark)']");
+    if (metaThemeColorDark) {
+      metaThemeColorDark.setAttribute('content', themeColor);
+    } else {
+      metaThemeColorDark = document.createElement('meta');
+      metaThemeColorDark.name = 'theme-color';
+      metaThemeColorDark.media = '(prefers-color-scheme: dark)';
+      metaThemeColorDark.content = themeColor;
+      document.getElementsByTagName('head')[0].appendChild(metaThemeColorDark);
+    }
+
+    // ===== iOS PWA: apple-mobile-web-app-status-bar-style =====
+    // Tämä toimii kun sivu on lisätty home screenille
+    let appleStatusBar = document.querySelector("meta[name='apple-mobile-web-app-status-bar-style']");
+    // iOS tukee vain: 'default', 'black', 'black-translucent'
+    // Valitaan 'default' joka käyttää sivun theme-coloria
+    const appleStyle = 'default';
+    
+    if (appleStatusBar) {
+      appleStatusBar.setAttribute('content', appleStyle);
+    } else {
+      appleStatusBar = document.createElement('meta');
+      appleStatusBar.name = 'apple-mobile-web-app-status-bar-style';
+      appleStatusBar.content = appleStyle;
+      document.getElementsByTagName('head')[0].appendChild(appleStatusBar);
     }
   }, [location.pathname]);
 

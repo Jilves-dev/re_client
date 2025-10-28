@@ -18,7 +18,7 @@ export default function RedirectRoute() {
 
   return (
     <div className="d-flex justify-content-center align-items-center vh-100">
-      <h2>Please login. Redirecting in {count} second.</h2>
+      <h3> {count} </h3>
     </div>
   );
 }
