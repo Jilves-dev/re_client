@@ -151,7 +151,7 @@ export default function Conversations() {
               <div 
                 key={idx} 
                 className={`bg-white rounded-lg shadow-md p-6 border-l-4 ${
-                  conv.isOwner ? 'border-green-500' : 'border-blue-500'
+                  conv.isOwner ? 'border-[#90AEAD]' : 'border-[#874F41]'
                 }`}
               >
                 {/* Property header */}
@@ -165,7 +165,7 @@ export default function Conversations() {
                         📍 {conv.ad?.address}
                       </Link>
                       {conv.isOwner && (
-                        <span className="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">
+                        <span className="bg-[#90AEAD] text-white text-xs px-2 py-1 rounded">
                           Your Property
                         </span>
                       )}
@@ -248,7 +248,7 @@ export default function Conversations() {
       {/* REPLY MODAL */}
       {replyModal && selectedConversation && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+          <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[95vh] overflow-y-auto">
             {/* Modal Header */}
             <div className="bg-[#90AEAD] p-6 rounded-t-lg flex justify-between items-center">
               <h3 className="text-2xl font-castoro text-[#244855]">
