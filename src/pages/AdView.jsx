@@ -71,8 +71,8 @@ export default function AdView() {
 <div className="pl-4 font-Castoro">{ad?.sold ? "❌ Off market" : "✅ In market"}</div> 
 <LikeUnlike ad={ad} className="relative right-6 sm:right-0" /> </div>
 
-  {/* Osoite ja ominaisuudet */}
-  <div className="col-span-3 grid items-center gap-3 sm:gap-2 font-Castoro">
+  {/* Julkaisu ajankohta, osoite ja ominaisuudet */}
+  <div className="col-span-3 grid items-center gap-4 sm:gap-2 font-Castoro">
     <p className="text-muted pl-4">{dayjs(ad?.createdAt).fromNow()}</p>
     <h1 className="text-3xl pl-4 drop-shadow-lg">{ad.address}</h1>
     <h1 className="text-3xl pl-4 drop-shadow-lg">{ad.title}</h1>
@@ -84,8 +84,8 @@ export default function AdView() {
     </div>
   </div>
 
-  {/* Hinta ja julkaisuajankohta */}
-  <div className="col-span-3 grid items-center gap-4 mb-4 ">
+  {/* Hinta */}
+  <div className="col-span-3 grid items-center mt-4 mb-4 ">
     <h1 className="text-3xl pl-4 drop-shadow-lg">{formatNumber(ad.price)}€</h1>
   </div>
 

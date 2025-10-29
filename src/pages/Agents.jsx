@@ -45,9 +45,6 @@ export default function Agents() {
   if (loading) {
     return (
       <div name='home' className='max-w-screen w-full pb-10'>
-                {/*<div name="header" className="w-full">
-                  <PageHeader title="our Space realization Dealers"/>
-                </div>*/}
                 <Spinner message="Loading properties..." />
               </div>
     );
@@ -58,7 +55,7 @@ export default function Agents() {
       <div className="container_bg">
       </div>
       <div name="agents" className="w-full">
-      <PageHeader title="our Space realization Dealers"/>
+      <PageHeader title="Space realization Dealers"/>
       </div>
       <br></br>
       <div className="grid grid-cols-1 

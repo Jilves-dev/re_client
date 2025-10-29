@@ -177,8 +177,8 @@ export default function AdEdit() {
                 </select>
               </div>
             </div>
-            <p className="text-sm text-gray-500 mt-2">
-              💡 Note: Changing type will not automatically clear house/land specific fields, press update below⬇️ to clear them!
+            <p className="text-sm text-gray-500 mt-4">
+              💡 Note: Changing estate type will not automatically clear house/land specific fields, you must also click update button below⬇️
             </p>
           </div>
 
