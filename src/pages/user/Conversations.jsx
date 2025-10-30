@@ -44,7 +44,7 @@ export default function Conversations() {
       }
       setError(null);
 
-      console.log("🔄 Fetching conversations for user:", auth.user._id);
+      //console.log("🔄 Fetching conversations for user:", auth.user._id);
       
       // ✅ Lisää timeout 10 sekuntiin (Vercel cold start voi kestää)
       const { data } = await axios.get("/user-conversations", {
