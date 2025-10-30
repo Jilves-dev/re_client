@@ -15,13 +15,16 @@ export default function PrivateRoute() {
 
   const getCurrentUser = async () => {
     try {
-      const { data } = await axios.get("/current-user", {
+      const { data } = await axios.get("/current-user"
+        /*, {
         headers: {
           Authorization: auth?.token,
         },
-      });
+      }*/);
+      console.log("✅ Current user fetched:", data?.username || data?.email);
       setOk(true);
     } catch (err) {
+      console.error("❌ getCurrentUser failed:", err.response?.data || err.message);
       setOk(false);
     }
   };

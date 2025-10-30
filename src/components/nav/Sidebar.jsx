@@ -107,35 +107,35 @@ export default function Sidebar() {
               className="cursor-pointer hover:text-[#874F41] transition-colors"
             />
             <span onClick={handleClick} className='cursor-pointer font-castoro text-[#E64833] mb-2 hover:text-[#874F41] transition-colors'>
-              close modal
+              closeMenu 
             </span>
           </>
         )}
       </div>
 
       {nav && (
-        <div className='fixed top-0 right-0 w-[60%] max-w-md h-screen bg-[rgba(253, 235, 211, 0.8)] 
+        <div className='fixed top-0 right-0 w-[68%] max-w-md h-screen bg-[rgba(253, 235, 211, 0.8)] 
         backdrop-filter backdrop-blur-md flex flex-col justify-center items-center z-50'>
           <ul className='font-castoro text-[#E64833]'>
-            <li className='py-6 text-3xl'>
+            <li className='py-4 text-4xl'>
               <a className="nav-link cursor-pointer" onClick={(e) => handleNavLinkClick(e, '/dashboard')}>Dashboard</a>
             </li>
-            <li className='py-6 text-3xl'>
+            <li className='py-4 text-4xl'>
               <a className="nav-link cursor-pointer" onClick={(e) => handleNavLinkClick(e, '/user/wishlist')}>Wishlist</a>
             </li>
-            <li className='py-6 text-3xl'>
+            <li className='py-4 text-4xl'>
               <a className="nav-link cursor-pointer" onClick={(e) => handleNavLinkClick(e, '/user/conversations')}>Conversations</a>
             </li>
-            <li className='py-6 text-3xl'>
-              <a className="nav-link cursor-pointer" onClick={(e) => handleNavLinkClick(e, '/ad/create')}>Create</a>
+            <li className='py-4 text-4xl'>
+              <a className="nav-link cursor-pointer" onClick={(e) => handleNavLinkClick(e, '/ad/create')}>Create post</a>
             </li>
-            <li className='py-6 text-3xl'>
+            <li className='py-4 text-4xl'>
               <a className="nav-link cursor-pointer" onClick={(e) => handleNavLinkClick(e, '/user/analytics')}>Analytics</a>
             </li>
-            <li className='py-6 text-3xl'>
+            <li className='py-4 text-4xl'>
               <a className="nav-link cursor-pointer" onClick={(e) => handleNavLinkClick(e, '/user/profile')}>Profile</a>
             </li>
-            <li className='py-6 text-3xl'>
+            <li className='py-4 text-4xl'>
               <a className="nav-link cursor-pointer" onClick={(e) => handleNavLinkClick(e, '/user/settings')}>Update password</a>
             </li>            
           </ul>

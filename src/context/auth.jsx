@@ -26,7 +26,8 @@ const AuthProvider = ({ children }) => {
         setAuth(parsed);
         
         if (parsed?.token) {
-          axios.defaults.headers.common["Authorization"] = parsed.token;
+          //301025axios.defaults.headers.common["Authorization"] = parsed.token;
+          axios.defaults.headers.common["Authorization"] = `Bearer ${parsed.token}`;
           axios.defaults.headers.common["refresh_token"] = parsed.refreshToken;
         }
       } catch (err) {
@@ -39,7 +40,8 @@ const AuthProvider = ({ children }) => {
   // Päivitä headerit kun auth muuttuu
   useEffect(() => {
     if (auth?.token) {
-      axios.defaults.headers.common["Authorization"] = auth.token;
+      //301025axios.defaults.headers.common["Authorization"] = auth.token;
+      axios.defaults.headers.common["Authorization"] = `Bearer ${auth.token}`;
       axios.defaults.headers.common["refresh_token"] = auth.refreshToken;
     } else {
       delete axios.defaults.headers.common["Authorization"];
