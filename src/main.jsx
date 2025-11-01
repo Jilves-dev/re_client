@@ -19,7 +19,9 @@ axios.interceptors.request.use(
     }
     return config;
   },
-  (error) => Promise.reject(error)
+  (error) => {
+    Promise.reject(error)
+  }
 );
 
 // Response interceptor - automaattinen retry
@@ -32,6 +34,8 @@ axios.interceptors.response.use(
     if (!config._retry && (!response || error.code === 'ECONNABORTED')) {
       config._retry = true;
       console.log("🔄 Retrying failed request:", config.url);
+
+      // odota 1 sekuntti ennen uudelleen yritystä
       await new Promise(resolve => setTimeout(resolve, 1000));
       return axios(config);
     }
