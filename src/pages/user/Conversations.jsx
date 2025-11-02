@@ -4,7 +4,7 @@ import Sidebar from "../../components/nav/Sidebar";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import Spinner from "../../components/Spinner";
-import { MessageOutlined, MailOutlined, CloseOutlined, ReloadOutlined } from "@ant-design/icons";
+import { MessageOutlined, MailOutlined, CloseOutlined, ReloadOutlined, DeleteOutlined } from "@ant-design/icons";
 import toast from "react-hot-toast";
 
 const PageHeader = ({ title }) => (
@@ -29,6 +29,11 @@ export default function Conversations() {
   const [selectedConversation, setSelectedConversation] = useState(null);
   const [replyMessage, setReplyMessage] = useState("");
   const [sending, setSending] = useState(false);
+
+    // ✅ Delete confirmation state
+  const [deleteModal, setDeleteModal] = useState(false);
+  const [conversationToDelete, setConversationToDelete] = useState(null);
+  const [deleting, setDeleting] = useState(false);
 
   // ✅ PARANNETTU: useCallback estää turhia uudelleenrenderöintejä
   const fetchConversations = useCallback(async (showLoadingSpinner = true) => {
@@ -182,6 +187,61 @@ export default function Conversations() {
     fetchConversations(true);
   };
 
+    const handleDeleteClick = (conversation) => {
+  console.log("Delete clicked for:", conversation.ad?.address);
+  
+  // Tallenna mikä keskustelu poistetaan
+  setConversationToDelete(conversation);
+  
+  // Näytä confirmation dialog
+  setDeleteModal(true);
+};
+
+const handleDeleteConversation = async () => {
+  // Guard clause - varmista että meillä on mitä poistaa
+  if (!conversationToDelete?.ad?._id) {
+    toast.error("Cannot delete: Missing conversation data");
+    return;
+  }
+
+  try {
+    setDeleting(true); // Näytä loading state
+    
+    console.log("🗑️ Deleting conversation for ad:", conversationToDelete.ad._id);
+    
+    // ✅ API kutsu backendiin
+    const { data } = await axios.delete(`/conversation/${conversationToDelete.ad._id}`);
+    
+    console.log("✅ Delete response:", data);
+    
+    if (data?.error) {
+      // Backend palautti virheen
+      toast.error(data.error);
+    } else {
+      // ✅ Onnistui! Päivitä UI
+      
+      // Poista keskustelu state:sta
+      setConversations(prev => 
+        prev.filter(conv => conv.ad._id !== conversationToDelete.ad._id)
+      );
+      
+      // Näytä onnistumisviesti
+      toast.success(`Conversation deleted (${data.deletedCount} messages)`);
+      
+      // Sulje modaalit
+      setDeleteModal(false);
+      setConversationToDelete(null);
+    }
+    
+  } catch (err) {
+    console.error("❌ Delete error:", err);
+    toast.error(err.response?.data?.error || "Failed to delete conversation");
+  } finally {
+    // ✅ TÄRKEÄ: Finally suoritetaan AINA (onnistuipa tai ei)
+    setDeleting(false);
+  }
+};
+
   // ✅ Loading state
   if (loading && conversations.length === 0) {
     return (
@@ -199,6 +259,8 @@ export default function Conversations() {
       </div>
     );
   }
+
+
 
   // ✅ Error state
   if (error && conversations.length === 0) {
@@ -303,6 +365,15 @@ export default function Conversations() {
                       {conv.unreadCount} new
                     </span>
                   )}
+
+                    {/* ✅ Delete nappi */}
+                  <button
+                    onClick={() => handleDeleteClick(conv)}
+                    className="text-[#244855] hover:text-red-700 transition-colors p-2 rounded hover:bg-red-50"
+                    title="Delete conversation"
+                  >
+                  <DeleteOutlined style={{ fontSize: '18px', color: '#E64833' }} />
+                  </button>
                 </div>
 
                 {/* Message thread */}
@@ -441,6 +512,64 @@ export default function Conversations() {
                 </div>
               </form>
             </div>
+          </div>
+        </div>
+      )}
+
+      {/* DELETE CONFIRMATION MODAL */}
+      {deleteModal && conversationToDelete && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg shadow-xl max-w-md w-full p-6">
+            
+            {/* Header */}
+            <div className="flex items-center gap-3 mb-4">
+              <DeleteOutlined style={{ fontSize: '24px', color: '#E64833' }} />
+              <h3 className="text-xl font-castoro text-[#244855]">
+                Delete Conversation?
+              </h3>
+            </div>
+
+            {/* Content */}
+            <div className="mb-6">
+              <p className="text-gray-700 mb-2">
+                Are you sure you want to delete this conversation?
+              </p>
+              <div className="bg-gray-50 p-3 rounded border-l-4 border-[#E64833]">
+                <p className="text-sm font-semibold text-gray-800">
+                  📍 {conversationToDelete.ad?.address}
+                </p>
+                <p className="text-xs text-gray-600 mt-1">
+                  {conversationToDelete.messageCount} message
+                  {conversationToDelete.messageCount !== 1 ? 's' : ''}
+                </p>
+              </div>
+              <p className="text-sm text-[#E64833] mt-3">
+                ⚠️ This action cannot be undone.
+              </p>
+            </div>
+
+            {/* Actions */}
+            <div className="flex gap-3 justify-end">
+              <button
+                onClick={() => {
+                  setDeleteModal(false);
+                  setConversationToDelete(null);
+                }}
+                className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+                disabled={deleting}
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleDeleteConversation}
+                className="px-4 py-2 bg-[#E64833] hover:bg-red-600 text-white rounded-lg transition-colors flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                disabled={deleting}
+              >
+                <DeleteOutlined />
+                {deleting ? "Deleting..." : "Delete"}
+              </button>
+            </div>
+
           </div>
         </div>
       )}
