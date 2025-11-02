@@ -197,67 +197,106 @@ export default function Conversations() {
   setDeleteModal(true);
 };
 
-const handleDeleteConversation = async () => {
-  // Guard clause - varmista että meillä on mitä poistaa
-  if (!conversationToDelete?.ad?._id) {
-    toast.error("Cannot delete: Missing conversation data");
-    return;
-  }
-
+export const deleteConversation = async (req, res) => {
   try {
-    setDeleting(true); // Näytä loading state
+    const { adId } = req.params;
+    const userId = req.user._id;
+
+    console.log("=== DELETE CONVERSATION ===");
+    console.log("Ad ID (raw):", adId);
+    console.log("User ID:", userId);
+
+    if (!adId) {
+      return res.status(400).json({ error: "Ad ID is required" });
+    }
+
+    let adObjectId;
+    try {
+      adObjectId = new mongoose.Types.ObjectId(adId);
+    } catch (err) {
+      return res.status(400).json({ error: "Invalid ad ID format" });
+    }
+
+    const ad = await Ad.findById(adObjectId).lean();
     
-    console.log("🗑️ Deleting conversation for ad:", conversationToDelete.ad._id);
-    
-    // ✅ API kutsu backendiin
-    const { data } = await axios.delete(`/conversation/${conversationToDelete.ad._id}`);
-    
-    console.log("✅ Delete response:", data);
-    
-    if (data?.error) {
-      // Backend palautti virheen
-      toast.error(data.error);
+    if (!ad) {
+      return res.status(404).json({ error: "Property not found" });
+    }
+
+    console.log("Property found:", ad.address);
+
+    const isOwner = ad.postedBy.toString() === userId.toString();
+    console.log("Is owner:", isOwner);
+
+    if (!isOwner) {
+      const userParticipation = await Activity.findOne({
+        ad: adObjectId,
+        $or: [
+          { user: userId },
+          { "metadata.recipientId": userId }
+        ]
+      }).lean();
+
+      if (!userParticipation) {
+        console.log("❌ Unauthorized");
+        return res.status(403).json({ 
+          error: "You can only delete your own conversations" 
+        });
+      }
+      console.log("✅ User participation verified");
     } else {
-      // ✅ Onnistui! Päivitä UI
-      
-      // Poista keskustelu state:sta
-      setConversations(prev => 
-        prev.filter(conv => conv.ad._id !== conversationToDelete.ad._id)
-      );
-      
-      // Näytä onnistumisviesti
-      toast.success(`Conversation deleted (${data.deletedCount} messages)`);
-      
-      // Sulje modaalit
-      setDeleteModal(false);
-      setConversationToDelete(null);
-    }   
-     if (data?.error) {
-    toast.error(data.error);
-  } else {
-    // ✅ Muokattu: Näytä eri viesti omistajalle
-    const message = data.isOwner 
-      ? `🏠 Entire conversation deleted (${data.deletedCount} messages)`
-      : `✅ Your messages deleted (${data.deletedCount} messages)`;
+      console.log("✅ User is property owner");
+    }
+
+    let deleteQuery;
+
+    if (isOwner) {
+      deleteQuery = { ad: adObjectId };
+      console.log("🗑️ Deleting ALL messages for property owner");
+    } else {
+      deleteQuery = {
+        ad: adObjectId,
+        $or: [
+          { user: userId },
+          { "metadata.recipientId": userId }
+        ]
+      };
+      console.log("🗑️ Deleting user's own messages only");
+    }
+
+    // ✅ DEBUG: Hae viestit ENNEN poistamista
+    console.log("\n=== MESSAGES TO BE DELETED ===");
+    const messagesToDelete = await Activity.find(deleteQuery).lean();
+    console.log("Found messages:", messagesToDelete.length);
     
-    toast.success(message);
-    
-    // Poista keskustelu state:sta
-    setConversations(prev => 
-      prev.filter(conv => conv.ad._id !== conversationToDelete.ad._id)
-    );
-    
-    // Sulje modaalit
-    setDeleteModal(false);
-    setConversationToDelete(null);
-  }
-  } 
-  catch (err) {
-    console.error("❌ Delete error:", err);
-    toast.error(err.response?.data?.error || "Failed to delete conversation");
-  } finally {
-    // ✅ TÄRKEÄ: Finally suoritetaan AINA (onnistuipa tai ei)
-    setDeleting(false);
+    // Näytä jokainen viesti
+    messagesToDelete.forEach((msg, idx) => {
+      console.log(`\nMessage ${idx + 1}:`);
+      console.log("  Type:", msg.type);
+      console.log("  User:", msg.user);
+      console.log("  Ad:", msg.ad);
+      console.log("  Created:", msg.createdAt);
+      console.log("  Recipient:", msg.metadata?.recipientId || "N/A");
+    });
+    console.log("=== END OF MESSAGES ===\n");
+
+    const deleteResult = await Activity.deleteMany(deleteQuery);
+
+    console.log(`✅ Deleted ${deleteResult.deletedCount} messages`);
+
+    res.json({ 
+      ok: true, 
+      deletedCount: deleteResult.deletedCount,
+      message: `Deleted ${deleteResult.deletedCount} message${deleteResult.deletedCount !== 1 ? 's' : ''}`,
+      isOwner: isOwner
+    });
+
+  } catch (err) {
+    console.error("❌ Delete conversation error:", err);
+    res.status(500).json({ 
+      error: "Failed to delete conversation",
+      message: err.message 
+    });
   }
 };
 
