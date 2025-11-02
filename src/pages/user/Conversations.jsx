@@ -231,9 +231,28 @@ const handleDeleteConversation = async () => {
       // Sulje modaalit
       setDeleteModal(false);
       setConversationToDelete(null);
-    }
+    }   
+     if (data?.error) {
+    toast.error(data.error);
+  } else {
+    // ✅ Muokattu: Näytä eri viesti omistajalle
+    const message = data.isOwner 
+      ? `🏠 Entire conversation deleted (${data.deletedCount} messages)`
+      : `✅ Your messages deleted (${data.deletedCount} messages)`;
     
-  } catch (err) {
+    toast.success(message);
+    
+    // Poista keskustelu state:sta
+    setConversations(prev => 
+      prev.filter(conv => conv.ad._id !== conversationToDelete.ad._id)
+    );
+    
+    // Sulje modaalit
+    setDeleteModal(false);
+    setConversationToDelete(null);
+  }
+  } 
+  catch (err) {
     console.error("❌ Delete error:", err);
     toast.error(err.response?.data?.error || "Failed to delete conversation");
   } finally {
@@ -259,8 +278,6 @@ const handleDeleteConversation = async () => {
       </div>
     );
   }
-
-
 
   // ✅ Error state
   if (error && conversations.length === 0) {
