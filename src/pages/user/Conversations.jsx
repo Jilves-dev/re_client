@@ -17,109 +17,6 @@ const PageHeader = ({ title }) => (
   </div>
 );
 
-export const deleteConversation = async (req, res) => {
-  try {
-    const { adId } = req.params;
-    const userId = req.user._id;
-
-    console.log("=== DELETE CONVERSATION ===");
-    console.log("Ad ID (raw):", adId);
-    console.log("User ID:", userId);
-
-    if (!adId) {
-      return res.status(400).json({ error: "Ad ID is required" });
-    }
-
-    let adObjectId;
-    try {
-      adObjectId = new mongoose.Types.ObjectId(adId);
-    } catch (err) {
-      return res.status(400).json({ error: "Invalid ad ID format" });
-    }
-
-    const ad = await Ad.findById(adObjectId).lean();
-    
-    if (!ad) {
-      return res.status(404).json({ error: "Property not found" });
-    }
-
-    console.log("Property found:", ad.address);
-
-    const isOwner = ad.postedBy.toString() === userId.toString();
-    console.log("Is owner:", isOwner);
-
-    if (!isOwner) {
-      const userParticipation = await Activity.findOne({
-        ad: adObjectId,
-        $or: [
-          { user: userId },
-          { "metadata.recipientId": userId }
-        ]
-      }).lean();
-
-      if (!userParticipation) {
-        console.log("❌ Unauthorized");
-        return res.status(403).json({ 
-          error: "You can only delete your own conversations" 
-        });
-      }
-      console.log("✅ User participation verified");
-    } else {
-      console.log("✅ User is property owner");
-    }
-
-    let deleteQuery;
-
-    if (isOwner) {
-      deleteQuery = { ad: adObjectId };
-      console.log("🗑️ Deleting ALL messages for property owner");
-    } else {
-      deleteQuery = {
-        ad: adObjectId,
-        $or: [
-          { user: userId },
-          { "metadata.recipientId": userId }
-        ]
-      };
-      console.log("🗑️ Deleting user's own messages only");
-    }
-
-    // ✅ DEBUG: Hae viestit ENNEN poistamista
-    console.log("\n=== MESSAGES TO BE DELETED ===");
-    const messagesToDelete = await Activity.find(deleteQuery).lean();
-    console.log("Found messages:", messagesToDelete.length);
-    
-    // Näytä jokainen viesti
-    messagesToDelete.forEach((msg, idx) => {
-      console.log(`\nMessage ${idx + 1}:`);
-      console.log("  Type:", msg.type);
-      console.log("  User:", msg.user);
-      console.log("  Ad:", msg.ad);
-      console.log("  Created:", msg.createdAt);
-      console.log("  Recipient:", msg.metadata?.recipientId || "N/A");
-    });
-    console.log("=== END OF MESSAGES ===\n");
-
-    const deleteResult = await Activity.deleteMany(deleteQuery);
-
-    console.log(`✅ Deleted ${deleteResult.deletedCount} messages`);
-
-    res.json({ 
-      ok: true, 
-      deletedCount: deleteResult.deletedCount,
-      message: `Deleted ${deleteResult.deletedCount} message${deleteResult.deletedCount !== 1 ? 's' : ''}`,
-      isOwner: isOwner
-    });
-
-  } catch (err) {
-    console.error("❌ Delete conversation error:", err);
-    res.status(500).json({ 
-      error: "Failed to delete conversation",
-      message: err.message 
-    });
-  }
-};
-
 export default function Conversations() {
   const [auth] = useAuth();
   const [conversations, setConversations] = useState([]);
@@ -131,7 +28,7 @@ export default function Conversations() {
   const [replyModal, setReplyModal] = useState(false);
   const [selectedConversation, setSelectedConversation] = useState(null);
   const [replyMessage, setReplyMessage] = useState("");
-  const [sending, setSending] = useState(false);
+  const [replying, setReplying] = useState(false);
 
     // ✅ Delete confirmation state
   const [deleteModal, setDeleteModal] = useState(false);
@@ -230,6 +127,66 @@ export default function Conversations() {
     setReplyModal(true);
   };
 
+   // ===== DELETE HANDLERS =====
+  const handleDeleteClick = (conversation) => {
+    console.log("Delete clicked for:", conversation.ad?.address);
+    setConversationToDelete(conversation);
+    setDeleteModal(true);
+  };
+
+  const handleDeleteConversation = async () => {
+    if (deleting) {
+      console.log("⚠️ Already deleting");
+      return;
+    }
+
+    if (!conversationToDelete?.ad?._id) {
+      toast.error("Cannot delete: Missing conversation data");
+      return;
+    }
+
+    try {
+      setDeleting(true);
+      
+      console.log("=== FRONTEND DELETE ===");
+      console.log("Ad ID:", conversationToDelete.ad._id);
+      
+      const { data } = await axios.delete(`/conversation/${conversationToDelete.ad._id}`);
+      
+      console.log("=== BACKEND RESPONSE ===");
+      console.log("Response:", data);
+      
+      if (data?.error) {
+        toast.error(data.error);
+        return;
+      }
+      
+      if (data.deletedCount === 0) {
+        toast.warning("No messages were deleted");
+        return;
+      }
+      
+      const successMessage = data.isOwner 
+        ? `🏠 Entire conversation deleted (${data.deletedCount} messages)`
+        : `✅ Your messages deleted (${data.deletedCount} messages)`;
+      
+      toast.success(successMessage);
+      
+      setConversations(prev => 
+        prev.filter(conv => conv.ad._id.toString() !== conversationToDelete.ad._id.toString())
+      );
+      
+      setDeleteModal(false);
+      setConversationToDelete(null);
+      
+    } catch (err) {
+      console.error("❌ Delete error:", err);
+      toast.error(err.response?.data?.error || "Failed to delete conversation");
+    } finally {
+      setDeleting(false);
+    }
+  };
+
   const handleCloseModal = () => {
     setReplyModal(false);
     setSelectedConversation(null);
@@ -257,7 +214,7 @@ export default function Conversations() {
     const recipientName = lastOtherMessage.sender?.name || lastOtherMessage.sender?.username;
 
     try {
-      setSending(true);
+      setReplying(true);
       
       const { data } = await axios.post("/reply-to-enquiry", {
         message: replyMessage,
@@ -276,11 +233,11 @@ export default function Conversations() {
         fetchConversations(false);
       }
       
-      setSending(false);
+      setReplying(false);
     } catch (err) {
       console.error("Reply error:", err);
       toast.error("Failed to send reply. Please try again.");
-      setSending(false);
+      setReplying(false);
     }
   };
 
@@ -290,15 +247,6 @@ export default function Conversations() {
     fetchConversations(true);
   };
 
-    const handleDeleteClick = (conversation) => {
-  console.log("Delete clicked for:", conversation.ad?.address);
-  
-  // Tallenna mikä keskustelu poistetaan
-  setConversationToDelete(conversation);
-  
-  // Näytä confirmation dialog
-  setDeleteModal(true);
-};
 
   // ✅ Loading state
   if (loading && conversations.length === 0) {
@@ -553,17 +501,17 @@ export default function Conversations() {
                     type="button"
                     onClick={handleCloseModal}
                     className="px-6 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
-                    disabled={sending}
+                    disabled={replying}
                   >
                     Cancel
                   </button>
                   <button
                     type="submit"
                     className="px-6 py-2 bg-[#90AEAD] hover:bg-[#7a9a99] text-white rounded-lg transition-colors flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
-                    disabled={sending || !replyMessage.trim()}
+                    disabled={replying || !replyMessage.trim()}
                   >
                     <MailOutlined />
-                    {sending ? "Sending..." : "Send Reply"}
+                    {replying ? "Sending..." : "Send Reply"}
                   </button>
                 </div>
               </form>
@@ -632,3 +580,606 @@ export default function Conversations() {
     </div>
   );
 }
+
+
+
+
+
+
+
+
+
+
+
+
+/*import { useState, useEffect, useCallback } from "react";
+import { useAuth } from "../../context/auth";
+import Sidebar from "../../components/nav/Sidebar";
+import axios from "axios";
+import { Link } from "react-router-dom";
+import Spinner from "../../components/Spinner";
+import { MessageOutlined, MailOutlined, CloseOutlined, ReloadOutlined, DeleteOutlined } from "@ant-design/icons";
+import toast from "react-hot-toast";
+
+const PageHeader = ({ title }) => (
+  <div className="w-full text-left pb-12 pt-14 xl:pb-16 xl:pt-20 bg-[#874F41]">
+    <div className="flex items-center pl-8">
+      <h1 className="font-castoro text-5xl md:text-6xl xl:text-7xl text-[#E64833]">
+        {title}
+      </h1>
+    </div>
+  </div>
+);
+
+export default function Conversations() {
+  const [auth] = useAuth();
+  const [conversations, setConversations] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [retryCount, setRetryCount] = useState(0);
+  
+  // Reply modal states
+  const [replyModal, setReplyModal] = useState(false);
+  const [selectedConversation, setSelectedConversation] = useState(null);
+  const [replyMessage, setReplyMessage] = useState("");
+  const [replying, setReplying] = useState(false);
+
+    // ✅ Delete confirmation state
+  const [deleteModal, setDeleteModal] = useState(false);
+  const [conversationToDelete, setConversationToDelete] = useState(null);
+  const [deleting, setDeleting] = useState(false);
+
+  // ✅ PARANNETTU: useCallback estää turhia uudelleenrenderöintejä
+  const fetchConversations = useCallback(async (showLoadingSpinner = true) => {
+    // ✅ Varmista että auth on valmis
+    if (!auth?.token || !auth?.user?._id) {
+      console.log("⏳ Auth not ready yet, waiting...");
+      return;
+    }
+
+    try {
+      if (showLoadingSpinner) {
+        setLoading(true);
+      }
+      setError(null);
+
+      //console.log("🔄 Fetching conversations for user:", auth.user._id);
+      
+      // ✅ Lisää timeout 10 sekuntiin (Vercel cold start voi kestää)
+      const { data } = await axios.get("/user-conversations", {
+        timeout: 10000
+      });
+      
+      console.log("✅ Conversations fetched:", data?.length || 0);
+      
+      // ✅ Varmista että data on array
+      setConversations(Array.isArray(data) ? data : []);
+      setLoading(false);
+      setRetryCount(0); // Reset retry count on success
+    } catch (err) {
+      console.error("❌ Fetch conversations error:", err);
+      
+      setLoading(false);
+      
+      // ✅ Käyttäjäystävällinen virheviesti
+      if (err.code === 'ECONNABORTED') {
+        setError("Request timed out. The server might be starting up. Please try again.");
+      } else if (err.response?.status === 401) {
+        setError("Authentication failed. Please log in again.");
+      } else if (err.response?.status >= 500) {
+        setError("Server error. Please try again in a moment.");
+      } else {
+        setError("Failed to load conversations. Please try refreshing the page.");
+      }
+      
+      // ✅ Automaattinen retry max 2 kertaa
+      if (retryCount < 2) {
+        console.log(`🔄 Auto-retry attempt ${retryCount + 1}/2`);
+        setTimeout(() => {
+          setRetryCount(prev => prev + 1);
+          fetchConversations(false);
+        }, 2000); // 2 sekunnin viive
+      }
+    }
+  }, [auth?.token, auth?.user?._id, retryCount]);
+
+  // ✅ PARANNETTU: useEffect joka odottaa että auth on valmis
+  useEffect(() => {
+    let mounted = true;
+    let timeoutId;
+
+    const initFetch = async () => {
+      // Odota että auth on varmasti valmis
+      if (!auth?.token || !auth?.user?._id) {
+        console.log("⏳ Waiting for auth to be ready...");
+        // Yritä uudelleen 500ms kuluttua
+        timeoutId = setTimeout(initFetch, 500);
+        return;
+      }
+
+      if (mounted) {
+        await fetchConversations();
+      }
+    };
+
+    initFetch();
+
+    return () => {
+      mounted = false;
+      if (timeoutId) clearTimeout(timeoutId);
+    };
+  }, [auth?.token, auth?.user?._id, fetchConversations]);
+
+  const handleReplyClick = (conversation) => {
+    if (!conversation.ad?._id) {
+      toast.error("Cannot reply: Property information is missing");
+      return;
+    }
+    console.log("Opening reply modal for:", conversation);
+    setSelectedConversation(conversation);
+    setReplyMessage("");
+    setReplyModal(true);
+  };
+
+   // ===== DELETE HANDLERS =====
+  const handleDeleteClick = (conversation) => {
+    console.log("Delete clicked for:", conversation.ad?.address);
+    setConversationToDelete(conversation);
+    setDeleteModal(true);
+  };
+
+  const handleDeleteConversation = async () => {
+    if (deleting) {
+      console.log("⚠️ Already deleting");
+      return;
+    }
+
+    if (!conversationToDelete?.ad?._id) {
+      toast.error("Cannot delete: Missing conversation data");
+      return;
+    }
+
+    try {
+      setDeleting(true);
+      
+      console.log("=== FRONTEND DELETE ===");
+      console.log("Ad ID:", conversationToDelete.ad._id);
+      
+      const { data } = await axios.delete(`/conversation/${conversationToDelete.ad._id}`);
+      
+      console.log("=== BACKEND RESPONSE ===");
+      console.log("Response:", data);
+      
+      if (data?.error) {
+        toast.error(data.error);
+        return;
+      }
+      
+      if (data.deletedCount === 0) {
+        toast.warning("No messages were deleted");
+        return;
+      }
+      
+      const successMessage = data.isOwner 
+        ? `🏠 Entire conversation deleted (${data.deletedCount} messages)`
+        : `✅ Your messages deleted (${data.deletedCount} messages)`;
+      
+      toast.success(successMessage);
+      
+      setConversations(prev => 
+        prev.filter(conv => conv.ad._id.toString() !== conversationToDelete.ad._id.toString())
+      );
+      
+      setDeleteModal(false);
+      setConversationToDelete(null);
+      
+    } catch (err) {
+      console.error("❌ Delete error:", err);
+      toast.error(err.response?.data?.error || "Failed to delete conversation");
+    } finally {
+      setDeleting(false);
+    }
+  };
+
+  const handleCloseModal = () => {
+    setReplyModal(false);
+    setSelectedConversation(null);
+    setReplyMessage("");
+  };
+
+  const handleSendReply = async (e) => {
+    e.preventDefault();
+    
+    if (!replyMessage.trim()) {
+      toast.error("Please write a message");
+      return;
+    }
+
+    const lastOtherMessage = [...selectedConversation.messages]
+      .reverse()
+      .find(m => !m.isOwn);
+    
+    if (!lastOtherMessage) {
+      toast.error("Cannot find recipient information");
+      return;
+    }
+
+    const recipientEmail = lastOtherMessage.senderEmail;
+    const recipientName = lastOtherMessage.sender?.name || lastOtherMessage.sender?.username;
+
+    try {
+      setSending(true);
+      
+      const { data } = await axios.post("/reply-to-enquiry", {
+        message: replyMessage,
+        recipientEmail: recipientEmail,
+        recipientName: recipientName,
+        adId: selectedConversation.ad._id,
+        originalMessage: lastOtherMessage.message
+      });
+
+      if (data?.error) {
+        toast.error(data.error);
+      } else {
+        toast.success("Reply sent successfully! ✉️");
+        handleCloseModal();
+        // Päivitä keskustelut ilman loading spinneriä
+        fetchConversations(false);
+      }
+      
+      setSending(false);
+    } catch (err) {
+      console.error("Reply error:", err);
+      toast.error("Failed to send reply. Please try again.");
+      setSending(false);
+    }
+  };
+
+  // ✅ LISÄTTY: Manual refresh button
+  const handleManualRefresh = () => {
+    setRetryCount(0);
+    fetchConversations(true);
+  };
+
+  const handleDeleteClick = (conversation) => {
+  console.log("Delete clicked for:", conversation.ad?.address);
+  
+  // Tallenna mikä keskustelu poistetaan
+  setConversationToDelete(conversation);
+  
+  // Näytä confirmation dialog
+  setDeleteModal(true);
+};
+
+  // ✅ Loading state
+  if (loading && conversations.length === 0) {
+    return (
+      <div className='w-full min-h-screen pb-10 bg-[#FBE9D0]'>
+        <PageHeader title="Conversations" />
+        <Sidebar />
+        <div className="container mx-auto px-4 py-10">
+          <Spinner message="Loading conversations..." />
+          <div className="text-center mt-4">
+            <p className="text-gray-600 text-sm">
+              This may take a moment if the server is starting up...
+            </p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // ✅ Error state
+  if (error && conversations.length === 0) {
+    return (
+      <div className='w-full min-h-screen pb-10 bg-[#FBE9D0]'>
+        <PageHeader title="Conversations" />
+        <Sidebar />
+        <div className="container mx-auto px-4 py-10">
+          <div className="bg-red-50 border border-red-200 rounded-lg p-6 text-center">
+            <MessageOutlined style={{ fontSize: '48px', color: '#E64833' }} className="mb-4" />
+            <h3 className="text-xl font-castoro text-red-700 mb-2">
+              Unable to Load Conversations
+            </h3>
+            <p className="text-red-600 mb-4">{error}</p>
+            <button 
+              onClick={handleManualRefresh}
+              className="bg-[#90AEAD] hover:bg-[#7a9a99] text-white px-6 py-2 rounded transition-colors flex items-center gap-2 mx-auto"
+            >
+              <ReloadOutlined /> Try Again
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className='w-full min-h-screen pb-10 bg-[#FBE9D0]'>
+      <PageHeader title="Conversations" />
+      <Sidebar />
+
+      <div className="container mx-auto px-4 py-10">
+        <div className="flex justify-between items-center mb-6">
+          <h2 className="font-castoro text-2xl text-[#244855]">
+            All Conversations ({conversations.length})
+          </h2>
+          * ✅ LISÄTTY: Manual refresh button *
+          <button 
+            onClick={handleManualRefresh}
+            className="bg-[#90AEAD] hover:bg-[#7a9a99] text-white px-4 py-2 rounded transition-colors flex items-center gap-2 text-sm"
+            disabled={loading}
+          >
+            <ReloadOutlined spin={loading} /> Refresh
+          </button>
+        </div>
+
+        * ✅ Warning jos lataus kesti kauan *
+        {retryCount > 0 && (
+          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-4">
+            <p className="text-yellow-800 text-sm">
+              ⚠️ Connection was slow. The server might have been starting up. 
+              {retryCount < 2 && " Retrying automatically..."}
+            </p>
+          </div>
+        )}
+
+        {conversations.length === 0 ? (
+          <div className="bg-white rounded-lg shadow-md p-8 text-center">
+            <MessageOutlined style={{ fontSize: '48px', color: '#90AEAD' }} className="mb-4" />
+            <p className="text-gray-600 font-castoro text-lg mb-2">
+              No conversations yet
+            </p>
+            <p className="text-gray-500 text-sm">
+              Contact a property owner to start a conversation
+            </p>
+          </div>
+        ) : (
+          <div className="space-y-4">
+            {conversations.map((conv, idx) => (
+              <div 
+                key={idx} 
+                className={`bg-white rounded-lg shadow-md p-6 border-l-4 ${
+                  conv.isOwner ? 'border-[#90AEAD]' : 'border-[#874F41]'
+                }`}
+              >
+                * Property header *
+                <div className="flex flex-col sm:flex-row justify-between items-start mb-4 gap-2">
+                  <div className="flex-1">
+                    <div className="flex items-center gap-2 mb-1">
+                      <Link 
+                        to={`/ad/${conv.ad?.slug}`} 
+                        className="text-lg font-castoro text-[#244855] hover:text-[#90AEAD] break-words"
+                      >
+                        📍 {conv.ad?.address}
+                      </Link>
+                      {conv.isOwner && (
+                        <span className="bg-[#90AEAD] text-white text-xs px-2 py-1 rounded">
+                          Your Property
+                        </span>
+                      )}
+                    </div>
+                    <p className="text-sm text-gray-600">
+                      {conv.ad?.type} - {conv.ad?.price}€
+                    </p>
+                    <p className="text-xs text-gray-500 mt-1">
+                      {conv.messageCount} message{conv.messageCount !== 1 ? 's' : ''}
+                    </p>
+                  </div>
+                  
+                  {conv.unreadCount > 0 && (
+                    <span className="bg-red-500 text-white px-3 py-1 rounded-full text-xs font-semibold">
+                      {conv.unreadCount} new
+                    </span>
+                  )}
+
+                    * ✅ Delete nappi *
+                  <button
+                    onClick={() => handleDeleteClick(conv)}
+                    className="text-[#244855] hover:text-red-700 transition-colors p-2 rounded hover:bg-red-50"
+                    title="Delete conversation"
+                  >
+                  <DeleteOutlined style={{ fontSize: '18px', color: '#E64833' }} />
+                  </button>
+                </div>
+
+                * Message thread *
+                <div className="space-y-3 max-h-96 overflow-y-auto mb-4 bg-gray-50 p-4 rounded">
+                  {conv.messages && conv.messages.length > 0 ? (
+                    conv.messages.map((msg, msgIdx) => (
+                      <div 
+                        key={msgIdx}
+                        className={`p-3 rounded-lg transition-all ${
+                          msg.isOwn 
+                            ? 'bg-[#90AEAD] bg-opacity-20 ml-8 border-l-4 border-[#90AEAD]' 
+                            : 'bg-white mr-8 border-l-4 border-gray-300 shadow-sm'
+                        }`}
+                      >
+                        <div className="flex justify-between items-start mb-2">
+                          <div className="flex items-center gap-2">
+                            <span className="font-semibold text-sm text-[#244855]">
+                              {msg.isOwn ? 'You' : (msg.sender?.name || msg.sender?.username || 'Other User')}
+                            </span>
+                            <span className="text-xs text-gray-500 italic">
+                              {msg.type === 'enquiry' ? '📧' : '💬'}
+                            </span>
+                          </div>
+                          <span className="text-xs text-gray-500">
+                            {msg.createdAt ? new Date(msg.createdAt).toLocaleDateString('fi-FI', {
+                              day: 'numeric',
+                              month: 'short',
+                              hour: '2-digit',
+                              minute: '2-digit'
+                            }) : 'Date unavailable'}
+                          </span>
+                        </div>
+                        
+                        <p className="text-sm text-gray-700 break-words whitespace-pre-wrap">
+                          {msg.message || 'No message'}
+                        </p>
+                        
+                        {msg.senderEmail && !msg.isOwn && (
+                          <p className="text-xs text-gray-500 mt-2">
+                            {msg.senderEmail}
+                          </p>
+                        )}
+                      </div>
+                    ))
+                  ) : (
+                    <p className="text-gray-500 text-sm">No messages</p>
+                  )}
+                </div>
+
+                * Reply button *
+                <button 
+                  onClick={() => handleReplyClick(conv)}
+                  className="flex items-center gap-2 bg-[#90AEAD] hover:bg-[#7a9a99] text-white px-4 py-2 rounded transition-colors text-sm w-full sm:w-auto justify-center"
+                >
+                  <MailOutlined /> Reply to Conversation
+                </button>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+
+      * REPLY MODAL *
+      {replyModal && selectedConversation && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[95vh] overflow-y-auto">
+            <div className="bg-[#90AEAD] p-6 rounded-t-lg flex justify-between items-center">
+              <h3 className="text-2xl font-castoro text-[#244855]">
+                Reply to Conversation
+              </h3>
+              <button
+                onClick={handleCloseModal}
+                className="text-[#244855] hover:text-[#874F41] transition-colors"
+              >
+                <CloseOutlined style={{ fontSize: '24px' }} />
+              </button>
+            </div>
+
+            <div className="p-6">
+              <div className="bg-gray-50 p-4 rounded mb-4 border-l-4 border-gray-300">
+                <p className="text-xs text-gray-500 mb-2">Property:</p>
+                <p className="text-sm font-semibold text-gray-700">
+                  {selectedConversation.ad?.address} - {selectedConversation.ad?.price}€
+                </p>
+              </div>
+
+              <div className="bg-blue-50 p-4 rounded mb-4 max-h-60 overflow-y-auto">
+                <p className="text-xs text-gray-500 mb-3">Conversation history:</p>
+                <div className="space-y-2">
+                  {selectedConversation.messages.slice(-5).map((msg, idx) => (
+                    <div key={idx} className="text-sm border-b border-blue-200 pb-2 last:border-0">
+                      <span className="font-semibold text-[#244855]">
+                        {msg.isOwn ? 'You' : (msg.sender?.name || 'Other')}:
+                      </span>
+                      <p className="ml-2 text-gray-700 mt-1">"{msg.message}"</p>
+                      <span className="text-xs text-gray-500">
+                        {msg.createdAt ? new Date(msg.createdAt).toLocaleDateString('fi-FI') : ''}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <form onSubmit={handleSendReply}>
+                <div className="mb-4">
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Your reply:
+                  </label>
+                  <textarea
+                    value={replyMessage}
+                    onChange={(e) => setReplyMessage(e.target.value)}
+                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#90AEAD] focus:border-transparent"
+                    rows={6}
+                    placeholder="Write your reply here..."
+                    autoFocus
+                  />
+                </div>
+
+                <div className="flex gap-3 justify-end">
+                  <button
+                    type="button"
+                    onClick={handleCloseModal}
+                    className="px-6 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+                    disabled={sending}
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="submit"
+                    className="px-6 py-2 bg-[#90AEAD] hover:bg-[#7a9a99] text-white rounded-lg transition-colors flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                    disabled={sending || !replyMessage.trim()}
+                  >
+                    <MailOutlined />
+                    {sending ? "Sending..." : "Send Reply"}
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      )}
+
+      * DELETE CONFIRMATION MODAL *
+      {deleteModal && conversationToDelete && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg shadow-xl max-w-md w-full p-6">
+            
+            * Header *
+            <div className="flex items-center gap-3 mb-4">
+              <DeleteOutlined style={{ fontSize: '24px', color: '#E64833' }} />
+              <h3 className="text-xl font-castoro text-[#244855]">
+                Delete Conversation?
+              </h3>
+            </div>
+
+            * Content *
+            <div className="mb-6">
+              <p className="text-gray-700 mb-2">
+                Are you sure you want to delete this conversation?
+              </p>
+              <div className="bg-gray-50 p-3 rounded border-l-4 border-[#E64833]">
+                <p className="text-sm font-semibold text-gray-800">
+                  📍 {conversationToDelete.ad?.address}
+                </p>
+                <p className="text-xs text-gray-600 mt-1">
+                  {conversationToDelete.messageCount} message
+                  {conversationToDelete.messageCount !== 1 ? 's' : ''}
+                </p>
+              </div>
+              <p className="text-sm text-[#E64833] mt-3">
+                ⚠️ This action cannot be undone.
+              </p>
+            </div>
+
+            * Actions *
+            <div className="flex gap-3 justify-end">
+              <button
+                onClick={() => {
+                  setDeleteModal(false);
+                  setConversationToDelete(null);
+                }}
+                className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+                disabled={deleting}
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleDeleteConversation}
+                className="px-4 py-2 bg-[#E64833] hover:bg-red-600 text-white rounded-lg transition-colors flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                disabled={deleting}
+              >
+                <DeleteOutlined />
+                {deleting ? "Deleting..." : "Delete"}
+              </button>
+            </div>
+
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}*/
