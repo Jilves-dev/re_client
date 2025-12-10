@@ -7,7 +7,7 @@ if (!apiUrl) {
     const isProduction = window.location.hostname !== 'localhost';
     
     if (isProduction) {
-      apiUrl = 'https://re-server-tau.vercel.app/api';
+      apiUrl = 'https://spacerealizationapp.fi/api';
     } else {
       apiUrl = 'http://localhost:8000/api';
     }
