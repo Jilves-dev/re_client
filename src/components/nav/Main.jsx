@@ -91,7 +91,7 @@ export default function Main() {
               {auth?.user?.name ? auth.user.name : auth.user.username}
             </button>
             {userDropdown && (
-              <ul className={`absolute mt-2 w-40 right-0 ${dropdownBg} rounded-md shadow-lg z-50`}>
+              <ul className={`absolute mt-2 w-30 right-0 pr-2 pl-2 ${dropdownBg} rounded-b-md shadow-lg z-50`}>
                 <li>
                   <NavLink
                     className={`block px-2 py-2 ${dropdownTextColor}`}
