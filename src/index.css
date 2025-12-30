@@ -1,48 +1,48 @@
 @font-face {
   font-family: 'FloralCapsNouveau';
-  src: url('src/fonts/Floralcapsnouveau.ttf') format('truetype');
+  src: url('/fonts/Floralcapsnouveau.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Castoro-Regular';
-  src: url('src/fonts/Castoro-Regular.ttf') format('truetype');
+  src: url('/fonts/Castoro-Regular.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Teutonic';
-  src: url('src/fonts/Teutonic.ttf') format('truetype');
+  src: url('/fonts/Teutonic.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Monopol';
-  src: url('src/fonts/Monopol.ttf') format('truetype');
+  src: url('/fonts/Monopol.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Nouveau Nostalgia';
-  src: url('src/fonts/NouveauNostalgia.ttf') format('truetype');
+  src: url('/fonts/NouveauNostalgia.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'CATChilds';
-  src: url('src/fonts/CATChilds.ttf') format('truetype');
+  src: url('/fonts/CATChilds.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'DecomangHold-Regular';
-  src: url('src/fonts/DecomangHold-Regular.ttf') format('truetype');
+  src: url('/fonts/DecomangHold-Regular.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
