@@ -8,9 +8,13 @@ module.exports = {
     theme: {
       extend: {
         fontFamily: {
-          //'floral': ['"FloralCapsNouveau"', 'serif'],  
-          // 'castoro-titling': ['"Castoro Titling"', 'serif'],
-          'castoro': ['"Castoro"', 'serif'],
+          floral: ['FloralCapsNouveau', 'serif'],  
+          castoro: ['Castoro-Regular', 'serif'],
+          teutonic: ['Teutonic', 'serif'],
+          monopol: ['Monopol', 'serif'],
+          nouveauNostalgia: ['Nouveau Nostalgia', 'serif'],
+          catchilds: ['Catchilds', 'serif'],
+          decomang: ['DecomangHold-Regular', 'serif'],
         },
           animation: {
         fadeIn: 'fadeIn 0.5s ease-in'

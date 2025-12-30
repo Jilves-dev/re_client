@@ -1,37 +1,56 @@
-@import url('https://fonts.googleapis.com/css2?family=Castoro:ital@0;1&display=swap');
-
-/*@font-face {
+@font-face {
   font-family: 'FloralCapsNouveau';
-  src: url('./fonts/Floralcapsnouveau-MZGn.ttf') format('truetype');
+  src: url('src/fonts/Floralcapsnouveau.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
-}*/
+}
+
+@font-face {
+  font-family: 'Castoro-Regular';
+  src: url('src/fonts/Castoro-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Teutonic';
+  src: url('src/fonts/Teutonic.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Monopol';
+  src: url('src/fonts/Monopol.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Nouveau Nostalgia';
+  src: url('src/fonts/NouveauNostalgia.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'CATChilds';
+  src: url('src/fonts/CATChilds.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'DecomangHold-Regular';
+  src: url('src/fonts/DecomangHold-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/*.floral {
-  font-family: 'FloralCapsNouveau', serif !important;
-  font-size: 1.5em;
-  font-style: normal;
-}*/
-
-.castoro-regular {
-  font-family: "Castoro", serif !important;
-  font-weight: 400;
-  font-style: normal;
-}
-
-.castoro-regular-italic {
-  font-family: "Castoro", serif !important;
-  font-weight: 400;
-  font-style: italic;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Castoro', serif !important;
-}
 
 body {
   background-color: #F5F5F5;
