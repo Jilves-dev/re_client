@@ -6,6 +6,27 @@
 }
 
 @font-face {
+  font-family: 'FloralCapitals';
+  src: url('/fonts/FloralCapitals.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Flower Bloom Line Monogram';
+  src: url('/fonts/Flower Bloom Line Monogram.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal; 
+}
+
+@font-face {
+  font-family: 'Gorgeous Floral Monogram';
+  src: url('/fonts/Gorgeous Floral Monogram.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
   font-family: 'Castoro-Regular';
   src: url('/fonts/Castoro-Regular.ttf') format('truetype');
   font-weight: normal;

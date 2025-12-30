@@ -15,6 +15,9 @@ module.exports = {
           nouveauNostalgia: ['Nouveau Nostalgia', 'serif'],
           catchilds: ['Catchilds', 'serif'],
           decomang: ['DecomangHold-Regular', 'serif'],
+          floralCapitals: ['FloralCapitals', 'serif'],
+          flower: ['Flower Bloom Line Monogram', 'serif'],
+          gorgeous: ['Gorgeous Floral Monogram', 'serif'],
         },
           animation: {
         fadeIn: 'fadeIn 0.5s ease-in'

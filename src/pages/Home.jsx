@@ -15,8 +15,8 @@ const PageHeader = ({ title }) => {
   return (
     <div className="mx-auto w-full text-align:left pb-16 pt-20 bg-[#90AEAD]">
       <h1 className="pl-8">
-        <span className="font-floral text-[#244855] text-5xl sm:text-8xl">{firstLetter}</span>
-        <span className="font-monopol text-[#244855] text-5xl font-semibold sm:text-7xl">{restOfTitle}</span>
+        <span className="font-castoro text-[#244855] text-5xl sm:text-6xl">{firstLetter}</span>
+        <span className="font-castoro text-[#244855] text-5xl  sm:text-6xl">{restOfTitle}</span>
       </h1>
     </div>
   );
