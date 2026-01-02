@@ -318,3 +318,10 @@ button:disabled {
 .google-places-input input::placeholder {
   font-family: 'poiretOne', sans-serif !important;
 }
+
+/* Bootstrap Dropdown fontin muutos */
+.price-button .dropdown-toggle,
+.price-button .dropdown-menu,
+.price-button .dropdown-item {
+  font-family: 'Dyer Arts and Crafts', serif !important;
+}
