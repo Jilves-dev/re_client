@@ -58,8 +58,8 @@ export default function Sidebar() {
 
   return (
     <div className='bg-[#FBE9D0] w-full px-2 py-2 pb-4'>
-      <div className="hidden md:flex justify-start gap-6 border-b border-[#874F41]">
-        <NavLink className="font-castoro nav-link text-[#244855] bg-[#FBE9D0] !important" to="/dashboard">🔮 dashboard</NavLink>
+      <div className="hidden md:flex justify-start gap-6 border-b border-[#874F41] font-poiretOne text-xl">
+        <NavLink className="nav-link text-[#244855] bg-[#FBE9D0] !important" to="/dashboard">🔮 dashboard</NavLink>
         <NavLink className="nav-link text-[#244855] !important" to="/user/wishlist">💖 wishlist</NavLink>
         <NavLink className="nav-link text-[#244855] !important" to="/user/conversations">📫 Conversations</NavLink>
         <NavLink className="nav-link text-[#244855] !important" to="/ad/create">🎨 create</NavLink>
@@ -106,7 +106,7 @@ export default function Sidebar() {
               }}
               className="cursor-pointer hover:text-[#874F41] transition-colors"
             />
-            <span onClick={handleClick} className='cursor-pointer font-castoro text-[#E64833] mb-2 hover:text-[#874F41] transition-colors'>
+            <span onClick={handleClick} className='cursor-pointer font-poiretOne text-[#E64833] mb-2 hover:text-[#874F41] transition-colors'>
               closeMenu 
             </span>
           </>
@@ -116,7 +116,7 @@ export default function Sidebar() {
       {nav && (
         <div className='fixed top-0 right-0 w-[64%] max-w-md h-screen bg-[rgba(253, 235, 211, 0.8)] 
         backdrop-filter backdrop-blur-md flex flex-col justify-center items-center z-50'>
-          <ul className='font-castoro text-[#E64833]'>
+          <ul className='font-poiretOne text-[#E64833]'>
             <li className='py-4 text-4xl'>
               <a className="nav-link cursor-pointer" onClick={(e) => handleNavLinkClick(e, '/dashboard')}>Dashboard</a>
             </li>

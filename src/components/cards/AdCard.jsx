@@ -35,7 +35,7 @@ export default function AdCard({ ad, className }) {
         <Badge.Ribbon 
           text={`${ad?.type} for ${ad?.action}`} 
           color={badgeColor}
-          className="font-Castoro text-sm md:text-base"
+          className="font-poiretOne text-sm md:text-base"
           style={{ 
             top: '8px',
             opacity: 0.95
@@ -49,7 +49,7 @@ export default function AdCard({ ad, className }) {
                           text-white px-3 py-1.5 rounded-lg 
                           text-sm font-medium shadow-md
                           transition-all duration-300
-                          group-hover:bg-[#90AEAD]">
+                          group-hover:bg-[#90AEAD] font-baskervville">
             📍 {ad.distanceKm.toFixed(1)} km
           </div>
         )}
@@ -66,7 +66,7 @@ export default function AdCard({ ad, className }) {
                         group-hover:translate-y-[-4px]">
           
           {/* Price with enhanced visibility */}
-          <h5 className="font-Castoro text-2xl font-bold mb-2 
+          <h5 className="font-baskervville text-2xl font-bold mb-2 
                          drop-shadow-lg
                          transition-colors duration-300
                          {/*group-hover:text-[#E64833]*/}">
@@ -74,13 +74,13 @@ export default function AdCard({ ad, className }) {
           </h5>
           
           {/* Address with better truncation */}
-          <h4 className="font-normal text-xl mb-2 line-clamp-1
+          <h4 className="font-poiretOne font-normal text-xl mb-2 line-clamp-1
                          drop-shadow-md">
             {ad?.address}
           </h4>
 
           {/* Description with subtle appearance */}
-          <h5 className="font-Castoro text-base mb-3 line-clamp-1 
+          <h5 className="font-baskervville text-base mb-3 line-clamp-1 
                          opacity-90">
             {ad.description}
           </h5>

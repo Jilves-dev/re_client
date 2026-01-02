@@ -63,14 +63,14 @@ export default function Main() {
 
   // Dynaamiset värit riippuen siitä, ollaanko dashboardilla
   const bgColor = isDashboard ? 'bg-[#FBE9D0]' : 'bg-[#90AEAD]';
-  const textColor = isDashboard ? 'text-[#244855]' : 'text-[#FFFFFF]';
+  const textColor = isDashboard ? 'text-[#244855]' : 'text-[#FBE9D0]';
   const dropdownBg = isDashboard ? 'bg-[#FBE9D0]' : 'bg-[#90AEAD]';
   const dropdownTextColor = isDashboard ? 'text-[#244855]' : 'text-[#FBE9D0]';
   const mobileOverlayBg = isDashboard ? 'bg-[rgba(251, 233, 208, 0.8)]' : 'bg-[rgba(253, 235, 211, 0.8)]';
   const mobileTextColor = isDashboard ? 'text-[#244855]' : 'text-[#244855]';
 
   return (
-    <div className={`${bgColor} w-full font-castoro font-light px-4 py-2 pb-6`} style={{ zIndex: 100000, position: 'relative' }}>
+    <div className={`${bgColor} w-full font-poiretOne !font-thin px-4 py-2 pb-6`} style={{ zIndex: 100000, position: 'relative' }}>
       <div className={`hidden md:flex justify-between ${textColor}`}>
         <NavLink className="nav-link" to="/">Home</NavLink>
         <NavLink className="nav-link" to="/search">Search</NavLink>
@@ -129,7 +129,7 @@ export default function Main() {
           className={`fixed top-0 right-0 w-[60%] max-w-md h-screen ${mobileOverlayBg} backdrop-filter backdrop-blur-md flex flex-col justify-center items-center`}
           style={{ zIndex: 100001 }}
         >
-          <ul className={`font-castoro ${mobileTextColor} font-normal`}>
+          <ul className={`font-poiretOne ${mobileTextColor} font-normal`}>
             <li className='py-4 text-4xl'>
               <NavLink className="nav-link" to="/" onClick={handleClick}>Home</NavLink>
             </li>

@@ -13,7 +13,7 @@ import Spinner from "../components/Spinner";
 const PageHeader = ({ title }) => (
   <div className="w-full text-align:left pb-12 pt-14 xl:pb-16 xl:pt-20 bg-[#90AEAD]">
     <div className="flex items-center pl-10">
-      <h1 className="font-castoro text-align:left text-6xl md:text-7xl xl:text-8xl text-[#244855] font-normal">
+      <h1 className="font-decomang text-align:left text-6xl md:text-7xl xl:text-8xl text-[#244855] font-normal">
         {title}
       </h1>
       {/*<img src={artNouveau} alt="Art Nouveau" className="h-[6em] w-auto ml-4 bg-[#51829B]" />*/}
@@ -44,7 +44,7 @@ export default function Agents() {
 
   if (loading) {
     return (
-      <div name='home' className='max-w-screen w-full pb-10'>
+      <div name='home' className='max-w-screen w-full pb-10 font-poiretOne'>
                 <Spinner message="Loading properties..." />
               </div>
     );

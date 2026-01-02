@@ -45,7 +45,7 @@ export default function Register() {
      <div className={styles.centerContent}>
      <div className={styles.wrapper}>
             <form onSubmit={handleSubmit}>
-            <h1>Register</h1>
+            <h1 className="font-poiretOne">Register</h1>
               <div className={styles.inputBox}>
               <input
                 type="text"

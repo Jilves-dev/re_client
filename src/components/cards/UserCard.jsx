@@ -40,7 +40,7 @@ export default function UserCard({ user, className }) {
           />
           
           {/* Custom ribbon yläosassa */}
-          <div className="absolute top-2 left-0 bg-[#90AEAD] text-white px-3 py-1 text-sm font-Castoro z-10">
+          <div className="absolute top-2 left-0 bg-[#90AEAD] text-white px-3 py-1 text-sm font-poiretOne z-10">
             {count} listings
           </div>
           
@@ -49,13 +49,13 @@ export default function UserCard({ user, className }) {
           
           {/* Content */}
           <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
-            <h5 className="font-Castoro text-xl mb-1 line-clamp-1">
+            <h5 className="font-poiretOne text-xl mb-1 line-clamp-1">
               {user?.name || user?.username}
             </h5>
-            <h4 className="font-normal text-lg mb-2 line-clamp-1 text-gray-200">
+            <h4 className="font-poiretOne font-normal text-lg mb-2 line-clamp-1 text-gray-200">
               Agent since {dayjs(user?.createdAt).format('YYYY')}
             </h4>
-            <p className="text-sm text-gray-300">
+            <p className="font-poiretOne text-sm text-gray-300">
               {count} active listings
             </p>
           </div>

@@ -24,10 +24,10 @@ const PageHeader = ({ title }) => {
   const restOfTitle = title.slice(1);
 
   return (
-    <div className="mx-auto w-full text-left sm:text-center pb-8 pt-10 sm:pt-20 sm:pb-16 md:pt-[100px] md:pb-24  bg-[#90AEAD]">
-      <h1 className="pl-8 sm:pl-0">
-        <span className="font-castoro text-[#244855] text-5xl sm:text-7xl">{firstLetter}</span>
-        <span className="font-castoro text-[#244855] text-5xl  sm:text-7xl">{restOfTitle}</span>
+    <div className="mx-auto w-full text-left pb-8 pt-10 sm:pt-20 sm:pb-16 md:pt-[68px] md:pb-12 bg-[#90AEAD]">
+      <h1 className="pl-8">
+        <span className="font-decomang text-[#244855] text-5xl sm:text-8xl">{firstLetter}</span>
+        <span className="font-decomang text-[#244855] text-5xl sm:text-8xl">{restOfTitle}</span>
       </h1>
     </div>
   );

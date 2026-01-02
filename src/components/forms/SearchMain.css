@@ -179,7 +179,7 @@ div[id^="react-select-"] {
   border-width: 2px !important;
   border-color: #90AEAD !important;
   border-radius: 0px !important;
-  color: #244855 !important;
+  color: #90AEAD !important; /* <-- TÄMÄ ON TEKSTIN VÄRI */
   padding: 15px 75px !important;
   transition: all 0.3s ease;
 }
@@ -195,6 +195,11 @@ button:not(.settings-icon-button):hover {
   background-color: #e6d8c4 !important;
   color: #333 !important;
   transform: translateY(-1px);
+}
+
+/* Lisää tämä, jos haluat eri tekstivärin kun nappi on valittuna (active) */
+.search-form-container button.active {
+  color: #90AEAD !important; /* <-- Vaihda aktiivisen napin väri tästä */
 }
 
 button:disabled {
@@ -310,3 +315,6 @@ button:disabled {
   color: #244855;
 }
 
+.google-places-input input::placeholder {
+  font-family: 'poiretOne', sans-serif !important;
+}

@@ -72,13 +72,13 @@ export default function Agent() {
           {/* Agent Info Card */}
           <div className="bg-white rounded-lg shadow-lg p-8 md:p-12" style={customShadow}>
             {/* Name */}
-            <h2 className="font-Castoro text-4xl md:text-5xl text-[#244855] text-center mb-6">
+            <h2 className="font-decomang text-4xl md:text-5xl text-[#244855] text-center mb-6">
               {agent?.name || agent?.username}
             </h2>
 
             {/* Username */}
             {agent?.name && agent?.username && (
-              <p className="text-center text-[#90AEAD] text-lg mb-6">
+              <p className="font-poiretOne text-center text-[#90AEAD] text-lg mb-6">
                 @{agent.username}
               </p>
             )}
@@ -87,8 +87,8 @@ export default function Agent() {
      {/* About */}
             {agent?.about && (
               <div className="mb-6">
-                <h3 className="font-Castoro text-xl text-[#874F41] mb-2">About me</h3>
-                <p className="text-[#244855] text-lg leading-relaxed whitespace-pre-line">
+                <h3 className="font-poiretOne text-xl text-[#874F41] mb-2">About me</h3>
+                <p className="font-baskervville text-[#244855] text-lg leading-relaxed whitespace-pre-line">
                   {agent.about}
                 </p>
               </div>
@@ -97,16 +97,16 @@ export default function Agent() {
             {/* Company Name */}
             {agent?.company && (
               <div className="mb-6">
-                <h3 className="font-Castoro text-xl text-[#874F41] mb-2">Company</h3>
-                <p className="text-[#244855] text-lg">{agent.company}</p>
+                <h3 className="font-poiretOne text-xl text-[#874F41] mb-2">Company</h3>
+                <p className="font-baskervville text-[#244855] text-lg">{agent.company}</p>
               </div>
             )}
 
             {/* Address */}
             {agent?.address && (
               <div className="mb-6">
-                <h3 className="font-Castoro text-xl text-[#874F41] mb-2">Location</h3>
-                <p className="text-[#244855] text-lg">{agent.address}</p>
+                <h3 className="font-poiretOne text-xl text-[#874F41] mb-2">Location</h3>
+                <p className="font-baskervville text-[#244855] text-lg">{agent.address}</p>
               </div>
             )}
 
@@ -115,10 +115,10 @@ export default function Agent() {
             {/* Stats */}
             <div className="mt-8 pt-6 border-t border-[#90AEAD]">
               <div className="flex justify-center items-center gap-2">
-                <span className="text-3xl font-Castoro text-[#E64833]">
+                <span className="text-2xl font-baskervville text-[#E64833]">
                   {ads?.length || 0}
                 </span>
-                <span className="text-lg text-[#244855]">
+                <span className="font-baskervville text-lg text-[#244855]">
                   Active Listing{ads?.length !== 1 ? 's' : ''}
                 </span>
               </div>
@@ -130,7 +130,7 @@ export default function Agent() {
       {/* Listings Section */}
       {ads?.length > 0 && (
         <>
-          <h2 className="font-Castoro text-3xl text-center text-[#244855] mt-16 mb-8">
+          <h2 className="font-poiretOne text-3xl text-center text-[#244855] mt-16 mb-8">
             Recent Listings
           </h2>
 

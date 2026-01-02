@@ -9,7 +9,7 @@ import Spinner from "../../components/Spinner";
 const PageHeader = ({ title }) => (
   <div className="w-full text-align:left pb-12 pt-14 xl:pb-16 xl:pt-20 bg-[#874F41]">
     <div className="flex items-center pl-6">
-      <h1 className="font-castoro text-align:left text-6xl md:text-6xl xl:text-7xl text-[#E64833]">
+      <h1 className="font-decomang text-align:left text-6xl md:text-6xl xl:text-8xl text-[#E64833]">
         {title}
       </h1>
     </div>
@@ -79,14 +79,14 @@ useEffect(() => {
         <Sidebar />
         <div className="flex justify-center items-center py-20">
           <div className="text-center px-4">
-            <h2 className="font-castoro text-2xl text-[#244855] mb-4">
+            <h2 className="font-poiretOne text-2xl text-[#244855] mb-4">
             Hey {auth.user?.name || auth.user?.username},
             </h2>
-             <p className="text-gray-600 mb-6">
+             <p className="font-poiretOne text-gray-600 mb-6">
             You have not posted any properties yet!
             </p>
             <Link to="/ad/create" 
-            className="inline-block px-6 py-3 bg-[#90AEAD] hover:bg-[#7a9a99] text-white rounded-lg font-castoro transition-colors">
+            className="inline-block px-6 py-3 bg-[#90AEAD] hover:bg-[#7a9a99] text-white rounded-lg font-poiretOne transition-colors">
               Create your first property
             </Link>
           </div>
@@ -101,7 +101,7 @@ useEffect(() => {
         <Sidebar />
         <div className="w-full bg-[#FBE9D0] min-h-screen py-10">
           <div className="flex justify-center w-full">
-              <h1 className="font-castoro text-2xl text-[#244855]">
+              <h1 className="font-poiretOne text-2xl text-[#244855]">
                 Total {ads.length} {ads.length === 1 ? 'property' : 'properties'}
               </h1>
           </div>

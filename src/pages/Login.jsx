@@ -40,7 +40,7 @@ const Login = () => {
     <div className={styles.centerContent}>
       <div className={styles.wrapper}>
         <form onSubmit={handleSubmit}>
-          <h1>Login</h1>
+          <h1 className="font-poiretOne">Login</h1>
           <div className={styles.inputBox}>
             <input 
               type="text"

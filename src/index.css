@@ -1,6 +1,6 @@
 @font-face {
   font-family: 'FloralCapsNouveau';
-  src: url('/fonts/Floralcapsnouveau.woff2') format('woff2');
+  src: url('/fonts/FloralCapsNouveau.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
@@ -49,7 +49,7 @@
 
 @font-face {
   font-family: 'Nouveau Nostalgia';
-  src: url('/fonts/NouveauNostalgia.ttf') format('truetype');
+  src: url('/fonts/Nouveau Nostalgia.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
@@ -67,6 +67,120 @@
   font-weight: normal;
   font-style: normal;
 }
+
+/*uudet fontteja*/
+
+@font-face {
+  font-family: 'ReynoldsCaps';
+  src: url('/fonts/ReynoldsCaps.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}       
+
+@font-face {
+  font-family: 'GlassAntiqua-Regular';
+  src: url('/fonts/GlassAntiqua-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'EbbaNarrow';
+  src: url('/fonts/EbbaNarrow.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+   font-family: 'ArtNouveauCaps';
+   src: url('/fonts/ArtNouveauCaps.ttf') format('truetype');
+   font-weight: normal;
+   font-style: normal;
+}
+
+@font-face {
+   font-family: 'Attic';
+    src: url('/fonts/Attic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+   font-family: 'ViaodaLibre-Regular';
+   src: url('/fonts/ViaodaLibre-Regular.ttf') format('truetype');
+   font-weight: normal;
+   font-style: normal;
+}
+
+@font-face {
+   font-family: 'PinoyonScript-Regular';
+   src: url('/fonts/PinoyonScript-Regular.ttf') format('truetype');
+   font-weight: normal;
+   font-style: normal;
+}
+
+@font-face {
+   font-family: 'LavishlyYours-Regular';
+   src: url('/fonts/LavishlyYours-Regular.ttf') format('truetype');
+   font-weight: normal;
+   font-style: normal;
+}
+
+@font-face {
+  font-family: 'ImperialScript-Regular';
+  src: url('/fonts/ImperialScript-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Baskervville';
+  /* Tarkista onko tiedostonimessä väliviiva: Baskervville-VariableFont_wght.ttf */
+  src: url('/fonts/BaskervvilleVariableFont_wght.ttf') format('truetype'),
+       url('/fonts/Baskervville-VariableFont_wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal; 
+}
+
+@font-face {
+  font-family: 'Baskervville-Italic';
+  src: url('/fonts/Baskervville-Italic-VariableFont_wght.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/*art deco fontit*/
+
+@font-face {
+  font-family: 'Ardeco';
+  src: url('/fonts/Ardeco.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'AdineKirnberg-Script';
+  src: url('/fonts/AdineKirnberg-Script.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Dyer Arts and Crafts';
+  src: url('/fonts/Dyer Arts and Crafts.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'PoiretOne-Regular';
+  src: url('/fonts/PoiretOne-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+
 
 @tailwind base;
 @tailwind components;

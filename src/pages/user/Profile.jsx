@@ -11,7 +11,7 @@ import ProfileUpload from "../../components/forms/ProfileUpload";
 const PageHeader = ({ title }) => (
   <div className="w-full text-align:left pb-12 pt-14 xl:pb-16 xl:pt-20 bg-[#874F41]">
     <div className="flex items-center pl-6">
-      <h1 className="font-castoro text-align:left text-6xl md:text-6xl xl:text-7xl text-[#E64833]">
+      <h1 className="font-decomang text-align:left text-6xl md:text-6xl xl:text-8xl text-[#E64833]">
         {title}
       </h1>
     </div>
