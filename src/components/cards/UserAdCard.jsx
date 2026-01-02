@@ -20,11 +20,11 @@ export default function UserAdCard({ ad }) {
         {/* Badge - Sold/Active */}
         <div className="mb-2">
           {ad.sold ? (
-            <span className="inline-block px-3 py-1 bg-red-100 text-red-700 text-xs font-semibold rounded-full">
+            <span className="inline-block px-3 py-1 bg-red-100 font-baskervville text-red-700 text-xs font-semibold rounded-full">
               SOLD
             </span>
           ) : (
-            <span className="inline-block px-3 py-1 bg-green-100 text-green-700 text-xs font-semibold rounded-full">
+            <span className="inline-block px-3 py-1 bg-green-100 font-baskervville text-green-700 text-xs font-semibold rounded-full">
               ACTIVE
             </span>
           )}
@@ -32,13 +32,13 @@ export default function UserAdCard({ ad }) {
 
         {/* Address */}
         <Link to={`/ad/${ad.slug}`}>
-          <h3 className="font-castoro text-lg text-[#244855] hover:text-[#90AEAD] transition-colors mb-2 line-clamp-2">
+          <h3 className="font-poiretOne text-lg text-[#244855] hover:text-[#90AEAD] transition-colors mb-2 line-clamp-2">
             {ad.address}
           </h3>
         </Link>
 
         {/* Price */}
-        <p className="text-2xl font-bold text-[#E64833] mb-2">
+        <p className="font-poiretOne text-2xl font-bold text-[#E64833] mb-2">
           {formatNumber(ad.price)}€
         </p>
 
@@ -60,7 +60,8 @@ export default function UserAdCard({ ad }) {
         </div>
 
         {/* Stats */}
-        <div className="flex gap-4 text-sm text-gray-600 mb-4 pb-4 border-b">
+        
+        <div className="flex gap-4 font-baskervville text-base text-gray-600 mb-4 pb-4 border-b">
           <span className="flex items-center gap-1">
             <EyeOutlined /> {ad.views || 0} views
           </span>
@@ -74,7 +75,7 @@ export default function UserAdCard({ ad }) {
           {/* Edit Button */}
           <Link
             to={`/user/ad/${ad.slug}`}
-            className="flex items-center justify-center gap-2 px-4 py-2 bg-[#90AEAD] hover:bg-[#7a9a99] text-white rounded-lg transition-colors font-castoro"
+            className="flex items-center justify-center gap-2 px-4 py-2 bg-[#90AEAD] hover:bg-[#7a9a99] text-white rounded-lg transition-colors font-baskervville"
           >
             <EditOutlined />
             Edit
@@ -83,7 +84,7 @@ export default function UserAdCard({ ad }) {
           {/* View Button */}
           <Link
             to={`/ad/${ad.slug}`}
-            className="flex items-center justify-center gap-2 px-4 py-2 bg-[#244855] hover:bg-[#1a3640] text-white rounded-lg transition-colors font-castoro"
+            className="flex items-center justify-center gap-2 px-4 py-2 bg-[#244855] hover:bg-[#1a3640] text-white rounded-lg transition-colors font-baskervville"
           >
             <EyeOutlined />
             View

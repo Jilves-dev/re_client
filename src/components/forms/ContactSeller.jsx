@@ -63,14 +63,14 @@ export default function ContactSeller({ ad }) {
   return (
     <div className="w-full bg-[#FBE9D0] py-10">
       <div className="max-w-2xl mx-auto bg-white border-1 border-[#244855] p-6 rounded-lg shadow-md">
-        <h3 className="text-2xl text-center mb-6">
+        <h3 className="font-poiretOne text-2xl text-center mb-6">
           Please contact {ad?.postedBy?.name ? ad?.postedBy?.name : ad?.postedBy?.username}
           <MdEmail style={{ fontSize: 28, color: '#90AEAD', display: 'inline-block', verticalAlign: 'middle' }} />
           </h3>
         <form onSubmit={handleSubmit} className="space-y-4">
           <textarea
             name="message"
-            className="form-textarea w-full p-3 border-1 border-[#90AEAD]  rounded-lg"
+            className="form-textarea w-full p-3 border-1 border-[#90AEAD] rounded-lg font-poiretOne"
             placeholder="Write your message"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
@@ -81,7 +81,7 @@ export default function ContactSeller({ ad }) {
 
           <input
             type="text"
-            className="form-input w-full p-3 border-1 border-[#90AEAD] rounded-lg"
+            className="form-input w-full p-3 border-1 border-[#90AEAD] rounded-lg font-poiretOne"
             placeholder="Enter your name"
             value={name}
             onChange={(e) => setName(e.target.value)}
@@ -90,7 +90,7 @@ export default function ContactSeller({ ad }) {
 
           <input
             type="text"
-            className="form-input w-full p-3 border-1 border-[#90AEAD] rounded-lg"
+            className="form-input w-full p-3 border-1 border-[#90AEAD] rounded-lg font-poiretOne"
             placeholder="Enter your email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -99,7 +99,7 @@ export default function ContactSeller({ ad }) {
 
           <input
             type="text"
-            className="form-input w-full p-3 border-1 border-[#90AEAD] rounded-lg"
+            className="form-input w-full p-3 border-1 border-[#90AEAD] rounded-lg font-poiretOne"
             placeholder="Enter your phone"
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
@@ -108,7 +108,7 @@ export default function ContactSeller({ ad }) {
 
           {loggedIn ? (
             <button
-              className="bg-[#FBE9D0] border-1 border-[#90AEAD]  hover:bg-[#FBE9D0] text-[#244855] hover:text-[#90AEAD] py-2 px-4 rounded w-full"
+              className="bg-[#FBE9D0] border-1 border-[#90AEAD]  hover:bg-[#FBE9D0] text-[#244855] hover:text-[#90AEAD] py-2 px-4 rounded w-full font-poiretOne"
               type="submit"
               disabled={!name || !email || loading}
             >
@@ -116,7 +116,7 @@ export default function ContactSeller({ ad }) {
             </button>
           ) : (
             <button
-              className="bg-[#FBE9D0] !im border-1 border-[#90AEAD] hover:bg-[#cf8c60] text-[#244855] hover:text-[#90AEAD] py-2 px-4 rounded w-full"
+              className="bg-[#FBE9D0] !im border-1 border-[#90AEAD] hover:bg-[#cf8c60] text-[#244855] hover:text-[#90AEAD] py-2 px-4 rounded w-full font-poiretOne text-xl"
               type="button"
               onClick={handleLoginRedirect}
             >

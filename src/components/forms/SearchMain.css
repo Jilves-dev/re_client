@@ -319,9 +319,15 @@ button:disabled {
   font-family: 'poiretOne', sans-serif !important;
 }
 
-/* Bootstrap Dropdown fontin muutos */
+/* Bootstrap Dropdown fontti*/
 .price-button .dropdown-toggle,
 .price-button .dropdown-menu,
 .price-button .dropdown-item {
   font-family: 'Dyer Arts and Crafts', serif !important;
+  color: #90AEAD !important;
+}
+
+.price-button .dropdown-toggle:hover,
+.price-button .dropdown-item:hover {
+  color: #244855 !important;
 }

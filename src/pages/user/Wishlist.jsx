@@ -77,7 +77,7 @@ const fetchWishlist = async () => {
         <PageHeader title="Wishlist"/>
         <Sidebar />
         <div className="flex justify-center items-center py-20">
-          <h2 className="font-castoro text-center px-4">
+          <h2 className="font-baskervville text-center px-4">
             Hey {auth.user?.name || auth.user?.username},
             <br/>
             You have not liked any properties yet!
@@ -94,7 +94,7 @@ const fetchWishlist = async () => {
       <Sidebar />
       
       <div className="flex justify-center py-10">
-        <h1 className="font-castoro text-2xl">
+        <h1 className="font-baskervville text-2xl">
           You have liked {ads.length} {ads.length === 1 ? 'property' : 'properties'}
         </h1>
       </div>

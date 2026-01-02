@@ -58,7 +58,7 @@ export default function Sidebar() {
 
   return (
     <div className='bg-[#FBE9D0] w-full px-2 py-2 pb-4'>
-      <div className="hidden md:flex justify-start gap-6 border-b border-[#874F41] font-poiretOne text-xl">
+      <div className="hidden md:flex justify-start gap-6 border-b border-[#874F41] font-poiretOne text-lg">
         <NavLink className="nav-link text-[#244855] bg-[#FBE9D0] !important" to="/dashboard">🔮 dashboard</NavLink>
         <NavLink className="nav-link text-[#244855] !important" to="/user/wishlist">💖 wishlist</NavLink>
         <NavLink className="nav-link text-[#244855] !important" to="/user/conversations">📫 Conversations</NavLink>

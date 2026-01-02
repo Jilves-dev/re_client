@@ -35,9 +35,9 @@ export default function AdCard({ ad, className }) {
         <Badge.Ribbon 
           text={`${ad?.type} for ${ad?.action}`} 
           color={badgeColor}
-          className="font-poiretOne text-sm md:text-base"
+          className="font-baskervville text-sm md:text-base pr-3"
           style={{ 
-            top: '8px',
+            top: '8px', 
             opacity: 0.95
           }}
         />
@@ -66,7 +66,7 @@ export default function AdCard({ ad, className }) {
                         group-hover:translate-y-[-4px]">
           
           {/* Price with enhanced visibility */}
-          <h5 className="font-baskervville text-2xl font-bold mb-2 
+          <h5 className="font-poiretOne text-2xl font-bold mb-2 
                          drop-shadow-lg
                          transition-colors duration-300
                          {/*group-hover:text-[#E64833]*/}">
@@ -80,8 +80,8 @@ export default function AdCard({ ad, className }) {
           </h4>
 
           {/* Description with subtle appearance */}
-          <h5 className="font-baskervville text-base mb-3 line-clamp-1 
-                         opacity-90">
+          <h5 className="font-poiretOne text-lg mb-3 line-clamp-1 
+                         opacity-95">
             {ad.description}
           </h5>
           

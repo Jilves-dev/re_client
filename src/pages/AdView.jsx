@@ -68,7 +68,7 @@ export default function AdView() {
     <>
 <div className="flex flex-col bg-[#FBE9D0] sm:grid sm:grid-cols-3 gap-2 pt-10"> 
 <div className="flex flex-row sm:col-span-3 justify-between items-center">
-<div className="pl-4 font-Castoro">{ad?.sold ? "❌ Off market" : "✅ In market"}</div> 
+<div className="pl-4 font-baskervville">{ad?.sold ? "❌ Off market" : "✅ In market"}</div> 
 <LikeUnlike ad={ad} className="relative right-6 sm:right-0 drop-shadow-md" /> </div>
 
   {/** Julkaisu ajankohta, osoite ja ominaisuudet *
@@ -90,9 +90,9 @@ export default function AdView() {
   </div>*/}
 
     {/* ✅ KORJATTU: Kaikki tiedot yhdessä, gap-2 pienellä ja gap-4 suurella */}
-  <div className="col-span-3 grid items-center space-y-2 md:space-y-6 pb-6 md:pb-6 font-Castoro">
+  <div className="col-span-3 grid items-center space-y-2 md:space-y-6 pb-6 md:pb-6 font-poiretOne">
     {/* Julkaisuajankohta */}
-    <p className="text-muted pl-4">{dayjs(ad?.createdAt).fromNow()}</p>
+    <p className="font-baskervville text-muted pl-4">{dayjs(ad?.createdAt).fromNow()}</p>
     
     {/* Osoite */}
     <h1 className="text-2xl md:text-3xl pl-4 drop-shadow-sm">{ad.address}</h1>
@@ -104,7 +104,7 @@ export default function AdView() {
     <p className="text-xl md:text-2xl pl-4 drop-shadow-sm">{ad.description}</p>
     
     {/* ✅ YHDISTETTY: Hinta samaan ryhmään */}
-    <h1 className="text-2xl md:text-3xl pl-4 drop-shadow-sm font-bold">{formatNumber(ad.price)}€</h1>
+    <h1 className="text-2xl md:text-3xl pl-4 drop-shadow-sm font-medium">{formatNumber(ad.price)}€</h1>
     
     {/* Ominaisuudet */}
     <div className="ml-4 sm:ml-4">
@@ -135,7 +135,7 @@ export default function AdView() {
       <div className="container mb-2">
         <div className="row">
           <div className="col-lg-8 offset-lg-2">
-            <h3 className="text-xl text-center pl-6">
+            <h3 className="font-poiretOne text-2xl text-center pl-6">
               Other related properties by {ad?.postedBy?.name}:
             </h3>
           </div>
