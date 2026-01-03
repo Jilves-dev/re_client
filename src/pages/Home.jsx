@@ -25,7 +25,7 @@ const PageHeader = ({ title }) => {
 
   return (
     <div className="mx-auto w-full text-left pb-8 pt-10 sm:pt-20 sm:pb-16 md:pt-[68px] md:pb-12 bg-[#90AEAD]">
-      <h1 className="pl-8">
+      <h1 className="pl-4 sm:pl-8">
         <span className="font-decomang text-[#244855] text-5xl sm:text-8xl">{firstLetter}</span>
         <span className="font-decomang text-[#244855] text-5xl sm:text-8xl">{restOfTitle}</span>
       </h1>

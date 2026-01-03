@@ -95,10 +95,10 @@ export default function AdView() {
     <p className="font-baskervville text-muted pl-4">{dayjs(ad?.createdAt).fromNow()}</p>
     
     {/* Osoite */}
-    <h1 className="font-decomang text-2xl md:text-7xl pl-4 drop-shadow-sm">{ad.address}</h1>
+    <h1 className="font-decomang text-4xl md:text-7xl pl-4 drop-shadow-sm">{ad.address}</h1>
     
     {/* Otsikko */}
-    <h1 className="font-baskervville text-2xl md:text-2xl font-normal pl-4 drop-shadow-sm">{ad.title}</h1>
+    <h1 className="font-baskervville text-xl md:text-2xl font-normal pl-4 drop-shadow-sm">{ad.title}</h1>
     
     {/* Kuvaus */}
     <p className="font-baskervville text-xl md:text-2xl pl-4 drop-shadow-sm">{ad.description}</p>

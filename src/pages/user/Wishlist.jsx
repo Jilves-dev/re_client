@@ -6,9 +6,9 @@ import axios from "axios";
 import AdCard from "../../components/cards/AdCard";
 
 const PageHeader = ({ title }) => (
-  <div className="w-full text-align:left pb-12 pt-14 xl:pb-16 xl:pt-20 bg-[#874F41]">
+  <div className="w-full text-align:left pb-10 pt-10 sm:pb-12 sm:pt-14 xl:pb-16 xl:pt-20 bg-[#874F41]">
     <div className="flex items-center pl-8">
-      <h1 className="font-decomang text-align:left text-6xl md:text-6xl xl:text-8xl text-[#E64833]">
+      <h1 className="font-decomang text-align:left text-7xl md:text-6xl xl:text-8xl text-[#E64833]">
         {title}
       </h1>
     </div>
@@ -77,7 +77,7 @@ const fetchWishlist = async () => {
         <PageHeader title="Wishlist"/>
         <Sidebar />
         <div className="flex justify-center items-center py-20">
-          <h2 className="font-baskervville text-center px-4">
+          <h2 className="font-poiretOne text-center px-4">
             Hey {auth.user?.name || auth.user?.username},
             <br/>
             You have not liked any properties yet!
@@ -93,8 +93,8 @@ const fetchWishlist = async () => {
       <PageHeader title="Wishlist"/>
       <Sidebar />
       
-      <div className="flex justify-center py-10">
-        <h1 className="font-baskervville text-2xl">
+      <div className="flex justify-center py-6">
+        <h1 className="font-poiretOne text-2xl">
           You have liked {ads.length} {ads.length === 1 ? 'property' : 'properties'}
         </h1>
       </div>

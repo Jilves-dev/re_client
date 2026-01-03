@@ -9,8 +9,8 @@ import toast from "react-hot-toast";
 
 const PageHeader = ({ title }) => (
   <div className="w-full text-left pb-12 pt-14 xl:pb-16 xl:pt-20 bg-[#874F41]">
-    <div className="flex items-center pl-8">
-      <h1 className="font-decomang text-5xl md:text-6xl xl:text-8xl text-[#E64833]">
+    <div className="flex items-center pl-4 sm:pl-8">
+      <h1 className="font-decomang text-6xl md:text-6xl xl:text-8xl text-[#E64833]">
         {title}
       </h1>
     </div>

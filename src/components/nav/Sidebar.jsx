@@ -86,7 +86,7 @@ export default function Sidebar() {
               }} 
               className="cursor-pointer"
             />
-            <span onClick={handleClick} className='cursor-pointer font-castoro text-[#874F41] mb-2'>
+            <span onClick={handleClick} className='cursor-pointer font-poiretOne text-lg text-[#874F41] mb-2'>
               DashboardNavigatioN
             </span>
           </>
@@ -106,7 +106,7 @@ export default function Sidebar() {
               }}
               className="cursor-pointer hover:text-[#874F41] transition-colors"
             />
-            <span onClick={handleClick} className='cursor-pointer font-poiretOne text-[#E64833] mb-2 hover:text-[#874F41] transition-colors'>
+            <span onClick={handleClick} className='cursor-pointer font-poiretOne text-lg text-[#E64833] mb-2 hover:text-[#874F41] transition-colors'>
               closeMenu 
             </span>
           </>

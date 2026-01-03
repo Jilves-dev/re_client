@@ -258,8 +258,12 @@ button:disabled {
 }
 
 .search-modal .modal-title {
-  font-family: 'Castoro', serif;
+  font-family: 'Dyer Arts and Crafts', serif;
   font-weight: 500;
+}
+
+.search-modal .modal-body {
+  font-family: 'PoiretOne-Regular', serif;
 }
 
 .search-modal .modal-header .btn-close {
@@ -272,6 +276,8 @@ button:disabled {
   color: #244855;
   border: 1px solid #244855;
   transition: all 0.2s ease;
+  font-family: 'PoiretOne-Regular', serif;
+  font-weight: 500;
 }
 
 .search-modal .modal-body .btn-primary:hover,
@@ -279,12 +285,16 @@ button:disabled {
   background-color: #90AEAD;
   color: #244855;
   border-color: #244855;
+    font-family: 'PoiretOne-Regular', serif;
+  font-weight: 500;
 }
 
 /* Muutetaan modaalin valitun radio-napin väri */
 .search-modal .form-check-input:checked {
   background-color: #90AEAD;
   border-color: #90AEAD;
+    font-family: 'PoiretOne-Regular', serif;
+  font-weight: 500;
 }
 
 .search-modal .form-check-input:focus {
