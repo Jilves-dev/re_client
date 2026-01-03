@@ -190,14 +190,12 @@ export default function Profile() {
                   maxLength={250}
                 />
                 </div>
-         
                          <button
                           className="!bg-[#FBE9D0] hover:bg-[#cf8c60] !text-[#E64833] 
-                          py-2 px-4 rounded !border 2px border-[#874F41] col-12"
-                        >
-                          {loading ? "Processing..." : "Update Profile"}
-                        </button>
-                
+                          py-2 px-4 rounded !border 2px border-[#874F41] col-12 text-xl"
+                          >
+                            {loading ? "Processing..." : "Update Profile"}
+                          </button>
               </form>
               <br></br><br></br><br></br>    
               </div>

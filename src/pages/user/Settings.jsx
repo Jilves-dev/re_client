@@ -59,7 +59,7 @@ export default function Settings() {
                   onChange={(e) => setPassword(e.target.value)}
                 />
                 <button
-                  className="font-poiretOne !bg-[#FBE9D0] hover:bg-[#cf8c60] !border-2 !border-[#874F41] !text-[#E64833] py-2 px-4 rounded col-12"
+                  className="font-poiretOne !bg-[#FBE9D0] hover:bg-[#cf8c60] !border-2 !border-[#874F41] !text-[#E64833] py-2 px-4 rounded col-12 text-xl"
                   disabled={loading}
                 >
                   {loading ? "Processing" : "Update password"}

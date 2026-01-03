@@ -90,15 +90,15 @@ export default function AdView() {
   </div>*/}
 
     {/* ✅ KORJATTU: Kaikki tiedot yhdessä, gap-2 pienellä ja gap-4 suurella */}
-  <div className="col-span-3 grid items-center space-y-2 md:space-y-6 pb-6 md:pb-6 font-poiretOne">
+  <div className="col-span-3 grid items-center space-y-2 md:space-y-6 pb-6 md:pb-6">
     {/* Julkaisuajankohta */}
     <p className="font-baskervville text-muted pl-4">{dayjs(ad?.createdAt).fromNow()}</p>
     
     {/* Osoite */}
-    <h1 className="font-decomang text-2xl md:text-6xl pl-4 drop-shadow-sm">{ad.address}</h1>
+    <h1 className="font-decomang text-2xl md:text-7xl pl-4 drop-shadow-sm">{ad.address}</h1>
     
     {/* Otsikko */}
-    <h1 className="font-baskervville text-2xl md:text-3xl font-normal pl-4 drop-shadow-sm">{ad.title}</h1>
+    <h1 className="font-baskervville text-2xl md:text-2xl font-normal pl-4 drop-shadow-sm">{ad.title}</h1>
     
     {/* Kuvaus */}
     <p className="font-baskervville text-xl md:text-2xl pl-4 drop-shadow-sm">{ad.description}</p>
@@ -135,7 +135,7 @@ export default function AdView() {
       <div className="container mb-2">
         <div className="row">
           <div className="col-lg-8 offset-lg-2">
-            <h3 className="font-poiretOne text-2xl text-center pl-6">
+            <h3 className="font-poiretOne text-2xl text-center font-medium pl-6">
               Other related properties by {ad?.postedBy?.name}:
             </h3>
           </div>

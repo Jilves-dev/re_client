@@ -108,7 +108,7 @@ export default function ContactSeller({ ad }) {
 
           {loggedIn ? (
             <button
-              className="bg-[#FBE9D0] border-1 border-[#90AEAD] hover:bg-[#FBE9D0] text-[#244855] hover:text-[#90AEAD] py-2 px-4 rounded w-full font-poiretOne text-xl font-medium"
+              className="bg-[#FBE9D0] border-1 border-[#90AEAD] hover:bg-[#FBE9D0] text-[#244855] hover:text-[#90AEAD] py-2 px-4 rounded w-full font-poiretOne text-xl"
               type="submit"
               disabled={!name || !email || loading}
             >
@@ -116,7 +116,7 @@ export default function ContactSeller({ ad }) {
             </button>
           ) : (
             <button
-              className="bg-[#FBE9D0] !im border-1 border-[#90AEAD] hover:bg-[#cf8c60] text-[#244855] hover:text-[#90AEAD] py-2 px-4 rounded w-full font-poiretOne text-xl font-medium"
+              className="bg-[#FBE9D0] !im border-1 border-[#90AEAD] hover:bg-[#cf8c60] text-[#244855] hover:text-[#90AEAD] py-2 px-4 rounded w-full font-poiretOne text-xl"
               type="button"
               onClick={handleLoginRedirect}
             >

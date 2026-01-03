@@ -125,7 +125,7 @@ export default function ImageUpload({ ad, setAd }) {
             src={file?.Location}
             shape="square"
             style={{ width: "120px", height: "120px" }}
-            className="border-2 border-[#874F41] cursor-pointer hover:opacity-70 transition-opacity"
+            className="border-2 border-[#E64833] cursor-pointer hover:opacity-70 transition-opacity"
             onClick={() => handleDelete(file)} // ✅ Klikkaa poistaaksesi
           />
         </div>

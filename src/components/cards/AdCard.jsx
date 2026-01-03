@@ -87,7 +87,7 @@ export default function AdCard({ ad, className }) {
           
           {/* Features with improved spacing and visibility - emoji icons via AdFeatures */}
           <div className="drop-shadow-lg text-[#FFFFFF] !important">
-            <AdFeatures ad={ad} layout="spread" />
+            <AdFeatures ad={ad} layout="spread" fontClass="font-poiretOne" />
           </div>
         </div>
 
