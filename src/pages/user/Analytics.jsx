@@ -169,10 +169,10 @@ export default function Analytics() {
       <PageHeader title="Analytics" />
       <Sidebar />
 
-      <div className="container mx-auto px-4 py-10">
+      <div className="container mx-auto px-4 py-10 font-baskervville"> 
         {/* Overview Stats */}
         <div className="mb-8">
-          <h2 className="font-castoro text-2xl text-[#244855] mb-6">Overview</h2>
+          <h2 className="text-2xl text-[#244855] mb-6">Overview</h2>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             <StatCard
@@ -217,7 +217,7 @@ export default function Analytics() {
 
         {/* Performance Metrics */}
         <div className="mb-8">
-          <h2 className="font-castoro text-2xl text-[#244855] mb-6">Performance</h2>
+          <h2 className="text-2xl text-[#244855] mb-6">Performance</h2>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {/* Avg views per property */}
@@ -250,7 +250,7 @@ export default function Analytics() {
 
         {/* Top Performing Properties */}
         <div id="top-properties" className="mb-8">
-          <h2 className="font-castoro text-2xl text-[#244855] mb-6">
+          <h2 className="text-2xl text-[#244855] mb-6">
             Top Performing Properties
           </h2>
 
@@ -268,7 +268,7 @@ export default function Analytics() {
             </div>
           ) : (
             <div className="bg-white rounded-lg shadow-md p-8 text-center">
-              <p className="text-gray-600 font-castoro">
+              <p className="text-gray-600">
                 No properties yet. <Link to="/ad/create" className="text-[#90AEAD] hover:underline">Create your first property</Link>
               </p>
             </div>
@@ -278,7 +278,7 @@ export default function Analytics() {
          {/* Recent Activity */}
         {stats.recentActivity && stats.recentActivity.length > 0 && (
           <div className="mb-8">
-            <h2 className="font-castoro text-2xl text-[#244855] mb-6">
+            <h2 className="text-2xl text-[#244855] mb-6">
               Recent Activity
             </h2>
             

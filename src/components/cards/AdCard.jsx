@@ -56,32 +56,32 @@ export default function AdCard({ ad, className }) {
 
         {/* Enhanced gradient overlay kortin alareunan tummuus*/}
         <div className="absolute inset-0 
-                        bg-gradient-to-t from-[#244855]/60 via-[#244855]/15 to-transparent
+                        bg-gradient-to-t from-[#244855]/40 via-[#244855]/5 to-transparent
                         transition-all duration-300
                         group-hover:from-[#244855]/70"></div>
         
         {/* Content with enhanced styling */}
-        <div className="absolute bottom-0 left-0 right-0 p-5 text-white
+        <div className="absolute bottom-4 left-0 right-0 px-5 pt-5 pb-2 text-white
                         transform transition-transform duration-300
                         group-hover:translate-y-[-4px]">
           
           {/* Price with enhanced visibility */}
-          <h5 className="font-poiretOne text-2xl font-bold mb-2 
+          <h5 className="font-poiretOne text-2xl font-semibold mb-2 
                          drop-shadow-lg
-                         transition-colors duration-300
-                         {/*group-hover:text-[#E64833]*/}">
+                         transition-colors duration-300"
+                         >
             {formatNumber(ad?.price)}€
           </h5>
           
           {/* Address with better truncation */}
-          <h4 className="font-poiretOne font-normal text-xl mb-2 line-clamp-1
-                         drop-shadow-md">
+          <h4 className="font-poiretOne text-xl mb-2 line-clamp-1
+                         drop-shadow-lg">
             {ad?.address}
           </h4>
 
           {/* Description with subtle appearance */}
-          <h5 className="font-poiretOne text-lg mb-3 line-clamp-1 
-                         opacity-95">
+          <h5 className="font-poiretOne text-lg mb-3 line-clamp-1
+                         drop-shadow-md">
             {ad.description}
           </h5>
           
@@ -102,4 +102,3 @@ export default function AdCard({ ad, className }) {
     </Link>
   );
 }
-

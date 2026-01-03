@@ -70,7 +70,7 @@ export default function Main() {
   const mobileTextColor = isDashboard ? 'text-[#244855]' : 'text-[#244855]';
 
   return (
-    <div className={`${bgColor} w-full font-poiretOne !font-thin px-4 py-2 pb-6`} style={{ zIndex: 100000, position: 'relative' }}>
+    <div className={`${bgColor} w-full font-poiretOne !font-medium text-lg px-4 py-2 pb-6`} style={{ zIndex: 100000, position: 'relative' }}>
       <div className={`hidden md:flex justify-between ${textColor}`}>
         <NavLink className="nav-link" to="/">Home</NavLink>
         <NavLink className="nav-link" to="/search">Search</NavLink>

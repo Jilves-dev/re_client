@@ -296,9 +296,9 @@ export default function Conversations() {
       <PageHeader title="Conversations" />
       <Sidebar />
 
-      <div className="container mx-auto px-4 py-10">
+      <div className="font-baskervville container mx-auto px-4 py-10">
         <div className="flex justify-between items-center mb-6">
-          <h2 className="font-castoro text-2xl text-[#244855]">
+          <h2 className="font-baskervville text-2xl text-[#244855]">
             All Conversations ({conversations.length})
           </h2>
           {/* ✅ LISÄTTY: Manual refresh button */}
@@ -324,7 +324,7 @@ export default function Conversations() {
         {conversations.length === 0 ? (
           <div className="bg-white rounded-lg shadow-md p-8 text-center">
             <MessageOutlined style={{ fontSize: '48px', color: '#90AEAD' }} className="mb-4" />
-            <p className="text-gray-600 font-castoro text-lg mb-2">
+            <p className="text-gray-600 font-baskervville text-lg mb-2">
               No conversations yet
             </p>
             <p className="text-gray-500 text-sm">
@@ -346,7 +346,7 @@ export default function Conversations() {
                     <div className="flex items-center gap-2 mb-1">
                       <Link 
                         to={`/ad/${conv.ad?.slug}`} 
-                        className="text-lg font-castoro text-[#244855] hover:text-[#90AEAD] break-words"
+                        className="text-lg font-baskervville text-[#244855] hover:text-[#90AEAD] break-words"
                       >
                         📍 {conv.ad?.address}
                       </Link>
@@ -445,7 +445,7 @@ export default function Conversations() {
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[95vh] overflow-y-auto">
             <div className="bg-[#90AEAD] p-6 rounded-t-lg flex justify-between items-center">
-              <h3 className="text-2xl font-castoro text-[#244855]">
+              <h3 className="text-2xl font-baskervville text-[#244855]">
                 Reply to Conversation
               </h3>
               <button

@@ -87,7 +87,7 @@ export default function Profile() {
         <PageHeader title="Your user profile"/>
       </div>
         <Sidebar />
-        <div className="container mt-2">
+        <div className="container mt-2 font-poiretOne">
           <div className="row w-full">
             <div className="col-lg-8 offset-lg-2 mt-2">
               <ProfileUpload
@@ -97,14 +97,14 @@ export default function Profile() {
               <br></br>
               <form onSubmit={handleSubmit}>
               <div className="mb-4">
-              <label htmlFor="username" className="font-castoro block text-[#874F41] mb-2">
+              <label htmlFor="username" className="block text-[#874F41] mb-2">
                   username
                 </label>
                 <input
                 id="username"
                   type="text"
                   placeholder="Update your username"
-                  className="form-control font-castoro text-[#874F41]"
+                  className="form-control text-[#874F41]"
                   value={username}
                   onChange={(e) =>
                     setUsername(slugify(e.target.value.toLowerCase()))
@@ -112,79 +112,79 @@ export default function Profile() {
                 />
                 </div>
                 <div className="mb-4">
-              <label htmlFor="username" className="font-castoro block text-[#874F41] mb-2">
+              <label htmlFor="username" className="block text-[#874F41] mb-2">
                   name
                 </label>
                 <input
                  id="name"
                   type="text"
                   placeholder="Enter your name"
-                  className="form-control mb-4 font-castoro text-[#874F41]"
+                  className="form-control mb-4 text-[#874F41]"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                 />
                 </div>
                  <div className="mb-4">
-              <label htmlFor="username" className="font-castoro block text-[#874F41] mb-2">
+              <label htmlFor="username" className="block text-[#874F41] mb-2">
                   email
                 </label>
                 <input
                  id="email"
                   type="email"
-                  className="form-control mb-4 font-castoro text-[#874F41]"
+                  className="form-control mb-4 text-[#874F41]"
                   value={email}
                   disabled={true}
                 />
                 </div>
                  <div className="mb-4">
-              <label htmlFor="username" className="font-castoro block text-[#874F41] mb-2">
+              <label htmlFor="username" className="block text-[#874F41] mb-2">
                   company name
                 </label>
                 <input
                   id="company"
                   type="text"
                   placeholder="Enter your company name"
-                  className="form-control mb-4 font-castoro text-[#874F41]"
+                  className="form-control mb-4 text-[#874F41]"
                   value={company}
                   onChange={(e) => setCompany(e.target.value)}
                 />
                 </div>
                  <div className="mb-4">
-              <label htmlFor="username" className="font-castoro block text-[#874F41] mb-2">
+              <label htmlFor="username" className="block text-[#874F41] mb-2">
                   address
                 </label>
                 <input
                   id="address"
                   type="text"
                   placeholder="enter your address"
-                  className="form-control mb-4 font-castoro text-[#874F41]"
+                  className="form-control mb-4 text-[#874F41]"
                   value={address}
                   onChange={(e) => setAddress(e.target.value)}
                 />
                 </div>
                  <div className="mb-4">
                 <label htmlFor="username" 
-                className="font-castoro block text-[#874F41] mb-2">
+                className="block text-[#874F41] mb-2">
                   phone number
                 </label>
                 <input
                   id="phone"
                   type="text"
                   placeholder="enter your phone"
-                  className="form-control mb-4 font-castoro text-[#874F41]"
+                  className="form-control mb-4 text-[#874F41]"
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                 />
                 </div>
                  <div className="mb-4">
-              <label htmlFor="username" className="font-castoro block text-[#874F41] mb-2">
+              <label htmlFor="username" className="block text-[#874F41] mb-2">
                   tell us something about yourself
                 </label>
                 <textarea
                   id="about"
                   rows="4"
                   placeholder="write something interesting about yourself.."
-                  className="form-control mb-4 font-castoro text-[#874F41]"
+                  className="form-control mb-4 text-[#874F41]"
                   value={about}
                   onChange={(e) => setAbout(e.target.value)}
                   maxLength={250}
@@ -193,7 +193,7 @@ export default function Profile() {
          
                          <button
                           className="!bg-[#FBE9D0] hover:bg-[#cf8c60] !text-[#E64833] 
-                          font-castoro py-2 px-4 rounded !border 2px border-[#874F41] col-12"
+                          py-2 px-4 rounded !border 2px border-[#874F41] col-12"
                         >
                           {loading ? "Processing..." : "Update Profile"}
                         </button>

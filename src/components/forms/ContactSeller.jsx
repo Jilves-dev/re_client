@@ -63,9 +63,9 @@ export default function ContactSeller({ ad }) {
   return (
     <div className="w-full bg-[#FBE9D0] py-10">
       <div className="max-w-2xl mx-auto bg-white border-1 border-[#244855] p-6 rounded-lg shadow-md">
-        <h3 className="font-poiretOne text-2xl text-center mb-6">
+        <h3 className="font-decomang text-4xl text-center mb-6">
           Please contact {ad?.postedBy?.name ? ad?.postedBy?.name : ad?.postedBy?.username}
-          <MdEmail style={{ fontSize: 28, color: '#90AEAD', display: 'inline-block', verticalAlign: 'middle' }} />
+          <MdEmail style={{ fontSize: 40, color: '#90AEAD', display: 'inline-block', verticalAlign: 'middle', paddingBottom: '4px'}} />
           </h3>
         <form onSubmit={handleSubmit} className="space-y-4">
           <textarea
@@ -108,7 +108,7 @@ export default function ContactSeller({ ad }) {
 
           {loggedIn ? (
             <button
-              className="bg-[#FBE9D0] border-1 border-[#90AEAD]  hover:bg-[#FBE9D0] text-[#244855] hover:text-[#90AEAD] py-2 px-4 rounded w-full font-poiretOne"
+              className="bg-[#FBE9D0] border-1 border-[#90AEAD] hover:bg-[#FBE9D0] text-[#244855] hover:text-[#90AEAD] py-2 px-4 rounded w-full font-poiretOne text-xl font-medium"
               type="submit"
               disabled={!name || !email || loading}
             >
@@ -116,7 +116,7 @@ export default function ContactSeller({ ad }) {
             </button>
           ) : (
             <button
-              className="bg-[#FBE9D0] !im border-1 border-[#90AEAD] hover:bg-[#cf8c60] text-[#244855] hover:text-[#90AEAD] py-2 px-4 rounded w-full font-poiretOne text-xl"
+              className="bg-[#FBE9D0] !im border-1 border-[#90AEAD] hover:bg-[#cf8c60] text-[#244855] hover:text-[#90AEAD] py-2 px-4 rounded w-full font-poiretOne text-xl font-medium"
               type="button"
               onClick={handleLoginRedirect}
             >
