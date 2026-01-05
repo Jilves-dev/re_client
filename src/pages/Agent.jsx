@@ -4,16 +4,6 @@ import axios from "axios";
 import AdCard from "../components/cards/AdCard";
 import Logo from "../logo.svg";
 
-/*const PageHeader = ({ title }) => (
-  <div className="w-full text-align:left pb-12 pt-14 xl:pb-16 xl:pt-20 bg-[#90AEAD]">
-    <div className="flex items-center pl-10">
-      <h1 className="font-Castoro text-align:left text-6xl md:text-6xl xl:text-7xl text-[#244855]">
-        {title}
-      </h1>
-    </div>
-  </div>
-);*/
-
 export default function Agent() {
   const [agent, setAgent] = useState(null);
   const [ads, setAds] = useState([]);
@@ -84,11 +74,11 @@ export default function Agent() {
             )}
 
             
-     {/* About */}
+           {/* About */}
             {agent?.about && (
               <div className="mb-6">
                 <h3 className="font-poiretOne text-xl text-[#874F41] mb-2">About me</h3>
-                <p className="font-baskervville text-[#244855] text-lg leading-relaxed whitespace-pre-line">
+                <p className="font-baskervville text-[#244855] text-lg leading-relaxed whitespace-pre-line text-justify">
                   {agent.about}
                 </p>
               </div>
@@ -98,7 +88,7 @@ export default function Agent() {
             {agent?.company && (
               <div className="mb-6">
                 <h3 className="font-poiretOne text-xl text-[#874F41] mb-2">Company</h3>
-                <p className="font-baskervville text-[#244855] text-lg">{agent.company}</p>
+                <p className="font-baskervville text-[#244855] text-lg text-justify">{agent.company}</p>
               </div>
             )}
 
@@ -106,7 +96,7 @@ export default function Agent() {
             {agent?.address && (
               <div className="mb-6">
                 <h3 className="font-poiretOne text-xl text-[#874F41] mb-2">Location</h3>
-                <p className="font-baskervville text-[#244855] text-lg">{agent.address}</p>
+                <p className="font-baskervville text-[#244855] text-lg text-justify">{agent.address}</p>
               </div>
             )}
 

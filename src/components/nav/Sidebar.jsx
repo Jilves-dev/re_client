@@ -114,9 +114,12 @@ export default function Sidebar() {
       </div>
 
       {nav && (
-        <div className='fixed top-0 right-0 w-[64%] max-w-md h-screen bg-[rgba(253, 235, 211, 0.8)] 
-        backdrop-filter backdrop-blur-md flex flex-col justify-center items-center z-50'>
-          <ul className='font-poiretOne text-[#E64833]'>
+        <div className='fixed top-0 right-0 w-[65%] max-w-md h-screen bg-[rgba(253, 235, 211, 0.8)] 
+        backdrop-filter backdrop-blur-md flex flex-col justify-center items-start pl-4 z-50'>
+          <ul 
+            className='font-poiretOne text-[#E64833]'
+            style={{ textShadow: '0 0 6px rgba(36, 72, 85, 0.6)' }}
+          >
             <li className='py-4 text-4xl'>
               <a className="nav-link cursor-pointer" onClick={(e) => handleNavLinkClick(e, '/dashboard')}>Dashboard</a>
             </li>

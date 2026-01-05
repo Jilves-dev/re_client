@@ -6,7 +6,7 @@ import SearchMain from "../components/forms/SearchMain";
 import Spinner from "../components/Spinner";
 
 const PageHeader = ({ title }) => (
-  <div className="mx-auto w-full text-align:left pb-16 pt-20 bg-[#90AEAD]">
+  <div className="mx-auto w-full text-align:left pb-10 pt-12 sm:pb-16 pt-20 bg-[#90AEAD]">
     <h1 className="font-decomang pl-10 text-5xl sm:text-8xl text-[#244855]">
       {title}
     </h1>

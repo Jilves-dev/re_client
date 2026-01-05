@@ -35,7 +35,7 @@ export default function AdCard({ ad, className }) {
         <Badge.Ribbon 
           text={`${ad?.type} for ${ad?.action}`} 
           color={badgeColor}
-          className="font-baskervville text-sm md:text-base pr-3"
+          className="font-poiretOne text-sm md:text-base pr-3"
           style={{ 
             top: '8px', 
             opacity: 0.95
@@ -61,7 +61,7 @@ export default function AdCard({ ad, className }) {
                         group-hover:from-[#244855]/70"></div>
         
         {/* Content with enhanced styling */}
-        <div className="absolute bottom-4 left-0 right-0 px-5 pt-5 pb-2 text-white
+        <div className="absolute bottom-4 left-0 right-0 px-4 md:px-5 pt-5 pb-2 text-white
                         transform transition-transform duration-300
                         group-hover:translate-y-[-4px]">
           

@@ -71,25 +71,7 @@ export default function AdView() {
 <div className="pl-4 font-baskervville">{ad?.sold ? "❌ Off market" : "✅ In market"}</div> 
 <LikeUnlike ad={ad} className="relative right-6 sm:right-0 drop-shadow-md" /> </div>
 
-  {/** Julkaisu ajankohta, osoite ja ominaisuudet *
-  <div className="col-span-3 grid items-center gap-2 md:gap-4 font-Castoro">
-    <p className="text-muted pl-4">{dayjs(ad?.createdAt).fromNow()}</p>
-    <h1 className="text-3xl pl-4 drop-shadow-md">{ad.address}</h1>
-    <h1 className="text-3xl pl-4 drop-shadow-md">{ad.title}</h1>
-     <p className="text-2xl pl-4 drop-shadow-md">{ad.description}</p>
-    <div className="ml-4 sm:ml-4">
-    <div className="ml-0 sm:ml-0 drop-shadow-md text-[#244855] !important">
-      <AdFeatures ad={ad} />
-    </div>
-    </div>
-  </div>
-
-  * Hinta *
-  <div className="col-span-3 grid items-center mt-4 mb-4 ">
-    <h1 className="text-3xl pl-4 drop-shadow-md">{formatNumber(ad.price)}€</h1>
-  </div>*/}
-
-    {/* ✅ KORJATTU: Kaikki tiedot yhdessä, gap-2 pienellä ja gap-4 suurella */}
+    {/* Kaikki tiedot yhdessä, gap-2 pienellä ja gap-4 suurella */}
   <div className="col-span-3 grid items-center space-y-2 md:space-y-6 pb-6 md:pb-6">
     {/* Julkaisuajankohta */}
     <p className="font-baskervville text-muted pl-4">{dayjs(ad?.createdAt).fromNow()}</p>

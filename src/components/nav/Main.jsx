@@ -126,10 +126,13 @@ export default function Main() {
       {/* Mobile menu */}
       {nav && (
         <div 
-          className={`fixed top-0 right-0 w-[60%] max-w-md h-screen ${mobileOverlayBg} backdrop-filter backdrop-blur-md flex flex-col justify-center items-center`}
+          className={`fixed top-0 right-0 w-[65%] max-w-md h-screen ${mobileOverlayBg} backdrop-filter backdrop-blur-md flex flex-col justify-center items-start pl-4`}
           style={{ zIndex: 100001 }}
         >
-          <ul className={`font-poiretOne ${mobileTextColor} font-normal`}>
+          <ul 
+            className={`font-poiretOne ${mobileTextColor} font-normal`}
+            style={{ textShadow: '1px 1px 4px rgba(0, 0, 0, 0.25)' }}
+          >
             <li className='py-4 text-4xl'>
               <NavLink className="nav-link" to="/" onClick={handleClick}>Home</NavLink>
             </li>

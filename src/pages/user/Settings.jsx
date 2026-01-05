@@ -46,10 +46,9 @@ export default function Settings() {
         <PageHeader title="Update password"/>
         </div>
         <Sidebar />
-        <div className="container mt-2">
+        <div className="flex flex-col items-center mt-2 w-full">
           <br></br> <br></br>
-          <div className="row w-full">
-            <div className="col-lg-8 offset-lg-2 mt-2 text-[#90AEAD]">
+          <div className="w-full px-6 md:w-3/4 lg:w-2/3 mt-2 text-[#90AEAD]">
               <form onSubmit={handleSubmit}>
                 <input
                   type="password"
@@ -65,9 +64,8 @@ export default function Settings() {
                   {loading ? "Processing" : "Update password"}
                 </button>
               </form>
-            </div>
           </div>
-      </div>
+        </div>
     </>
   );
 }
