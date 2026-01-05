@@ -77,7 +77,7 @@ export default function ProfileUpload({ photo, setPhoto }) {
             src={photo.Location}
             shape="round"
             style={{ width: "120px", height: "120px", ...customShadow }}
-            className="font-poiretOne border-2 border-[#90AEAD] cursor-pointer hover:opacity-70 transition-opacity"
+            className="font-poiretOne border-2 border-[#E64833] cursor-pointer hover:opacity-70 transition-opacity"
             onClick={handleDelete}
             title="Click to delete image"
           />
@@ -87,7 +87,7 @@ export default function ProfileUpload({ photo, setPhoto }) {
       <label
         style={customShadow}
 
-        className={`bg-[#FBE9D0] hover:bg-[#cbc385] border-2 border-[#90AEAD]
+        className={`bg-[#FBE9D0] hover:bg-[#cbc385] border-2 border-[#E64833]
           text-[#874F41] cursor-pointer font-poiretOne transition-colors
           flex items-center justify-center
           ${uploading ? 'opacity-50 cursor-not-allowed' : ''}

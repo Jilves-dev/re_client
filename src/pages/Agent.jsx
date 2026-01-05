@@ -96,7 +96,7 @@ export default function Agent() {
             {agent?.address && (
               <div className="mb-6">
                 <h3 className="font-poiretOne text-xl text-[#874F41] mb-2">Location</h3>
-                <p className="font-baskervville text-[#244855] text-lg text-justify">{agent.address}</p>
+                <p className="font-baskervville text-[#244855] text-lg">{agent.address}</p>
               </div>
             )}
 

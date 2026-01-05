@@ -87,9 +87,8 @@ export default function Profile() {
         <PageHeader title="Your user profile"/>
       </div>
         <Sidebar />
-        <div className="container mt-2 font-poiretOne">
-          <div className="row w-full">
-            <div className="col-lg-8 offset-lg-2 mt-2">
+        <div className="flex flex-col items-center mt-2 font-poiretOne w-full">
+          <div className="w-full px-6 md:w-3/4 lg:w-2/3 mt-2">
               <ProfileUpload
                 photo={photo}
                 setPhoto={setPhoto}
@@ -199,7 +198,6 @@ export default function Profile() {
               </form>
               <br></br><br></br><br></br>    
               </div>
-          </div>
         </div>
      
     </>
