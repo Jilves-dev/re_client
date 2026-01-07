@@ -169,10 +169,10 @@ export default function Analytics() {
       <PageHeader title="Analytics" />
       <Sidebar />
 
-      <div className="container mx-auto px-4 py-10 font-baskervville"> 
+      <div className="container mx-auto px-4 pt-6 pb-8 sm:py-10 font-baskervville"> 
         {/* Overview Stats */}
         <div className="mb-8">
-          <h2 className="text-2xl text-[#244855] mb-6">Overview</h2>
+          <h2 className="text-2xl text-[#874F41] mb-6">Overview</h2>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             <StatCard

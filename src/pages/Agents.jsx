@@ -12,7 +12,7 @@ import Spinner from "../components/Spinner";
 
 const PageHeader = ({ title }) => (
   <div className="w-full text-align:left pb-10 pt-12 sm:pb-12 pt-14 xl:pb-16 xl:pt-20 bg-[#90AEAD]">
-    <div className="flex items-center pl-2 sm:pl-8">
+    <div className="flex items-center pl-3 sm:pl-8">
       <h1 className="font-decomang text-align:left text-6xl md:text-7xl xl:text-8xl text-[#244855] font-normal">
         {title}
       </h1>

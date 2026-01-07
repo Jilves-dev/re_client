@@ -76,7 +76,7 @@ const fetchWishlist = async () => {
       <div className='w-full pb-10'>
         <PageHeader title="Wishlist"/>
         <Sidebar />
-        <div className="flex justify-center items-center py-20">
+        <div className="flex justify-center items-center py-10 sm:py-20">
           <h2 className="font-poiretOne text-center px-4">
             Hey {auth.user?.name || auth.user?.username},
             <br/>
@@ -93,7 +93,7 @@ const fetchWishlist = async () => {
       <PageHeader title="Wishlist"/>
       <Sidebar />
       
-      <div className="flex justify-center py-6">
+      <div className="flex justify-center py-4 sm:py-6">
         <h1 className="font-poiretOne text-2xl">
           You have liked {ads.length} {ads.length === 1 ? 'property' : 'properties'}
         </h1>

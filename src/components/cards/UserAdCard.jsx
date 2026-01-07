@@ -32,7 +32,7 @@ export default function UserAdCard({ ad }) {
 
         {/* Address */}
         <Link to={`/ad/${ad.slug}`}>
-          <h3 className="font-poiretOne text-lg text-[#244855] hover:text-[#90AEAD] transition-colors mb-2 line-clamp-2">
+          <h3 className="font-poiretOne text-lg text-[#244855] hover:text-[#90AEAD] transition-colors mb-2 line-clamp-2 underline decoration-[#90AEAD]">
             {ad.address}
           </h3>
         </Link>

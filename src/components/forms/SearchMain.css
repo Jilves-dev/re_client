@@ -285,8 +285,12 @@ button:disabled {
   background-color: #90AEAD;
   color: #244855;
   border-color: #244855;
-    font-family: 'PoiretOne-Regular', serif;
+  font-family: 'PoiretOne-Regular', serif;
   font-weight: 500;
+}
+
+.search-modal .dropdown-menu {
+  background-color: #FBE9D0 !important;
 }
 
 /* Muutetaan modaalin valitun radio-napin väri */
@@ -335,6 +339,10 @@ button:disabled {
 .price-button .dropdown-item {
   font-family: 'Dyer Arts and Crafts', serif !important;
   color: #90AEAD !important;
+}
+
+.price-button .dropdown-menu {
+  background-color: #FBE9D0 !important;
 }
 
 .price-button .dropdown-toggle:hover,

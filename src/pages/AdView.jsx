@@ -86,7 +86,7 @@ export default function AdView() {
     <p className="font-baskervville text-xl md:text-2xl pl-4 drop-shadow-sm">{ad.description}</p>
     
     {/* ✅ YHDISTETTY: Hinta samaan ryhmään */}
-    <h1 className="font-baskervville text-2xl md:text-3xl pl-4 drop-shadow-sm font-normal">{formatNumber(ad.price)}€</h1>
+    <h1 className="font-baskervville text-2xl md:text-3xl pl-4 drop-shadow-sm">{formatNumber(ad.price)}€</h1>
     
     {/* Ominaisuudet */}
     <div className="ml-4 sm:ml-4">

@@ -41,7 +41,7 @@ export default function AdCreate() {
             onClick={handleSell}
             className="py-2.5 px-10 me-2 mb-2 text-sm font-medium
             !text-[#E64833] focus:outline-none !bg-[#FBE9D0] 
-            rounded border-2 !border-[#874F41] !hover:bg-[#90AEAD]
+            rounded border-1 sm:border-2 !border-[#874F41] !hover:bg-[#90AEAD]
             !hover:text-[#FFFFFF] focus:z-10 focus:ring-4
             focus:ring-gray-100 dark:focus:ring-gray-700
             dark:bg-gray-800 dark:text-gray-400
@@ -56,7 +56,7 @@ export default function AdCreate() {
                 onClick={() => navigate("/ad/create/sell/House")}
                 className="py-2.5 px-5 me-2 mb-2 text-sm font-medium font-baskervville
                 !text-[#E64833] focus:outline-none !bg-[#FBE9D0] 
-                rounded border-2 !border-[#874F41] !hover:bg-[#90AEAD]
+                rounded border-1 sm:border-2 !border-[#874F41] !hover:bg-[#90AEAD]
                 !hover:text-[#FFFFFF] focus:z-10 focus:ring-4
                 focus:ring-gray-100 dark:focus:ring-gray-700
                 dark:bg-gray-800 dark:text-gray-400
@@ -69,7 +69,7 @@ export default function AdCreate() {
                 onClick={() => navigate("/ad/create/sell/Land")}
                 className="py-2.5 px-5 me-2 mb-2 text-sm font-baskervville font-medium
                 !text-[#E64833] focus:outline-none !bg-[#FBE9D0] 
-                rounded border-2 !border-[#874F41] !hover:bg-[#90AEAD]
+                rounded border-1 sm:border-2 !border-[#874F41] !hover:bg-[#90AEAD]
                 !hover:text-[#FFFFFF] focus:z-10 focus:ring-4
                 focus:ring-gray-100 dark:focus:ring-gray-700
                 dark:bg-gray-800 dark:text-gray-400
@@ -87,7 +87,7 @@ export default function AdCreate() {
             onClick={handleRent}
             className="py-2.5 px-10 me-2 mb-2 text-sm font-baskervville font-medium
             !text-[#E64833] focus:outline-none !bg-[#FBE9D0] 
-            rounded border-2 !border-[#874F41] !hover:bg-[#90AEAD]
+            rounded border-1 sm:border-2 !border-[#874F41] !hover:bg-[#90AEAD]
             !hover:text-[#FFFFFF] focus:z-10 focus:ring-4
             focus:ring-gray-100 dark:focus:ring-gray-700
             dark:bg-gray-800 dark:text-gray-400
@@ -102,7 +102,7 @@ export default function AdCreate() {
                 onClick={() => navigate("/ad/create/rent/House")}
                 className="py-2.5 px-5 me-2 mb-2 text-sm font-medium font-baskervville
                 !text-[#E64833] focus:outline-none !bg-[#FBE9D0] 
-                rounded border-2 !border-[#874F41] !hover:bg-[#90AEAD]
+                rounded border-1 sm:border-2 !border-[#874F41] !hover:bg-[#90AEAD]
                 !hover:text-[#FFFFFF]  focus:z-10 focus:ring-4
                 focus:ring-gray-100 dark:focus:ring-gray-700
                 dark:bg-gray-800 dark:text-gray-400
@@ -115,7 +115,7 @@ export default function AdCreate() {
                 onClick={() => navigate("/ad/create/rent/Land")}
                 className="py-2.5 px-5 me-2 mb-2 text-sm font-medium font-baskervville
                 !text-[#E64833] focus:outline-none bg-[#FBE9D0] 
-                rounded border-2 !border-[#874F41] !hover:bg-[#90AEAD]
+                rounded border-1 sm:border-2 !border-[#874F41] !hover:bg-[#90AEAD]
                 !hover:text-[#FFFFFF] focus:z-10 focus:ring-4
                 focus:ring-gray-100 dark:focus:ring-gray-700
                 dark:bg-gray-800 dark:text-gray-400

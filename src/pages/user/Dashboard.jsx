@@ -99,9 +99,9 @@ useEffect(() => {
     <div className='w-full min-h-screen pb-10'>
         <PageHeader title="Dashboard"/>
         <Sidebar />
-        <div className="w-full bg-[#FBE9D0] min-h-screen py-10">
+        <div className="w-full bg-[#FBE9D0] min-h-screen pt-4 pb-8 sm:py-10">
           <div className="flex justify-center w-full">
-              <h1 className="font-poiretOne text-2xl text-[#244855]">
+              <h1 className="font-poiretOne text-2xl text-[#874F41]">
                 Total {ads.length} {ads.length === 1 ? 'property' : 'properties'}
               </h1>
           </div>

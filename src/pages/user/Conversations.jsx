@@ -298,7 +298,7 @@ export default function Conversations() {
 
       <div className="font-baskervville container mx-auto px-4 py-10">
         <div className="flex justify-between items-center mb-6">
-          <h2 className="font-baskervville text-2xl text-[#244855]">
+          <h2 className="font-baskervville text-2xl text-[#874F41]">
             All Conversations ({conversations.length})
           </h2>
           {/* ✅ LISÄTTY: Manual refresh button */}
