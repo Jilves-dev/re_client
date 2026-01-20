@@ -4,12 +4,13 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { useAuth } from "../context/auth";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { FaUser, FaLock } from "react-icons/fa"
+import { FaUser, FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Login = () => {
   const [auth, setAuth] = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
@@ -54,12 +55,18 @@ const Login = () => {
           </div>
           <div className={styles.inputBox}>
             <input 
-              type="password"
+              type={showPassword ? "text" : "password"}
               placeholder="Password"
               required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
+            <span
+              className="absolute inset-y-0 right-12 flex items-center cursor-pointer text-gray-500 hover:text-[#874F41] transition-colors"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              {showPassword ? <FaEyeSlash size={20} /> : <FaEye size={20} />}
+            </span>
             <FaLock className={styles.icon}/>
           </div>
 

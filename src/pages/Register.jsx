@@ -2,13 +2,14 @@ import { useState } from "react";
 import styles from './Login.module.css';
 import axios from "axios";
 import toast from "react-hot-toast";
-import { FaUser, FaLock } from "react-icons/fa"
 import { Link, useNavigate } from "react-router-dom";
+import { FaUser, FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
 
 export default function Register() {
   // state
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   // hooks
   const navigate = useNavigate();
@@ -59,17 +60,22 @@ export default function Register() {
               </div>
               <div className={styles.inputBox}>
               <input
-                type="password"
+                type={showPassword ? "text" : "password"}
                 placeholder="Choose your password"
                 required
                 autoFocus
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
+              <span
+              className="absolute inset-y-0 right-12 flex items-center cursor-pointer text-gray-500 hover:text-[#874F41] transition-colors"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              {showPassword ? <FaEyeSlash size={20} /> : <FaEye size={20} />}
+            </span>
               <FaLock className={styles.icon}/>
               </div>
-           
-              <button      
+           <button      
               disabled={loading}
               type="submit"
               className={styles.button}
