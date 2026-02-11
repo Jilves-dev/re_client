@@ -1,6 +1,6 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import Sidebar from "../../../components/nav/Sidebar";
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Sidebar from '../../../components/nav/Sidebar';
 
 const PageHeader = ({ title }) => (
   <div className="w-full text-align:left pb-12 pt-14 xl:pb-16 xl:pt-20 bg-[#874F41]">
@@ -29,9 +29,9 @@ export default function AdCreate() {
   };
 
   return (
-    <div name='home' className='w-full pb-10'>
+    <div name="home" className="w-full pb-10">
       <div name="header">
-        <PageHeader title="Create post"/>
+        <PageHeader title="Create post" />
       </div>
       <Sidebar />
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-20">
@@ -53,7 +53,7 @@ export default function AdCreate() {
           {sell && (
             <div className="flex justify-center gap-4">
               <button
-                onClick={() => navigate("/ad/create/sell/House")}
+                onClick={() => navigate('/ad/create/sell/House')}
                 className="py-2.5 px-5 me-2 mb-2 text-sm font-medium font-baskervville
                 !text-[#E64833] focus:outline-none !bg-[#FBE9D0] 
                 rounded border-1 sm:border-2 !border-[#874F41] !hover:bg-[#90AEAD]
@@ -66,7 +66,7 @@ export default function AdCreate() {
                 House
               </button>
               <button
-                onClick={() => navigate("/ad/create/sell/Land")}
+                onClick={() => navigate('/ad/create/sell/Land')}
                 className="py-2.5 px-5 me-2 mb-2 text-sm font-baskervville font-medium
                 !text-[#E64833] focus:outline-none !bg-[#FBE9D0] 
                 rounded border-1 sm:border-2 !border-[#874F41] !hover:bg-[#90AEAD]
@@ -99,7 +99,7 @@ export default function AdCreate() {
           {rent && (
             <div className="flex justify-center gap-4">
               <button
-                onClick={() => navigate("/ad/create/rent/House")}
+                onClick={() => navigate('/ad/create/rent/House')}
                 className="py-2.5 px-5 me-2 mb-2 text-sm font-medium font-baskervville
                 !text-[#E64833] focus:outline-none !bg-[#FBE9D0] 
                 rounded border-1 sm:border-2 !border-[#874F41] !hover:bg-[#90AEAD]
@@ -112,7 +112,7 @@ export default function AdCreate() {
                 House
               </button>
               <button
-                onClick={() => navigate("/ad/create/rent/Land")}
+                onClick={() => navigate('/ad/create/rent/Land')}
                 className="py-2.5 px-5 me-2 mb-2 text-sm font-medium font-baskervville
                 !text-[#E64833] focus:outline-none bg-[#FBE9D0] 
                 rounded border-1 sm:border-2 !border-[#874F41] !hover:bg-[#90AEAD]
@@ -132,12 +132,3 @@ export default function AdCreate() {
     </div>
   );
 }
-
-
-
-
-
-
-
-
-

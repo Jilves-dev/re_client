@@ -1,43 +1,49 @@
-import React, { useState, useEffect } from "react";
-import { BrowserRouter, Routes, Route, Link, useLocation } from "react-router-dom";
-import { AuthProvider } from "./context/auth";
-import { SearchProvider } from "./context/search";
-import Main from "./components/nav/Main";
-import { Toaster } from "react-hot-toast";
-import Home from "./pages/Home";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
-import AccountActivate from "./pages/auth/AccountActivate";
-import ForgotPassword from "./pages/auth/ForgotPassword";
-import AccessAccount from "./pages/auth/AccessAccount";
-import Dashboard from "./pages/user/Dashboard";
-import AdCreate from "./pages/user/ad/AdCreate";
-import AdEdit from "./pages/user/ad/AdEdit";
-import PrivateRoute from "./components/routes/PrivateRoute";
-import SellHouse from "./pages/user/ad/SellHouse";
-import SellLand from "./pages/user/ad/SellLand";
-import RentHouse from "./pages/user/ad/RentHouse";
-import RentLand from "./pages/user/ad/RentLand";
-import AdView from "./pages/AdView";
-import Footer from "./components/nav/Footer";
-import Profile from "./pages/user/Profile";
-import Settings from "./pages/user/Settings";
-import Wishlist from "./pages/user/Wishlist";
-import Conversations from "./pages/user/Conversations";
-import Analytics from "./pages/user/Analytics";
-import PropertyAnalytics from "./pages/user/PropertyAnalytics";
-import UserAds from "./pages/user/UserAds";
-import Agents from "./pages/Agents";
-import Agent from "./pages/Agent";
-import Buy from "./pages/Buy";
-import Rent from "./pages/Rent";
-import Search from "./pages/Search";
-import ScrollToTop from "./components/ScrollToTop";
-import ArrowDown from "./assets/arrow-down.svg";
+import React, { useState, useEffect } from 'react';
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Link,
+  useLocation,
+} from 'react-router-dom';
+import { AuthProvider } from './context/auth';
+import { SearchProvider } from './context/search';
+import Main from './components/nav/Main';
+import { Toaster } from 'react-hot-toast';
+import Home from './pages/Home';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import AccountActivate from './pages/auth/AccountActivate';
+import ForgotPassword from './pages/auth/ForgotPassword';
+import AccessAccount from './pages/auth/AccessAccount';
+import Dashboard from './pages/user/Dashboard';
+import AdCreate from './pages/user/ad/AdCreate';
+import AdEdit from './pages/user/ad/AdEdit';
+import PrivateRoute from './components/routes/PrivateRoute';
+import SellHouse from './pages/user/ad/SellHouse';
+import SellLand from './pages/user/ad/SellLand';
+import RentHouse from './pages/user/ad/RentHouse';
+import RentLand from './pages/user/ad/RentLand';
+import AdView from './pages/AdView';
+import Footer from './components/nav/Footer';
+import Profile from './pages/user/Profile';
+import Settings from './pages/user/Settings';
+import Wishlist from './pages/user/Wishlist';
+import Conversations from './pages/user/Conversations';
+import Analytics from './pages/user/Analytics';
+import PropertyAnalytics from './pages/user/PropertyAnalytics';
+import UserAds from './pages/user/UserAds';
+import Agents from './pages/Agents';
+import Agent from './pages/Agent';
+import Buy from './pages/Buy';
+import Rent from './pages/Rent';
+import Search from './pages/Search';
+import ScrollToTop from './components/ScrollToTop';
+import ArrowDown from './assets/arrow-down.svg';
 import { API } from './config';
-import axios from "axios";
+import axios from 'axios';
 import toast from 'react-hot-toast';
-import Maintenance from "./components/Maintenance";
+import Maintenance from './components/Maintenance';
 
 // Page not found component
 const PageNotFound = () => (
@@ -62,7 +68,7 @@ class ErrorBoundary extends React.Component {
   }
 
   componentDidCatch(error, errorInfo) {
-    console.error("App error:", error, errorInfo);
+    console.error('App error:', error, errorInfo);
     this.setState({ errorInfo });
   }
 
@@ -70,10 +76,15 @@ class ErrorBoundary extends React.Component {
     if (this.state.hasError) {
       return (
         <div className="text-center p-5 bg-[#E64833] rounded-lg m-4">
-          <h2 className="text-xl font-bold text-[#874F41] mb-2">Something went wrong</h2>
-          <p className="mb-4">The application encountered an unexpected error. Try refreshing the page.</p>
-          <button 
-            onClick={() => window.location.reload()} 
+          <h2 className="text-xl font-bold text-[#874F41] mb-2">
+            Something went wrong
+          </h2>
+          <p className="mb-4">
+            The application encountered an unexpected error. Try refreshing the
+            page.
+          </p>
+          <button
+            onClick={() => window.location.reload()}
             className="bg-[#E64833] text-white px-4 py-2 rounded hover:bg-red-700"
           >
             Refresh Page
@@ -91,7 +102,7 @@ function ThemeColorUpdater() {
 
   useEffect(() => {
     // Tarkista onko dashboard-sivu
-    const isDashboardPage = 
+    const isDashboardPage =
       location.pathname.startsWith('/dashboard') ||
       location.pathname.startsWith('/user/') ||
       location.pathname.startsWith('/ad/create');
@@ -112,7 +123,9 @@ function ThemeColorUpdater() {
 
     // ===== iOS Safari 15+: theme-color =====
     // Safari tarvitsee myös media query version
-    let metaThemeColorLight = document.querySelector("meta[name='theme-color'][media='(prefers-color-scheme: light)']");
+    let metaThemeColorLight = document.querySelector(
+      "meta[name='theme-color'][media='(prefers-color-scheme: light)']"
+    );
     if (metaThemeColorLight) {
       metaThemeColorLight.setAttribute('content', themeColor);
     } else {
@@ -123,7 +136,9 @@ function ThemeColorUpdater() {
       document.getElementsByTagName('head')[0].appendChild(metaThemeColorLight);
     }
 
-    let metaThemeColorDark = document.querySelector("meta[name='theme-color'][media='(prefers-color-scheme: dark)']");
+    let metaThemeColorDark = document.querySelector(
+      "meta[name='theme-color'][media='(prefers-color-scheme: dark)']"
+    );
     if (metaThemeColorDark) {
       metaThemeColorDark.setAttribute('content', themeColor);
     } else {
@@ -136,11 +151,13 @@ function ThemeColorUpdater() {
 
     // ===== iOS PWA: apple-mobile-web-app-status-bar-style =====
     // Tämä toimii kun sivu on lisätty home screenille
-    let appleStatusBar = document.querySelector("meta[name='apple-mobile-web-app-status-bar-style']");
+    let appleStatusBar = document.querySelector(
+      "meta[name='apple-mobile-web-app-status-bar-style']"
+    );
     // iOS tukee vain: 'default', 'black', 'black-translucent'
     // Valitaan 'default' joka käyttää sivun theme-coloria
     const appleStyle = 'default';
-    
+
     if (appleStatusBar) {
       appleStatusBar.setAttribute('content', appleStyle);
     } else {
@@ -159,12 +176,12 @@ function App() {
   const [showBottomScrollButton, setShowBottomScrollButton] = useState(false);
   const [apiConnected, setApiConnected] = useState(true);
 
-   const isMaintenanceMode = import.meta.env.VITE_MAINTENANCE_MODE === 'true';
-   // Jos maintenance-tila on päällä, näytä vain maintenance-sivu
+  const isMaintenanceMode = import.meta.env.VITE_MAINTENANCE_MODE === 'true';
+  // Jos maintenance-tila on päällä, näytä vain maintenance-sivu
   if (isMaintenanceMode) {
     return <Maintenance />;
   }
-  
+
   // Verify API connection on startup
   useEffect(() => {
     const checkApiConnection = async () => {
@@ -172,27 +189,30 @@ function App() {
         await axios.get(`${API}/test`);
         setApiConnected(true);
       } catch (error) {
-        console.error("API connection failed:", error);
+        console.error('API connection failed:', error);
         setApiConnected(false);
-        toast.error("Connection to server failed. Some features may not work properly.");
+        toast.error(
+          'Connection to server failed. Some features may not work properly.'
+        );
       }
     };
-    
+
     checkApiConnection();
   }, []);
-  
+
   useEffect(() => {
     const handleScroll = () => {
       // Determine when to show scroll buttons
       const windowHeight = window.innerHeight;
       const documentHeight = document.documentElement.scrollHeight;
       const scrollPosition = window.scrollY;
-      const distanceFromBottom = documentHeight - (scrollPosition + windowHeight);
-      
+      const distanceFromBottom =
+        documentHeight - (scrollPosition + windowHeight);
+
       // Show bottom scroll button when near footer but not at the very bottom
       const showBottom = distanceFromBottom < 100 && distanceFromBottom > 10;
       setShowBottomScrollButton(showBottom);
-      
+
       // Show top scroll button when scrolled down and not near footer
       const isNearFooter = distanceFromBottom < 100;
       if (window.scrollY > 300 && !isNearFooter) {
@@ -201,7 +221,7 @@ function App() {
         setShowScrollButton(false);
       }
     };
-    
+
     window.addEventListener('scroll', handleScroll);
     return () => {
       window.removeEventListener('scroll', handleScroll);
@@ -211,23 +231,23 @@ function App() {
   const handleScrollToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: 'smooth'
+      behavior: 'smooth',
     });
   };
 
   return (
     <ErrorBoundary>
       <BrowserRouter>
-        <ScrollToTop /> 
+        <ScrollToTop />
         {/* Dynaaminen theme-color päivittäjä */}
         <ThemeColorUpdater />
-        
+
         <AuthProvider>
           <SearchProvider>
             <div className="flex flex-col min-h-screen w-full bg-[#FBE9D0]">
               <Main />
 
-              <Toaster 
+              <Toaster
                 position="top-center"
                 toastOptions={{
                   style: {
@@ -250,14 +270,17 @@ function App() {
                   },
                 }}
               />
-              
+
               {!apiConnected && (
                 <div className="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 mb-4 mx-4">
                   <p className="font-bold">Connection Warning</p>
-                  <p>Unable to connect to the server. Some features may not work properly.</p>
+                  <p>
+                    Unable to connect to the server. Some features may not work
+                    properly.
+                  </p>
                 </div>
               )}
-              
+
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/login" element={<Login />} />
@@ -266,7 +289,10 @@ function App() {
                   path="/auth/account-activate/:token"
                   element={<AccountActivate />}
                 />
-                <Route path="/auth/forgot-password" element={<ForgotPassword />} />
+                <Route
+                  path="/auth/forgot-password"
+                  element={<ForgotPassword />}
+                />
                 <Route
                   path="/auth/access-account/:token"
                   element={<AccessAccount />}
@@ -283,10 +309,16 @@ function App() {
                   <Route path="user/profile" element={<Profile />} />
                   <Route path="user/settings" element={<Settings />} />
                   <Route path="user/wishlist" element={<Wishlist />} />
-                  <Route path="user/conversations" element={<Conversations />} />
+                  <Route
+                    path="user/conversations"
+                    element={<Conversations />}
+                  />
                   <Route path="/user/analytics" element={<Analytics />} />
-                  <Route path="/user/property-analytics/:slug" element={<PropertyAnalytics />} />
-                  <Route path="user/ads" element={<UserAds />} /> 
+                  <Route
+                    path="/user/property-analytics/:slug"
+                    element={<PropertyAnalytics />}
+                  />
+                  <Route path="user/ads" element={<UserAds />} />
                 </Route>
 
                 <Route path="/ad/:slug" element={<AdView />} />
@@ -298,12 +330,12 @@ function App() {
                 <Route path="*" element={<PageNotFound />} />
               </Routes>
             </div>
-    
+
             {/* Scroll to top button */}
             {(showScrollButton || showBottomScrollButton) && (
-              <img 
-                src={ArrowDown} 
-                alt="Scroll to top" 
+              <img
+                src={ArrowDown}
+                alt="Scroll to top"
                 className="fixed right-8 bottom-11 w-15 h-15 z-30 cursor-pointer transition-all duration-300 hover:opacity-80"
                 onClick={handleScrollToTop}
                 style={{
@@ -316,7 +348,7 @@ function App() {
                 }}
               />
             )}
-          
+
             <Footer />
           </SearchProvider>
         </AuthProvider>
@@ -326,4 +358,3 @@ function App() {
 }
 
 export default App;
-

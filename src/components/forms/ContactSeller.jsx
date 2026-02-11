@@ -1,22 +1,22 @@
-import { useState, useEffect } from "react";
-import { useAuth } from "../../context/auth";
-import { useNavigate } from "react-router-dom";
-import toast from "react-hot-toast";
-import axios from "axios";
-import { MdEmail } from "react-icons/md";
+import { useState, useEffect } from 'react';
+import { useAuth } from '../../context/auth';
+import { useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
+import axios from 'axios';
+import { MdEmail } from 'react-icons/md';
 export default function ContactSeller({ ad }) {
   // context
   const [auth, setAuth] = useAuth();
   // state
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
-  const [phone, setPhone] = useState("");
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+  const [phone, setPhone] = useState('');
   const [loading, setLoading] = useState(false);
   // hooks
   const navigate = useNavigate();
 
-  const loggedIn = auth.user !== null && auth.token !== "";
+  const loggedIn = auth.user !== null && auth.token !== '';
 
   useEffect(() => {
     if (loggedIn) {
@@ -29,12 +29,12 @@ export default function ContactSeller({ ad }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!loggedIn) {
-      toast.error("You must be logged in to contact the seller");
+      toast.error('You must be logged in to contact the seller');
       return;
     }
     setLoading(true);
     try {
-      const { data } = await axios.post("/contact-seller", {
+      const { data } = await axios.post('/contact-seller', {
         name,
         email,
         message,
@@ -46,27 +46,36 @@ export default function ContactSeller({ ad }) {
         setLoading(false);
       } else {
         setLoading(false);
-        toast.success("Your enquiry has been emailed to the seller");
-        setMessage("");
+        toast.success('Your enquiry has been emailed to the seller');
+        setMessage('');
       }
     } catch (err) {
       console.log(err);
-      toast.error("Something went wrong. Try again.");
+      toast.error('Something went wrong. Try again.');
       setLoading(false);
     }
   };
 
   const handleLoginRedirect = () => {
-    navigate("/login");
+    navigate('/login');
   };
 
   return (
     <div className="w-full bg-[#FBE9D0] py-10">
       <div className="max-w-2xl mx-auto bg-white border-1 border-[#244855] p-6 rounded-lg shadow-md">
         <h3 className="font-decomang text-4xl text-center mb-6">
-          Please contact {ad?.postedBy?.name ? ad?.postedBy?.name : ad?.postedBy?.username}
-          <MdEmail style={{ fontSize: 40, color: '#90AEAD', display: 'inline-block', verticalAlign: 'middle', paddingBottom: '4px'}} />
-          </h3>
+          Please contact{' '}
+          {ad?.postedBy?.name ? ad?.postedBy?.name : ad?.postedBy?.username}
+          <MdEmail
+            style={{
+              fontSize: 40,
+              color: '#90AEAD',
+              display: 'inline-block',
+              verticalAlign: 'middle',
+              paddingBottom: '4px',
+            }}
+          />
+        </h3>
         <form onSubmit={handleSubmit} className="space-y-4">
           <textarea
             name="message"
@@ -112,7 +121,7 @@ export default function ContactSeller({ ad }) {
               type="submit"
               disabled={!name || !email || loading}
             >
-              {loading ? "Please wait" : "Send enquiry"}
+              {loading ? 'Please wait' : 'Send enquiry'}
             </button>
           ) : (
             <button
@@ -128,7 +137,3 @@ export default function ContactSeller({ ad }) {
     </div>
   );
 }
-
-
-
-

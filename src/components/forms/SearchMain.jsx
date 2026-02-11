@@ -29,28 +29,28 @@ export default function SearchMain() {
     setSearch({ ...search, loading: true });
     try {
       const { results, page, price, lat, lng, ...rest } = search;
-      
+
       const queryParams = {
         action: search.action || 'Buy',
         type: search.type || 'House',
-        ...rest
+        ...rest,
       };
-      
+
       if (lat && lng) {
         queryParams.lat = lat;
         queryParams.lng = lng;
       }
-      
+
       if (search.address) {
         queryParams.address = search.address;
       }
-      
+
       const query = queryString.stringify(queryParams);
-      console.log("Search query:", query);
-      console.log("Current search state:", search);
+      console.log('Search query:', query);
+      console.log('Current search state:', search);
 
       const { data } = await axios.get(`/search?${query}`);
-      console.log("Search results:", data);
+      console.log('Search results:', data);
 
       setSearch((prev) => ({
         ...prev,
@@ -60,7 +60,7 @@ export default function SearchMain() {
       }));
       navigate('/search');
     } catch (err) {
-      console.error("Search error:", err);
+      console.error('Search error:', err);
       setSearch({ ...search, loading: false });
     }
   };
@@ -77,55 +77,63 @@ export default function SearchMain() {
             isSearchable: true,
             isClearable: true,
             loadingMessage: () => 'Searching...',
-            noOptionsMessage: ({ inputValue }) => 
-              inputValue.length < 3 ? 'write at least 3 characters' : 'No results found',
-            
+            noOptionsMessage: ({ inputValue }) =>
+              inputValue.length < 3
+                ? 'write at least 3 characters'
+                : 'No results found',
+
             onChange: async (place) => {
-              console.log("🔍 Place selected:", place);
-              
+              console.log('🔍 Place selected:', place);
+
               if (!place) {
-                setSearch(prev => ({
+                setSearch((prev) => ({
                   ...prev,
                   address: '',
                   lat: null,
-                  lng: null
+                  lng: null,
                 }));
                 return;
               }
 
               const address = place.value.description;
-              
+
               try {
-                const service = new window.google.maps.places.PlacesService(document.createElement('div'));
-                
+                const service = new window.google.maps.places.PlacesService(
+                  document.createElement('div')
+                );
+
                 service.getDetails(
                   {
                     placeId: place.value.place_id,
-                    fields: ['geometry']
+                    fields: ['geometry'],
                   },
                   (placeDetails, status) => {
-                    if (status === window.google.maps.places.PlacesServiceStatus.OK && placeDetails) {
+                    if (
+                      status ===
+                        window.google.maps.places.PlacesServiceStatus.OK &&
+                      placeDetails
+                    ) {
                       const lat = placeDetails.geometry.location.lat();
                       const lng = placeDetails.geometry.location.lng();
-                      
-                      console.log("✅ Got coordinates:", { address, lat, lng });
-                      
-                      setSearch(prev => ({
+
+                      console.log('✅ Got coordinates:', { address, lat, lng });
+
+                      setSearch((prev) => ({
                         ...prev,
                         address,
                         lat,
-                        lng
+                        lng,
                       }));
                     } else {
-                      console.error("❌ Places service error:", status);
+                      console.error('❌ Places service error:', status);
                     }
                   }
                 );
               } catch (err) {
-                console.error("Error getting place details:", err);
+                console.error('Error getting place details:', err);
               }
             },
-            
+
             styles: {
               container: (provided) => ({
                 ...provided,
@@ -150,7 +158,7 @@ export default function SearchMain() {
                 boxShadow: state.isFocused ? '0 0 0 1px #90AEAD' : 'none',
                 borderRadius: '4px',
                 borderColor: state.isFocused ? '#874F41' : '#e5e7eb',
-                fontFamily: 'PoiretOne-Regular, sans-serif', 
+                fontFamily: 'PoiretOne-Regular, sans-serif',
                 '&:hover': {
                   borderColor: '#90AEAD',
                 },
@@ -166,7 +174,7 @@ export default function SearchMain() {
                 fontSize: '14px',
                 padding: '10px 12px',
                 cursor: 'pointer',
-                fontFamily: 'PoiretOne-Regular, sans-serif', 
+                fontFamily: 'PoiretOne-Regular, sans-serif',
               }),
               singleValue: (provided) => ({
                 ...provided,
@@ -182,8 +190,8 @@ export default function SearchMain() {
                 color: '#9ca3af',
                 fontFamily: 'PoiretOne-Regular, sans-serif',
               }),
-              menuPortal: (base) => ({ 
-                ...base, 
+              menuPortal: (base) => ({
+                ...base,
                 zIndex: 100000,
                 fontFamily: 'PoiretOne-Regular, sans-serif',
               }),
@@ -223,25 +231,45 @@ export default function SearchMain() {
           onClick={() => setSearch({ ...search, action: 'Buy' })}
           className={`btn !font-dyerArts ${search.action === 'Buy' && 'active'}`}
         >
-          {search.action === 'Buy' ? <span style={{ color: '#E64833'}}> ✓</span> : ''} Buy
+          {search.action === 'Buy' ? (
+            <span style={{ color: '#E64833' }}> ✓</span>
+          ) : (
+            ''
+          )}{' '}
+          Buy
         </Button>
         <Button
           onClick={() => setSearch({ ...search, action: 'Rent' })}
           className={`btn !font-dyerArts ${search.action === 'Rent' && 'active'}`}
         >
-          {search.action === 'Rent' ? <span style={{ color: '#E64833'}}> ✓</span> : ''} Rent
+          {search.action === 'Rent' ? (
+            <span style={{ color: '#E64833' }}> ✓</span>
+          ) : (
+            ''
+          )}{' '}
+          Rent
         </Button>
         <Button
           onClick={() => setSearch({ ...search, type: 'House' })}
           className={`btn !font-dyerArts ${search.type === 'House' && 'active'}`}
         >
-          {search.type === 'House' ? <span style={{ color: '#E64833'}}> ✓</span> : ''} House
+          {search.type === 'House' ? (
+            <span style={{ color: '#E64833' }}> ✓</span>
+          ) : (
+            ''
+          )}{' '}
+          House
         </Button>
         <Button
           onClick={() => setSearch({ ...search, type: 'Land' })}
           className={`btn !font-dyerArts ${search.type === 'Land' && 'active'}`}
         >
-          {search.type === 'Land' ? <span style={{ color: '#E64833'}}> ✓</span> : ''} Land
+          {search.type === 'Land' ? (
+            <span style={{ color: '#E64833' }}> ✓</span>
+          ) : (
+            ''
+          )}{' '}
+          Land
         </Button>
 
         <Dropdown as={ButtonGroup} className="price-button">
@@ -260,15 +288,19 @@ export default function SearchMain() {
           </Dropdown.Menu>
         </Dropdown>
 
-        <Button onClick={handleSearch} className="search-button !font-dyerArts" disabled={search.loading}>
+        <Button
+          onClick={handleSearch}
+          className="search-button !font-dyerArts"
+          disabled={search.loading}
+        >
           {search.loading ? 'Searching ...' : 'Search'}
         </Button>
       </div>
 
-      <Modal 
-        show={show} 
-        onHide={handleClose} 
-        style={{ zIndex: 10000, paddingTop: '80px' }} 
+      <Modal
+        show={show}
+        onHide={handleClose}
+        style={{ zIndex: 10000, paddingTop: '80px' }}
         className="search-modal"
       >
         <Modal.Header closeButton>
@@ -283,7 +315,9 @@ export default function SearchMain() {
                 label="Buy"
                 name="transactionType"
                 checked={search.action === 'Buy'}
-                onChange={() => setSearch({ ...search, action: 'Buy', price: '' })}
+                onChange={() =>
+                  setSearch({ ...search, action: 'Buy', price: '' })
+                }
               />
               <br />
               <Form.Check
@@ -291,7 +325,9 @@ export default function SearchMain() {
                 label="Rent"
                 name="transactionType"
                 checked={search.action === 'Rent'}
-                onChange={() => setSearch({ ...search, action: 'Rent', price: '' })}
+                onChange={() =>
+                  setSearch({ ...search, action: 'Rent', price: '' })
+                }
               />
               <br />
             </Form.Group>
@@ -301,7 +337,9 @@ export default function SearchMain() {
                 label="House"
                 name="propertyType"
                 checked={search.type === 'House'}
-                onChange={() => setSearch({ ...search, type: 'House', price: '' })}
+                onChange={() =>
+                  setSearch({ ...search, type: 'House', price: '' })
+                }
               />
               <br />
               <Form.Check
@@ -309,7 +347,9 @@ export default function SearchMain() {
                 label="Land"
                 name="propertyType"
                 checked={search.type === 'Land'}
-                onChange={() => setSearch({ ...search, type: 'Land', price: '' })}
+                onChange={() =>
+                  setSearch({ ...search, type: 'Land', price: '' })
+                }
               />
               <br />
             </Form.Group>
@@ -319,14 +359,16 @@ export default function SearchMain() {
                   {search.price ? search.price : 'Price range'}
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
-                  {(search.action === 'Buy' ? sellPrices : rentPrices).map((item) => (
-                    <Dropdown.Item
-                      key={item._id}
-                      onClick={() => handlePriceSelect(item.name, item.array)}
-                    >
-                      {item.name}
-                    </Dropdown.Item>
-                  ))}
+                  {(search.action === 'Buy' ? sellPrices : rentPrices).map(
+                    (item) => (
+                      <Dropdown.Item
+                        key={item._id}
+                        onClick={() => handlePriceSelect(item.name, item.array)}
+                      >
+                        {item.name}
+                      </Dropdown.Item>
+                    )
+                  )}
                 </Dropdown.Menu>
               </Dropdown>
             </Form.Group>

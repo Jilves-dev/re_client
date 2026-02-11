@@ -1,5 +1,5 @@
-import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
 export default function ScrollToTop() {
   const { pathname } = useLocation();
@@ -7,7 +7,7 @@ export default function ScrollToTop() {
   useEffect(() => {
     // Välitön skrollaus ilman animaatiota
     window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
-    
+
     // Varmistus-skrollaus pienen viiveen jälkeen
     // (kun asynkroniset komponentit kuten MapCard ovat latautuneet)
     const timeoutId = setTimeout(() => {
@@ -29,8 +29,6 @@ export default function ScrollToTop() {
 
   return null;
 }
-
-
 
 /*import { useEffect } from "react";
 import { useLocation } from "react-router-dom";

@@ -1,8 +1,8 @@
-import { useState } from "react";
-import axios from "axios";
-import toast from "react-hot-toast";
-import Sidebar from "../../components/nav/Sidebar";
-//import oldDam2 from "../../assets/old_dam2.jpg"; 
+import { useState } from 'react';
+import axios from 'axios';
+import toast from 'react-hot-toast';
+import Sidebar from '../../components/nav/Sidebar';
+//import oldDam2 from "../../assets/old_dam2.jpg";
 
 const PageHeader = ({ title }) => (
   <div className="w-full text-align:left pb-12 pt-14 xl:pb-16 xl:pt-20 bg-[#874F41]">
@@ -14,17 +14,16 @@ const PageHeader = ({ title }) => (
   </div>
 );
 
-
 export default function Settings() {
   // state
-  const [password, setPassword] = useState("");
+  const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       setLoading(true);
-      const { data } = await axios.put("/update-password", {
+      const { data } = await axios.put('/update-password', {
         password,
       });
       if (data?.error) {
@@ -32,7 +31,7 @@ export default function Settings() {
         setLoading(false);
       } else {
         setLoading(false);
-        toast.success("Password updated");
+        toast.success('Password updated');
       }
     } catch (err) {
       console.log(err);
@@ -42,30 +41,30 @@ export default function Settings() {
 
   return (
     <>
-    <div name='settings'> 
-        <PageHeader title="Update password"/>
+      <div name="settings">
+        <PageHeader title="Update password" />
+      </div>
+      <Sidebar />
+      <div className="flex flex-col items-center mt-2 w-full">
+        <br></br> <br></br>
+        <div className="w-full px-6 md:w-3/4 lg:w-2/3 mt-2 text-[#90AEAD]">
+          <form onSubmit={handleSubmit}>
+            <input
+              type="password"
+              placeholder="enter new password"
+              className="font-poiretOne form-control mb-4"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <button
+              className="font-poiretOne !bg-[#FBE9D0] hover:bg-[#cf8c60] !border-2 !border-[#874F41] !text-[#E64833] py-2 px-4 rounded col-12 text-xl"
+              disabled={loading}
+            >
+              {loading ? 'Processing' : 'Update password'}
+            </button>
+          </form>
         </div>
-        <Sidebar />
-        <div className="flex flex-col items-center mt-2 w-full">
-          <br></br> <br></br>
-          <div className="w-full px-6 md:w-3/4 lg:w-2/3 mt-2 text-[#90AEAD]">
-              <form onSubmit={handleSubmit}>
-                <input
-                  type="password"
-                  placeholder="enter new password"
-                  className="font-poiretOne form-control mb-4"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-                <button
-                  className="font-poiretOne !bg-[#FBE9D0] hover:bg-[#cf8c60] !border-2 !border-[#874F41] !text-[#E64833] py-2 px-4 rounded col-12 text-xl"
-                  disabled={loading}
-                >
-                  {loading ? "Processing" : "Update password"}
-                </button>
-              </form>
-          </div>
-        </div>
+      </div>
     </>
   );
 }

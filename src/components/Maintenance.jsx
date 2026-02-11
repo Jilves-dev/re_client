@@ -16,9 +16,7 @@ const Maintenance = () => {
             Pahoittelemme häiriötä. Palaamme pian takaisin!
           </p>
         </div>
-        <div className="mt-8 text-sm text-gray-500">
-          Odotettu paluu: Pian
-        </div>
+        <div className="mt-8 text-sm text-gray-500">Odotettu paluu: Pian</div>
       </div>
     </div>
   );

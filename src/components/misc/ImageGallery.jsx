@@ -1,7 +1,7 @@
-import { useParams } from "react-router-dom";
-import ImageGallery from "react-image-gallery";
-import "react-image-gallery/styles/css/image-gallery.css";
-import "./CustomImageGallery.css";
+import { useParams } from 'react-router-dom';
+import ImageGallery from 'react-image-gallery';
+import 'react-image-gallery/styles/css/image-gallery.css';
+import './CustomImageGallery.css';
 
 export default function CustomImageGallery({ photos }) {
   const params = useParams();
@@ -9,7 +9,7 @@ export default function CustomImageGallery({ photos }) {
   const galleryPhotos = photos.map((photo) => ({
     original: photo.src,
     thumbnail: photo.src,
-    description: photo.title || "",
+    description: photo.title || '',
   }));
 
   // Custom vasemman nuolen renderöinti
@@ -22,13 +22,13 @@ export default function CustomImageGallery({ photos }) {
         onClick={onClick}
         aria-label="Previous Slide"
       >
-        <svg 
-          xmlns="http://www.w3.org/2000/svg" 
-          viewBox="6 0 12 24" 
-          fill="none" 
-          stroke="currentColor" 
-          strokeWidth="2" 
-          strokeLinecap="round" 
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="6 0 12 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
           strokeLinejoin="round"
           className="custom-nav-svg"
         >
@@ -48,13 +48,13 @@ export default function CustomImageGallery({ photos }) {
         onClick={onClick}
         aria-label="Next Slide"
       >
-        <svg 
-          xmlns="http://www.w3.org/2000/svg" 
-          viewBox="6 0 12 24" 
-          fill="none" 
-          stroke="currentColor" 
-          strokeWidth="2" 
-          strokeLinecap="round" 
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="6 0 12 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
           strokeLinejoin="round"
           className="custom-nav-svg"
         >
@@ -76,19 +76,6 @@ export default function CustomImageGallery({ photos }) {
     />
   );
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /*import { useParams } from "react-router-dom";
 import ImageGallery from "react-image-gallery";
@@ -115,4 +102,3 @@ export default function CustomImageGallery({ photos }) {
     />
   );
 }*/
-

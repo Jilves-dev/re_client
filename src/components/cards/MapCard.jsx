@@ -7,18 +7,24 @@ function MapCard({ ad }) {
     async: true,
   });
 
-  const center = useMemo(() => ({
-    lat: ad?.location?.coordinates?.[1] || 0,
-    lng: ad?.location?.coordinates?.[0] || 0,
-  }), [ad?.location?.coordinates]);
+  const center = useMemo(
+    () => ({
+      lat: ad?.location?.coordinates?.[1] || 0,
+      lng: ad?.location?.coordinates?.[0] || 0,
+    }),
+    [ad?.location?.coordinates]
+  );
 
   const [map, setMap] = useState(null);
 
-  const onLoad = useCallback((mapInstance) => {
-    mapInstance.setCenter(center);
-    mapInstance.setZoom(15);
-    setMap(mapInstance);
-  }, [center]);
+  const onLoad = useCallback(
+    (mapInstance) => {
+      mapInstance.setCenter(center);
+      mapInstance.setZoom(15);
+      setMap(mapInstance);
+    },
+    [center]
+  );
 
   if (!isLoaded) {
     return <div>Loading...</div>;
@@ -48,10 +54,7 @@ function MapCard({ ad }) {
         }}
       >
         {/* MARKER - Näyttää tarkan sijainnin */}
-        <Marker
-          position={center}
-          title={ad?.address || 'Property Location'}
-        />
+        <Marker position={center} title={ad?.address || 'Property Location'} />
         {/* <Marker
         position={center}
         title={ad?.address || 'Property Location'}
@@ -65,8 +68,6 @@ function MapCard({ ad }) {
 }
 
 export default React.memo(MapCard);
-
-
 
 /* import React, { useCallback, useMemo, useState, useEffect } from 'react';
 import { GoogleMap, useJsApiLoader} from '@react-google-maps/api';
@@ -124,6 +125,3 @@ function MapCard({ ad }) {
 }
 
 export default React.memo(MapCard);*/
-
-
-

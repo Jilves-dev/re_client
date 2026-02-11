@@ -13,12 +13,12 @@ apiInstance.interceptors.request.use(
   (config) => {
     // Get latest auth from localStorage on each request
     const auth = JSON.parse(localStorage.getItem('auth') || '{}');
-    
+
     if (auth?.token) {
       config.headers.Authorization = auth.token;
       config.headers.refresh_token = auth.refreshToken;
     }
-    
+
     return config;
   },
   (error) => Promise.reject(error)
@@ -27,7 +27,7 @@ apiInstance.interceptors.request.use(
 // Get all ads
 export const getAds = async () => {
   try {
-    console.log("Fetching ads from:", `${API}/ads`);
+    console.log('Fetching ads from:', `${API}/ads`);
     const response = await apiInstance.get('/ads');
     return response.data;
   } catch (error) {
@@ -102,4 +102,3 @@ export const deleteAd = async (id) => {
     throw error;
   }
 };
-

@@ -9,24 +9,24 @@ const AdsList = () => {
   useEffect(() => {
     const fetchAds = async () => {
       try {
-        console.log("Fetching ads in AdsList component");
+        console.log('Fetching ads in AdsList component');
         const data = await getAds();
-        console.log("Ads data received:", data);
-        
+        console.log('Ads data received:', data);
+
         if (data && (data.adsForSell || data.adsForRent)) {
           setAds(data);
         } else {
-          console.error("Unexpected data format:", data);
-          setError("Data format error");
+          console.error('Unexpected data format:', data);
+          setError('Data format error');
         }
       } catch (err) {
-        console.error("AdsList error:", err);
+        console.error('AdsList error:', err);
         setError(err.message || 'An error occurred');
       } finally {
         setLoading(false);
       }
     };
-    
+
     fetchAds();
   }, []);
 
@@ -38,14 +38,18 @@ const AdsList = () => {
       <h2>Properties for Sell ({ads.adsForSell?.length || 0})</h2>
       <ul>
         {ads.adsForSell?.map((ad) => (
-          <li key={ad._id}>{ad.title} - {ad.price}€</li>
+          <li key={ad._id}>
+            {ad.title} - {ad.price}€
+          </li>
         ))}
       </ul>
-      
+
       <h2>Properties for Rent ({ads.adsForRent?.length || 0})</h2>
       <ul>
         {ads.adsForRent?.map((ad) => (
-          <li key={ad._id}>{ad.title} - {ad.price}€</li>
+          <li key={ad._id}>
+            {ad.title} - {ad.price}€
+          </li>
         ))}
       </ul>
     </div>

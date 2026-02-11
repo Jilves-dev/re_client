@@ -1,31 +1,31 @@
-import { useState } from "react";
+import { useState } from 'react';
 import styles from '../Login.module.css';
-import axios from "axios";
-import toast from "react-hot-toast";
-import { useNavigate, Link } from "react-router-dom";
-import { FaUser } from "react-icons/fa";
+import axios from 'axios';
+import toast from 'react-hot-toast';
+import { useNavigate, Link } from 'react-router-dom';
+import { FaUser } from 'react-icons/fa';
 
 export default function ForgotPassword() {
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (!email) {
-      toast.error("Please enter your email");
+      toast.error('Please enter your email');
       return;
     }
-    
+
     try {
-      console.log("Requesting password reset for:", email);
+      console.log('Requesting password reset for:', email);
       setLoading(true);
-      
+
       const { data } = await axios.post('/forgot-password', { email });
-      
-      console.log("Forgot password response:", data);
-      
+
+      console.log('Forgot password response:', data);
+
       if (data?.error) {
         toast.error(data.error, {
           duration: 5000,
@@ -33,21 +33,22 @@ export default function ForgotPassword() {
           style: { marginTop: '80px' },
         });
       } else {
-        toast.success("Please check your email for password reset link", {
+        toast.success('Please check your email for password reset link', {
           duration: 5000,
           position: 'top-center',
           style: { marginTop: '80px' },
         });
-        setTimeout(() => navigate("/"), 2000);
+        setTimeout(() => navigate('/'), 2000);
       }
     } catch (err) {
-      console.error("Forgot password error:", err);
-      console.error("Error response:", err.response?.data);
-      
-      const errorMessage = err.response?.data?.error || 
-                          err.message || 
-                          "Something went wrong. Try again.";
-      
+      console.error('Forgot password error:', err);
+      console.error('Error response:', err.response?.data);
+
+      const errorMessage =
+        err.response?.data?.error ||
+        err.message ||
+        'Something went wrong. Try again.';
+
       toast.error(errorMessage, {
         duration: 5000,
         position: 'top-center',
@@ -64,9 +65,9 @@ export default function ForgotPassword() {
         <form onSubmit={handleSubmit}>
           <h1>Forgot Password</h1>
           <p className="text-center mb-4" style={{ color: '#90AEAD' }}>
-            Enter your email to receive <br/>a password reset link
+            Enter your email to receive <br />a password reset link
           </p>
-          
+
           <div className={styles.inputBox}>
             <input
               type="email"
@@ -76,15 +77,11 @@ export default function ForgotPassword() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
-            <FaUser className={styles.icon}/>
+            <FaUser className={styles.icon} />
           </div>
 
-          <button
-            disabled={loading}
-            type="submit"
-            className={styles.button}
-          >
-            {loading ? "Sending..." : "Send Reset Link"}
+          <button disabled={loading} type="submit" className={styles.button}>
+            {loading ? 'Sending...' : 'Send Reset Link'}
           </button>
 
           <div className={styles.registerLink}>
@@ -98,9 +95,6 @@ export default function ForgotPassword() {
     </div>
   );
 }
-
-
-
 
 /*import { useState } from "react";
 import axios from "axios";

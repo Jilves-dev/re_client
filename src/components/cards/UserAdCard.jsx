@@ -1,7 +1,7 @@
-import { Link } from "react-router-dom";
-import { EditOutlined, EyeOutlined, DeleteOutlined } from "@ant-design/icons";
-import { formatNumber } from "../../helpers/ad";
-import AdFeatures from "./AdFeatures";
+import { Link } from 'react-router-dom';
+import { EditOutlined, EyeOutlined, DeleteOutlined } from '@ant-design/icons';
+import { formatNumber } from '../../helpers/ad';
+import AdFeatures from './AdFeatures';
 
 export default function UserAdCard({ ad }) {
   return (
@@ -9,7 +9,11 @@ export default function UserAdCard({ ad }) {
       {/* Image */}
       <Link to={`/ad/${ad.slug}`}>
         <img
-          src={ad.photos?.[0]?.Location || ad.photos?.[0]?.url || 'https://via.placeholder.com/320x240'}
+          src={
+            ad.photos?.[0]?.Location ||
+            ad.photos?.[0]?.url ||
+            'https://via.placeholder.com/320x240'
+          }
           alt={ad.address}
           className="w-full h-48 object-cover hover:opacity-90 transition-opacity"
         />
@@ -56,11 +60,11 @@ export default function UserAdCard({ ad }) {
         </div>*/}
 
         <div className="mb-4 text-[#244855]">
-        <AdFeatures ad={ad} layout="start" />
+          <AdFeatures ad={ad} layout="start" />
         </div>
 
         {/* Stats */}
-        
+
         <div className="flex gap-4 font-baskervville text-base text-gray-600 mb-4 pb-4 border-b">
           <span className="flex items-center gap-1">
             <EyeOutlined /> {ad.views || 0} views
@@ -95,12 +99,8 @@ export default function UserAdCard({ ad }) {
   );
 }
 
-
-
-
-
-
-{/*import { Badge } from "antd";
+{
+  /*import { Badge } from "antd";
 import { Link } from "react-router-dom";
 import AdFeatures from "./AdFeatures";
 import { formatNumber } from "../../helpers/ad";
@@ -165,4 +165,5 @@ export default function UserAdCard({ ad }) {
       </Link>
     </div>
   );
-}*/}
+}*/
+}

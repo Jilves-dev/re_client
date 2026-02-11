@@ -1,7 +1,7 @@
 // src/context/auth.jsx - KORJATTU VERSIO
 import React from 'react';
-import { useState, createContext, useContext, useEffect } from "react";
-import axios from "axios";
+import { useState, createContext, useContext, useEffect } from 'react';
+import axios from 'axios';
 import { API } from '../config';
 
 const AuthContext = createContext();
@@ -9,30 +9,31 @@ const AuthContext = createContext();
 const AuthProvider = ({ children }) => {
   const [auth, setAuth] = useState({
     user: null,
-    token: "",
-    refreshToken: "",
+    token: '',
+    refreshToken: '',
   });
-  
+
   // Aseta axios baseURL ENNEN kaikkea muuta
   axios.defaults.baseURL = API;
-  console.log("AuthProvider: axios baseURL set to:", API);
-  
+  console.log('AuthProvider: axios baseURL set to:', API);
+
   useEffect(() => {
     // Lataa localStorage
-    const fromLS = localStorage.getItem("auth");
+    const fromLS = localStorage.getItem('auth');
     if (fromLS) {
       try {
         const parsed = JSON.parse(fromLS);
         setAuth(parsed);
-        
+
         if (parsed?.token) {
           //301025axios.defaults.headers.common["Authorization"] = parsed.token;
-          axios.defaults.headers.common["Authorization"] = `Bearer ${parsed.token}`;
-          axios.defaults.headers.common["refresh_token"] = parsed.refreshToken;
+          axios.defaults.headers.common['Authorization'] =
+            `Bearer ${parsed.token}`;
+          axios.defaults.headers.common['refresh_token'] = parsed.refreshToken;
         }
       } catch (err) {
-        console.error("Failed to parse auth from localStorage:", err);
-        localStorage.removeItem("auth");
+        console.error('Failed to parse auth from localStorage:', err);
+        localStorage.removeItem('auth');
       }
     }
   }, []);
@@ -41,64 +42,72 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     if (auth?.token) {
       //301025axios.defaults.headers.common["Authorization"] = auth.token;
-      axios.defaults.headers.common["Authorization"] = `Bearer ${auth.token}`;
-      axios.defaults.headers.common["refresh_token"] = auth.refreshToken;
+      axios.defaults.headers.common['Authorization'] = `Bearer ${auth.token}`;
+      axios.defaults.headers.common['refresh_token'] = auth.refreshToken;
     } else {
-      delete axios.defaults.headers.common["Authorization"];
-      delete axios.defaults.headers.common["refresh_token"];
+      delete axios.defaults.headers.common['Authorization'];
+      delete axios.defaults.headers.common['refresh_token'];
     }
   }, [auth.token, auth.refreshToken]);
 
-// Token refresh interceptor
-useEffect(() => {
-  const interceptor = axios.interceptors.response.use(
-    (res) => res,
-    async (error) => {
-      const originalRequest = error.config;
-      
-      // Log virheet
-      if (error.response) {
-        console.error("API Error:", error.response.status, error.response.data);
-      } else if (error.request) {
-        console.error("Network Error: No response from server");
-        console.error("Request URL:", error.config?.url);
-      } else {
-        console.error("Request Error:", error.message);
-      }
-      
-      if (error.response?.status === 401 && !originalRequest._retry && auth.refreshToken) {
-        originalRequest._retry = true;
-        
-        try {
-          const { data } = await axios.get("/refresh-token");
-          
-          setAuth(data);
-          localStorage.setItem("auth", JSON.stringify(data));
-          
-          originalRequest.headers["Authorization"] = data.token;
-          originalRequest.headers["refresh_token"] = data.refreshToken;
-          
-          return axios(originalRequest);
-        } catch (refreshError) {
-          console.error("Token refresh failed:", refreshError);
-          
-          if (refreshError.response?.status === 403) {
-            setAuth({ user: null, token: "", refreshToken: "" });
-            localStorage.removeItem("auth");
-          }
-          
-          return Promise.reject(error);
+  // Token refresh interceptor
+  useEffect(() => {
+    const interceptor = axios.interceptors.response.use(
+      (res) => res,
+      async (error) => {
+        const originalRequest = error.config;
+
+        // Log virheet
+        if (error.response) {
+          console.error(
+            'API Error:',
+            error.response.status,
+            error.response.data
+          );
+        } else if (error.request) {
+          console.error('Network Error: No response from server');
+          console.error('Request URL:', error.config?.url);
+        } else {
+          console.error('Request Error:', error.message);
         }
+
+        if (
+          error.response?.status === 401 &&
+          !originalRequest._retry &&
+          auth.refreshToken
+        ) {
+          originalRequest._retry = true;
+
+          try {
+            const { data } = await axios.get('/refresh-token');
+
+            setAuth(data);
+            localStorage.setItem('auth', JSON.stringify(data));
+
+            originalRequest.headers['Authorization'] = data.token;
+            originalRequest.headers['refresh_token'] = data.refreshToken;
+
+            return axios(originalRequest);
+          } catch (refreshError) {
+            console.error('Token refresh failed:', refreshError);
+
+            if (refreshError.response?.status === 403) {
+              setAuth({ user: null, token: '', refreshToken: '' });
+              localStorage.removeItem('auth');
+            }
+
+            return Promise.reject(error);
+          }
+        }
+
+        return Promise.reject(error);
       }
-      
-      return Promise.reject(error);
-    }
-  );
-  
-  return () => {
-    axios.interceptors.response.eject(interceptor);
-  };
-}, [auth.refreshToken]);
+    );
+
+    return () => {
+      axios.interceptors.response.eject(interceptor);
+    };
+  }, [auth.refreshToken]);
 
   return (
     <AuthContext.Provider value={[auth, setAuth]}>
@@ -110,11 +119,6 @@ useEffect(() => {
 const useAuth = () => useContext(AuthContext);
 
 export { useAuth, AuthProvider };
-
-
-
-
-
 
 // src/context/auth.jsx - Fixed implementation
 /*import React from 'react';
@@ -229,10 +233,6 @@ const useAuth = () => useContext(AuthContext);
 
 export { useAuth, AuthProvider };*/
 
-
-
-
-
 /*import React from 'react';
 import { useState, createContext, useContext, useEffect } from "react";
 import axios from "axios";
@@ -341,8 +341,6 @@ const useAuth = () => useContext(AuthContext);
 
 export { useAuth, AuthProvider };*/
 
-
-
 /*import React from 'react';
 import { useState, createContext, useContext, useEffect } from "react";
 import axios from "axios";
@@ -427,9 +425,6 @@ const useAuth = () => useContext(AuthContext);
 
 export { useAuth, AuthProvider };*/
 
-
-
-
 /*import React from 'react';
 import { useState, createContext, useContext, useEffect } from "react";
 import axios from "axios";
@@ -502,4 +497,3 @@ const AuthProvider = ({ children }) => {
 const useAuth = () => useContext(AuthContext);
 
 export { useAuth, AuthProvider };*/
-

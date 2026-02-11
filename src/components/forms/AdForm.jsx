@@ -1,13 +1,13 @@
-import { useState } from "react";
-import slugify from "slugify";
-import GooglePlacesAutocomplete from "react-google-places-autocomplete";
-import CurrencyInput from "react-currency-input-field";
-import ImageUpload from "./ImageUpload";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import toast from "react-hot-toast";
-import { useAuth } from "../../context/auth";
-import { useEffect } from "react";
+import { useState } from 'react';
+import slugify from 'slugify';
+import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
+import CurrencyInput from 'react-currency-input-field';
+import ImageUpload from './ImageUpload';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
+import { useAuth } from '../../context/auth';
+import { useEffect } from 'react';
 
 export default function AdForm({ action, type }) {
   // context
@@ -16,29 +16,28 @@ export default function AdForm({ action, type }) {
   const [ad, setAd] = useState({
     photos: [],
     uploading: false,
-    price: "",
-    address: "",
-    bedrooms: "",
-    bathrooms: "",
-    carpark: "",
-    landsize: "",
-    title: "",
-    description: "",
+    price: '',
+    address: '',
+    bedrooms: '',
+    bathrooms: '',
+    carpark: '',
+    landsize: '',
+    title: '',
+    description: '',
     loading: false,
     type,
     action,
   });
 
   useEffect(() => {
-  console.log("AdForm mounted");
-  console.log("Axios baseURL:", axios.defaults.baseURL);
-  console.log("Auth token exists:", !!auth?.token);
-}, []);
+    console.log('AdForm mounted');
+    console.log('Axios baseURL:', axios.defaults.baseURL);
+    console.log('Auth token exists:', !!auth?.token);
+  }, []);
 
   useEffect(() => {
-    console.log("AdForm re-rendered");
+    console.log('AdForm re-rendered');
   }, [ad.loading]);
-  
 
   // hooks
   const navigate = useNavigate();
@@ -50,8 +49,8 @@ export default function AdForm({ action, type }) {
       // Oletetaan, että otsikko on määritelty ja se on merkkijono
       const slug = slugify(ad.title || '', { lower: true }); // Lisää tyhjä merkkijono varmuuden vuoksi ja varmista, että kaikki kirjaimet ovat pieniä
       setAd({ ...ad, loading: true });
-      const { data } = await axios.post("/ad", ad);
-      console.log("ad create response => ", data);
+      const { data } = await axios.post('/ad', ad);
+      console.log('ad create response => ', data);
       if (data?.error) {
         toast.error(data.error);
         setAd({ ...ad, loading: false });
@@ -59,14 +58,14 @@ export default function AdForm({ action, type }) {
         // update user in context
         setAuth({ ...auth, user: data.user });
         // update user in local storage
-        const fromLS = JSON.parse(localStorage.getItem("auth"));
+        const fromLS = JSON.parse(localStorage.getItem('auth'));
         fromLS.user = data.user;
-        localStorage.setItem("auth", JSON.stringify(fromLS));
-        toast.success("Ad created successfully");
+        localStorage.setItem('auth', JSON.stringify(fromLS));
+        toast.success('Ad created successfully');
         setAd({ ...ad, loading: false });
         // odota 1.5 sekunttia ennen navigointia
         setTimeout(() => {
-        navigate("/dashboard");
+          navigate('/dashboard');
         }, 1500);
         //window.location.href = "/dashboard";
       }
@@ -78,15 +77,15 @@ export default function AdForm({ action, type }) {
 
   return (
     <div>
-        <ImageUpload ad={ad} setAd={setAd} />
-        <br></br>
-        <div className="mb-3 form-control">
+      <ImageUpload ad={ad} setAd={setAd} />
+      <br></br>
+      <div className="mb-3 form-control">
         <GooglePlacesAutocomplete
           apiKey={import.meta.env.VITE_GOOGLE_PLACES_KEY}
           //apiOptions="au"
           selectProps={{
             defaultInputValue: ad?.address,
-            placeholder: "Search for address..",
+            placeholder: 'Search for address..',
             onChange: ({ value }) => {
               setAd({ ...ad, address: value.description });
             },
@@ -94,13 +93,13 @@ export default function AdForm({ action, type }) {
         />
       </div>
 
-        <CurrencyInput
-          placeholder="Enter price"
-          defaultValue={ad.price}
-          className="form-control mb-3"
-          onValueChange={(value) => setAd({ ...ad, price: value })}
-        />
-         {type === "House" ? (
+      <CurrencyInput
+        placeholder="Enter price"
+        defaultValue={ad.price}
+        className="form-control mb-3"
+        onValueChange={(value) => setAd({ ...ad, price: value })}
+      />
+      {type === 'House' ? (
         <>
           <input
             type="number"
@@ -130,7 +129,7 @@ export default function AdForm({ action, type }) {
           />
         </>
       ) : (
-        ""
+        ''
       )}
 
       <input
@@ -157,14 +156,11 @@ export default function AdForm({ action, type }) {
       />
 
       <button
-         onClick={handleClick}
-            className="!bg-[#FBE9D0] hover:bg-[#cf8c60] !text-[#E64833] font-castoro py-2 px-4 rounded !border-2 !border-[#874F41] col-12"
-              >
-              {ad.loading ? "Saving..." : "Submit"}
+        onClick={handleClick}
+        className="!bg-[#FBE9D0] hover:bg-[#cf8c60] !text-[#E64833] font-castoro py-2 px-4 rounded !border-2 !border-[#874F41] col-12"
+      >
+        {ad.loading ? 'Saving...' : 'Submit'}
       </button>
     </div>
   );
 }
-
-
-

@@ -1,18 +1,18 @@
-import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
-import axios from "axios";
-import CustomImageGallery from "../components/misc/ImageGallery";
-import houseLogo from "../../houseLogo.jpg";
-import AdFeatures from "../components/cards/AdFeatures";
-import { formatNumber } from "../helpers/ad";
-import dayjs from "dayjs";
-import LikeUnlike from "../components/misc/LikeUnlike";
-import MapCard from "../components/cards/MapCard";
-import parse from "html-react-parser";
-import AdCard from "../components/cards/AdCard";
-import ContactSeller from "../components/forms/ContactSeller";
-import relativeTime from "dayjs/plugin/relativeTime";
-import Spinner from "../components/Spinner";
+import { useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import CustomImageGallery from '../components/misc/ImageGallery';
+import houseLogo from '../../houseLogo.jpg';
+import AdFeatures from '../components/cards/AdFeatures';
+import { formatNumber } from '../helpers/ad';
+import dayjs from 'dayjs';
+import LikeUnlike from '../components/misc/LikeUnlike';
+import MapCard from '../components/cards/MapCard';
+import parse from 'html-react-parser';
+import AdCard from '../components/cards/AdCard';
+import ContactSeller from '../components/forms/ContactSeller';
+import relativeTime from 'dayjs/plugin/relativeTime';
+import Spinner from '../components/Spinner';
 
 dayjs.extend(relativeTime);
 
@@ -61,54 +61,70 @@ export default function AdView() {
   };
 
   if (!ad || Object.keys(ad).length === 0) {
-    return  <Spinner />
+    return <Spinner />;
   }
 
   return (
     <>
-<div className="flex flex-col bg-[#FBE9D0] sm:grid sm:grid-cols-3 gap-2 pt-10"> 
-<div className="flex flex-row sm:col-span-3 justify-between items-center">
-<div className="pl-4 font-baskervville">{ad?.sold ? "❌ Off market" : "✅ In market"}</div> 
-<LikeUnlike ad={ad} className="relative right-6 sm:right-0 drop-shadow-md" /> </div>
+      <div className="flex flex-col bg-[#FBE9D0] sm:grid sm:grid-cols-3 gap-2 pt-10">
+        <div className="flex flex-row sm:col-span-3 justify-between items-center">
+          <div className="pl-4 font-baskervville">
+            {ad?.sold ? '❌ Off market' : '✅ In market'}
+          </div>
+          <LikeUnlike
+            ad={ad}
+            className="relative right-6 sm:right-0 drop-shadow-md"
+          />{' '}
+        </div>
 
-    {/* Kaikki tiedot yhdessä, gap-2 pienellä ja gap-4 suurella */}
-  <div className="col-span-3 grid items-center space-y-2 md:space-y-6 pb-6 md:pb-6">
-    {/* Julkaisuajankohta */}
-    <p className="font-baskervville text-muted pl-4">{dayjs(ad?.createdAt).fromNow()}</p>
-    
-    {/* Osoite */}
-    <h1 className="font-decomang text-4xl md:text-7xl pl-4 drop-shadow-sm">{ad.address}</h1>
-    
-    {/* Otsikko */}
-    <h1 className="font-baskervville text-xl md:text-2xl font-normal pl-4 drop-shadow-sm">{ad.title}</h1>
-    
-    {/* Kuvaus */}
-    <p className="font-baskervville text-xl md:text-2xl pl-4 drop-shadow-sm">{ad.description}</p>
-    
-    {/* ✅ YHDISTETTY: Hinta samaan ryhmään */}
-    <h1 className="font-baskervville text-2xl md:text-3xl pl-4 drop-shadow-sm">{formatNumber(ad.price)}€</h1>
-    
-    {/* Ominaisuudet */}
-    <div className="ml-4 sm:ml-4">
-      <div className="ml-0 sm:ml-0 drop-shadow-sm text-[#244855] !important">
-        <AdFeatures ad={ad} />
+        {/* Kaikki tiedot yhdessä, gap-2 pienellä ja gap-4 suurella */}
+        <div className="col-span-3 grid items-center space-y-2 md:space-y-6 pb-6 md:pb-6">
+          {/* Julkaisuajankohta */}
+          <p className="font-baskervville text-muted pl-4">
+            {dayjs(ad?.createdAt).fromNow()}
+          </p>
+
+          {/* Osoite */}
+          <h1 className="font-decomang text-4xl md:text-7xl pl-4 drop-shadow-sm">
+            {ad.address}
+          </h1>
+
+          {/* Otsikko */}
+          <h1 className="font-baskervville text-xl md:text-2xl font-normal pl-4 drop-shadow-sm">
+            {ad.title}
+          </h1>
+
+          {/* Kuvaus */}
+          <p className="font-baskervville text-xl md:text-2xl pl-4 drop-shadow-sm">
+            {ad.description}
+          </p>
+
+          {/* ✅ YHDISTETTY: Hinta samaan ryhmään */}
+          <h1 className="font-baskervville text-2xl md:text-3xl pl-4 drop-shadow-sm">
+            {formatNumber(ad.price)}€
+          </h1>
+
+          {/* Ominaisuudet */}
+          <div className="ml-4 sm:ml-4">
+            <div className="ml-0 sm:ml-0 drop-shadow-sm text-[#244855] !important">
+              <AdFeatures ad={ad} />
+            </div>
+          </div>
+        </div>
+
+        {/* Kuvagalleria */}
+        <div className="col-span-3 mb-2">
+          <CustomImageGallery photos={generatePhotosArray(ad?.photos)} />
+        </div>
+
+        {/* Google Maps -kortti */}
+        {ad?.location && (
+          <div className="col-span-3">
+            <MapCard ad={ad} />
+          </div>
+        )}
+        <br></br>
       </div>
-    </div>
-  </div>
-
-  {/* Kuvagalleria */}
-  <div className="col-span-3 mb-2">
-    <CustomImageGallery photos={generatePhotosArray(ad?.photos)} />
-  </div>
-
-  {/* Google Maps -kortti */}
-  {ad?.location && (
-    <div className="col-span-3">
-      <MapCard ad={ad} />
-    </div>
-  )}
-  <br></br>
-</div>
 
       <div className="container w-full">
         <ContactSeller ad={ad} />
@@ -124,19 +140,16 @@ export default function AdView() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 
+      <div
+        className="grid grid-cols-1 md:grid-cols-3 
       justify-center mb-10 gap-y-10 
       place-items-center 
-      px-4 sm:px-8 py-10 bg-[#FBE9D0] drop-shadow-lg animate-fadeIn">
+      px-4 sm:px-8 py-10 bg-[#FBE9D0] drop-shadow-lg animate-fadeIn"
+      >
         {related?.map((ad) => (
-          <AdCard
-            ad={ad}
-            key={ad._id}
-          />
+          <AdCard ad={ad} key={ad._id} />
         ))}
       </div>
     </>
   );
 }
-
-

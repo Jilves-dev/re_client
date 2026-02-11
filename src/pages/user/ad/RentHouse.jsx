@@ -1,5 +1,5 @@
-import Sidebar from "../../../components/nav/Sidebar";
-import AdForm from "../../../components/forms/AdForm";
+import Sidebar from '../../../components/nav/Sidebar';
+import AdForm from '../../../components/forms/AdForm';
 
 const PageHeader = ({ title }) => (
   <div className="w-full text-align:left pb-12 pt-14 xl:pb-16 xl:pt-20 bg-[#51829B]">
@@ -12,10 +12,10 @@ const PageHeader = ({ title }) => (
 );
 export default function RentHouse() {
   return (
-    <div className='w-full pb-10'>
-    <div name="header">
-      <PageHeader title="Rent house"/>
-    </div>
+    <div className="w-full pb-10">
+      <div name="header">
+        <PageHeader title="Rent house" />
+      </div>
       <Sidebar />
       <div className="container mt-2">
         <AdForm action="Rent" type="House" />

@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import toast from "react-hot-toast";
-import axios from "axios";
-import { useAuth } from "../../context/auth";
+import { useEffect, useState } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
+import axios from 'axios';
+import { useAuth } from '../../context/auth';
 
 export default function AccountActivate() {
   const [auth, setAuth] = useAuth();
@@ -19,17 +19,20 @@ export default function AccountActivate() {
 
   const requestActivation = async () => {
     if (processing) return;
-    
+
     try {
       setProcessing(true);
-      console.log("Activating account with token:", token.substring(0, 20) + "...");
-      
+      console.log(
+        'Activating account with token:',
+        token.substring(0, 20) + '...'
+      );
+
       const { data } = await axios.post('/register', { token });
-      
-      console.log("Activation response:", data);
-      
+
+      console.log('Activation response:', data);
+
       if (data?.error) {
-        console.error("Activation error:", data.error);
+        console.error('Activation error:', data.error);
         setError(data.error);
         toast.error(data.error, {
           duration: 5000,
@@ -38,34 +41,38 @@ export default function AccountActivate() {
             marginTop: '80px', // Lisää marginaalia yläpalkkiin
           },
         });
-        
-        if (data.error.includes("already registered")) {
-          setTimeout(() => navigate("/login"), 3000);
-        } else if (data.error.includes("invalid") || data.error.includes("expired")) {
-          setTimeout(() => navigate("/register"), 3000);
+
+        if (data.error.includes('already registered')) {
+          setTimeout(() => navigate('/login'), 3000);
+        } else if (
+          data.error.includes('invalid') ||
+          data.error.includes('expired')
+        ) {
+          setTimeout(() => navigate('/register'), 3000);
         }
       } else {
-        localStorage.setItem("auth", JSON.stringify(data));
+        localStorage.setItem('auth', JSON.stringify(data));
         setAuth(data);
-        
-        toast.success("Successfully registered and logged in. Welcome!", {
+
+        toast.success('Successfully registered and logged in. Welcome!', {
           duration: 4000,
           position: 'top-center',
           style: {
             marginTop: '80px',
           },
         });
-        
-        setTimeout(() => navigate("/"), 1000);
+
+        setTimeout(() => navigate('/'), 1000);
       }
     } catch (err) {
-      console.error("Activation request failed:", err);
-      console.error("Error response:", err.response?.data);
-      
-      const errorMessage = err.response?.data?.error || 
-                          err.message || 
-                          "Activation failed. Please try again.";
-      
+      console.error('Activation request failed:', err);
+      console.error('Error response:', err.response?.data);
+
+      const errorMessage =
+        err.response?.data?.error ||
+        err.message ||
+        'Activation failed. Please try again.';
+
       setError(errorMessage);
       toast.error(errorMessage, {
         duration: 5000,
@@ -74,8 +81,8 @@ export default function AccountActivate() {
           marginTop: '80px',
         },
       });
-      
-      setTimeout(() => navigate("/register"), 3000);
+
+      setTimeout(() => navigate('/register'), 3000);
     } finally {
       setProcessing(false);
     }
@@ -93,7 +100,7 @@ export default function AccountActivate() {
             <p className="text-muted">Please wait a moment</p>
           </>
         )}
-        
+
         {error && !processing && (
           <>
             <div className="alert alert-danger" role="alert">
@@ -107,10 +114,6 @@ export default function AccountActivate() {
     </div>
   );
 }
-
-
-
-
 
 /*import { useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";

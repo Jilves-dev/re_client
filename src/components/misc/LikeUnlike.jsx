@@ -1,8 +1,8 @@
-import { useAuth } from "../../context/auth";
-import { FcLike, FcLikePlaceholder } from "react-icons/fc";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import toast from "react-hot-toast";
+import { useAuth } from '../../context/auth';
+import { FcLike, FcLikePlaceholder } from 'react-icons/fc';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import toast from 'react-hot-toast';
 
 export default function LikeUnlike({ ad }) {
   const [auth, setAuth] = useAuth();
@@ -11,79 +11,82 @@ export default function LikeUnlike({ ad }) {
   const handleLike = async () => {
     try {
       if (auth.user === null) {
-        navigate("/login", {
+        navigate('/login', {
           state: `/ad/${ad.slug}`,
         });
         return;
       }
 
-      console.log("Liking ad:", ad._id);
+      console.log('Liking ad:', ad._id);
 
-      const { data } = await axios.post("/wishlist", { adId: ad._id });
-      
-      console.log("Like response:", data);
+      const { data } = await axios.post('/wishlist', { adId: ad._id });
+
+      console.log('Like response:', data);
 
       // ✅ KORJAUS: Päivitä auth oikein
       const updatedAuth = {
         ...auth,
-        user: data.user // Backend palauttaa { user, ad }
+        user: data.user, // Backend palauttaa { user, ad }
       };
 
       setAuth(updatedAuth);
-      
+
       // Päivitä localStorage
-      localStorage.setItem("auth", JSON.stringify(updatedAuth));
-      
-      toast.success("Added to wishlist ❤️");
+      localStorage.setItem('auth', JSON.stringify(updatedAuth));
+
+      toast.success('Added to wishlist ❤️');
     } catch (err) {
-      console.error("Like error:", err);
-      toast.error("Failed to add to wishlist");
+      console.error('Like error:', err);
+      toast.error('Failed to add to wishlist');
     }
   };
 
   const handleUnlike = async () => {
     try {
       if (auth.user === null) {
-        navigate("/login", {
+        navigate('/login', {
           state: `/ad/${ad.slug}`,
         });
         return;
       }
 
-      console.log("Unliking ad:", ad._id);
+      console.log('Unliking ad:', ad._id);
 
       const { data } = await axios.delete(`/wishlist/${ad._id}`);
-      
-      console.log("Unlike response:", data);
+
+      console.log('Unlike response:', data);
 
       // ✅ KORJAUS: Päivitä auth oikein
       const updatedAuth = {
         ...auth,
-        user: data.user // Backend palauttaa { user, ad }
+        user: data.user, // Backend palauttaa { user, ad }
       };
 
       setAuth(updatedAuth);
-      
+
       // Päivitä localStorage
-      localStorage.setItem("auth", JSON.stringify(updatedAuth));
-      
-      toast.success("Removed from wishlist");
+      localStorage.setItem('auth', JSON.stringify(updatedAuth));
+
+      toast.success('Removed from wishlist');
     } catch (err) {
-      console.error("Unlike error:", err);
-      toast.error("Failed to remove from wishlist");
+      console.error('Unlike error:', err);
+      toast.error('Failed to remove from wishlist');
     }
   };
 
   // Debug: Näytä onko tykkäys aktiivinen
   const isLiked = auth.user?.wishlist?.includes(ad?._id);
-  console.log("LikeUnlike - Ad ID:", ad?._id);
-  console.log("LikeUnlike - User wishlist:", auth.user?.wishlist);
-  console.log("LikeUnlike - Is liked:", isLiked);
+  console.log('LikeUnlike - Ad ID:', ad?._id);
+  console.log('LikeUnlike - User wishlist:', auth.user?.wishlist);
+  console.log('LikeUnlike - Is liked:', isLiked);
 
   return (
     <>
       {isLiked ? (
-        <span className="text-3xl cursor-pointer mr-4" title="Remove from wishlist">
+        <span
+          className="text-3xl cursor-pointer mr-4"
+          title="Remove from wishlist"
+        >
           <FcLike onClick={handleUnlike} />
         </span>
       ) : (
@@ -94,9 +97,6 @@ export default function LikeUnlike({ ad }) {
     </>
   );
 }
-
-
-
 
 /*import { useAuth } from "../../context/auth";
 import { FcLike, FcLikePlaceholder } from "react-icons/fc";

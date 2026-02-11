@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
-import Sidebar from "../../components/nav/Sidebar";
-import Spinner from "../../components/Spinner";
-import { useAuth } from "../../context/auth";
-import axios from "axios";
-import AdCard from "../../components/cards/AdCard";
+import { useState, useEffect } from 'react';
+import Sidebar from '../../components/nav/Sidebar';
+import Spinner from '../../components/Spinner';
+import { useAuth } from '../../context/auth';
+import axios from 'axios';
+import AdCard from '../../components/cards/AdCard';
 
 const PageHeader = ({ title }) => (
   <div className="w-full text-align:left pb-10 pt-10 sm:pb-12 sm:pt-14 xl:pb-16 xl:pt-20 bg-[#874F41]">
@@ -21,24 +21,24 @@ export default function Wishlist() {
   const [loading, setLoading] = useState(true); // ✅ Aluksi TRUE
 
   useEffect(() => {
-  if (auth?.token) {
-    fetchWishlist();
-  }
-}, [auth?.token]);
+    if (auth?.token) {
+      fetchWishlist();
+    }
+  }, [auth?.token]);
 
-const fetchWishlist = async () => {
-  try {
-    setLoading(true);
-    const { data } = await axios.get("/wishlist"); // ✅ Oikea endpoint
-    console.log("Wishlist data:", data);
-    setAds(data || []);
-    setLoading(false);
-  } catch (err) {
-    console.error("Wishlist error:", err);
-    setAds([]);
-    setLoading(false);
-  }
-};
+  const fetchWishlist = async () => {
+    try {
+      setLoading(true);
+      const { data } = await axios.get('/wishlist'); // ✅ Oikea endpoint
+      console.log('Wishlist data:', data);
+      setAds(data || []);
+      setLoading(false);
+    } catch (err) {
+      console.error('Wishlist error:', err);
+      setAds([]);
+      setLoading(false);
+    }
+  };
 
   /*useEffect(() => {
     if (auth.token) {
@@ -62,10 +62,10 @@ const fetchWishlist = async () => {
   // LOADING
   if (loading) {
     return (
-      <div className='w-full pb-10'>
-        <PageHeader title="Wishlist"/>
+      <div className="w-full pb-10">
+        <PageHeader title="Wishlist" />
         <Sidebar />
-         <Spinner message="Loading your wishlist ..." />
+        <Spinner message="Loading your wishlist ..." />
       </div>
     );
   }
@@ -73,13 +73,13 @@ const fetchWishlist = async () => {
   // EMPTY
   if (!ads?.length) {
     return (
-      <div className='w-full pb-10'>
-        <PageHeader title="Wishlist"/>
+      <div className="w-full pb-10">
+        <PageHeader title="Wishlist" />
         <Sidebar />
         <div className="flex justify-center items-center py-10 sm:py-20">
           <h2 className="font-poiretOne text-center px-4">
             Hey {auth.user?.name || auth.user?.username},
-            <br/>
+            <br />
             You have not liked any properties yet!
           </h2>
         </div>
@@ -89,24 +89,27 @@ const fetchWishlist = async () => {
 
   // HAS DATA
   return (
-    <div className='w-full pb-10'>
-      <PageHeader title="Wishlist"/>
+    <div className="w-full pb-10">
+      <PageHeader title="Wishlist" />
       <Sidebar />
-      
+
       <div className="flex justify-center py-4 sm:py-6">
         <h1 className="font-poiretOne text-2xl">
-          You have liked {ads.length} {ads.length === 1 ? 'property' : 'properties'}
+          You have liked {ads.length}{' '}
+          {ads.length === 1 ? 'property' : 'properties'}
         </h1>
       </div>
-      
-      <div className="grid grid-cols-1 
+
+      <div
+        className="grid grid-cols-1 
         sm:grid-cols-1 
         md:grid-cols-2 
         xl:grid-cols-3   
         justify-center mb-10 gap-y-10 
         place-items-center 
         px-4 sm:px-8 
-        py-10 bg-[#FBE9D0] animate-fadeIn">
+        py-10 bg-[#FBE9D0] animate-fadeIn"
+      >
         {ads.map((ad) => (
           <AdCard ad={ad} key={ad._id} />
         ))}

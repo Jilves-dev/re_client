@@ -1,15 +1,15 @@
-import { useState, createContext, useContext } from "react";
+import { useState, createContext, useContext } from 'react';
 
 const SearchContext = createContext();
 
 const initialState = {
-  address: "",
-  action: "Buy",
-  type: "House",
-  price: "",
+  address: '',
+  action: 'Buy',
+  type: 'House',
+  price: '',
   priceRange: [0, 1000000],
   results: [],
-  page: "",
+  page: '',
   loading: false,
   lat: null,
   lng: null,
@@ -28,14 +28,6 @@ const SearchProvider = ({ children }) => {
 const useSearch = () => useContext(SearchContext);
 
 export { useSearch, SearchProvider };
-
-
-
-
-
-
-
-
 
 /*import { useState, createContext, useContext, useEffect } from "react";
 
