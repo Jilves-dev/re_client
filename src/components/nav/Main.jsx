@@ -187,22 +187,22 @@ export default function Main() {
             className={`font-poiretOne ${mobileTextColor} font-normal`}
             style={{ textShadow: '1px 1px 4px rgba(0, 0, 0, 0.25)' }}
           >
-            <li className="py-4 text-4xl">
+            <li className="py-3 text-4xl">
               <NavLink className="nav-link" to="/" onClick={handleClick}>Home</NavLink>
             </li>
-            <li className="py-4 text-4xl">
+            <li className="py-3 text-4xl">
               <NavLink className="nav-link" to="/search" onClick={handleClick}>Search</NavLink>
             </li>
-            <li className="py-4 text-4xl">
+            <li className="py-3 text-4xl">
               <NavLink className="nav-link" to="/buy" onClick={handleClick}>Buy</NavLink>
             </li>
-            <li className="py-4 text-4xl">
+            <li className="py-3 text-4xl">
               <NavLink className="nav-link" to="/rent" onClick={handleClick}>Rent</NavLink>
             </li>
-            <li className="py-4 text-4xl">
+            <li className="py-3 text-4xl">
               <NavLink className="nav-link" to="/agents" onClick={handleClick}>Agents</NavLink>
             </li>
-            <li className="py-4 text-4xl">
+            <li className="py-3 text-4xl">
               <a
                 className="nav-link pointer"
                 onClick={() => {
@@ -215,22 +215,22 @@ export default function Main() {
             </li>
             {!loggedIn ? (
               <>
-                <li className="py-4 text-4xl">
+                <li className="py-3 text-4xl">
                   <NavLink className="nav-link" to="/login" onClick={handleClick}>Login</NavLink>
                 </li>
-                <li className="py-4 text-4xl">
+                <li className="py-3 text-4xl">
                   <NavLink className="nav-link" to="/register" onClick={handleClick}>Register</NavLink>
                 </li>
               </>
             ) : (
               <div>
-                <li className="py-4 text-4xl">
+                <li className="py-3 text-4xl">
                   <NavLink className="nav-link" to="/dashboard" onClick={handleClick}>
                     Dashboard
                   </NavLink>
                 </li>
                 {/* Mobile menu: Messages + badge */}
-                <li className="py-4 text-4xl">
+                <li className="py-3 text-4xl">
                   <NavLink
                     className="nav-link inline-flex items-center"
                     to="/user/conversations"
@@ -240,7 +240,7 @@ export default function Main() {
                     <UnreadBadge />
                   </NavLink>
                 </li>
-                <li className="py-4 text-4xl">
+                <li className="py-3 text-4xl">
                   <a
                     onClick={() => {
                       logout();
