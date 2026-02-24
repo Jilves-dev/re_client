@@ -225,7 +225,12 @@ export default function Main() {
             ) : (
               <div>
                 <li className="py-4 text-4xl">
-                  <NavLink className="nav-link" to="/dashboard" onClick={handleClick}>
+                  {/* Badge Dashboard-linkin viereen — viestit löytyy Sidebarista */}
+                  <NavLink
+                    className="nav-link inline-flex items-center"
+                    to="/dashboard"
+                    onClick={handleClick}
+                  >
                     Dashboard
                     <UnreadBadge />
                   </NavLink>
