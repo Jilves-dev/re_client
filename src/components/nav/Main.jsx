@@ -72,7 +72,7 @@ export default function Main() {
   const mobileOverlayBg = isDashboard
     ? 'bg-[rgba(251, 233, 208, 0.8)]'
     : 'bg-[rgba(253, 235, 211, 0.8)]';
-  const mobileTextColor = isDashboard ? 'text-[#244855]' : 'text-[#244855]';
+  const mobileTextColor = isDashboard ? 'text-[#244855]' : 'text-[#FFFFFF]';
 
   // Badge-komponentti — käytetään kaikkialla
   const UnreadBadge = () =>
@@ -180,7 +180,7 @@ export default function Main() {
       {/* Mobile menu */}
       {nav && (
         <div
-          className={`fixed top-0 right-0 w-[68%] max-w-md h-screen ${mobileOverlayBg} backdrop-filter backdrop-blur-md flex flex-col justify-center items-start pl-4`}
+          className={`fixed top-0 right-0 w-[68%] max-w-md h-screen ${mobileOverlayBg} backdrop-filter backdrop-blur-md flex flex-col justify-center items-start pl-2`}
           style={{ zIndex: 100001 }}
         >
           <ul
