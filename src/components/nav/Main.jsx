@@ -74,6 +74,12 @@ export default function Main() {
     : 'bg-[rgba(253, 235, 211, 0.8)]';
   const mobileTextColor = isDashboard ? 'text-[#244855]' : 'text-[#FBE9D0]';
 
+  // sin #244855
+  // pun #E64833
+  // rusk #874F41
+  // vihreä #90AEAD
+  // vaal #FBE9D0
+
   // Badge-komponentti — käytetään kaikkialla
   const UnreadBadge = () =>
     unreadCount > 0 ? (
