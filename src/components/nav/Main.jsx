@@ -180,7 +180,7 @@ export default function Main() {
       {/* Mobile menu */}
       {nav && (
         <div
-          className={`fixed top-0 right-0 w-[65%] max-w-md h-screen ${mobileOverlayBg} backdrop-filter backdrop-blur-md flex flex-col justify-center items-start pl-4`}
+          className={`fixed top-0 right-0 w-[68%] max-w-md h-screen ${mobileOverlayBg} backdrop-filter backdrop-blur-md flex flex-col justify-center items-start pl-4`}
           style={{ zIndex: 100001 }}
         >
           <ul
