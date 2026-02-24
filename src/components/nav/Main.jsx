@@ -72,7 +72,7 @@ export default function Main() {
   const mobileOverlayBg = isDashboard
     ? 'bg-[rgba(251, 233, 208, 0.8)]'
     : 'bg-[rgba(253, 235, 211, 0.8)]';
-  const mobileTextColor = isDashboard ? 'text-[#244855]' : 'text-[#FFFFFF]';
+  const mobileTextColor = isDashboard ? 'text-[#244855]' : 'text-[#FBE9D0]';
 
   // Badge-komponentti — käytetään kaikkialla
   const UnreadBadge = () =>
