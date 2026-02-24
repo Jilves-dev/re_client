@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import AdCard from '../components/cards/AdCard';
-import Logo from '../logo.svg';
+//import Logo from '../logo.svg';
 
 export default function Agent() {
   const [agent, setAgent] = useState(null);

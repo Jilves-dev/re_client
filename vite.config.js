@@ -10,36 +10,10 @@ export default defineConfig(({ mode }) => {
     plugins: [
       react(),
       VitePWA({
-        registerType: 'autoUpdate',
-        includeAssets: ['favicon-32x32.png'],
-        manifest: {
-          name: 'Space Realization Experimental',
-          short_name: 'Space Exp',
-          description: 'Space realization experimental application',
-          theme_color: '#90AEAD',
-          background_color: '#FBE9D0',
-          display: 'standalone',
-          orientation: 'portrait',
-          scope: '/',
-          start_url: '/',
-          icons: [
-            {
-              src: 'pwa-192x192.png',
-              sizes: '192x192',
-              type: 'image/png'
-            },
-            {
-              src: 'pwa-512x512.png',
-              sizes: '512x512',
-              type: 'image/png'
-            },
-            {
-              src: 'pwa-512x512.png',
-              sizes: '512x512',
-              type: 'image/png',
-              purpose: 'any maskable'
-            }
-          ]
+       registerType: 'autoUpdate',
+        manifest: false,           // ← käytä public/site.webmanifest -tiedostoa
+        devOptions: {
+          enabled: true            // ← tärkeä! mahdollistaa testauksen dev-modessa
         },
         workbox: {
           runtimeCaching: [
