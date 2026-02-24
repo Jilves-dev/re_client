@@ -4,6 +4,7 @@ import Sidebar from '../../components/nav/Sidebar';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import Spinner from '../../components/Spinner';
+import useUnreadCount from '../../hooks/useUnreadCount';
 import {
   MessageOutlined,
   MailOutlined,
@@ -25,6 +26,7 @@ const PageHeader = ({ title }) => (
 
 export default function Conversations() {
   const [auth] = useAuth();
+  const { markAsRead } = useUnreadCount();
   const [conversations, setConversations] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -69,6 +71,7 @@ export default function Conversations() {
         setConversations(Array.isArray(data) ? data : []);
         setLoading(false);
         setRetryCount(0); // Reset retry count on success
+        await markAsRead();
       } catch (err) {
         console.error('❌ Fetch conversations error:', err);
 
