@@ -7,17 +7,6 @@ import SearchMain from '../components/forms/SearchMain';
 //import DebugComponent from "../components/DebugComponent";
 import './Home.css';
 
-/*const PageHeader = ({ title }) => (
-  <div className="mx-auto w-full text-align:left pb-8 pt-10 sm:pt-20 sm:pb-16 md:pt-[100px] md:pb-24 
-   bg-[#90AEAD]">
-    <h1 className="font-floral pl-8 text-5xl sm:text-7xl 
-    text-[#244855] 
-    font-normal">
-      {title}
-    </h1>
-  </div>
-);*/
-
 const PageHeader = ({ title }) => {
   // Erottele ensimmäinen kirjain ja loput tekstistä
   const firstLetter = title.charAt(0);
@@ -79,16 +68,19 @@ export default function Home() {
       console.log('Fetching ads...');
 
       // ✅ Kutsu MOLEMPIA endpointteja erikseen
-      const [sellResponse, rentResponse] = await Promise.all([
+      /*const [sellResponse, rentResponse] = await Promise.all([
         axios.get('/ads-for-sell'),
         axios.get('/ads-for-rent'),
-      ]);
+      ]);*/
 
-      console.log('Sell ads:', sellResponse.data.length);
-      console.log('Rent ads:', rentResponse.data.length);
+      // Yksi kutsu kahden sijaan
+      const response = await axios.get('/ads'); // Palauttaa molemmat
 
-      setAdsForSell(sellResponse.data || []);
-      setAdsForRent(rentResponse.data || []);
+      console.log('Sell ads:', response.data.sell?.length || 0);
+      console.log('Rent ads:', response.data.rent?.length || 0);
+
+      setAdsForSell(response.data.sell || []);
+      setAdsForRent(response.data.rent || []);
       setLoading(false);
     } catch (error) {
       console.error('❌ API error:', error);
