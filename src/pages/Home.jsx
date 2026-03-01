@@ -62,33 +62,25 @@ export default function Home() {
     fetchAds();
   }, []);
 
-  const fetchAds = async () => {
-    try {
-      setLoading(true);
-      console.log('Fetching ads...');
+ const fetchAds = async () => {
+  try {
+    setLoading(true);
 
-      // ✅ Kutsu MOLEMPIA endpointteja erikseen
-      /*const [sellResponse, rentResponse] = await Promise.all([
-        axios.get('/ads-for-sell'),
-        axios.get('/ads-for-rent'),
-      ]);*/
+    const [sellResponse, rentResponse] = await Promise.all([
+      axios.get('/ads-for-sell'),
+      axios.get('/ads-for-rent'),
+    ]);
 
-      // Yksi kutsu kahden sijaan
-      const response = await axios.get('/ads'); // Palauttaa molemmat
-
-      console.log('Sell ads:', response.data.sell?.length || 0);
-      console.log('Rent ads:', response.data.rent?.length || 0);
-
-      setAdsForSell(response.data.sell || []);
-      setAdsForRent(response.data.rent || []);
-      setLoading(false);
-    } catch (error) {
-      console.error('❌ API error:', error);
-      setAdsForSell([]);
-      setAdsForRent([]);
-      setLoading(false);
-    }
-  };
+    setAdsForSell(sellResponse.data || []);
+    setAdsForRent(rentResponse.data || []);
+    setLoading(false);
+  } catch (error) {
+    console.error('❌ API error:', error);
+    setAdsForSell([]);
+    setAdsForRent([]);
+    setLoading(false);
+  }
+};
 
   // Näytä spinner kun dataa ladataan
   if (loading) {
