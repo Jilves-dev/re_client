@@ -68,6 +68,21 @@
   font-style: normal;
 }
 
+/* Decomang Hold — vain perus-ASCII */
+/* @font-face {
+  font-family: 'DecomangHold';
+  src: url('/fonts/DecomangHold-Regular.ttf') format('truetype');
+  unicode-range: U+0000-00FF; Basic Latin + Latin-1 Supplement (ei sisällä ä/ö) *
+}*/
+
+/* Fallback Art Deco -tyylinen fontti — vain skandinaaviset merkit 
+@font-face {
+  font-family: 'DecomangHold';
+  src: url('/fonts/fallback-artdeco.woff2') format('woff2');
+  unicode-range: U+00C4, U+00E4, U+00D6, U+00F6, U+00C5, U+00E5;
+  * Ä, ä, Ö, ö, Å, å *
+}*/
+
 /*uudet fontteja*/
 
 @font-face {
@@ -136,8 +151,7 @@
 @font-face {
   font-family: 'Baskervville';
   /* Tarkista onko tiedostonimessä väliviiva: Baskervville-VariableFont_wght.ttf */
-  src: url('/fonts/BaskervvilleVariableFont_wght.ttf') format('truetype'),
-       url('/fonts/Baskervville-VariableFont_wght.ttf') format('truetype');
+  src: url('/fonts/Baskervville-VariableFont_wght.ttf') format('truetype');
   font-weight: 100 900;
   font-style: normal; 
 }
