@@ -109,7 +109,7 @@ export default function Home() {
         <br></br>
       </div>
       <div name="header" className="w-full">
-        <PageHeader title="Space realization app experimentalz" />
+        <PageHeader title="Space realization app experimental" />
       </div>
 
       <div
