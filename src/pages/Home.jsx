@@ -92,7 +92,7 @@ export default function Home() {
           </div>
         </div>
         <div name="header" className="w-full">
-          <PageHeader title="Space realization app experimentalz" />
+          <PageHeader title="Space realization app experimental" />
         </div>
         <Spinner message="Loading properties ..." />
       </div>
@@ -109,7 +109,7 @@ export default function Home() {
         <br></br>
       </div>
       <div name="header" className="w-full">
-        <PageHeader title="Space realization app experimental" />
+        <PageHeader title="Space realization app experimentalz" />
       </div>
 
       <div
