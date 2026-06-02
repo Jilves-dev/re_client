@@ -62,8 +62,8 @@
 }
 
 @font-face {
-  font-family: 'DecomangHold-Regular';
-  src: url('/fonts/DecomangHold-Regular.ttf') format('truetype');
+  font-family: 'DecomangHold-Regular-fi';
+  src: url('/fonts/DecomangHold-Regular-fi.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
