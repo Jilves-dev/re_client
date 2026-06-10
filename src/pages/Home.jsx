@@ -62,25 +62,25 @@ export default function Home() {
     fetchAds();
   }, []);
 
- const fetchAds = async () => {
-  try {
-    setLoading(true);
+  const fetchAds = async () => {
+    try {
+      setLoading(true);
 
-    const [sellResponse, rentResponse] = await Promise.all([
-      axios.get('/ads-for-sell'),
-      axios.get('/ads-for-rent'),
-    ]);
+      const [sellResponse, rentResponse] = await Promise.all([
+        axios.get('/ads-for-sell'),
+        axios.get('/ads-for-rent'),
+      ]);
 
-    setAdsForSell(sellResponse.data || []);
-    setAdsForRent(rentResponse.data || []);
-    setLoading(false);
-  } catch (error) {
-    console.error('❌ API error:', error);
-    setAdsForSell([]);
-    setAdsForRent([]);
-    setLoading(false);
-  }
-};
+      setAdsForSell(sellResponse.data || []);
+      setAdsForRent(rentResponse.data || []);
+      setLoading(false);
+    } catch (error) {
+      console.error('❌ API error:', error);
+      setAdsForSell([]);
+      setAdsForRent([]);
+      setLoading(false);
+    }
+  };
 
   // Näytä spinner kun dataa ladataan
   if (loading) {

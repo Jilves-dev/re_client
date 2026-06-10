@@ -100,16 +100,32 @@ export default function Main() {
     >
       {/* Desktop nav */}
       <div className={`hidden md:flex justify-between ${textColor}`}>
-        <NavLink className="nav-link" to="/">Home</NavLink>
-        <NavLink className="nav-link" to="/search">Search</NavLink>
-        <NavLink className="nav-link" to="/buy">Buy</NavLink>
-        <NavLink className="nav-link" to="/rent">Rent</NavLink>
-        <NavLink className="nav-link" to="/agents">Agents</NavLink>
-        <a className="nav-link pointer" onClick={handlePostAdClick}>Post Ad</a>
+        <NavLink className="nav-link" to="/">
+          Home
+        </NavLink>
+        <NavLink className="nav-link" to="/search">
+          Search
+        </NavLink>
+        <NavLink className="nav-link" to="/buy">
+          Buy
+        </NavLink>
+        <NavLink className="nav-link" to="/rent">
+          Rent
+        </NavLink>
+        <NavLink className="nav-link" to="/agents">
+          Agents
+        </NavLink>
+        <a className="nav-link pointer" onClick={handlePostAdClick}>
+          Post Ad
+        </a>
         {!loggedIn ? (
           <>
-            <NavLink className="nav-link" to="/login">Login</NavLink>
-            <NavLink className="nav-link" to="/register">Register</NavLink>
+            <NavLink className="nav-link" to="/login">
+              Login
+            </NavLink>
+            <NavLink className="nav-link" to="/register">
+              Register
+            </NavLink>
           </>
         ) : (
           <div className="relative" ref={userDropdownRef}>
@@ -194,19 +210,29 @@ export default function Main() {
             style={{ textShadow: '1px 1px 4px rgba(0, 0, 0, 0.25)' }}
           >
             <li className="py-4 text-4xl">
-              <NavLink className="nav-link" to="/" onClick={handleClick}>Home</NavLink>
+              <NavLink className="nav-link" to="/" onClick={handleClick}>
+                Home
+              </NavLink>
             </li>
             <li className="py-4 text-4xl">
-              <NavLink className="nav-link" to="/search" onClick={handleClick}>Search</NavLink>
+              <NavLink className="nav-link" to="/search" onClick={handleClick}>
+                Search
+              </NavLink>
             </li>
             <li className="py-4 text-4xl">
-              <NavLink className="nav-link" to="/buy" onClick={handleClick}>Buy</NavLink>
+              <NavLink className="nav-link" to="/buy" onClick={handleClick}>
+                Buy
+              </NavLink>
             </li>
             <li className="py-4 text-4xl">
-              <NavLink className="nav-link" to="/rent" onClick={handleClick}>Rent</NavLink>
+              <NavLink className="nav-link" to="/rent" onClick={handleClick}>
+                Rent
+              </NavLink>
             </li>
             <li className="py-4 text-4xl">
-              <NavLink className="nav-link" to="/agents" onClick={handleClick}>Agents</NavLink>
+              <NavLink className="nav-link" to="/agents" onClick={handleClick}>
+                Agents
+              </NavLink>
             </li>
             <li className="py-4 text-4xl">
               <a
@@ -222,10 +248,22 @@ export default function Main() {
             {!loggedIn ? (
               <>
                 <li className="py-4 text-4xl">
-                  <NavLink className="nav-link" to="/login" onClick={handleClick}>Login</NavLink>
+                  <NavLink
+                    className="nav-link"
+                    to="/login"
+                    onClick={handleClick}
+                  >
+                    Login
+                  </NavLink>
                 </li>
                 <li className="py-4 text-4xl">
-                  <NavLink className="nav-link" to="/register" onClick={handleClick}>Register</NavLink>
+                  <NavLink
+                    className="nav-link"
+                    to="/register"
+                    onClick={handleClick}
+                  >
+                    Register
+                  </NavLink>
                 </li>
               </>
             ) : (
@@ -260,8 +298,6 @@ export default function Main() {
     </div>
   );
 }
-
-
 
 /*import { NavLink, useLocation } from 'react-router-dom';
 import { useEffect, useRef } from 'react';

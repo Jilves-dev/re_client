@@ -1,19 +1,19 @@
-import { defineConfig, loadEnv } from 'vite'
-import react from '@vitejs/plugin-react'
-import { VitePWA } from 'vite-plugin-pwa'
-import path from 'path'
+import { defineConfig, loadEnv } from 'vite';
+import react from '@vitejs/plugin-react';
+import { VitePWA } from 'vite-plugin-pwa';
+import path from 'path';
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '');
-  
+
   return {
     plugins: [
       react(),
       VitePWA({
-       registerType: 'autoUpdate',
-        manifest: false,           // ← käytä public/site.webmanifest -tiedostoa
+        registerType: 'autoUpdate',
+        manifest: false, // ← käytä public/site.webmanifest -tiedostoa
         devOptions: {
-          enabled: true            // ← tärkeä! mahdollistaa testauksen dev-modessa
+          enabled: true, // ← tärkeä! mahdollistaa testauksen dev-modessa
         },
         workbox: {
           runtimeCaching: [
@@ -24,17 +24,17 @@ export default defineConfig(({ mode }) => {
                 cacheName: 'google-fonts-cache',
                 expiration: {
                   maxEntries: 10,
-                  maxAgeSeconds: 60 * 60 * 24 * 365
-                }
-              }
-            }
-          ]
-        }
-      })
+                  maxAgeSeconds: 60 * 60 * 24 * 365,
+                },
+              },
+            },
+          ],
+        },
+      }),
     ],
     server: {
       host: '0.0.0.0',
-      port: 5173
+      port: 5173,
     },
     resolve: {
       alias: {
@@ -42,7 +42,7 @@ export default defineConfig(({ mode }) => {
       },
     },
     define: {
-      'import.meta.env.VITE_API': JSON.stringify(env.VITE_API)
-    }
-  }
-})
+      'import.meta.env.VITE_API': JSON.stringify(env.VITE_API),
+    },
+  };
+});

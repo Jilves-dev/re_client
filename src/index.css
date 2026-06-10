@@ -16,7 +16,7 @@
   font-family: 'Flower Bloom Line Monogram';
   src: url('/fonts/Flower Bloom Line Monogram.ttf') format('truetype');
   font-weight: normal;
-  font-style: normal; 
+  font-style: normal;
 }
 
 @font-face {
@@ -90,7 +90,7 @@
   src: url('/fonts/ReynoldsCaps.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
-}       
+}
 
 @font-face {
   font-family: 'GlassAntiqua-Regular';
@@ -107,38 +107,38 @@
 }
 
 @font-face {
-   font-family: 'ArtNouveauCaps';
-   src: url('/fonts/ArtNouveauCaps.ttf') format('truetype');
-   font-weight: normal;
-   font-style: normal;
+  font-family: 'ArtNouveauCaps';
+  src: url('/fonts/ArtNouveauCaps.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
 }
 
 @font-face {
-   font-family: 'Attic';
-    src: url('/fonts/Attic.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
+  font-family: 'Attic';
+  src: url('/fonts/Attic.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
 }
 
 @font-face {
-   font-family: 'ViaodaLibre-Regular';
-   src: url('/fonts/ViaodaLibre-Regular.ttf') format('truetype');
-   font-weight: normal;
-   font-style: normal;
+  font-family: 'ViaodaLibre-Regular';
+  src: url('/fonts/ViaodaLibre-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
 }
 
 @font-face {
-   font-family: 'PinoyonScript-Regular';
-   src: url('/fonts/PinoyonScript-Regular.ttf') format('truetype');
-   font-weight: normal;
-   font-style: normal;
+  font-family: 'PinoyonScript-Regular';
+  src: url('/fonts/PinoyonScript-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
 }
 
 @font-face {
-   font-family: 'LavishlyYours-Regular';
-   src: url('/fonts/LavishlyYours-Regular.ttf') format('truetype');
-   font-weight: normal;
-   font-style: normal;
+  font-family: 'LavishlyYours-Regular';
+  src: url('/fonts/LavishlyYours-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
 }
 
 @font-face {
@@ -153,12 +153,13 @@
   /* Tarkista onko tiedostonimessä väliviiva: Baskervville-VariableFont_wght.ttf */
   src: url('/fonts/Baskervville-VariableFont_wght.ttf') format('truetype');
   font-weight: 100 900;
-  font-style: normal; 
+  font-style: normal;
 }
 
 @font-face {
   font-family: 'Baskervville-Italic';
-  src: url('/fonts/Baskervville-Italic-VariableFont_wght.ttf') format('truetype');
+  src: url('/fonts/Baskervville-Italic-VariableFont_wght.ttf')
+    format('truetype');
   font-weight: normal;
   font-style: normal;
 }
@@ -193,22 +194,20 @@
   font-style: normal;
 }
 
-
-
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 body {
-  background-color: #F5F5F5;
+  background-color: #f5f5f5;
 }
 
 .flex-grow {
   flex: 1;
 }
 
-html, body {
+html,
+body {
   height: 100%;
 }
 
@@ -244,7 +243,7 @@ html, body {
 .gm-style-mtc button {
   padding: 2px 6px !important; /* Vähennä painikkeiden paddingia */
   font-size: 16px !important; /* Pienennä fonttikokoa */
-  background-color: #FBE9D0 !important;
+  background-color: #fbe9d0 !important;
 }
 
 /* Google Places Autocomplete global fixes */
@@ -261,7 +260,7 @@ html, body {
 }
 
 /* Varmistetaan että kaikki select menut toimivat */
-[class*="react-select"] [class*="menu"] {
+[class*='react-select'] [class*='menu'] {
   z-index: 99999 !important;
 }
 
@@ -279,7 +278,7 @@ html, body {
 }
 
 /* ID-pohjaiset säännöt */
-div[id^="react-select-"] div[class*="menu"] {
+div[id^='react-select-'] div[class*='menu'] {
   z-index: 99999 !important;
 }
 

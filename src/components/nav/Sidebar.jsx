@@ -66,13 +66,18 @@ export default function Sidebar() {
 
   return (
     <div className="bg-[#FBE9D0] w-full px-2 py-2 pb-4">
-
       {/* Desktop sidebar nav */}
       <div className="hidden md:flex justify-start gap-6 border-b border-[#874F41] font-poiretOne text-lg">
-        <NavLink className="nav-link text-[#244855] bg-[#FBE9D0] !important" to="/dashboard">
+        <NavLink
+          className="nav-link text-[#244855] bg-[#FBE9D0] !important"
+          to="/dashboard"
+        >
           🔮 dashboard
         </NavLink>
-        <NavLink className="nav-link text-[#244855] !important" to="/user/wishlist">
+        <NavLink
+          className="nav-link text-[#244855] !important"
+          to="/user/wishlist"
+        >
           💖 wishlist
         </NavLink>
         {/* Desktop: Conversations + badge */}
@@ -86,13 +91,22 @@ export default function Sidebar() {
         <NavLink className="nav-link text-[#244855] !important" to="/ad/create">
           🎨 create
         </NavLink>
-        <NavLink className="nav-link text-[#244855] !important" to="/user/analytics">
+        <NavLink
+          className="nav-link text-[#244855] !important"
+          to="/user/analytics"
+        >
           📊 Analytics
         </NavLink>
-        <NavLink className="nav-link text-[#244855] !important" to="/user/profile">
+        <NavLink
+          className="nav-link text-[#244855] !important"
+          to="/user/profile"
+        >
           🤵 profile
         </NavLink>
-        <NavLink className="nav-link text-[#244855] !important" to="/user/settings">
+        <NavLink
+          className="nav-link text-[#244855] !important"
+          to="/user/settings"
+        >
           🔝 update password
         </NavLink>
       </div>
@@ -177,12 +191,18 @@ export default function Sidebar() {
             style={{ textShadow: '0 0 6px rgba(36, 72, 85, 0.6)' }}
           >
             <li className="py-4 text-4xl">
-              <a className="nav-link cursor-pointer" onClick={(e) => handleNavLinkClick(e, '/dashboard')}>
+              <a
+                className="nav-link cursor-pointer"
+                onClick={(e) => handleNavLinkClick(e, '/dashboard')}
+              >
                 Dashboard
               </a>
             </li>
             <li className="py-4 text-4xl">
-              <a className="nav-link cursor-pointer" onClick={(e) => handleNavLinkClick(e, '/user/wishlist')}>
+              <a
+                className="nav-link cursor-pointer"
+                onClick={(e) => handleNavLinkClick(e, '/user/wishlist')}
+              >
                 Wishlist
               </a>
             </li>
@@ -197,22 +217,34 @@ export default function Sidebar() {
               </a>
             </li>
             <li className="py-4 text-4xl">
-              <a className="nav-link cursor-pointer" onClick={(e) => handleNavLinkClick(e, '/ad/create')}>
+              <a
+                className="nav-link cursor-pointer"
+                onClick={(e) => handleNavLinkClick(e, '/ad/create')}
+              >
                 Create post
               </a>
             </li>
             <li className="py-4 text-4xl">
-              <a className="nav-link cursor-pointer" onClick={(e) => handleNavLinkClick(e, '/user/analytics')}>
+              <a
+                className="nav-link cursor-pointer"
+                onClick={(e) => handleNavLinkClick(e, '/user/analytics')}
+              >
                 Analytics
               </a>
             </li>
             <li className="py-4 text-4xl">
-              <a className="nav-link cursor-pointer" onClick={(e) => handleNavLinkClick(e, '/user/profile')}>
+              <a
+                className="nav-link cursor-pointer"
+                onClick={(e) => handleNavLinkClick(e, '/user/profile')}
+              >
                 Profile
               </a>
             </li>
             <li className="py-4 text-4xl">
-              <a className="nav-link cursor-pointer" onClick={(e) => handleNavLinkClick(e, '/user/settings')}>
+              <a
+                className="nav-link cursor-pointer"
+                onClick={(e) => handleNavLinkClick(e, '/user/settings')}
+              >
                 Update password
               </a>
             </li>
@@ -223,9 +255,8 @@ export default function Sidebar() {
   );
 }
 
-
-
-{/*import { NavLink, useNavigate } from 'react-router-dom';
+{
+  /*import { NavLink, useNavigate } from 'react-router-dom';
 import { GiSettingsKnobs } from 'react-icons/gi';
 import { useAuth } from '../../context/auth';
 import { useState } from 'react';
@@ -453,4 +484,5 @@ export default function Sidebar() {
       )}
     </div>
   );
-}*/}
+}*/
+}

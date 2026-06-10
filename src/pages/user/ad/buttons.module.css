@@ -1,60 +1,63 @@
 /* buttons.module.css */
 /*.button {
     border-radius: 8px; /* Pyöristetyt kulmat */
-    /*background-color: #cbc385; /* Taustaväri */
-    /*color: #879c7d; /* Tekstin väri */
-   /* padding: 10px 20px; /* Pehmuste */
-   /* border: none; /* Ei reunaa */
-  /*  cursor: pointer; /* Osoitin muuttuu kädeksi */
-  /*  transition: background-color 0.3s ease; /* Siirtymä hover-efektille */
- /* }
+/*background-color: #cbc385; /* Taustaväri */
+/*color: #879c7d; /* Tekstin väri */
+/* padding: 10px 20px; /* Pehmuste */
+/* border: none; /* Ei reunaa */
+/*  cursor: pointer; /* Osoitin muuttuu kädeksi */
+/*  transition: background-color 0.3s ease; /* Siirtymä hover-efektille */
+/* }
   
   .button:hover {
     background-color: #cf8c60; /* Taustaväri hoverilla */
- /* }
+/* }
   
   .button:disabled {
     opacity: 0.5; /* Poistaa hover-efektin disabled-napista */
-   /* cursor: default;
+/* cursor: default;
   }*/
 
-  .btn.btn-block.py-2.px-4.mb-3 { /* Lisätty spesifisempi selektori */
-    border-radius: 8px;
-    background-color: #cbc385;
-    color: #879c7d;
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .btn.btn-block.py-2.px-4.mb-3:hover { /* Lisätty spesifisempi selektori */
-    background-color: #cf8c60;
-  }
-  
-  .btn.btn-block.py-2.px-4.mb-3:disabled { /* Lisätty spesifisempi selektori */
-    opacity: 0.5;
-    cursor: default;
-  }
-  
-  .btn.btn-block.py-2.px-4 { /* Lisätty spesifisempi selektori */
-    border-radius: 8px;
-    background-color: #cbc385;
-    color: #879c7d;
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .btn.btn-block.py-2.px-4:hover { /* Lisätty spesifisempi selektori */
-    background-color: #cf8c60;
-  }
-  
-  .btn.btn-block.py-2.px-4:disabled { /* Lisätty spesifisempi selektori */
-    opacity: 0.5;
-    cursor: default;
-  }
-  
+.btn.btn-block.py-2.px-4.mb-3 {
+  /* Lisätty spesifisempi selektori */
+  border-radius: 8px;
+  background-color: #cbc385;
+  color: #879c7d;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
 
-  
+.btn.btn-block.py-2.px-4.mb-3:hover {
+  /* Lisätty spesifisempi selektori */
+  background-color: #cf8c60;
+}
+
+.btn.btn-block.py-2.px-4.mb-3:disabled {
+  /* Lisätty spesifisempi selektori */
+  opacity: 0.5;
+  cursor: default;
+}
+
+.btn.btn-block.py-2.px-4 {
+  /* Lisätty spesifisempi selektori */
+  border-radius: 8px;
+  background-color: #cbc385;
+  color: #879c7d;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn.btn-block.py-2.px-4:hover {
+  /* Lisätty spesifisempi selektori */
+  background-color: #cf8c60;
+}
+
+.btn.btn-block.py-2.px-4:disabled {
+  /* Lisätty spesifisempi selektori */
+  opacity: 0.5;
+  cursor: default;
+}

@@ -1,47 +1,115 @@
 /* Esikatselukuvien suurentaminen */
 .image-gallery-thumbnail {
-    width: 150px;
-    height: auto; 
-    padding: 0px !important;
-  }
-  
-  .image-gallery-thumbnail img {
-    object-fit: cover;
-  }
-  
-  /* Custom navigointinuolet - PERUS TYYLIT */
-  .custom-left-nav,
-  .custom-right-nav {
-    position: absolute !important;
-    top: 50% !important;
-    transform: translateY(-50%) !important;
-    width: 40px !important;
-    height: 40px !important;
-    min-width: 40px !important;
-    max-width: 40px !important;
-    min-height: 40px !important;
-    max-height: 40px !important;
-    background: transparent !important;
-    border: none !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    cursor: pointer !important;
-    z-index: 4 !important;
-    outline: none !important;
-    box-shadow: none !important;
-    transition: none !important;
-    -webkit-tap-highlight-color: transparent !important;
-  }
+  width: 150px;
+  height: auto;
+  padding: 0px !important;
+}
 
-  .custom-left-nav {
-    left: 20px !important;
-  }
+.image-gallery-thumbnail img {
+  object-fit: cover;
+}
 
-  .custom-right-nav {
-    right: 20px !important;
-  }
+/* Custom navigointinuolet - PERUS TYYLIT */
+.custom-left-nav,
+.custom-right-nav {
+  position: absolute !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  width: 40px !important;
+  height: 40px !important;
+  min-width: 40px !important;
+  max-width: 40px !important;
+  min-height: 40px !important;
+  max-height: 40px !important;
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  cursor: pointer !important;
+  z-index: 4 !important;
+  outline: none !important;
+  box-shadow: none !important;
+  transition: none !important;
+  -webkit-tap-highlight-color: transparent !important;
+}
 
-  /* POISTA hover, active, focus efektit AINA */
+.custom-left-nav {
+  left: 20px !important;
+}
+
+.custom-right-nav {
+  right: 20px !important;
+}
+
+/* POISTA hover, active, focus efektit AINA */
+.custom-left-nav:hover,
+.custom-left-nav:active,
+.custom-left-nav:focus,
+.custom-right-nav:hover,
+.custom-right-nav:active,
+.custom-right-nav:focus {
+  background: transparent !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  transform: translateY(-50%) !important;
+  width: 40px !important;
+  height: 40px !important;
+  min-width: 40px !important;
+  max-width: 40px !important;
+  min-height: 40px !important;
+  max-height: 40px !important;
+  top: 50% !important;
+  transition: none !important;
+}
+
+/* Custom SVG tyylittely */
+.custom-nav-svg {
+  width: 40px !important;
+  height: 40px !important;
+  min-width: 40px !important;
+  max-width: 40px !important;
+  min-height: 40px !important;
+  max-height: 40px !important;
+  stroke: #fbe9d0 !important;
+  stroke-width: 2 !important;
+  fill: none !important;
+  filter: drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.3)) !important;
+  display: block !important;
+  transition: none !important;
+  transform: none !important;
+  pointer-events: none !important;
+}
+
+/* SVG pysyy samana kaikissa tiloissa */
+.custom-left-nav:hover .custom-nav-svg,
+.custom-left-nav:active .custom-nav-svg,
+.custom-left-nav:focus .custom-nav-svg,
+.custom-right-nav:hover .custom-nav-svg,
+.custom-right-nav:active .custom-nav-svg,
+.custom-right-nav:focus .custom-nav-svg {
+  width: 40px !important;
+  height: 40px !important;
+  min-width: 40px !important;
+  max-width: 40px !important;
+  min-height: 40px !important;
+  max-height: 40px !important;
+  stroke: #fbe9d0 !important;
+  stroke-width: 2 !important;
+  filter: drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.3)) !important;
+  transform: none !important;
+  transition: none !important;
+}
+
+/* Disabled tila */
+.custom-left-nav:disabled,
+.custom-right-nav:disabled {
+  opacity: 0.3 !important;
+  cursor: not-allowed !important;
+}
+
+/* KOSKETUSNÄYTÖILLE - POISTA KAIKKI INTERAKTIIVISET EFEKTIT */
+@media (hover: none) and (pointer: coarse) {
   .custom-left-nav:hover,
   .custom-left-nav:active,
   .custom-left-nav:focus,
@@ -49,127 +117,59 @@
   .custom-right-nav:active,
   .custom-right-nav:focus {
     background: transparent !important;
-    border: none !important;
-    outline: none !important;
-    box-shadow: none !important;
+    opacity: 1 !important;
     transform: translateY(-50%) !important;
-    width: 40px !important;
-    height: 40px !important;
-    min-width: 40px !important;
-    max-width: 40px !important;
-    min-height: 40px !important;
-    max-height: 40px !important;
-    top: 50% !important;
-    transition: none !important;
   }
 
-  /* Custom SVG tyylittely */
-  .custom-nav-svg {
-    width: 40px !important;
-    height: 40px !important;
-    min-width: 40px !important;
-    max-width: 40px !important;
-    min-height: 40px !important;
-    max-height: 40px !important;
-    stroke: #FBE9D0 !important;
-    stroke-width: 2 !important;
-    fill: none !important;
-    filter: drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.3)) !important;
-    display: block !important;
-    transition: none !important;
-    transform: none !important;
-    pointer-events: none !important;
-  }
-
-  /* SVG pysyy samana kaikissa tiloissa */
   .custom-left-nav:hover .custom-nav-svg,
   .custom-left-nav:active .custom-nav-svg,
   .custom-left-nav:focus .custom-nav-svg,
   .custom-right-nav:hover .custom-nav-svg,
   .custom-right-nav:active .custom-nav-svg,
   .custom-right-nav:focus .custom-nav-svg {
-    width: 40px !important;
-    height: 40px !important;
-    min-width: 40px !important;
-    max-width: 40px !important;
-    min-height: 40px !important;
-    max-height: 40px !important;
-    stroke: #FBE9D0 !important;
-    stroke-width: 2 !important;
-    filter: drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.3)) !important;
+    opacity: 1 !important;
     transform: none !important;
-    transition: none !important;
+  }
+}
+
+/* Responsiivinen suunnittelu */
+@media (max-width: 767px) {
+  .image-gallery-thumbnail {
+    width: 70px;
   }
 
-  /* Disabled tila */
-  .custom-left-nav:disabled,
-  .custom-right-nav:disabled {
-    opacity: 0.3 !important;
-    cursor: not-allowed !important;
+  .custom-left-nav,
+  .custom-right-nav,
+  .custom-left-nav:hover,
+  .custom-left-nav:active,
+  .custom-right-nav:hover,
+  .custom-right-nav:active {
+    width: 30px !important;
+    height: 30px !important;
+    min-width: 30px !important;
+    max-width: 30px !important;
+    min-height: 30px !important;
+    max-height: 30px !important;
   }
 
-  /* KOSKETUSNÄYTÖILLE - POISTA KAIKKI INTERAKTIIVISET EFEKTIT */
-  @media (hover: none) and (pointer: coarse) {
-    .custom-left-nav:hover,
-    .custom-left-nav:active,
-    .custom-left-nav:focus,
-    .custom-right-nav:hover,
-    .custom-right-nav:active,
-    .custom-right-nav:focus {
-      background: transparent !important;
-      opacity: 1 !important;
-      transform: translateY(-50%) !important;
-    }
-    
-    .custom-left-nav:hover .custom-nav-svg,
-    .custom-left-nav:active .custom-nav-svg,
-    .custom-left-nav:focus .custom-nav-svg,
-    .custom-right-nav:hover .custom-nav-svg,
-    .custom-right-nav:active .custom-nav-svg,
-    .custom-right-nav:focus .custom-nav-svg {
-      opacity: 1 !important;
-      transform: none !important;
-    }
+  .custom-left-nav {
+    left: 10px !important;
   }
-  
-  /* Responsiivinen suunnittelu */
-  @media (max-width: 767px) {
-    .image-gallery-thumbnail {
-      width: 70px;
-    }
-    
-    .custom-left-nav,
-    .custom-right-nav,
-    .custom-left-nav:hover,
-    .custom-left-nav:active,
-    .custom-right-nav:hover,
-    .custom-right-nav:active { 
-      width: 30px !important;
-      height: 30px !important;
-      min-width: 30px !important;
-      max-width: 30px !important;
-      min-height: 30px !important;
-      max-height: 30px !important;
-    }
 
-    .custom-left-nav {
-      left: 10px !important;
-    }
-
-    .custom-right-nav {
-      right: 10px !important;
-    }
-
-    .custom-nav-svg,
-    .custom-left-nav:hover .custom-nav-svg,
-    .custom-left-nav:active .custom-nav-svg,
-    .custom-right-nav:hover .custom-nav-svg,
-    .custom-right-nav:active .custom-nav-svg {
-      width: 30px !important;
-      height: 30px !important;
-      min-width: 30px !important;
-      max-width: 30px !important;
-      min-height: 30px !important;
-      max-height: 30px !important;
-    }
+  .custom-right-nav {
+    right: 10px !important;
   }
+
+  .custom-nav-svg,
+  .custom-left-nav:hover .custom-nav-svg,
+  .custom-left-nav:active .custom-nav-svg,
+  .custom-right-nav:hover .custom-nav-svg,
+  .custom-right-nav:active .custom-nav-svg {
+    width: 30px !important;
+    height: 30px !important;
+    min-width: 30px !important;
+    max-width: 30px !important;
+    min-height: 30px !important;
+    max-height: 30px !important;
+  }
+}

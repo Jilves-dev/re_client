@@ -1,130 +1,127 @@
 .centerContent {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #FBE9D0 !important;
-  }
-  
-  .wrapper {
-    width: 420px;
-    background: transparent;
-    backdrop-filter: blur(30px);
-    padding: 10px 40px;
-    height: 60vh;
-  }
-  
-  .wrapper h1 {
-    text-align: center;
-    font-size: 45px;
-    color: #244855;
-  }
-  
-  .inputBox {
-    position: relative;
-    width: 100%;
-    height: 50%;
-    margin: 30px 0;
-    font-family: 'PoiretOne-Regular' !important;
-  }
-  
-  .inputBox input {
-    width: 100%;
-    height: 100%;
-    background: transparent;
-    border: 2px solid #90AEAD !important;
-    outline: none;
-    border-radius: 40px;
-    font-size: 16px;
-    color: #9BB0C1;
-    padding: 20px 45px 20px 20px;
-    font-family: 'PoiretOne-Regular' !important;
-  }
-  
-  .inputBox input::placeholder {
-    color: #90AEAD !important;
-    font-family: 'PoiretOne-Regular' !important;
-  }
-  
-  .icon {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    right: 20px;
-    font-size: 16px;
-    color: #874F41;
-  }
-  
-  .rememberForgot {
-    display: flex;
-    justify-content: space-between;
-    padding-left: 8px;
-    font-size: 14.5px;
-    margin: -15px 0 15px;
-    color: #90AEAD;
-    font-family: 'PoiretOne-Regular' !important;
-  }
-  
-  .rememberForgot label input {
-    accent-color: #90AEAD;
-    margin-right: 4px;
-  }
-  
-  .rememberForgot a {
-    color: #90AEAD;
-    text-decoration: none;
-  }
-  
-  .rememberForgot a:hover {
-    text-decoration: underline;
-  }
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #fbe9d0 !important;
+}
 
-  .textforgot {
-    color: #90AEAD;
-  }
-  
-  .button {
-    width: 100% !important;
-    height: 50% !important;
-    background: #90AEAD !important;
-    border: 2px solid #FFFFFF  !important;
-    /*outline: none;*/
-    border-radius: 40px !important;
-    box-shadow: 0 0 5px #9BB0C1 !important;
-    cursor: pointer !important;
-    font-size: 16px !important;
-    font-family: 'PoiretOne-Regular' !important;
-    color: #FFFFFF !important;
-    font-weight: 400 !important;
-    padding: 20px 45px 20px 20px !important;
-  }
-  
-  .registerLink {
-    font-size: 14.5px;
-    text-align: center;
-    margin-top: 20px 0 15px;
-   
-  }
-  
-  .registerLink p {
-    text-decoration: none;
-    color: #244855;
-    /*font-weight: 600;*/
-    font-family: 'PoiretOne-Regular' !important;
-  }
-  
-  .registerLink p a:hover {
-    text-decoration: underline;
-  }
-  
-  .textregister {
-    color: #E64833 !important;
-    font-family: 'PoiretOne-Regular' !important;
-  }
+.wrapper {
+  width: 420px;
+  background: transparent;
+  backdrop-filter: blur(30px);
+  padding: 10px 40px;
+  height: 60vh;
+}
 
-  .textlogin {
-    color: #244855 !important;
-  }
+.wrapper h1 {
+  text-align: center;
+  font-size: 45px;
+  color: #244855;
+}
 
+.inputBox {
+  position: relative;
+  width: 100%;
+  height: 50%;
+  margin: 30px 0;
+  font-family: 'PoiretOne-Regular' !important;
+}
 
+.inputBox input {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: 2px solid #90aead !important;
+  outline: none;
+  border-radius: 40px;
+  font-size: 16px;
+  color: #9bb0c1;
+  padding: 20px 45px 20px 20px;
+  font-family: 'PoiretOne-Regular' !important;
+}
+
+.inputBox input::placeholder {
+  color: #90aead !important;
+  font-family: 'PoiretOne-Regular' !important;
+}
+
+.icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 20px;
+  font-size: 16px;
+  color: #874f41;
+}
+
+.rememberForgot {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 8px;
+  font-size: 14.5px;
+  margin: -15px 0 15px;
+  color: #90aead;
+  font-family: 'PoiretOne-Regular' !important;
+}
+
+.rememberForgot label input {
+  accent-color: #90aead;
+  margin-right: 4px;
+}
+
+.rememberForgot a {
+  color: #90aead;
+  text-decoration: none;
+}
+
+.rememberForgot a:hover {
+  text-decoration: underline;
+}
+
+.textforgot {
+  color: #90aead;
+}
+
+.button {
+  width: 100% !important;
+  height: 50% !important;
+  background: #90aead !important;
+  border: 2px solid #ffffff !important;
+  /*outline: none;*/
+  border-radius: 40px !important;
+  box-shadow: 0 0 5px #9bb0c1 !important;
+  cursor: pointer !important;
+  font-size: 16px !important;
+  font-family: 'PoiretOne-Regular' !important;
+  color: #ffffff !important;
+  font-weight: 400 !important;
+  padding: 20px 45px 20px 20px !important;
+}
+
+.registerLink {
+  font-size: 14.5px;
+  text-align: center;
+  margin-top: 20px 0 15px;
+}
+
+.registerLink p {
+  text-decoration: none;
+  color: #244855;
+  /*font-weight: 600;*/
+  font-family: 'PoiretOne-Regular' !important;
+}
+
+.registerLink p a:hover {
+  text-decoration: underline;
+}
+
+.textregister {
+  color: #e64833 !important;
+  font-family: 'PoiretOne-Regular' !important;
+}
+
+.textlogin {
+  color: #244855 !important;
+}

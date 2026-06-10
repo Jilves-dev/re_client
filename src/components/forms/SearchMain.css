@@ -12,7 +12,7 @@
   .google-places-input {
     max-width: 60%;
     margin: 0 auto;
-    border: 1px solid #90AEAD !important;
+    border: 1px solid #90aead !important;
     border-radius: 4px !important;
   }
 }
@@ -23,7 +23,7 @@
 
 .google-places-input {
   display: flex;
-  border: 01px solid #90AEAD !important;
+  border: 01px solid #90aead !important;
   border-radius: 4px !important;
   align-items: center;
   width: 100%;
@@ -80,7 +80,7 @@
   z-index: 100000 !important;
 }
 
-.css-1pahdxg-control, 
+.css-1pahdxg-control,
 .css-yk16xz-control,
 .css-13cymwt-control {
   z-index: 2001 !important;
@@ -96,7 +96,7 @@
 
 /* Google Places dropdown - PAKOTA korkeammalle kuin napit */
 .google-places-autocomplete__menu,
-[class*="react-select"][class*="menu"],
+[class*='react-select'][class*='menu'],
 .css-26l3qy-menu,
 .css-1n7v3ny-menu {
   z-index: 100000 !important; /* Paljon korkeampi kuin napit */
@@ -107,16 +107,16 @@
 .css-1n7v3ny-menu {
   z-index: 9999 !important;
   border-radius: 4px;
-  border: 1px solid #90AEAD;
+  border: 1px solid #90aead;
 }
 
 /* Lisätään tuki kaikille mahdollisille React Select luokille */
-[class*="react-select"] [class*="menu"] {
+[class*='react-select'] [class*='menu'] {
   z-index: 9999 !important;
 }
 
 /* Varmistetaan että Google Places dropdown näkyy */
-div[id^="react-select-"] {
+div[id^='react-select-'] {
   z-index: 9999 !important;
 }
 
@@ -127,9 +127,9 @@ div[id^="react-select-"] {
 
 /* Settings-ikoni */
 .settings-icon-button {
-  background-color: #FBE9D0 !important;
+  background-color: #fbe9d0 !important;
   border-radius: 10% !important;
-  border: 1px solid #90AEAD !important;
+  border: 1px solid #90aead !important;
   padding: 8px !important;
   display: flex !important;
   align-items: center !important;
@@ -175,11 +175,11 @@ div[id^="react-select-"] {
 
 /* Painikkeet */
 .search-form-container button:not(.settings-icon-button) {
-  background-color: #FBE9D0 !important;
+  background-color: #fbe9d0 !important;
   border-width: 2px !important;
-  border-color: #90AEAD !important;
+  border-color: #90aead !important;
   border-radius: 0px !important;
-  color: #90AEAD !important; /* <-- TÄMÄ ON TEKSTIN VÄRI */
+  color: #90aead !important; /* <-- TÄMÄ ON TEKSTIN VÄRI */
   padding: 15px 75px !important;
   transition: all 0.3s ease;
 }
@@ -199,7 +199,7 @@ button:not(.settings-icon-button):hover {
 
 /* Lisää tämä, jos haluat eri tekstivärin kun nappi on valittuna (active) */
 .search-form-container button.active {
-  color: #90AEAD !important; /* <-- Vaihda aktiivisen napin väri tästä */
+  color: #90aead !important; /* <-- Vaihda aktiivisen napin väri tästä */
 }
 
 button:disabled {
@@ -227,14 +227,14 @@ button:disabled {
 }
 
 .css-1uj5iah-control {
-  border-color: #90AEAD !important;
+  border-color: #90aead !important;
 }
 
 /* Focus tila parannus */
 .css-1pahdxg-control:focus-within,
 .css-yk16xz-control:focus-within {
-  border-color: #90AEAD !important;
-  box-shadow: 0 0 0 1px #90AEAD !important;
+  border-color: #90aead !important;
+  box-shadow: 0 0 0 1px #90aead !important;
 }
 
 /* Pyöristetään modaalin napit pienillä näytöillä */
@@ -246,14 +246,14 @@ button:disabled {
 
 /* Hakukriteeri-modaalin tyylit (pienet näytöt) */
 .search-modal .modal-content {
-  background-color: #FBE9D0;
+  background-color: #fbe9d0;
   color: #244855;
   border-radius: 8px;
 }
 
 .search-modal .modal-header {
-  border-bottom-color: #90AEAD;
-  background-color: #90AEAD;
+  border-bottom-color: #90aead;
+  background-color: #90aead;
   color: #244855;
 }
 
@@ -267,12 +267,13 @@ button:disabled {
 }
 
 .search-modal .modal-header .btn-close {
-  filter: invert(25%) sepia(11%) saturate(2500%) hue-rotate(150deg) brightness(90%) contrast(90%);
+  filter: invert(25%) sepia(11%) saturate(2500%) hue-rotate(150deg)
+    brightness(90%) contrast(90%);
 }
 
 .search-modal .modal-body .btn-primary,
 .search-modal .modal-body .dropdown-toggle {
-  background-color: #FBE9D0;
+  background-color: #fbe9d0;
   color: #244855;
   border: 1px solid #244855;
   transition: all 0.2s ease;
@@ -282,7 +283,7 @@ button:disabled {
 
 .search-modal .modal-body .btn-primary:hover,
 .search-modal .modal-body .dropdown-toggle:hover {
-  background-color: #90AEAD;
+  background-color: #90aead;
   color: #244855;
   border-color: #244855;
   font-family: 'PoiretOne-Regular', serif;
@@ -290,19 +291,19 @@ button:disabled {
 }
 
 .search-modal .dropdown-menu {
-  background-color: #FBE9D0 !important;
+  background-color: #fbe9d0 !important;
 }
 
 /* Muutetaan modaalin valitun radio-napin väri */
 .search-modal .form-check-input:checked {
-  background-color: #90AEAD;
-  border-color: #90AEAD;
-    font-family: 'PoiretOne-Regular', serif;
+  background-color: #90aead;
+  border-color: #90aead;
+  font-family: 'PoiretOne-Regular', serif;
   font-weight: 500;
 }
 
 .search-modal .form-check-input:focus {
-  border-color: #90AEAD;
+  border-color: #90aead;
   box-shadow: 0 0 0 0.2rem rgba(144, 174, 173, 0.25);
 }
 
@@ -320,12 +321,12 @@ button:disabled {
 /* Dropdown menu parannus */
 .dropdown-menu {
   border-radius: 4px;
-  border: 1px solid #90AEAD;
+  border: 1px solid #90aead;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 }
 
 .dropdown-item:hover {
-  background-color: #FBE9D0;
+  background-color: #fbe9d0;
   color: #244855;
 }
 
@@ -338,11 +339,11 @@ button:disabled {
 .price-button .dropdown-menu,
 .price-button .dropdown-item {
   font-family: 'Dyer Arts and Crafts', serif !important;
-  color: #90AEAD !important;
+  color: #90aead !important;
 }
 
 .price-button .dropdown-menu {
-  background-color: #FBE9D0 !important;
+  background-color: #fbe9d0 !important;
 }
 
 .price-button .dropdown-toggle:hover,

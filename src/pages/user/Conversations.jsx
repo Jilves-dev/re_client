@@ -167,9 +167,11 @@ export default function Conversations() {
       console.log('=== FRONTEND DELETE ===');
       console.log('Ad ID:', conversationToDelete.ad._id);
 
-      const enquirerMsg = conversationToDelete.messages.find(m => !m.isOwn || !conversationToDelete.isOwner);
-      const enquirerId = conversationToDelete.isOwner 
-        ? conversationToDelete.messages.find(m => !m.isOwn)?.sender?._id
+      const enquirerMsg = conversationToDelete.messages.find(
+        (m) => !m.isOwn || !conversationToDelete.isOwner
+      );
+      const enquirerId = conversationToDelete.isOwner
+        ? conversationToDelete.messages.find((m) => !m.isOwn)?.sender?._id
         : auth.user._id;
 
       const { data } = await axios.delete(
