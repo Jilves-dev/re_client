@@ -39,7 +39,8 @@ export default function UserCard({ user, className }) {
                         h-95 bg-cover bg-center"
         >
           <img
-            src={user?.photo?.Location ?? Logo}
+            //src={user?.photo?.Location ?? Logo}
+            src={user?.photo?.Location}
             alt={user.username}
             className="w-full h-80 object-cover"
           />
