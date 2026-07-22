@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import CustomImageGallery from '../components/misc/ImageGallery';
-import houseLogo from '../../houseLogo.jpg';
+import houseLogo from '../../houseLogo2.jpg';
 import AdFeatures from '../components/cards/AdFeatures';
 import { formatNumber } from '../helpers/ad';
 import dayjs from 'dayjs';
@@ -112,7 +112,7 @@ export default function AdView() {
           </div>
         </div>
 
-        {/* Kuvagalleria */}
+        {/* Gallery */}
         <div className="col-span-3 mb-2">
           <CustomImageGallery photos={generatePhotosArray(ad?.photos)} />
         </div>
