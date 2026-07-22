@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Badge } from 'antd';
 import { Link } from 'react-router-dom';
 //import Logo from '../../logo.svg';
+import Logo from '../../houseLogo.jpg';
 import dayjs from 'dayjs';
 import axios from 'axios';
 import relativeTime from 'dayjs/plugin/relativeTime';
@@ -39,8 +40,8 @@ export default function UserCard({ user, className }) {
                         h-95 bg-cover bg-center"
         >
           <img
-            //src={user?.photo?.Location ?? Logo}
-            src={user?.photo?.Location}
+            src={user?.photo?.Location ?? Logo}
+            //src={user?.photo?.Location}
             alt={user.username}
             className="w-full h-80 object-cover"
           />
