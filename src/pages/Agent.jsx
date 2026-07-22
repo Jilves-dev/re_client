@@ -45,7 +45,7 @@ export default function Agent() {
     <div className="max-w-screen w-full pb-10">
       {/*<div name="header">
         <PageHeader title={agent?.name ?? agent?.username} />
-      </div>*/}
+      </div> */}
 
       {/* Portfolio Section */}
       <div className="bg-[#FBE9D0] py-16 px-4">
@@ -65,7 +65,7 @@ export default function Agent() {
             className="bg-white rounded-lg shadow-lg p-8 md:p-12"
             style={customShadow}
           >
-            {/* Name */}
+            {/* Agent name */}
             <h2 className="font-decomang text-4xl md:text-5xl text-[#244855] text-center mb-6">
               {agent?.name || agent?.username}
             </h2>
