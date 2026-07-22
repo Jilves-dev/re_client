@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import CustomImageGallery from '../components/misc/ImageGallery';
-import houseLogo from '../../houseLogo2.jpg';
+import houseLogo from '../assets/houseLogo2.jpg';
 import AdFeatures from '../components/cards/AdFeatures';
 import { formatNumber } from '../helpers/ad';
 import dayjs from 'dayjs';
